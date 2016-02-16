@@ -1,0 +1,7 @@
+/bin/
+/target/
+.classpath
+.project
+.settings
+/src/test/resources/pruebas.properties
+**/.DS_Store
