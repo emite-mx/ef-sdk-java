@@ -37,10 +37,37 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 
 - [Documentacion Técnica Api Servicios Web de Integradores: https://scot.emitefacturacion.mx/api/](https://scot.emitefacturacion.mx/api/)
 
-### Ejemplos de utilización
+## Ejemplos de utilización
 -------------------------------------------------------
 Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](https://github.com/emitefacturacion/ef-sdk-java/tree/master/ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos) podrá encontrar ejemplos sobre los servicios que estan soportados por la libreria, para su referencia se muestra a continuación un ejemplo de generación, sellado y timbrado de un CFDI:
 
+## Ejemplo de Timbrado de CFDI 3.2
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final TimbrarRequest request = TimbrarRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.xml(props.getProperty("xml.base64"))
+				.build();
+		final TimbrarResponse respuesta = api.timbrador32().ejecuta(request);
+```
+
+## Sellado y Timbrado de CFDI 3.2
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final SellarYTimbrarRequest request = SellarYTimbrarRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.xml(props.getProperty("xml.base64"))
+				.build();
+		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+```
+
+
+## Ejemplo de Generación completa de CFDI (Xml + Sellado + Timbrado)
+-------------------------------------------------------
 ```java
 final Comprobante comprobante = Comprobante.builder()
 				.lugarExpedicion("México, D.F.")
@@ -77,7 +104,6 @@ final Comprobante comprobante = Comprobante.builder()
 										.estado(Estados.DISTRITOFEDERAL)
 										.pais(Paises.MEXICO)
 								.build())
-						
 						.build())
 				.conceptos(Conceptos.builder()
 							.concepto(Concepto.builder()
@@ -96,7 +122,6 @@ final Comprobante comprobante = Comprobante.builder()
 											.importe(BigDecimal.ZERO)
 											.impuesto(TiposImpuesto.ISR)
 											.build())
-											
 									.build())
 							.traslados(Traslados.builder()
 											.traslado(Traslado.builder()
@@ -104,22 +129,16 @@ final Comprobante comprobante = Comprobante.builder()
 											.importe(BigDecimal.ZERO)
 											.impuesto(TiposImpuesto.IVA)
 											.build())
-											
 									.build())
 						.build())
 				.build()
 				;
-		
-		
-			
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		
 		final SellarYTimbrarRequest request = SellarYTimbrarRequest.builder()
 				.usuario(props.getProperty("emisor.usuario"))
 				.contrasena(props.getProperty("emisor.contrasena"))
 				.comprobante(comprobante)
 				.build();
-		
 		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
 		procesaRespuesta(respuesta);
 		log.debug(respuesta.toString());
