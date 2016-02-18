@@ -31,4 +31,92 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 
 - [Documentacion Técnica Api Servicios Web de Integradores: https://scot.emitefacturacion.mx/api/](https://scot.emitefacturacion.mx/api/)
 
+### Ejemplos de utilización
+-------------------------------------------------------
+Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](https://github.com/emitefacturacion/ef-sdk-java/tree/master/ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos) podrá encontrar ejemplos sobre los servicios que estan soportados por la libreria, para su referencia se muestra a continuación un ejemplo de generación, sellado y timbrado de un CFDI:
 
+```java
+final Comprobante comprobante = Comprobante.builder()
+				.lugarExpedicion("México, D.F.")
+				.fecha(LocalDateTime.now())
+				.folio(1000)
+				.formaDePago(FormasPago.PAGOENUNASOLAEXHIBICION)
+				.metodoDePago(MetodosPago.CANCELACION)
+				.tipoDeComprobante(TipoDeComprobante.INGRESO)
+				.subTotal(BigDecimal.ZERO)
+				.total(BigDecimal.ZERO)
+				.moneda(Monedas.MXN)
+				.numCtaPago("NO IDENTIFICADO")
+				.emisor(Emisor.builder()
+						.nombre(props.getProperty("emisor.nombre"))
+						.rfc(props.getProperty("emisor.usuario"))
+						.domicilioFiscal(TUbicacionFiscal.builder()
+										.calle("CALLE")
+										.codigoPostal("03300")
+										.municipio("BENITO JUAREZ")
+										.estado(Estados.DISTRITOFEDERAL)
+										.pais(Paises.MEXICO)
+								.build())
+						.regimenFiscal(RegimenFiscal.builder()
+								.Regimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
+								.build())
+						.build())				
+				.receptor(Receptor.builder()
+						.nombre("RECEPTOR SA DE CV")
+						.rfc("XAXX010101000")
+						.domicilio(TUbicacion.builder()
+										.calle("CALLE")
+										.codigoPostal("03300")
+										.municipio("BENITO JUAREZ")
+										.estado(Estados.DISTRITOFEDERAL)
+										.pais(Paises.MEXICO)
+								.build())
+						
+						.build())
+				.conceptos(Conceptos.builder()
+							.concepto(Concepto.builder()
+										.cantidad(BigDecimal.ONE)
+										.descripcion("DESCRIPCION")
+										.importe(BigDecimal.ZERO)
+										.valorUnitario(BigDecimal.ZERO)
+										.unidad(UnidadesMedida.SERVICIO)
+									.build())
+						.build())
+				.impuestos(Impuestos.builder()
+							.totalImpuestosRetenidos(BigDecimal.valueOf(0))
+							.totalImpuestosTrasladados(BigDecimal.ZERO)
+							.retenciones(Retenciones.builder()
+											.retencion(Retencion.builder()
+											.importe(BigDecimal.ZERO)
+											.impuesto(TiposImpuesto.ISR)
+											.build())
+											
+									.build())
+							.traslados(Traslados.builder()
+											.traslado(Traslado.builder()
+											.tasa(BigDecimal.valueOf(16))
+											.importe(BigDecimal.ZERO)
+											.impuesto(TiposImpuesto.IVA)
+											.build())
+											
+									.build())
+						.build())
+				.build()
+				;
+		
+		
+			
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		
+		final SellarYTimbrarRequest request = SellarYTimbrarRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.comprobante(comprobante)
+				.build();
+		
+		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+		procesaRespuesta(respuesta);
+		log.debug(respuesta.toString());
+		log.debug(respuesta.getXmlDecodificado());
+
+```
