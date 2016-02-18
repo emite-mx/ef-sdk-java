@@ -5,3 +5,4 @@
 .settings
 /src/test/resources/pruebas.properties
 **/.DS_Store
+/README.md

@@ -18,6 +18,12 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 -------------------------------------------------------
 - Java 1.8
 
+### Servicios Soportados 
+-------------------------------------------------------
+- Timbrado de CFDI 3.2
+- Sellado y Timbrado de CFDI 3.2
+- Generación completa de CFDI (Xml + Sellado + Timbrado)
+
 ### Requerimientos de utilización
 -------------------------------------------------------
 - Contar con registro de Integrador en nuestro portal de Integradores
