@@ -22,6 +22,9 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses> 
+  <scm>
+  <url>http://svn.apache.org/viewvc/maven</url>
+  </scm>
   <developers> 
 		<developer>
 			<name>Enrique Sánchez de la Barquera</name>
@@ -251,7 +254,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
+						<version>1.6</version>
 						<configuration>
 							<keyname>${gpg.keyname}</keyname>
 							<passphrase>${gpg.passphrase}</passphrase>
