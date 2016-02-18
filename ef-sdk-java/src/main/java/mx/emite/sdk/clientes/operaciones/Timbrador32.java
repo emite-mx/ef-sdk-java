@@ -23,11 +23,11 @@ public class Timbrador32 extends Operacion<TimbrarRequest,TimbrarResponse> {
 	
 	
 	/**
-	 * Método que timbra un comprobante cfdi 3.2 sellado en Base64
+	 * Método que sella y timbra un comprobante cfdi 3.2 sellado en Base64
 	 * 
-	 * @param request
-	 * @return
-	 * @throws ApiException
+	 * @param request Parametros de uso de timbrado (usuario, contraseña y xml sellado en base 64)
+	 * @return Objeto con el xml timbrado en Base64
+	 * @throws ApiException en caso de que ocurra algun error
 	 * @see TimbrarRequest
 	 */
 	@Override
