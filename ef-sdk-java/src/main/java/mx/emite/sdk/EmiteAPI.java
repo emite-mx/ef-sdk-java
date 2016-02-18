@@ -1,6 +1,7 @@
 package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
+import mx.emite.sdk.clientes.operaciones.Cancelador32;
 import mx.emite.sdk.clientes.operaciones.SelladorYTimbrador32;
 import mx.emite.sdk.clientes.operaciones.Servicios;
 import mx.emite.sdk.clientes.operaciones.Timbrador32;
@@ -22,7 +23,7 @@ public class EmiteAPI {
 	private final Servicios servicios;
 	private final Timbrador32 timbrador32;
 	private final SelladorYTimbrador32 selladorytimbrador32;
-	
+	private final Cancelador32 cancelador32;
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
 	 * 
@@ -37,16 +38,42 @@ public class EmiteAPI {
 		this.servicios=new Servicios(this.cliente);
 		this.timbrador32=new Timbrador32(this.cliente);
 		this.selladorytimbrador32=new SelladorYTimbrador32(this.cliente);
+		this.cancelador32=new Cancelador32(this.cliente);
 	}
 	
+	/**
+	 * Servicio de listado de Servicios
+	 * @return servicios
+	 * @since 0.0.1
+	 */
 	public Servicios servicios(){
 		return servicios;
 	}
 
+	/**
+	 * Servicio Timbrado de CFDI 3.2
+	 * @return timbrador32
+	 * @since 0.0.1
+	 */
 	public Timbrador32 timbrador32(){
 		return timbrador32;
 	}
 	
+	
+	/**
+	 * Servicio de Cancelación de CFDI 3.2
+	 * @return cancelador32
+	 * @since 0.0.2
+	 */
+	public Cancelador32 cancelador32(){
+		return cancelador32;
+	}
+	
+	/**
+	 * Servicio de Sellado y Timbrado de CFDI 3.2
+	 * @return selladorytimbrador32
+	 * @since 0.0.1
+	 */
 	public SelladorYTimbrador32 selladorytimbrador32(){
 		return selladorytimbrador32;
 	}

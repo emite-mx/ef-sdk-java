@@ -23,6 +23,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Timbrado de CFDI 3.2
 - Sellado y Timbrado de CFDI 3.2
 - Generación completa de CFDI (Xml + Sellado + Timbrado)
+- Cancelación de CFDI 3.2
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -144,4 +145,17 @@ final Comprobante comprobante = Comprobante.builder()
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 
+```
+
+## Ejemplo de Cancelación de CFDI 3.2
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final CancelarRequest request = CancelarRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid("7F418ECE-547B-A2F9-F81B-BB1A4008A06D")
+				.build()
+				; 
+		final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
 ```
