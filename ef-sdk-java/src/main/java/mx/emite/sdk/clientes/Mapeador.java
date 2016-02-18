@@ -20,6 +20,7 @@ public class Mapeador extends ObjectMapper{
 		enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		disable(SerializationFeature.INDENT_OUTPUT);
+		
 
 	}
 
@@ -45,7 +46,8 @@ public class Mapeador extends ObjectMapper{
 		if(objeto==null)
 			return "";
 		try {
-			return writeValueAsString(objeto);
+			final String json = writeValueAsString(objeto);
+			return json;
 		} catch (JsonProcessingException e) {
 			throw new ApiException(I_Api_Errores.SERIALIZANDO,e);
 		}

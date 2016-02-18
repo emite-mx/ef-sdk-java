@@ -10,6 +10,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 public abstract class ProxyResponse {
 
 	
+	
 	private ApiError error= new ApiError(I_Api_Errores.OK);
 	
 	private String uuid;

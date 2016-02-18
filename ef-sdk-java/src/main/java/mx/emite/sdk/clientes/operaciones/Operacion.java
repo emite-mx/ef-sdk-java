@@ -6,9 +6,10 @@ import lombok.NonNull;
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.enums.Proveedor;
 import mx.emite.sdk.enums.Rutas;
+import mx.emite.sdk.errores.ApiException;
 
 
-public abstract class Operacion {
+public abstract class Operacion<ENVIO,RESPUESTA> {
 
 	@Getter(AccessLevel.PROTECTED)
 	private final ClienteJson cliente;
@@ -22,6 +23,7 @@ public abstract class Operacion {
 	}
 	
 		
+	@SuppressWarnings("deprecation")
 	protected final String creaRuta(){
 		final StringBuilder path = new StringBuilder();
 		switch(cliente.getAmbiente()){
@@ -34,5 +36,7 @@ public abstract class Operacion {
 		}
 		return path.toString();
 	}
+	
+	public abstract RESPUESTA ejecuta(ENVIO request) throws ApiException;
 	
 }

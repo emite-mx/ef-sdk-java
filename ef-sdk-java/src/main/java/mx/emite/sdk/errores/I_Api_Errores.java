@@ -14,7 +14,9 @@ public enum I_Api_Errores {
 	PROCESANDO_RESPUESTA(2,"Procesando respuesta"),
 	DESERIALIZANDO(3,"Deserializando objeto"),
 	SERIALIZANDO(4,"Serializando objeto"),
-	
+	DECODIFICANDO(5,"Decodificando cadena en Base64"),
+	CODIFICANDO(5,"Codificando cadena a Base64"),
+	LEYENDO_ARCHIVO(6,"Error al leer el archivo"),
 	//Errores del cliente
 	CLIENTE_REQUEST_INVALIDO(100,"Petición inválida"),
 	CLIENTE_TOKEN_INVALIDO(101,"Token inválido"),
@@ -117,7 +119,7 @@ public enum I_Api_Errores {
 	EF_PREVIAMENTE_TIMBRADO(506	, "Comprobante timbrado anteriormente"),
 	EF_PREVIAMENTE_CANCELADO(507	, "Comprobante previamente cancelado"),
 	EF_INFORMACION_INVALIDA(601,"La información para buscar el comprobante no es válida."),
-	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),     
+	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),       
 	 
 	
 	

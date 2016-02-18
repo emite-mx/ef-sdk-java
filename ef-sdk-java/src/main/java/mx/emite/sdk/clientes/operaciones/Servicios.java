@@ -6,7 +6,7 @@ import mx.emite.sdk.enums.Rutas;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.proxy.response.ServiciosResponse;
 
-public class Servicios extends Operacion{
+public class Servicios extends Operacion<ServiciosResponse,ServiciosResponse>{
 
 	
 	
@@ -14,9 +14,19 @@ public class Servicios extends Operacion{
 		super(cliente,Proveedor.PROXY,Rutas.SERVICIOS);
 	}
 
-	public ServiciosResponse servicios() throws ApiException{
+	public ServiciosResponse ejecuta() throws ApiException{
 		final String ruta = creaRuta();
 		return this.getCliente().post(ruta,null,ServiciosResponse.class);
+	}
+
+	
+	/* 
+	 * @deprecated Se debe utilizar el metodo ejecuta sin parametros
+	 */
+	@Override
+	@Deprecated
+	public ServiciosResponse ejecuta(ServiciosResponse request) throws ApiException {
+		return null;
 	}
 	
 }

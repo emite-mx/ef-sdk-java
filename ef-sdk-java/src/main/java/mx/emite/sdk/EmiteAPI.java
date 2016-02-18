@@ -1,6 +1,7 @@
 package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
+import mx.emite.sdk.clientes.operaciones.SelladorYTimbrador32;
 import mx.emite.sdk.clientes.operaciones.Servicios;
 import mx.emite.sdk.clientes.operaciones.Timbrador32;
 import mx.emite.sdk.enums.Ambiente;
@@ -20,6 +21,7 @@ public class EmiteAPI {
 	
 	private final Servicios servicios;
 	private final Timbrador32 timbrador32;
+	private final SelladorYTimbrador32 selladorytimbrador32;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -34,6 +36,7 @@ public class EmiteAPI {
 		this.cliente=new ClienteJson(ambiente);
 		this.servicios=new Servicios(this.cliente);
 		this.timbrador32=new Timbrador32(this.cliente);
+		this.selladorytimbrador32=new SelladorYTimbrador32(this.cliente);
 	}
 	
 	public Servicios servicios(){
@@ -42,6 +45,10 @@ public class EmiteAPI {
 
 	public Timbrador32 timbrador32(){
 		return timbrador32;
+	}
+	
+	public SelladorYTimbrador32 selladorytimbrador32(){
+		return selladorytimbrador32;
 	}
 	
 }

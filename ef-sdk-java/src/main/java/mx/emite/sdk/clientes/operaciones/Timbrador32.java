@@ -14,7 +14,7 @@ import mx.emite.sdk.proxy.response.TimbrarResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Timbrador32 extends Operacion {
+public class Timbrador32 extends Operacion<TimbrarRequest,TimbrarResponse> {
 
 	public Timbrador32(final ClienteJson cliente) {
 		super(cliente,Proveedor.PROXY,Rutas.TIMBRAR32);
@@ -30,7 +30,8 @@ public class Timbrador32 extends Operacion {
 	 * @throws ApiException
 	 * @see TimbrarRequest
 	 */
-	public TimbrarResponse timbra(TimbrarRequest request) throws ApiException{
+	@Override
+	public TimbrarResponse ejecuta(TimbrarRequest request) throws ApiException{
 		final String ruta = creaRuta();
 		return this.getCliente().post(ruta,request,TimbrarResponse.class);
 	}

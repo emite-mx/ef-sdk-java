@@ -1,7 +1,11 @@
 package mx.emite.sdk.errores;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -63,6 +67,11 @@ public class ApiException extends RuntimeException{
 		fieldErrors.stream().forEach(i->mensajes.add(String.join(":", i.getField(),i.getDefaultMessage())));
 		globalErrors.stream().forEach(i->mensajes.add(String.join(":", i.getObjectName(),i.getDefaultMessage())));
 	}*/
+
+	public ApiException(I_Api_Errores tipo, Set<ConstraintViolation<Object>> errores) {
+		this(tipo);
+		errores.stream().forEach(i->mensajes.add(MessageFormat.format(i.getMessage(),i.getPropertyPath())));
+	}
 
 	public String getTraza() {
 		return excepcion==null?this.error.name(): ExceptionUtils.getStackTrace(this);
