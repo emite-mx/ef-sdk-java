@@ -107,6 +107,22 @@ public class Utilerias {
 
 	public static boolean compara(String source, String target) {
 		return comparador.compare(source, target)==0;
+	}
+
+	public static byte[] decodificaBinario(String pdf) throws ApiException{
+		try{
+			return decoder.decode(pdf.getBytes());
+			}catch(Exception ex){
+				throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+		}
+	}
+
+	public static void guardaArchivo(String ruta, byte[] pdfDecodificado) throws ApiException{
+		try{
+				Files.write(Paths.get(ruta), pdfDecodificado);
+			}catch(Exception ex){
+				throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
+		}
 	} 
 	
 }

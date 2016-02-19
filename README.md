@@ -26,6 +26,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Cancelación de CFDI 3.2
 - Descarga de Xml
 - Descarga de Acuses de Cancelación
+- Descarga de Pdf
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -88,8 +89,8 @@ final Comprobante comprobante = Comprobante.builder()
 						.rfc(props.getProperty("emisor.usuario"))
 						.domicilioFiscal(TUbicacionFiscal.builder()
 										.calle("CALLE")
-										.codigoPostal("03300")
-										.municipio("BENITO JUAREZ")
+										.codigoPostal("00000")
+										.municipio("MUNICIPIO")
 										.estado(Estados.DISTRITOFEDERAL)
 										.pais(Paises.MEXICO)
 								.build())
@@ -102,8 +103,8 @@ final Comprobante comprobante = Comprobante.builder()
 						.rfc("XAXX010101000")
 						.domicilio(TUbicacion.builder()
 										.calle("CALLE")
-										.codigoPostal("03300")
-										.municipio("BENITO JUAREZ")
+										.codigoPostal("00000")
+										.municipio("MUNICIPIO")
 										.estado(Estados.DISTRITOFEDERAL)
 										.pais(Paises.MEXICO)
 								.build())
@@ -186,4 +187,19 @@ final Comprobante comprobante = Comprobante.builder()
 				.build()
 				; 
 		final XmlResponse respuesta = api.descargaacusexml().ejecuta(request);
+```
+
+## Ejemplo de Descarga de Pdf
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final PdfRequest request = PdfRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid(props.getProperty("xml.uuid"))
+				.plantilla("EMITE")
+				.build()
+				; 
+		final PdfResponse respuesta = api.pdf().ejecuta(request);
+		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
