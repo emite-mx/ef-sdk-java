@@ -11,6 +11,7 @@ public enum Rutas {
 	CANCELAR32("/api/cfdi/3.2/cancelar"),
 	XML("/api/cfdi/3.2/xml"),
 	ACUSE("/api/cfdi/3.2/acusecancelacion/xml"),
+	PDFACUSE("/api/cfdi/3.2/acusecancelacion/pdf"),
 	PDF("/api/cfdi/3.2/pdf"),
 	
 	;

@@ -27,6 +27,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Xml
 - Descarga de Acuses de Cancelación
 - Descarga de Pdf
+- Descarga de Pdf de Acuse de Cancelación
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -201,5 +202,19 @@ final Comprobante comprobante = Comprobante.builder()
 				.build()
 				; 
 		final PdfResponse respuesta = api.pdf().ejecuta(request);
+		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
+```
+
+## Ejemplo de Descarga de Pdf de Acuse de Cancelación
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final PdfRequest request = PdfRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid(props.getProperty("xml.uuid"))
+				.build()
+				; 
+		final PdfResponse respuesta = api.pdfacuse().ejecuta(request);
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```

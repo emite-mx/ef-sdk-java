@@ -5,6 +5,7 @@ import mx.emite.sdk.clientes.operaciones.Cancelador32;
 import mx.emite.sdk.clientes.operaciones.DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.DescargaXml;
 import mx.emite.sdk.clientes.operaciones.Pdf;
+import mx.emite.sdk.clientes.operaciones.PdfAcuse;
 import mx.emite.sdk.clientes.operaciones.SelladorYTimbrador32;
 import mx.emite.sdk.clientes.operaciones.Servicios;
 import mx.emite.sdk.clientes.operaciones.Timbrador32;
@@ -30,6 +31,7 @@ public class EmiteAPI {
 	private final DescargaXml descargaxml;
 	private final DescargaAcuseXml descargaacusexml;
 	private final Pdf pdf;
+	private final PdfAcuse pdfacuse;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -49,6 +51,7 @@ public class EmiteAPI {
 		this.descargaxml=new DescargaXml(this.cliente);
 		this.descargaacusexml=new DescargaAcuseXml(this.cliente);
 		this.pdf = new Pdf(this.cliente);
+		this.pdfacuse = new PdfAcuse(this.cliente);
 	}
 	
 	/**
@@ -115,5 +118,14 @@ public class EmiteAPI {
 	 */
 	public Pdf pdf(){
 		return pdf;
+	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de acuse
+	 * @return pdf
+	 * @since 0.0.2
+	 */
+	public PdfAcuse pdfacuse(){
+		return pdfacuse;
 	}
 }
