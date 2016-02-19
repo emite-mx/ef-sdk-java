@@ -11,17 +11,15 @@ public class TimbresRequest  {
 
 	
 	/**
-	 * Usuario del <b>Integrador</b> 
+	 * Token del <b>Integrador</b> obtenido con el servicio de Token 
 	 * -- SETTER --
 	 * 
-	 * @param usuario
-	 *            Usuario del <b>Integrador</b> obtenido de Scot&copy;
+	 * @param token
+	 *            Token del <b>Integrador</b> obtenido de Scot&copy;
 	 * 
 	 */
 	@NotNull
-	private String usuario;
-	@NotNull
-	private String contrasena;
+	private String token;
 	
 
 	 

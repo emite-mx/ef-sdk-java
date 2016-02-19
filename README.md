@@ -157,9 +157,6 @@ final Comprobante comprobante = Comprobante.builder()
 				.comprobante(comprobante)
 				.build();
 		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
-		procesaRespuesta(respuesta);
-		log.debug(respuesta.toString());
-		log.debug(respuesta.getXmlDecodificado());
 
 ```
 
@@ -281,4 +278,19 @@ final Comprobante comprobante = Comprobante.builder()
 				.contrasena(props.getProperty("integrador.contrasena"))
 				.build();
 		final TokenResponse respuesta = api.token().ejecuta(tr);		
+```
+
+### Ejemplo de Consulta de Tarifa y Timbres Disponibles
+-------------------------------------------------------
+```java
+		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+		final TokenRequest tr = TokenRequest.builder()
+					.usuario(props.getProperty("integrador.usuario"))
+					.contrasena(props.getProperty("integrador.contrasena"))
+					.build();
+		final TokenResponse tokenresp = api.token().ejecuta(tr);	
+		final TimbresRequest timbresreq = TimbresRequest.builder()
+				.token(tokenresp.getToken())
+				.build();
+		final TimbresResponse respuesta = api.timbres().ejecuta(timbresreq);	
 ```
