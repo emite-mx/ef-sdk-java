@@ -2,6 +2,8 @@ package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Cancelador32;
+import mx.emite.sdk.clientes.operaciones.DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.DescargaXml;
 import mx.emite.sdk.clientes.operaciones.SelladorYTimbrador32;
 import mx.emite.sdk.clientes.operaciones.Servicios;
 import mx.emite.sdk.clientes.operaciones.Timbrador32;
@@ -24,6 +26,9 @@ public class EmiteAPI {
 	private final Timbrador32 timbrador32;
 	private final SelladorYTimbrador32 selladorytimbrador32;
 	private final Cancelador32 cancelador32;
+	private final DescargaXml descargaxml;
+	private final DescargaAcuseXml descargaacusexml;
+	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
 	 * 
@@ -39,6 +44,8 @@ public class EmiteAPI {
 		this.timbrador32=new Timbrador32(this.cliente);
 		this.selladorytimbrador32=new SelladorYTimbrador32(this.cliente);
 		this.cancelador32=new Cancelador32(this.cliente);
+		this.descargaxml=new DescargaXml(this.cliente);
+		this.descargaacusexml=new DescargaAcuseXml(this.cliente);
 	}
 	
 	/**
@@ -60,14 +67,6 @@ public class EmiteAPI {
 	}
 	
 	
-	/**
-	 * Servicio de Cancelación de CFDI 3.2
-	 * @return cancelador32
-	 * @since 0.0.2
-	 */
-	public Cancelador32 cancelador32(){
-		return cancelador32;
-	}
 	
 	/**
 	 * Servicio de Sellado y Timbrado de CFDI 3.2
@@ -78,4 +77,31 @@ public class EmiteAPI {
 		return selladorytimbrador32;
 	}
 	
+
+	/**
+	 * Servicio de Cancelación de CFDI 3.2
+	 * @return cancelador32
+	 * @since 0.0.2
+	 */
+	public Cancelador32 cancelador32(){
+		return cancelador32;
+	}
+	
+	/**
+	 * Servicio de Descarga de CFDI 3.2
+	 * @return descargaxml
+	 * @since 0.0.2
+	 */
+	public DescargaXml descargaxml(){
+		return descargaxml;
+	}
+	
+	/**
+	 * Servicio de Descarga Acuses de Cancelación
+	 * @return descargaacusexml
+	 * @since 0.0.2
+	 */
+	public DescargaAcuseXml descargaacusexml(){
+		return descargaacusexml;
+	}
 }

@@ -24,6 +24,8 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Sellado y Timbrado de CFDI 3.2
 - Generación completa de CFDI (Xml + Sellado + Timbrado)
 - Cancelación de CFDI 3.2
+- Descarga de Xml
+- Descarga de Acuses de Cancelación
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -154,8 +156,34 @@ final Comprobante comprobante = Comprobante.builder()
 		final CancelarRequest request = CancelarRequest.builder()
 				.usuario(props.getProperty("emisor.usuario"))
 				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid("7F418ECE-547B-A2F9-F81B-BB1A4008A06D")
+				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
 				.build()
 				; 
 		final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
+```
+
+## Ejemplo de Descarga de Xml
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final XmlRequest request = XmlRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+				.build()
+				; 
+		final XmlResponse respuesta = api.descargaxml().ejecuta(request);
+```
+
+## Ejemplo de Descarga de Acuses de Cancelación
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final XmlRequest request = XmlRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+				.build()
+				; 
+		final XmlResponse respuesta = api.descargaacusexml().ejecuta(request);
 ```

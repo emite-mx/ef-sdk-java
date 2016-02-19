@@ -5,10 +5,9 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import lombok.Getter;
 import lombok.ToString;
+import mx.emite.sdk.cfdi32.anotaciones.UuidLista;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -42,7 +41,7 @@ public class CancelarRequest {
 
 	private String contrasenaPfx;
 	
-	@NotEmpty
+	@NotNull @UuidLista
 	private List<String> uuids;
 	
 	
