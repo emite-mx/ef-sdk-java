@@ -2,6 +2,7 @@ package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Cancelador32;
+import mx.emite.sdk.clientes.operaciones.Correos;
 import mx.emite.sdk.clientes.operaciones.DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.DescargaXml;
 import mx.emite.sdk.clientes.operaciones.Pdf;
@@ -32,6 +33,7 @@ public class EmiteAPI {
 	private final DescargaAcuseXml descargaacusexml;
 	private final Pdf pdf;
 	private final PdfAcuse pdfacuse;
+	private final Correos correos;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -52,6 +54,7 @@ public class EmiteAPI {
 		this.descargaacusexml=new DescargaAcuseXml(this.cliente);
 		this.pdf = new Pdf(this.cliente);
 		this.pdfacuse = new PdfAcuse(this.cliente);
+		this.correos=new Correos(this.cliente);
 	}
 	
 	/**
@@ -127,5 +130,14 @@ public class EmiteAPI {
 	 */
 	public PdfAcuse pdfacuse(){
 		return pdfacuse;
+	}
+	
+	/**
+	 * Servicio de Envio de Correos
+	 * @return correos
+	 * @since 0.0.2
+	 */
+	public Correos correos(){
+		return correos;
 	}
 }

@@ -30,8 +30,20 @@
 		<developer>
 			<name>Enrique Sánchez de la Barquera</name>
 			<email>enrique@emitefacturacion.com.mx</email>
+			<url>http://www.emitefacturacion.mx</url>
+      		<organization>EMITE</organization>
+      		<organizationUrl>http://www.emitefacturacion.mx</organizationUrl>
+      		<roles>
+        		<role>architect</role>
+        		<role>developer</role>
+      		</roles>
+      		<timezone>America/Mexico_City</timezone>
 		</developer>		
   </developers> 
+  <organization>
+    <name>Emite Facturacion SA de CV</name>
+    <url>http://www.emitefacturacion.mx</url>
+  </organization>
   <dependencies>
 		<dependency>
     	<groupId>com.fasterxml.jackson.core</groupId>
@@ -298,9 +310,5 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>
-
-	<organization>
-		<name>Emite Facturacion SA de CV</name>
-	</organization>
+	</profiles>	
 </project>

@@ -28,6 +28,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Acuses de Cancelación
 - Descarga de Pdf
 - Descarga de Pdf de Acuse de Cancelación
+- Envio de Xml y Pdf por correo
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -217,4 +218,24 @@ final Comprobante comprobante = Comprobante.builder()
 				; 
 		final PdfResponse respuesta = api.pdfacuse().ejecuta(request);
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
+```
+
+## Ejemplo de Envio de Xml y Pdf por correo (#correo)
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final CorreoRequest request = CorreoRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.uuid(props.getProperty("xml.uuid"))
+				.plantilla("EMITE")
+				.recuperarArchivos(true)
+				.correo(CorreoParametros.builder()
+						.asunto("asunto")
+						.para(Correo.builder()
+								.correo(props.getProperty("destinatario"))
+							 	.build())
+						.build())
+				.build(); 
+		final CorreoResponse respuesta = api.correos().ejecuta(request);
 ```

@@ -33,12 +33,20 @@ public class Utilerias {
 	
 	public static String decodificaUtf8(final String xmlBase64) throws ApiException{
 		try{
-		return new String(decoder.decode(utf8(xmlBase64)));
+		return new String(decodificaUtf8Byte(xmlBase64));
 		}catch(Exception ex){
 			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
 		}
 	}
 
+	public static byte[] decodificaUtf8Byte(final String xmlBase64) throws ApiException{
+		try{
+		return decoder.decode(utf8(xmlBase64));
+		}catch(Exception ex){
+			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+		}
+	}
+	
 	private static Collator creaComparador() {
 		final Collator res = Collator.getInstance(new Locale("es","MX"));
 		res.setStrength(Collator.NO_DECOMPOSITION);
@@ -123,6 +131,8 @@ public class Utilerias {
 			}catch(Exception ex){
 				throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
 		}
-	} 
+	}
+
+	 
 	
 }

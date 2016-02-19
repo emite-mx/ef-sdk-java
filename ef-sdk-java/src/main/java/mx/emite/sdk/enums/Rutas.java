@@ -13,6 +13,7 @@ public enum Rutas {
 	ACUSE("/api/cfdi/3.2/acusecancelacion/xml"),
 	PDFACUSE("/api/cfdi/3.2/acusecancelacion/pdf"),
 	PDF("/api/cfdi/3.2/pdf"),
+	CORREO("/api/cfdi/3.2/correo"),
 	
 	;
 	
