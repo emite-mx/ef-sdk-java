@@ -69,7 +69,7 @@ public class ZipRequest{
 
 		/**
 		 * @param xml si se desea incluir el XML
-		 * @return
+		 * 
 		 */
 		public ZipRequestBuilder xml(Boolean xml) {
 			this.xml=xml;
@@ -77,7 +77,7 @@ public class ZipRequest{
 		}
 		/**
 		 * @param pdf si se desea incluir el PDF
-		 * @return
+		 * 
 		 */
 		public ZipRequestBuilder pdf(Boolean pdf) {
 			this.pdf=pdf;
@@ -85,7 +85,7 @@ public class ZipRequest{
 		}
 		/**
 		 * @param acuses si se desea incluir el XML y PDF de acuse de cancelación
-		 * @return
+		 * 
 		 */
 		public ZipRequestBuilder acuses(Boolean acuses) {
 			this.acuses=acuses;
@@ -93,7 +93,7 @@ public class ZipRequest{
 		}
 		/**
 		 * @param filtro de la consulta
-		 * @return
+		 * 
 		 */
 		public ZipRequestBuilder filtro(ConsultaFiltro filtro) {
 			this.filtro=filtro;
