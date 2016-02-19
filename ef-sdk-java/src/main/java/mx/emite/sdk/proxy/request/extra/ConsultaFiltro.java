@@ -10,7 +10,7 @@ import lombok.Data;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.cfdi32.anotaciones.Uuid;
 import mx.emite.sdk.enums.EstadoTimbre;
-import mx.emite.sdk.enums.TiposTimbres;
+import mx.emite.sdk.enums.TipoTimbres;
 import mx.emite.sdk.utils.FechaSerializer;
 
 
@@ -18,7 +18,7 @@ import mx.emite.sdk.utils.FechaSerializer;
 public class ConsultaFiltro {
 
 	@NotNull 
-	private TiposTimbres tipoTimbre;
+	private TipoTimbres tipoTimbre;
 
 	@NotNull
 	private EstadoTimbre estado;
@@ -51,7 +51,7 @@ public class ConsultaFiltro {
 	
 	
 	public static class ConsultaFiltroBuilder {
-		private TiposTimbres tipoTimbre=TiposTimbres.CFDI;
+		private TipoTimbres tipoTimbre=TipoTimbres.CFDI;
 		private EstadoTimbre estado=EstadoTimbre.TODAS;
 		private LocalDate rango1;
 		private LocalDate rango2;
@@ -65,7 +65,7 @@ public class ConsultaFiltro {
 		 * @param tipoTimbre por default CFDI
 		 * 
 		 */
-		public ConsultaFiltroBuilder tipoTimbre(TiposTimbres tipoTimbre) {
+		public ConsultaFiltroBuilder tipoTimbre(TipoTimbres tipoTimbre) {
 		this.tipoTimbre=tipoTimbre;
 		return this;
 		}

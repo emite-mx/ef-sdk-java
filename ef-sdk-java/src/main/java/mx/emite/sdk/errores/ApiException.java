@@ -10,8 +10,12 @@ import javax.validation.ConstraintViolation;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import mx.emite.sdk.utils.ApiExceptionDeserializer;
 
 //@JsonIgnoreProperties(value={"cause"})
+@JsonDeserialize(using=ApiExceptionDeserializer.class)
 public class ApiException extends RuntimeException{
 
 	
@@ -21,13 +25,18 @@ public class ApiException extends RuntimeException{
 	private static final long serialVersionUID = -7552430730864319330L;
 	
 	
-	private final I_Api_Errores error;
+	private I_Api_Errores error;
 	
 	
 	private List<String> mensajes = new ArrayList<String>();
 	
 	@JsonIgnore
-	private final Exception excepcion;
+	private Exception excepcion;
+	
+	@Deprecated
+	public ApiException(){
+		
+	}
 	
 	public ApiException(I_Api_Errores error) {
 		super(error.getDescripcion());

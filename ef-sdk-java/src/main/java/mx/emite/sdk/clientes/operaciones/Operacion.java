@@ -7,9 +7,11 @@ import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.enums.Proveedor;
 import mx.emite.sdk.enums.Rutas;
 import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.errores.I_Api_Errores;
+import mx.emite.sdk.interfaces.Respuesta;
 
 
-public abstract class Operacion<ENVIO,RESPUESTA> {
+public abstract class Operacion<ENVIO,RESPUESTA extends Respuesta> {
 
 	@Getter(AccessLevel.PROTECTED)
 	private final ClienteJson cliente;
@@ -35,6 +37,19 @@ public abstract class Operacion<ENVIO,RESPUESTA> {
 			break;		
 		}
 		return path.toString();
+	}
+	
+	protected RESPUESTA procesa(RESPUESTA response) throws ApiException{
+		try{
+		if(response==null||response.getError()==null)	
+			throw new ApiException(I_Api_Errores.SERVICIO_NODISPONIBLE,"");
+		if(!response.getError().getCodigo().equals(I_Api_Errores.OK.getId()))
+			throw new ApiException(I_Api_Errores.getTipo(response.getError().getCodigo()),response.getError().getErrores());
+		return response;
+		}
+		catch(ApiException ae){
+			throw ae;
+		}
 	}
 	
 	public abstract RESPUESTA ejecuta(ENVIO request) throws ApiException;

@@ -1,23 +1,23 @@
 package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
-import mx.emite.sdk.clientes.operaciones.Cancelador32;
-import mx.emite.sdk.clientes.operaciones.Correos;
-import mx.emite.sdk.clientes.operaciones.DescargaAcuseXml;
-import mx.emite.sdk.clientes.operaciones.DescargaMasiva;
-import mx.emite.sdk.clientes.operaciones.DescargaXml;
-import mx.emite.sdk.clientes.operaciones.Pdf;
-import mx.emite.sdk.clientes.operaciones.PdfAcuse;
-import mx.emite.sdk.clientes.operaciones.SelladorYTimbrador32;
-import mx.emite.sdk.clientes.operaciones.Servicios;
-import mx.emite.sdk.clientes.operaciones.Timbrador32;
+import mx.emite.sdk.clientes.operaciones.emisores.Cancelador32;
+import mx.emite.sdk.clientes.operaciones.emisores.Correos;
+import mx.emite.sdk.clientes.operaciones.emisores.DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.emisores.DescargaMasiva;
+import mx.emite.sdk.clientes.operaciones.emisores.DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbrador32;
+import mx.emite.sdk.clientes.operaciones.emisores.Servicios;
+import mx.emite.sdk.clientes.operaciones.emisores.Timbrador32;
 import mx.emite.sdk.enums.Ambiente;
 
 
 /**
  * @author enrique
  *
- *	EmiteAPI es la clase principal de consumo
+ *	EmiteAPI es la clase principal de consumo de emisores
  *
  *	
  */

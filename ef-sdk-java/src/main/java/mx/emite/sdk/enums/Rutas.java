@@ -16,6 +16,9 @@ public enum Rutas {
 	CORREO("/api/cfdi/3.2/correo"),
 	DESCARGA("/api/cfdi/3.2/descarga"),
 	
+	TOKEN("/api/integrador/token"),
+	TIMBRES("/api/integrador/timbres"), 
+	
 	;
 	
 	private final String ruta;

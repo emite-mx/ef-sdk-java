@@ -18,7 +18,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 -------------------------------------------------------
 - Java 1.8
 
-### Servicios Soportados 
+## Servicios de Emisor 
 -------------------------------------------------------
 - Timbrado de CFDI 3.2
 - Sellado y Timbrado de CFDI 3.2
@@ -30,6 +30,12 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Pdf de Acuse de Cancelación
 - Envio de Xml y Pdf por correo
 - Descarga Masiva de Xml, Pdf y Acuses de Cancelación
+
+### Servicios de Integrador 
+-------------------------------------------------------
+- Generación de Token de Consumo
+- Consulta de Tarifa y Timbres Disponibles
+
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -44,11 +50,15 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 
 - [Documentacion Técnica Api Servicios Web de Integradores: https://scot.emitefacturacion.mx/api/](https://scot.emitefacturacion.mx/api/)
 
-## Ejemplos de utilización
+# Ejemplos de utilización
 -------------------------------------------------------
 Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](https://github.com/emitefacturacion/ef-sdk-java/tree/master/ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos) podrá encontrar ejemplos sobre los servicios que estan soportados por la libreria, para su referencia se muestra a continuación un ejemplo de generación, sellado y timbrado de un CFDI:
 
-## Ejemplo de Timbrado de CFDI 3.2
+## Servicios de Emisor
+-------------------------------------------------------
+-------------------------------------------------------
+
+### Ejemplo de Timbrado de CFDI 3.2
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -60,7 +70,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 		final TimbrarResponse respuesta = api.timbrador32().ejecuta(request);
 ```
 
-## Sellado y Timbrado de CFDI 3.2
+### Sellado y Timbrado de CFDI 3.2
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -73,7 +83,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 ```
 
 
-## Ejemplo de Generación completa de CFDI (Xml + Sellado + Timbrado)
+### Ejemplo de Generación completa de CFDI (Xml + Sellado + Timbrado)
 -------------------------------------------------------
 ```java
 final Comprobante comprobante = Comprobante.builder()
@@ -153,7 +163,7 @@ final Comprobante comprobante = Comprobante.builder()
 
 ```
 
-## Ejemplo de Cancelación de CFDI 3.2
+### Ejemplo de Cancelación de CFDI 3.2
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -166,7 +176,7 @@ final Comprobante comprobante = Comprobante.builder()
 		final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
 ```
 
-## Ejemplo de Descarga de Xml
+### Ejemplo de Descarga de Xml
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -179,7 +189,7 @@ final Comprobante comprobante = Comprobante.builder()
 		final XmlResponse respuesta = api.descargaxml().ejecuta(request);
 ```
 
-## Ejemplo de Descarga de Acuses de Cancelación
+### Ejemplo de Descarga de Acuses de Cancelación
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -192,7 +202,7 @@ final Comprobante comprobante = Comprobante.builder()
 		final XmlResponse respuesta = api.descargaacusexml().ejecuta(request);
 ```
 
-## Ejemplo de Descarga de Pdf
+### Ejemplo de Descarga de Pdf
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -207,7 +217,7 @@ final Comprobante comprobante = Comprobante.builder()
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
 
-## Ejemplo de Descarga de Pdf de Acuse de Cancelación
+### Ejemplo de Descarga de Pdf de Acuse de Cancelación
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -221,7 +231,7 @@ final Comprobante comprobante = Comprobante.builder()
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
 
-## Ejemplo de Envio de Xml y Pdf por correo
+### Ejemplo de Envio de Xml y Pdf por correo
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -241,7 +251,7 @@ final Comprobante comprobante = Comprobante.builder()
 		final CorreoResponse respuesta = api.correos().ejecuta(request);
 ```
 
-## Ejemplo de Descarga Masiva de Xml, Pdf y Acuses de Cancelación
+### Ejemplo de Descarga Masiva de Xml, Pdf y Acuses de Cancelación
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -256,4 +266,19 @@ final Comprobante comprobante = Comprobante.builder()
 				; 		
 		final ZipResponse respuesta = api.descargamasiva().ejecuta(request);
 		respuesta.guardaZip(props.getProperty("zip.ruta"));
+```
+
+## Servicios de Integrador
+-------------------------------------------------------
+
+
+### Ejemplo de Generación de Token de Consumo
+-------------------------------------------------------
+```java
+		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+		final TokenRequest tr = TokenRequest.builder()
+				.usuario(props.getProperty("integrador.usuario"))
+				.contrasena(props.getProperty("integrador.contrasena"))
+				.build();
+		final TokenResponse respuesta = api.token().ejecuta(tr);		
 ```
