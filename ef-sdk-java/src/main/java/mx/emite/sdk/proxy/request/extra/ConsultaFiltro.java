@@ -63,7 +63,7 @@ public class ConsultaFiltro {
 		
 		/**
 		 * @param tipoTimbre por default CFDI
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder tipoTimbre(TipoTimbres tipoTimbre) {
 		this.tipoTimbre=tipoTimbre;
@@ -71,7 +71,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param estado del timbre o comprobante
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder estado(EstadoTimbre estado) {
 		this.estado=estado;
@@ -81,7 +81,7 @@ public class ConsultaFiltro {
 		 * Rango de fechas de la consulta
 		 * @param rango1 fecha inicial de la consulta
 		 * @param rango2 fecha final de la consulta
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder rango(LocalDate rango1,LocalDate rango2) {
 		this.rango1=rango1;
@@ -90,7 +90,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param sucursal en caso de emisores con manejo de sucursales
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder sucursal(String sucursal) {
 		this.sucursal=sucursal;
@@ -98,7 +98,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param receptor RFC del receptor
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder receptor(String receptor) {
 		this.receptor=receptor;
@@ -106,7 +106,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param uuid del timbre o comprobante
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder uuid(String uuid) {
 		this.uuid=uuid;
@@ -114,7 +114,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param serie del timbre o comprobante
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder serie(String serie) {
 		this.serie=serie;
@@ -122,7 +122,7 @@ public class ConsultaFiltro {
 		}
 		/**
 		 * @param folio del timbre o comprobante
-		 * 
+		 * @return builder
 		 */
 		public ConsultaFiltroBuilder folio(Integer folio) {
 		this.folio=folio;
