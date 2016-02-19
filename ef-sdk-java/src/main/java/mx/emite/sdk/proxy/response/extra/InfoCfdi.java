@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
-import mx.emite.sdk.utils.FechaDeserializer;
+import mx.emite.sdk.utils.FechaHoraDeserializer;
 
 /**
  *  <h1>InfoCfdi</h1>
@@ -20,7 +20,7 @@ public class InfoCfdi{
 
 	private String serie;
 	private Integer folio;
-	@JsonDeserialize(using=FechaDeserializer.class)
+	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	private LocalDateTime fecha;
 	private String moneda; 
 	private String tc;
@@ -32,7 +32,7 @@ public class InfoCfdi{
 	private String receptor;
 	private String uuid;
 	private String selloCFD;
-	@JsonDeserialize(using=FechaDeserializer.class)
+	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	private LocalDateTime fechaTimbrado;	
 	
 	

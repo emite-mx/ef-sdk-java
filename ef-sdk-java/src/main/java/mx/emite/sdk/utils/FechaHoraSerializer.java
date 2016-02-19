@@ -1,7 +1,7 @@
 package mx.emite.sdk.utils;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -10,14 +10,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-public class FechaSerializer extends JsonSerializer<LocalDate>{
+public class FechaHoraSerializer extends JsonSerializer<LocalDateTime>{
 
-	private static final DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy",new Locale("es","MX"));
+	private static final DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss",new Locale("es","MX"));
 	
 	
 
 	@Override
-	public void serialize(LocalDate date, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
+	public void serialize(LocalDateTime date, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
 		if(date==null)
 			gen.writeNull();
 		gen.writeString(df.format(date));

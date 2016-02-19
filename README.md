@@ -1,6 +1,6 @@
-## EmiteFacturacion
+# EmiteFacturacion [emitefacturacion.mx](https://www.emitefacturacion.mx)
 
-# ef-sdk-java
+## ef-sdk-java-0.0.2
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -11,7 +11,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 <dependency>
 	<groupId>mx.emite</groupId>
 	<artifactId>ef-sdk-java</artifactId>
-	<version>${efsdk.version}</version>
+	<version>0.0.2</version>
 </dependency>
 ```
 ### Requerimientos Técnicos
@@ -29,6 +29,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Pdf
 - Descarga de Pdf de Acuse de Cancelación
 - Envio de Xml y Pdf por correo
+- Descarga Masiva de Xml, Pdf y Acuses de Cancelación
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -220,7 +221,7 @@ final Comprobante comprobante = Comprobante.builder()
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
 
-## Ejemplo de Envio de Xml y Pdf por correo (#correo)
+## Ejemplo de Envio de Xml y Pdf por correo
 -------------------------------------------------------
 ```java
 		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
@@ -238,4 +239,21 @@ final Comprobante comprobante = Comprobante.builder()
 						.build())
 				.build(); 
 		final CorreoResponse respuesta = api.correos().ejecuta(request);
+```
+
+## Ejemplo de Descarga Masiva de Xml, Pdf y Acuses de Cancelación
+-------------------------------------------------------
+```java
+		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		final ZipRequest request = ZipRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.xml(true)
+				.filtro(ConsultaFiltro.builder()
+						.rango(LocalDate.of(2016, 01, 01), LocalDate.of(2016, 01, 31))
+						.build())
+				.build()
+				; 		
+		final ZipResponse respuesta = api.descargamasiva().ejecuta(request);
+		respuesta.guardaZip(props.getProperty("zip.ruta"));
 ```

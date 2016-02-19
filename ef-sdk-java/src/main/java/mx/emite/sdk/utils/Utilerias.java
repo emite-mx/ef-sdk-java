@@ -4,9 +4,15 @@ package mx.emite.sdk.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.Collator;
 import java.util.Base64;
 import java.util.Base64.Decoder;
@@ -131,6 +137,21 @@ public class Utilerias {
 			}catch(Exception ex){
 				throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
 		}
+	}
+
+	public static void guardaUrl(String ruta, String url) {
+		try{
+			final URL u = new URL(url);
+			final URLConnection con = u.openConnection();
+			try (ReadableByteChannel source = Channels.newChannel(con.getInputStream());
+		        FileChannel out = FileChannel.open(Paths.get(ruta), StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
+				out.transferFrom(source, 0, Long.MAX_VALUE);
+		    }
+			
+		}catch(Exception ex){
+			throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
+	}
+		
 	}
 
 	 

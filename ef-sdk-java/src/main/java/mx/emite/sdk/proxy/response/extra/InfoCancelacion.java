@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
-import mx.emite.sdk.utils.FechaDeserializer;
+import mx.emite.sdk.utils.FechaHoraDeserializer;
 
 @Data
 public class InfoCancelacion {
 
 	private final String uuid;
-	@JsonDeserialize(using=FechaDeserializer.class)
+	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	private LocalDateTime fechaCancelacion;
 	private final Integer estatus;
 	private final String descripcion;

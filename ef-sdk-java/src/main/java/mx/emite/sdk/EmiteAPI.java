@@ -4,6 +4,7 @@ import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Cancelador32;
 import mx.emite.sdk.clientes.operaciones.Correos;
 import mx.emite.sdk.clientes.operaciones.DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.DescargaMasiva;
 import mx.emite.sdk.clientes.operaciones.DescargaXml;
 import mx.emite.sdk.clientes.operaciones.Pdf;
 import mx.emite.sdk.clientes.operaciones.PdfAcuse;
@@ -34,6 +35,7 @@ public class EmiteAPI {
 	private final Pdf pdf;
 	private final PdfAcuse pdfacuse;
 	private final Correos correos;
+	private final DescargaMasiva descargamasiva;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -55,6 +57,7 @@ public class EmiteAPI {
 		this.pdf = new Pdf(this.cliente);
 		this.pdfacuse = new PdfAcuse(this.cliente);
 		this.correos=new Correos(this.cliente);
+		this.descargamasiva=new DescargaMasiva(this.cliente);
 	}
 	
 	/**
@@ -139,5 +142,14 @@ public class EmiteAPI {
 	 */
 	public Correos correos(){
 		return correos;
+	}
+	
+	/**
+	 * Servicio de Descarga Masiva
+	 * @return descargamasiva
+	 * @since 0.0.2
+	 */
+	public DescargaMasiva descargamasiva(){
+		return descargamasiva;
 	}
 }
