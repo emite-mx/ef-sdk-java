@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import mx.emite.sdk.scot.ScotResponse;
 import mx.emite.sdk.utils.FechaHoraDeserializer;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+@Getter
+@Setter
 @ToString(callSuper=true)
 public class TokenResponse extends ScotResponse {
 

@@ -3,15 +3,15 @@ package mx.emite.sdk.scot.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import mx.emite.sdk.scot.ScotResponse;
 import mx.emite.sdk.scot.response.extra.Tarifa;
 import mx.emite.sdk.scot.response.extra.Timbre;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+@Getter
+@Setter
 @ToString(callSuper=true)
 public class TimbresResponse extends ScotResponse {
 
