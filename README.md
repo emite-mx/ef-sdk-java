@@ -37,6 +37,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Generación de Token de Consumo
 - Consulta de Tarifa y Timbres Disponibles
 - Consulta de Emisores Registrados
+- Consulta de Sucursales por Emisor
 
 
 ### Requerimientos de utilización
@@ -310,4 +311,20 @@ final Comprobante comprobante = Comprobante.builder()
 				.token(tokenresp.getToken())
 				.build();
 		final EmisoresResponse respuesta = api.emisores().ejecuta(timbresreq);	
+```
+
+### Ejemplo de Consulta de Sucursales por Emisor
+-------------------------------------------------------
+```java
+		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+		final TokenRequest tr = TokenRequest.builder()
+					.usuario(props.getProperty("integrador.usuario"))
+					.contrasena(props.getProperty("integrador.contrasena"))					
+					.build();
+		final TokenResponse tokenresp = api.token().ejecuta(tr);	
+		final SucursalesRequest timbresreq = SucursalesRequest.builder()
+				.token(tokenresp.getToken())
+				.rfc(props.getProperty("emisor.rfc"))
+				.build();
+		final SucursalesResponse respuesta = api.sucursales().ejecuta(timbresreq);
 ```
