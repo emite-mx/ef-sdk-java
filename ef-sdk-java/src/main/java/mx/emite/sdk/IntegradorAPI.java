@@ -1,6 +1,7 @@
 package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
+import mx.emite.sdk.clientes.operaciones.integradores.Emisores;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
 import mx.emite.sdk.enums.Ambiente;
@@ -20,6 +21,7 @@ public class IntegradorAPI {
 	
 	private final Timbres timbres;
 	private final Token token;
+	private final Emisores emisores;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -35,6 +37,7 @@ public class IntegradorAPI {
 		this.cliente=new ClienteJson(ambiente);
 		this.timbres=new Timbres(this.cliente);
 		this.token=new Token(this.cliente);
+		this.emisores=new Emisores(this.cliente);
 	}
 	
 	/**
@@ -55,5 +58,13 @@ public class IntegradorAPI {
 		return token;
 	}
 
+	/**
+	 * Servicio de consulta de emisores
+	 * @return token
+	 * @since 0.0.4
+	 */
+	public Emisores emisores() {
+		return emisores;
+	}
 	
 }
