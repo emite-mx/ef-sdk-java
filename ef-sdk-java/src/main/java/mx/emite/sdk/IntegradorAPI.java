@@ -35,6 +35,9 @@ public class IntegradorAPI {
 	private final EmisoresEstatus emisoresestatus;
 	private final SucursalesAlta sucursalesalta;
 	
+	private String contrasena;
+	private String usuario;
+	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
 	 * 
@@ -46,6 +49,22 @@ public class IntegradorAPI {
 	 * @since 0.0.3
 	 */
 	public IntegradorAPI(final Ambiente ambiente){
+		this(ambiente,null,null);
+	}
+	
+	/**
+	 * Se crea un objeto de tipo api, incluyendo credenciales 
+	 * 
+	 * @param ambiente 
+	 * <h3>PRODUCCION</h3><p>Ambiente productivo</p>
+	 * <h3>PRUEBAS</h3><p>Ambiente de pruebas</p>
+	 * <h3>LOCAL</h3><p>Ambiente de uso exclusivo emite</p>
+	 * @param usuario usuario de Integrador
+	 * @param contrasena contraseña de Integrador
+	 * @see Ambiente
+	 * @since 0.0.3
+	 */
+	public IntegradorAPI(final Ambiente ambiente,final String usuario,final String contrasena){
 		this.cliente=new ClienteJson(ambiente);
 		this.timbres=new Timbres(this.cliente);
 		this.token=new Token(this.cliente);
@@ -56,7 +75,27 @@ public class IntegradorAPI {
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 		this.emisoresestatus=new EmisoresEstatus(this.cliente);
 		this.sucursalesalta=new SucursalesAlta(this.cliente);
+		this.usuario=usuario;
+		this.contrasena=contrasena;
 	}
+	
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 	
 	/**
 	 * Servicio consulta de tarifa y timbres asignados
@@ -138,4 +177,6 @@ public class IntegradorAPI {
 	public SucursalesAlta sucursalesalta() {
 		return sucursalesalta;
 	}
+
+	
 }

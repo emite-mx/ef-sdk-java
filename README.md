@@ -97,7 +97,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 				.lugarExpedicion("México, D.F.")
 				.fecha(LocalDateTime.now())
 				.folio(1000)
-				.formaDePago(FormasPago.PAGOENUNASOLAEXHIBICION)
+				.formaDePago(TipoPago.PAGOENUNASOLAEXHIBICION)
 				.metodoDePago(MetodosPago.CANCELACION)
 				.tipoDeComprobante(TipoDeComprobante.INGRESO)
 				.subTotal(BigDecimal.ZERO)
@@ -356,7 +356,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 		.idEstado(Estados.DISTRITOFEDERAL )
 		.idPais(Paises.MEXICO )
 		.idRegimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
-		.idFormaPago(FormasPago.PAGOENUNASOLAEXHIBICION)
+		.idFormaPago(FormasPago.TRANSFERENCIA)
 		.cuentapago("1234")
 		.build();
 	final EmisoresAltaResponse respuesta = api.emisoresalta().ejecuta(timbresreq);
@@ -435,7 +435,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 				.idEstado(Estados.DISTRITOFEDERAL )
 				.idPais(Paises.MEXICO )
 				.idRegimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
-				.idFormaPago(FormasPago.PAGOENUNASOLAEXHIBICION)
+				.idFormaPago(FormasPago.TRANSFERENCIA)
 				.cuentapago("1234")								
 				.build())				
 		.build();

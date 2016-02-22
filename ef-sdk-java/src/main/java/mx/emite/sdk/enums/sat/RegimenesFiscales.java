@@ -33,9 +33,27 @@ public enum RegimenesFiscales implements Sat{
 		this.descripcion=descripcion;
 	}
 
-	public static RegimenesFiscales busca(String metodo) {
+	/**
+	 * Busca un regimen de acuerdo a su descripción
+	 * @param descripcion de acuerdo al catalogo del SAT
+	 * @return RegimenesFiscales valor del enum de acuerdo al regimen
+	 */
+	public static RegimenesFiscales busca(String descripcion) {
 		for(RegimenesFiscales m:values()){
-			if(Utilerias.compara(m.descripcion,metodo))
+			if(Utilerias.compara(m.descripcion,descripcion))
+				return m;
+		}
+		return null;
+	}
+	
+	/**
+	 * Busca un regimen de acuerdo a su id del SAT
+	 * @param idSat de acuerdo al catalogo del SAT
+	 * @return RegimenesFiscales valor del enum de acuerdo al regimen
+	 */
+	public static RegimenesFiscales id(Integer idSat) {
+		for(RegimenesFiscales m:values()){
+			if(m.idSat.equals(idSat))
 				return m;
 		}
 		return null;
