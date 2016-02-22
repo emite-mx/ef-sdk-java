@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
-import mx.emite.sdk.utils.FechaHoraDeserializer;
+import mx.emite.sdk.serializers.FechaHoraDeserializer;
 
 @Data
 public class InfoCancelacion {

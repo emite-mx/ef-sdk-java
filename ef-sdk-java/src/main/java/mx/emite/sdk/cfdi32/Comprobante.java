@@ -27,7 +27,7 @@ import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
-import mx.emite.sdk.utils.LocalDateTimeAdapter;
+import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "emisor", "receptor", "conceptos", "impuestos", "complemento" })

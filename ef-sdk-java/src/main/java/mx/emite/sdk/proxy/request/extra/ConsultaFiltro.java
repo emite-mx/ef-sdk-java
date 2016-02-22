@@ -11,7 +11,7 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.cfdi32.anotaciones.Uuid;
 import mx.emite.sdk.enums.EstadoTimbre;
 import mx.emite.sdk.enums.TipoTimbres;
-import mx.emite.sdk.utils.FechaSerializer;
+import mx.emite.sdk.serializers.FechaSerializer;
 
 
 @Data

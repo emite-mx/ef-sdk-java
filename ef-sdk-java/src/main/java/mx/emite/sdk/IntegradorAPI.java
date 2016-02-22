@@ -2,6 +2,9 @@ package mx.emite.sdk;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.integradores.Emisores;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresAlta;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsd;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsdConsulta;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
@@ -24,6 +27,9 @@ public class IntegradorAPI {
 	private final Token token;
 	private final Emisores emisores;
 	private final Sucursales sucursales;
+	private final EmisoresAlta emisoresalta;
+	private final EmisoresCsd emisorescsd;
+	private final EmisoresCsdConsulta emisorescsdconsulta;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -41,11 +47,14 @@ public class IntegradorAPI {
 		this.token=new Token(this.cliente);
 		this.emisores=new Emisores(this.cliente);
 		this.sucursales=new Sucursales(this.cliente);
+		this.emisoresalta=new EmisoresAlta(this.cliente);
+		this.emisorescsd=new EmisoresCsd(this.cliente);
+		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 	}
 	
 	/**
 	 * Servicio consulta de tarifa y timbres asignados
-	 * @return servicios
+	 * @return timbres
 	 * @since 0.0.3
 	 */
 	public Timbres timbres(){
@@ -63,7 +72,7 @@ public class IntegradorAPI {
 
 	/**
 	 * Servicio de consulta de emisores
-	 * @return token
+	 * @return emisores
 	 * @since 0.0.4
 	 */
 	public Emisores emisores() {
@@ -72,11 +81,37 @@ public class IntegradorAPI {
 	
 	/**
 	 * Servicio de consulta de sucursales
-	 * @return token
+	 * @return sucursales
 	 * @since 0.0.4
 	 */
 	public Sucursales sucursales() {
 		return sucursales;
 	}
 	
+	/**
+	 * Servicio de alta / modificación de emisores
+	 * @return emisoresalta
+	 * @since 0.0.4
+	 */
+	public EmisoresAlta emisoresalta() {
+		return emisoresalta;
+	}
+	
+	/**
+	 * Servicio de carga de CSD
+	 * @return emisorescsd
+	 * @since 0.0.4
+	 */
+	public EmisoresCsd emisorescsd() {
+		return emisorescsd;
+	}
+	
+	/**
+	 * Servicio de consulta CSD
+	 * @return emisorescsdconsulta
+	 * @since 0.0.4
+	 */
+	public EmisoresCsdConsulta emisorescsdconsulta() {
+		return emisorescsdconsulta;
+	}
 }
