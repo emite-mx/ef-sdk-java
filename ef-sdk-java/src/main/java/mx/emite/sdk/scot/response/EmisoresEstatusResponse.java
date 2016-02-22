@@ -3,6 +3,8 @@ package mx.emite.sdk.scot.response;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,8 +47,11 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	 */
 	private List<CuentasPorPagar> cuentasporpagar = new ArrayList<>();
 	
-	
-	
+	@JsonIgnore
+	public Boolean getAlertas(){
+		return !habilitado||!liberado||!csd||cuentasporpagar.stream().filter(i->i.getVencida()).findAny().isPresent();
+		
+	}
 	
 	
 	

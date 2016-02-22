@@ -1,5 +1,7 @@
 package mx.emite.sdk;
 
+import java.time.LocalDateTime;
+
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.integradores.Emisores;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresAlta;
@@ -11,6 +13,9 @@ import mx.emite.sdk.clientes.operaciones.integradores.SucursalesAlta;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
 import mx.emite.sdk.enums.Ambiente;
+import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.scot.request.TokenRequest;
+import mx.emite.sdk.scot.response.TokenResponse;
 
 
 /**
@@ -37,6 +42,9 @@ public class IntegradorAPI {
 	
 	private String contrasena;
 	private String usuario;
+	
+	private String tokenWs;
+	private LocalDateTime expira;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -95,6 +103,19 @@ public class IntegradorAPI {
 		this.usuario = usuario;
 	}
 	
+	public String getTokenWs() throws ApiException{
+		if(this.tokenWs==null||this.expira==null||this.expira.isBefore(LocalDateTime.now()))
+		{
+			final TokenRequest tr = TokenRequest.builder()
+					.usuario(this.usuario)
+					.contrasena(this.contrasena)
+					.build();
+			final TokenResponse tokenresp = token.ejecuta(tr);
+			this.tokenWs=tokenresp.getToken();
+			this.expira=tokenresp.getVigenciaTermino();
+		}
+		return tokenWs;
+	}
 	
 	
 	/**
@@ -178,5 +199,7 @@ public class IntegradorAPI {
 		return sucursalesalta;
 	}
 
+	
+	
 	
 }
