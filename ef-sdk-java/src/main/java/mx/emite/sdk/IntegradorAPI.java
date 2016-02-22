@@ -7,6 +7,7 @@ import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsd;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsdConsulta;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresEstatus;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
+import mx.emite.sdk.clientes.operaciones.integradores.SucursalesAlta;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
 import mx.emite.sdk.enums.Ambiente;
@@ -32,6 +33,7 @@ public class IntegradorAPI {
 	private final EmisoresCsd emisorescsd;
 	private final EmisoresCsdConsulta emisorescsdconsulta;
 	private final EmisoresEstatus emisoresestatus;
+	private final SucursalesAlta sucursalesalta;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -53,6 +55,7 @@ public class IntegradorAPI {
 		this.emisorescsd=new EmisoresCsd(this.cliente);
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 		this.emisoresestatus=new EmisoresEstatus(this.cliente);
+		this.sucursalesalta=new SucursalesAlta(this.cliente);
 	}
 	
 	/**
@@ -125,5 +128,14 @@ public class IntegradorAPI {
 	 */
 	public EmisoresEstatus emisoresestatus() {
 		return emisoresestatus;
+	}
+	
+	/**
+	 * Servicio de alta de sucursales para emisores de postpago-sucursales
+	 * @return sucursalesalta
+	 * @since 0.0.4
+	 */
+	public SucursalesAlta sucursalesalta() {
+		return sucursalesalta;
 	}
 }

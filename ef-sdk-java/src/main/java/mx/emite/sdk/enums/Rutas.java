@@ -23,7 +23,8 @@ public enum Rutas {
 	EMISORESCSD("/api/integrador/emisores/csd"),
 	EMISORESCSDCONSULTA("/api/integrador/emisores/csd/consulta"),
 	EMISORESESTATUS("/api/integrador/emisores/estatus"),
-	SUCURSALES("/api/integrador/sucursales"),   
+	SUCURSALES("/api/integrador/sucursales"),
+	SUCURSALESALTA("/api/integrador/sucursales/alta"),   
 	;
 	
 	private final String ruta;
