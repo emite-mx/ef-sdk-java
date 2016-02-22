@@ -49,7 +49,6 @@ public class FacturaEmiteRequest {
 	/**
 	 * @param sucursal Sucursal del Emisor al que se le hara la factura
 	 */
-	@NotNull
 	private String sucursal;	
 	
 	/**

@@ -33,7 +33,7 @@ public class Correos extends Operacion<CorreoRequest,CorreoResponse> {
 	 */
 	@Override
 	public CorreoResponse ejecuta(CorreoRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,CorreoResponse.class));
 	}
 	

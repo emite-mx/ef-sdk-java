@@ -18,7 +18,7 @@ public class EmisoresCsdConsulta extends Operacion<EmisoresCsdConsultaRequest,Em
 
 	@Override 
 	public EmisoresCsdConsultaResponse ejecuta(EmisoresCsdConsultaRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,EmisoresCsdConsultaResponse.class));
 	}
 

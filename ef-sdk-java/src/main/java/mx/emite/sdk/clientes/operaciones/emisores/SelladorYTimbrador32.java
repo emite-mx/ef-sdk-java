@@ -33,7 +33,7 @@ public class SelladorYTimbrador32 extends Operacion<SellarYTimbrarRequest,Sellar
 	 */
 	@Override
 	public SellarYTimbrarResponse ejecuta(SellarYTimbrarRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,SellarYTimbrarResponse.class));
 	}
 	

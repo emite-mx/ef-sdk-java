@@ -18,7 +18,7 @@ public class Token extends Operacion<TokenRequest,TokenResponse>{
 
 	@Override
 	public TokenResponse ejecuta(TokenRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,TokenResponse.class));
 	}
 

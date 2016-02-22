@@ -26,7 +26,7 @@ public class EmisoresEstatusEjemplo extends Ejemplo {
 			final TokenResponse tokenresp = api.token().ejecuta(tr);	
 			final EmisoresEstatusRequest timbresreq = EmisoresEstatusRequest.builder()
 				.token(tokenresp.getToken())
-				.rfc("EFA100217SU5")
+				.rfc("ENG050920SJ7")
 				.build();
 			final EmisoresEstatusResponse respuesta = api.emisoresestatus().ejecuta(timbresreq);
 		log.debug(respuesta.toString());

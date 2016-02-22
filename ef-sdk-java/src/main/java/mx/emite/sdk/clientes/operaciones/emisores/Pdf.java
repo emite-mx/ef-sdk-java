@@ -33,7 +33,7 @@ public class Pdf extends Operacion<PdfRequest,PdfResponse> {
 	 */
 	@Override
 	public PdfResponse ejecuta(PdfRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,PdfResponse.class));
 	}
 	

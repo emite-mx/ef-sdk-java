@@ -79,7 +79,9 @@ public class ApiException extends RuntimeException{
 
 	public ApiException(I_Api_Errores tipo, Set<ConstraintViolation<Object>> errores) {
 		this(tipo);
-		errores.stream().forEach(i->mensajes.add(MessageFormat.format(i.getMessage(),i.getPropertyPath())));
+		errores.stream().forEach(i->
+				mensajes.add(i.getPropertyPath() + "\t"+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
+		);
 	}
 
 	public String getTraza() {

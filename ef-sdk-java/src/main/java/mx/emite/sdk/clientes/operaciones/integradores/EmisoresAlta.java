@@ -18,7 +18,7 @@ public class EmisoresAlta extends Operacion<EmisoresAltaRequest,EmisoresAltaResp
 
 	@Override
 	public EmisoresAltaResponse ejecuta(EmisoresAltaRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,EmisoresAltaResponse.class));
 	}
 

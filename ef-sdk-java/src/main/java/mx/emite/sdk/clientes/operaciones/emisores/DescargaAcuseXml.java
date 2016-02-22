@@ -33,7 +33,7 @@ public class DescargaAcuseXml extends Operacion<XmlRequest,XmlResponse> {
 	 */
 	@Override
 	public XmlResponse ejecuta(XmlRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,XmlResponse.class));
 	}
 	

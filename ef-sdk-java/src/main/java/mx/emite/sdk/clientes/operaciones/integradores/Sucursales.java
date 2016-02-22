@@ -18,7 +18,7 @@ public class Sucursales extends Operacion<SucursalesRequest,SucursalesResponse>{
 
 	@Override
 	public SucursalesResponse ejecuta(SucursalesRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,SucursalesResponse.class));
 	}
 

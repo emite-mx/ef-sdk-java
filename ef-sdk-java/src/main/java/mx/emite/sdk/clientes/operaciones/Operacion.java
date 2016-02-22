@@ -9,6 +9,7 @@ import mx.emite.sdk.enums.Rutas;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.interfaces.Respuesta;
+import mx.emite.sdk.utils.Utilerias;
 
 
 public abstract class Operacion<ENVIO,RESPUESTA extends Respuesta> {
@@ -26,7 +27,8 @@ public abstract class Operacion<ENVIO,RESPUESTA extends Respuesta> {
 	
 		
 	@SuppressWarnings("deprecation")
-	protected final String creaRuta(){
+	protected final String creaRuta(ENVIO envio) throws ApiException{
+		Utilerias.valida(envio);
 		final StringBuilder path = new StringBuilder();
 		switch(cliente.getAmbiente()){
 		case LOCAL: path.append("http://localhost:8080/").append(proveedor.getServidor()).append(ruta.getRuta());

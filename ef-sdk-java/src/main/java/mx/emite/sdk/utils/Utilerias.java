@@ -85,6 +85,7 @@ public class Utilerias {
 	}
 
 	public static void valida(Object objeto) throws ApiException{
+		if(objeto==null) return;
 		final Set<ConstraintViolation<Object>> errores = validator.validate(objeto);
 		if(errores.isEmpty())
 			return;

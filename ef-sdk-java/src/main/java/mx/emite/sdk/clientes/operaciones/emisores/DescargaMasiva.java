@@ -33,7 +33,7 @@ public class DescargaMasiva extends Operacion<ZipRequest,ZipResponse> {
 	 */
 	@Override
 	public ZipResponse ejecuta(ZipRequest request) throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(request);
 		return procesa(this.getCliente().post(ruta,request,ZipResponse.class));
 	}
 	

@@ -16,7 +16,7 @@ public class Servicios extends Operacion<ServiciosResponse,ServiciosResponse>{
 	}
 
 	public ServiciosResponse ejecuta() throws ApiException{
-		final String ruta = creaRuta();
+		final String ruta = creaRuta(null);
 		return procesa(this.getCliente().post(ruta,null,ServiciosResponse.class));
 	}
 
