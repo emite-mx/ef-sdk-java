@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emitefacturacion/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emitefacturacion.mx](https://www.emitefacturacion.mx)
 
-## ef-sdk-java-0.0.4
+## ef-sdk-java-0.0.5
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -12,7 +12,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 <dependency>
 	<groupId>mx.emite</groupId>
 	<artifactId>ef-sdk-java</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 </dependency>
 ```
 ### Requerimientos Técnicos

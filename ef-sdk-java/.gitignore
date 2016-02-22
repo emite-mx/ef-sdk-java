@@ -5,4 +5,4 @@
 .settings
 /src/test/resources/pruebas.properties
 **/.DS_Store
-/README.md
+/src/test/java/mx/emite/sdk/pruebas/ejemplos/ef/**

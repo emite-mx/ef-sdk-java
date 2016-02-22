@@ -1,22 +1,22 @@
 package mx.emite.sdk.enums;
 
-public enum TipoFacturas {
-	CORTEMENSUAL('C',"tipofactura.cortemensual"),
-	INSCRIPCION('I',"tipofactura.inscripcion"),
-	ANUALIDAD('A',"tipofactura.anualidad"),
-	OTROS('O',"tipofactura.otros"),
+public enum TipoCobros {
+	INTEGRADOR('I',"tipocobro.integrador"),
+	EMISOR('E',"tipocobro.emisor"),
+	EMITE('S',"tipocobro.emite"),
+	
 	;
 	
 	private Character id;
 	private String titulo;
 	
-	TipoFacturas(Character val,String titulo){
+	TipoCobros(Character val,String titulo){
 		this.id=val;
 		this.titulo=titulo;
 		
 	}
-	public static TipoFacturas getTipo(Character estatus) {
-		for(TipoFacturas e:values()){
+	public static TipoCobros getTipo(Character estatus) {
+		for(TipoCobros e:values()){
 			if(e.id.equals(estatus))
 				return e;
 		}
@@ -52,6 +52,14 @@ public enum TipoFacturas {
 		return id==null?false:compara==null?false:id.equals(compara.charAt(0));
 	}
 	
+	public boolean seCobra() {
+		switch(this){
+		case EMISOR:
+		case INTEGRADOR: return true;
+		case EMITE: return false;
+		}
+		return false;
+	}
 	
 	
 	
