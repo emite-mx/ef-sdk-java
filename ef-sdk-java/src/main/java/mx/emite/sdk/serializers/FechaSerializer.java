@@ -1,4 +1,4 @@
-package mx.emite.sdk.utils;
+package mx.emite.sdk.serializers;
 
 import java.io.IOException;
 import java.time.LocalDate;

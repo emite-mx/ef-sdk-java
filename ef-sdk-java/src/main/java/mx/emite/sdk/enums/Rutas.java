@@ -18,7 +18,13 @@ public enum Rutas {
 	
 	TOKEN("/api/integrador/token"),
 	TIMBRES("/api/integrador/timbres"), 
-	 EMISORES("/api/integrador/emisores"),
+	EMISORES("/api/integrador/emisores"),
+	EMISORESALTA("/api/integrador/emisores/alta"),
+	EMISORESCSD("/api/integrador/emisores/csd"),
+	EMISORESCSDCONSULTA("/api/integrador/emisores/csd/consulta"),
+	EMISORESESTATUS("/api/integrador/emisores/estatus"),
+	SUCURSALES("/api/integrador/sucursales"),
+	SUCURSALESALTA("/api/integrador/sucursales/alta"),   
 	;
 	
 	private final String ruta;

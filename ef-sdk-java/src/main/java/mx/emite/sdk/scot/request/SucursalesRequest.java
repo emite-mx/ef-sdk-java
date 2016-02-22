@@ -8,8 +8,9 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 
 @Data
 @Builder
-public class EmisoresRequest  {
+public class SucursalesRequest {
 
+	
 	/**
 	 * Token del <b>Integrador</b> obtenido con el servicio de Token 
 	 * -- SETTER --
@@ -23,14 +24,10 @@ public class EmisoresRequest  {
 	
 	
 	/**
-	 * @param rfc del emisor, si se deja en blanco se consultan todos los emisores	
+	 * @param rfc del emisor	
 	 */
-	@Rfc
+	@NotNull @Rfc
 	private String rfc;
-
-	
-	
-	
 	
 
 	 

@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import mx.emite.sdk.utils.LocalDateTimeAdapter;
+import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TimbreFiscalDigital")

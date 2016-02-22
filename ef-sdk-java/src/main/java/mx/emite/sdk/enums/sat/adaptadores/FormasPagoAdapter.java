@@ -1,14 +1,14 @@
 package mx.emite.sdk.enums.sat.adaptadores;
 
-import mx.emite.sdk.enums.sat.MetodosPago;
+import mx.emite.sdk.enums.sat.FormasPago;
 
-public class FormasPagoAdapter extends SatAdapter<String,MetodosPago>{
+public class FormasPagoAdapter extends SatAdapter<String,FormasPago>{
 
 	@Override
-	public MetodosPago unmarshal(String metodo) throws Exception {
+	public FormasPago unmarshal(String metodo) throws Exception {
 		if(metodo==null)
 			return null;
-		return MetodosPago.busca(metodo);		
+		return FormasPago.busca(metodo);		
 	}
 
 }

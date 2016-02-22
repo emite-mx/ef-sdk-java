@@ -12,7 +12,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import mx.emite.sdk.utils.ApiExceptionDeserializer;
+import mx.emite.sdk.serializers.ApiExceptionDeserializer;
 
 //@JsonIgnoreProperties(value={"cause"})
 @JsonDeserialize(using=ApiExceptionDeserializer.class)

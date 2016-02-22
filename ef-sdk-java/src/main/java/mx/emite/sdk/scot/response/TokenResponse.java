@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import mx.emite.sdk.scot.ScotResponse;
-import mx.emite.sdk.utils.FechaHoraDeserializer;
+import mx.emite.sdk.serializers.FechaHoraDeserializer;
 
 @Getter
 @Setter

@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emitefacturacion/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emitefacturacion.mx](https://www.emitefacturacion.mx)
 
-## ef-sdk-java-0.0.3
+## ef-sdk-java-0.0.4
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -12,7 +12,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 <dependency>
 	<groupId>mx.emite</groupId>
 	<artifactId>ef-sdk-java</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 </dependency>
 ```
 ### Requerimientos Técnicos
@@ -37,7 +37,12 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Generación de Token de Consumo
 - Consulta de Tarifa y Timbres Disponibles
 - Consulta de Emisores Registrados
-
+- Consulta de Sucursales por Emisor
+- Alta / Modificación de Emisores
+- Carga de CSD
+- Consulta de CSD
+- Consulta de Estatus de Emisores
+- Alta / Modificación de Sucursales
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -63,36 +68,36 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 ### Ejemplo de Timbrado de CFDI 3.2
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final TimbrarRequest request = TimbrarRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.xml(props.getProperty("xml.base64"))
-				.build();
-		final TimbrarResponse respuesta = api.timbrador32().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final TimbrarRequest request = TimbrarRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.xml(props.getProperty("xml.base64"))
+			.build();
+	final TimbrarResponse respuesta = api.timbrador32().ejecuta(request);
 ```
 
 ### Sellado y Timbrado de CFDI 3.2
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final SellarYTimbrarRequest request = SellarYTimbrarRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.xml(props.getProperty("xml.base64"))
-				.build();
-		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final SellarYTimbrarRequest request = SellarYTimbrarRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.xml(props.getProperty("xml.base64"))
+			.build();
+	final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
 ```
 
 
 ### Ejemplo de Generación completa de CFDI (Xml + Sellado + Timbrado)
 -------------------------------------------------------
 ```java
-final Comprobante comprobante = Comprobante.builder()
+	final Comprobante comprobante = Comprobante.builder()
 				.lugarExpedicion("México, D.F.")
 				.fecha(LocalDateTime.now())
 				.folio(1000)
-				.formaDePago(FormasPago.PAGOENUNASOLAEXHIBICION)
+				.formaDePago(TipoPago.PAGOENUNASOLAEXHIBICION)
 				.metodoDePago(MetodosPago.CANCELACION)
 				.tipoDeComprobante(TipoDeComprobante.INGRESO)
 				.subTotal(BigDecimal.ZERO)
@@ -165,106 +170,106 @@ final Comprobante comprobante = Comprobante.builder()
 ### Ejemplo de Cancelación de CFDI 3.2
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final CancelarRequest request = CancelarRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-				.build()
-				; 
-		final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final CancelarRequest request = CancelarRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+			.build()
+			; 
+	final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
 ```
 
 ### Ejemplo de Descarga de Xml
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final XmlRequest request = XmlRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-				.build()
-				; 
-		final XmlResponse respuesta = api.descargaxml().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final XmlRequest request = XmlRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+			.build()
+			; 
+	final XmlResponse respuesta = api.descargaxml().ejecuta(request);
 ```
 
 ### Ejemplo de Descarga de Acuses de Cancelación
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final XmlRequest request = XmlRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-				.build()
-				; 
-		final XmlResponse respuesta = api.descargaacusexml().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final XmlRequest request = XmlRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+			.build()
+			; 
+	final XmlResponse respuesta = api.descargaacusexml().ejecuta(request);
 ```
 
 ### Ejemplo de Descarga de Pdf
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final PdfRequest request = PdfRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid(props.getProperty("xml.uuid"))
-				.plantilla("EMITE")
-				.build()
-				; 
-		final PdfResponse respuesta = api.pdf().ejecuta(request);
-		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final PdfRequest request = PdfRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid(props.getProperty("xml.uuid"))
+			.plantilla("EMITE")
+			.build()
+			; 
+	final PdfResponse respuesta = api.pdf().ejecuta(request);
+	respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
 
 ### Ejemplo de Descarga de Pdf de Acuse de Cancelación
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final PdfRequest request = PdfRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid(props.getProperty("xml.uuid"))
-				.build()
-				; 
-		final PdfResponse respuesta = api.pdfacuse().ejecuta(request);
-		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final PdfRequest request = PdfRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid(props.getProperty("xml.uuid"))
+			.build()
+			; 
+	final PdfResponse respuesta = api.pdfacuse().ejecuta(request);
+	respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 ```
 
 ### Ejemplo de Envio de Xml y Pdf por correo
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final CorreoRequest request = CorreoRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid(props.getProperty("xml.uuid"))
-				.plantilla("EMITE")
-				.recuperarArchivos(true)
-				.correo(CorreoParametros.builder()
-						.asunto("asunto")
-						.para(Correo.builder()
-								.correo(props.getProperty("destinatario"))
-							 	.build())
-						.build())
-				.build(); 
-		final CorreoResponse respuesta = api.correos().ejecuta(request);
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final CorreoRequest request = CorreoRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.uuid(props.getProperty("xml.uuid"))
+			.plantilla("EMITE")
+			.recuperarArchivos(true)
+			.correo(CorreoParametros.builder()
+					.asunto("asunto")
+					.para(Correo.builder()
+							.correo(props.getProperty("destinatario"))
+						 	.build())
+					.build())
+			.build(); 
+	final CorreoResponse respuesta = api.correos().ejecuta(request);
 ```
 
 ### Ejemplo de Descarga Masiva de Xml, Pdf y Acuses de Cancelación
 -------------------------------------------------------
 ```java
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
-		final ZipRequest request = ZipRequest.builder()
-				.usuario(props.getProperty("emisor.usuario"))
-				.contrasena(props.getProperty("emisor.contrasena"))
-				.xml(true)
-				.filtro(ConsultaFiltro.builder()
-						.rango(LocalDate.of(2016, 01, 01), LocalDate.of(2016, 01, 31))
-						.build())
-				.build()
-				; 		
-		final ZipResponse respuesta = api.descargamasiva().ejecuta(request);
-		respuesta.guardaZip(props.getProperty("zip.ruta"));
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final ZipRequest request = ZipRequest.builder()
+			.usuario(props.getProperty("emisor.usuario"))
+			.contrasena(props.getProperty("emisor.contrasena"))
+			.xml(true)
+			.filtro(ConsultaFiltro.builder()
+					.rango(LocalDate.of(2016, 01, 01), LocalDate.of(2016, 01, 31))
+					.build())
+			.build()
+			; 		
+	final ZipResponse respuesta = api.descargamasiva().ejecuta(request);
+	respuesta.guardaZip(props.getProperty("zip.ruta"));
 ```
 
 ## Servicios de Integrador
@@ -274,40 +279,165 @@ final Comprobante comprobante = Comprobante.builder()
 ### Ejemplo de Generación de Token de Consumo
 -------------------------------------------------------
 ```java
-		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
-		final TokenRequest tr = TokenRequest.builder()
-				.usuario(props.getProperty("integrador.usuario"))
-				.contrasena(props.getProperty("integrador.contrasena"))
-				.build();
-		final TokenResponse respuesta = api.token().ejecuta(tr);		
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse respuesta = api.token().ejecuta(tr);		
 ```
 
 ### Ejemplo de Consulta de Tarifa y Timbres Disponibles
 -------------------------------------------------------
 ```java
-		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
-		final TokenRequest tr = TokenRequest.builder()
-					.usuario(props.getProperty("integrador.usuario"))
-					.contrasena(props.getProperty("integrador.contrasena"))
-					.build();
-		final TokenResponse tokenresp = api.token().ejecuta(tr);	
-		final TimbresRequest timbresreq = TimbresRequest.builder()
-				.token(tokenresp.getToken())
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+				.usuario(props.getProperty("integrador.usuario"))
+				.contrasena(props.getProperty("integrador.contrasena"))
 				.build();
-		final TimbresResponse respuesta = api.timbres().ejecuta(timbresreq);	
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final TimbresRequest timbresreq = TimbresRequest.builder()
+			.token(tokenresp.getToken())
+			.build();
+	final TimbresResponse respuesta = api.timbres().ejecuta(timbresreq);	
 ```
 
 ### Ejemplo de Consulta de Emisores Registrados
 -------------------------------------------------------
 ```java
-		final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
-		final TokenRequest tr = TokenRequest.builder()
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+				.usuario(props.getProperty("integrador.usuario"))
+				.contrasena(props.getProperty("integrador.contrasena"))
+				.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresRequest timbresreq = EmisoresRequest.builder()
+			.token(tokenresp.getToken())
+			.build();
+	final EmisoresResponse respuesta = api.emisores().ejecuta(timbresreq);	
+```
+
+### Ejemplo de Consulta de Sucursales por Emisor
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+				.usuario(props.getProperty("integrador.usuario"))
+				.contrasena(props.getProperty("integrador.contrasena"))					
+				.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final SucursalesRequest timbresreq = SucursalesRequest.builder()
+			.token(tokenresp.getToken())
+			.rfc(props.getProperty("emisor.rfc"))
+			.build();
+	final SucursalesResponse respuesta = api.sucursales().ejecuta(timbresreq);
+```
+
+### Ejemplo de Alta / Modificación de Emisores
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresAltaRequest timbresreq = EmisoresAltaRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc("XAXX010101000")
+		.tipoEmisor(TipoIntegradorEmisor.POSTPAGO)
+		.usuario("usuarioWs")
+		.contrasena("contrasenaWs")
+		.correo("test@test.com")
+		.razonSocial("Razon Social")
+		.calle("calle")
+		.cp("04300")
+		.municipio("Benito Juarez")
+		.idEstado(Estados.DISTRITOFEDERAL )
+		.idPais(Paises.MEXICO )
+		.idRegimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
+		.idFormaPago(FormasPago.TRANSFERENCIA)
+		.cuentapago("1234")
+		.build();
+	final EmisoresAltaResponse respuesta = api.emisoresalta().ejecuta(timbresreq);
+```
+
+### Ejemplo de Carga de CSD
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresCsdRequest timbresreq = EmisoresCsdRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc("XAXX010101000")
+		.cer(props.getProperty("cer"))
+		.key(props.getProperty("key"))
+		.contrasenaCsd("contrasenaWs")
+		.build();
+	final EmisoresCsdResponse respuesta = api.emisorescsd().ejecuta(timbresreq);
+```
+
+### Ejemplo de Consulta de CSD
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
 					.usuario(props.getProperty("integrador.usuario"))
 					.contrasena(props.getProperty("integrador.contrasena"))
 					.build();
-		final TokenResponse tokenresp = api.token().ejecuta(tr);	
-		final EmisoresRequest timbresreq = EmisoresRequest.builder()
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresCsdConsultaRequest timbresreq = EmisoresCsdConsultaRequest.builder()
 				.token(tokenresp.getToken())
+				.rfc(props.getProperty("emisor.rfc")
 				.build();
-		final EmisoresResponse respuesta = api.emisores().ejecuta(timbresreq);	
+	final EmisoresCsdConsultaResponse respuesta = api.emisorescsdconsulta().ejecuta(timbresreq);
+```
+
+### Ejemplo de Consulta de Estatus de Emisores
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresEstatusRequest timbresreq = EmisoresEstatusRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc(props.getProperty("emisor.rfc")
+		.build();
+	final EmisoresEstatusResponse respuesta = api.emisoresestatus().ejecuta(timbresreq);
+```
+
+### Ejemplo de Alta / Modificación de Sucursales
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final SucursalesAltaRequest timbresreq = SucursalesAltaRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc("XAXX010101000")
+		.sucursal(SucursalInfo.builder()
+				.nombre("nombresucursal")
+				.correo("test@test.com")
+				.razonSocial("Razon Social")
+				.calle("calle")
+				.cp("04300")
+				.municipio("Benito Juarez")
+				.idEstado(Estados.DISTRITOFEDERAL )
+				.idPais(Paises.MEXICO )
+				.idRegimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
+				.idFormaPago(FormasPago.TRANSFERENCIA)
+				.cuentapago("1234")								
+				.build())				
+		.build();
+	final SucursalesAltaResponse respuesta = api.sucursalesalta().ejecuta(timbresreq);
 ```
