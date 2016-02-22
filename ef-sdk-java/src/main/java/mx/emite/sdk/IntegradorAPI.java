@@ -5,6 +5,7 @@ import mx.emite.sdk.clientes.operaciones.integradores.Emisores;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresAlta;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsd;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsdConsulta;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresEstatus;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
@@ -30,6 +31,7 @@ public class IntegradorAPI {
 	private final EmisoresAlta emisoresalta;
 	private final EmisoresCsd emisorescsd;
 	private final EmisoresCsdConsulta emisorescsdconsulta;
+	private final EmisoresEstatus emisoresestatus;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -50,6 +52,7 @@ public class IntegradorAPI {
 		this.emisoresalta=new EmisoresAlta(this.cliente);
 		this.emisorescsd=new EmisoresCsd(this.cliente);
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
+		this.emisoresestatus=new EmisoresEstatus(this.cliente);
 	}
 	
 	/**
@@ -113,5 +116,14 @@ public class IntegradorAPI {
 	 */
 	public EmisoresCsdConsulta emisorescsdconsulta() {
 		return emisorescsdconsulta;
+	}
+	
+	/**
+	 * Servicio de consulta de estatus de emisores
+	 * @return emisoresestatus
+	 * @since 0.0.4
+	 */
+	public EmisoresEstatus emisoresestatus() {
+		return emisoresestatus;
 	}
 }

@@ -41,6 +41,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Alta / Modificación de Emisores
 - Carga de CSD
 - Consulta de CSD
+- Consulta de Estatus de Emisores
 
 ### Requerimientos de utilización
 -------------------------------------------------------
@@ -393,4 +394,20 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 				.rfc(props.getProperty("emisor.rfc")
 				.build();
 	final EmisoresCsdConsultaResponse respuesta = api.emisorescsdconsulta().ejecuta(timbresreq);
+```
+
+### Ejemplo de Consulta de Estatus de Emisores
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final EmisoresEstatusRequest timbresreq = EmisoresEstatusRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc(props.getProperty("emisor.rfc")
+		.build();
+	final EmisoresEstatusResponse respuesta = api.emisoresestatus().ejecuta(timbresreq);
 ```
