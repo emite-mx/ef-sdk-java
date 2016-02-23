@@ -7,6 +7,7 @@ import mx.emite.sdk.clientes.operaciones.integradores.Emisores;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresAlta;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsd;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsdConsulta;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresDocumentos;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresEstatus;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
 import mx.emite.sdk.clientes.operaciones.integradores.SucursalesAlta;
@@ -39,6 +40,7 @@ public class IntegradorAPI {
 	private final EmisoresCsdConsulta emisorescsdconsulta;
 	private final EmisoresEstatus emisoresestatus;
 	private final SucursalesAlta sucursalesalta;
+	private final EmisoresDocumentos emisoresdocumentos;
 	
 	private String contrasena;
 	private String usuario;
@@ -83,6 +85,7 @@ public class IntegradorAPI {
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 		this.emisoresestatus=new EmisoresEstatus(this.cliente);
 		this.sucursalesalta=new SucursalesAlta(this.cliente);
+		this.emisoresdocumentos=new EmisoresDocumentos(this.cliente);
 		this.usuario=usuario;
 		this.contrasena=contrasena;
 	}
@@ -197,6 +200,15 @@ public class IntegradorAPI {
 	 */
 	public SucursalesAlta sucursalesalta() {
 		return sucursalesalta;
+	}
+
+	/**
+	 * Servicio de carga de documentación de emisores
+	 * @return emisoresdocumentos
+	 * @since 0.0.5
+	 */
+	public EmisoresDocumentos emisoresdocumentos() {
+		return emisoresdocumentos;
 	}
 
 	

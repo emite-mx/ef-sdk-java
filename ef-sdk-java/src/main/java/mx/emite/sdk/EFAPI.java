@@ -1,5 +1,6 @@
 package mx.emite.sdk;
 
+import lombok.Getter;
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.ef.FacturaEmite;
 import mx.emite.sdk.enums.Ambiente;
@@ -12,19 +13,22 @@ import mx.emite.sdk.enums.Ambiente;
  *
  *	
  */
-@Deprecated
+
 public class EFAPI {
 
 	
 	private final ClienteJson cliente;
 	
 	private final FacturaEmite facturaemite;
+	@Getter private String contrasena;
+	@Getter private String usuario;
 	
-	
-	
-	public EFAPI(final Ambiente ambiente){
+	@Deprecated
+	public EFAPI(final Ambiente ambiente,final String usuario,final String contrasena){
 		this.cliente=new ClienteJson(ambiente);
 		this.facturaemite=new FacturaEmite(this.cliente);
+		this.usuario=usuario;
+		this.contrasena=contrasena;
 		
 	}
 	
