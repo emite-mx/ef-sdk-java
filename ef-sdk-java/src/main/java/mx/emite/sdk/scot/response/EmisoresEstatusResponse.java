@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import mx.emite.sdk.scot.ScotResponse;
 import mx.emite.sdk.scot.response.extra.CuentasPorPagar;
+import mx.emite.sdk.scot.response.extra.Documentos;
 
 @Getter
 @Setter
@@ -47,9 +48,15 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	 */
 	private List<CuentasPorPagar> cuentasporpagar = new ArrayList<>();
 	
+	/**
+	 * @return documentos Lista de documentos del emisor
+	 */
+	private List<Documentos> documentos = new ArrayList<>();
+	
 	@JsonIgnore
 	public Boolean getAlertas(){
-		return !habilitado||!liberado||!csd||cuentasporpagar.stream().filter(i->i.getVencida()).findAny().isPresent();
+		return !habilitado||!liberado||!csd||cuentasporpagar.stream().filter(i->i.getVencida()).findAny().isPresent()
+				||documentos.stream().filter(d->d.getAprobado()==false).findAny().isPresent();
 		
 	}
 	

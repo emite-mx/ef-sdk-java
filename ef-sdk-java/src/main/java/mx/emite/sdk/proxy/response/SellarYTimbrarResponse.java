@@ -19,11 +19,11 @@ public class SellarYTimbrarResponse extends ProxyResponse {
 	private InfoCfdi info;
 	
 	public String getXmlDecodificado(){
-		return Utilerias.decodificaUtf8(xml);
+		return Utilerias.decodifica64Utf8(xml);
 	}
 	
 	public void guardaXml(String ruta) throws ApiException{
-		Utilerias.guardaArchivo(ruta,Utilerias.decodificaUtf8Byte(xml));		
+		Utilerias.guardaArchivo(ruta,Utilerias.decodifica64Utf8Byte(xml));		
 	}
 	
 }

@@ -37,15 +37,15 @@ public class Utilerias {
 	private final static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 	private final static Collator comparador = creaComparador();
 	
-	public static String decodificaUtf8(final String xmlBase64) throws ApiException{
+	public static String decodifica64Utf8(final String xmlBase64) throws ApiException{
 		try{
-		return new String(decodificaUtf8Byte(xmlBase64));
+		return new String(decodifica64Utf8Byte(xmlBase64));
 		}catch(Exception ex){
 			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
 		}
 	}
 
-	public static byte[] decodificaUtf8Byte(final String xmlBase64) throws ApiException{
+	public static byte[] decodifica64Utf8Byte(final String xmlBase64) throws ApiException{
 		try{
 		return decoder.decode(utf8(xmlBase64));
 		}catch(Exception ex){
@@ -59,13 +59,22 @@ public class Utilerias {
 		return res;
 	}
 
-	public static String codificaUtf8(final String xml) throws ApiException{
+	public static String codifica64Utf8(final String xml) throws ApiException{
 		try{
 		return  utf8(encoder.encode(utf8(xml)));
 		}catch(Exception ex){
 			throw new ApiException(I_Api_Errores.CODIFICANDO,ex);
 		}
 	}
+	
+	public static String codifica64Binario(byte[] cer) throws ApiException{
+		try{
+		return  utf8(encoder.encode(cer));
+		}catch(Exception ex){
+			throw new ApiException(I_Api_Errores.CODIFICANDO,ex);
+		}
+	}
+
 	
 	public static byte[] utf8(String xmlBase64) throws Exception{
 		return xmlBase64.getBytes(Charset.forName("UTF-8"));
@@ -155,6 +164,7 @@ public class Utilerias {
 		
 	}
 
+	
 	 
 	
 }

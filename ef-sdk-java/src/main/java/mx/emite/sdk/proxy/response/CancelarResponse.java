@@ -21,7 +21,7 @@ public class CancelarResponse extends ProxyResponse{
 	private List<InfoCancelacion> info;
 	
 	public String getXmlDecodificado(){
-		return Utilerias.decodificaUtf8(xml);
+		return Utilerias.decodifica64Utf8(xml);
 	}
 		
 }

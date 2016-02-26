@@ -4,12 +4,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.Builder;
 import lombok.Data;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
+import mx.emite.sdk.utils.Utilerias;
 
 @Data
-@Builder
 public class EmisoresCsdRequest  {
 
 	/**
@@ -50,6 +49,71 @@ public class EmisoresCsdRequest  {
 	@NotNull 
 	private String contrasenaCsd;
 	
-		 
+	public static EmisoresCsdRequestBuilder builder(){
+		return new EmisoresCsdRequestBuilder();
+	}
 	
+
+	public static class EmisoresCsdRequestBuilder {
+	private String token;
+	private String rfc;
+	private String cer;
+	private String key;
+	private String contrasenaCsd;
+	public EmisoresCsdRequestBuilder token(String token) {
+	this.token=token;
+	return this;
+	}
+	public EmisoresCsdRequestBuilder rfc(String rfc) {
+	this.rfc=rfc;
+	return this;
+	}
+	
+	/**
+	 * @param cer llave publica codificada en base 64
+	 * @return this builder
+	 */
+	public EmisoresCsdRequestBuilder cer(String cer) {
+	this.cer=cer;
+	return this;
+	}
+	/**
+	 * @param cer llave publica binaria
+	 * @return this builder
+	 */
+	public EmisoresCsdRequestBuilder cer(byte[] cer) {
+		this.cer=Utilerias.codifica64Binario(cer);
+		return this;
+	}
+	/**
+	 * @param cer llave privada codificada en base 64
+	 * @return this builder
+	 */
+	public EmisoresCsdRequestBuilder key(String key) {
+	this.key=key;
+	return this;
+	}
+	/**
+	 * @param cer llave privada binaria
+	 * @return this builder
+	 */
+	public EmisoresCsdRequestBuilder key(byte[] key) {
+		this.key=Utilerias.codifica64Binario(key);
+		return this;
+	}
+	public EmisoresCsdRequestBuilder contrasenaCsd(String contrasenaCsd) {
+	this.contrasenaCsd=contrasenaCsd;
+	return this;
+	}
+	public EmisoresCsdRequest build(){
+	return new EmisoresCsdRequest(this);
+	}
+	}
+	private EmisoresCsdRequest(EmisoresCsdRequestBuilder builder){
+	this.token=builder.token;
+	this.rfc=builder.rfc;
+	this.cer=builder.cer;
+	this.key=builder.key;
+	this.contrasenaCsd=builder.contrasenaCsd;
+	}
 }

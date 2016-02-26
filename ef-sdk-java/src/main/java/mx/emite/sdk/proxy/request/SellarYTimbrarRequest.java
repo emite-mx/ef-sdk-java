@@ -45,7 +45,7 @@ public class SellarYTimbrarRequest {
 		private String xml;
 
 		public SellarYTimbrarRequestBuilder codifica(final String xmlSinCodificar) throws ApiException{
-			this.xml = Utilerias.codificaUtf8(xmlSinCodificar);
+			this.xml = Utilerias.codifica64Utf8(xmlSinCodificar);
 			return this;
 		}
 		

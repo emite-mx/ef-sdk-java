@@ -72,7 +72,11 @@ public class CuentasPorPagar {
 	private Boolean vencida;
 	
 	
-	
+	public String getSerieFolio(){
+		if(serie==null)
+			return folio.toString();
+		return serie.concat(" - ").concat(folio.toString());
+	}
 	
 	
 
