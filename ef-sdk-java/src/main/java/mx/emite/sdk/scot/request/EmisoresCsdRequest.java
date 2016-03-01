@@ -77,6 +77,7 @@ public class EmisoresCsdRequest  {
 	this.cer=cer;
 	return this;
 	}
+	
 	/**
 	 * @param cer llave publica binaria
 	 * @return this builder
@@ -86,7 +87,7 @@ public class EmisoresCsdRequest  {
 		return this;
 	}
 	/**
-	 * @param cer llave privada codificada en base 64
+	 * @param key llave privada codificada en base 64
 	 * @return this builder
 	 */
 	public EmisoresCsdRequestBuilder key(String key) {
@@ -94,7 +95,7 @@ public class EmisoresCsdRequest  {
 	return this;
 	}
 	/**
-	 * @param cer llave privada binaria
+	 * @param key llave privada binaria
 	 * @return this builder
 	 */
 	public EmisoresCsdRequestBuilder key(byte[] key) {

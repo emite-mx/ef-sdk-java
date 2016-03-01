@@ -60,4 +60,13 @@ public enum FormasPago implements Sat{
 		return null;
 	}
 	
+	public Integer getIdFormaPago(){
+		return idSat;
+	}
+
+	public static FormasPago[] formaspago() {
+		
+		return values();
+	}
+	
 }

@@ -1,5 +1,5 @@
 ![alt text](https://github.com/emitefacturacion/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
-# EmiteFacturacion [emitefacturacion.mx](https://www.emitefacturacion.mx)
+# EmiteFacturacion [emite.mx](https://www.emite.mx)
 
 ## ef-sdk-java-0.0.5
 **** Kit de consumo de servicios Emite Facturación
@@ -49,14 +49,14 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 -------------------------------------------------------
 - Contar con registro de Integrador en nuestro portal de Integradores
 
-	[Portal de Integradores: https://scot.emitefacturacion.mx](https://scot.emitefacturacion.mx)
+	[Portal de Integradores: https://scot.emite.mx](https://scot.emite.mx)
     
 ### Documentación adicional de nuestros servicios
 -------------------------------------------------------
 
-- [Documentacion Técnica Api Servicios Web de Emisores: https://proxy.emitefacturacion.mx/api/](https://proxy.emitefacturacion.mx/api/)
+- [Documentacion Técnica Api Servicios Web de Emisores: https://proxy.emite.mx/api/](https://proxy.emite.mx/api/)
 
-- [Documentacion Técnica Api Servicios Web de Integradores: https://scot.emitefacturacion.mx/api/](https://scot.emitefacturacion.mx/api/)
+- [Documentacion Técnica Api Servicios Web de Integradores: https://scot.emite.mx/api/](https://scot.emite.mx/api/)
 
 # Ejemplos de utilización
 -------------------------------------------------------

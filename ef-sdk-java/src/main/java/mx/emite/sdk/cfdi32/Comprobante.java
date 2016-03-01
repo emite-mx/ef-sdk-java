@@ -19,15 +19,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.FormasPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
+import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
+import mx.emite.sdk.utils.Utilerias;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "emisor", "receptor", "conceptos", "impuestos", "complemento" })
@@ -126,5 +127,7 @@ public class Comprobante  {
 	@NotNull
 	protected String numCtaPago;
 
-	
+	public String generaXml(){
+		return Utilerias.marshall(this);
+	}
 }

@@ -6,7 +6,7 @@ Bundle-SymbolicName: ef-sdk-java
 Implementation-Version: 2.9
 Archiver-Version: Plexus Archiver
 Built-By: Enrique Sánchez de la Barquera
-Specification-Vendor: emitefacturacion.mx
+Specification-Vendor: emite.mx
 Bundle-ManifestVersion: 2
 Specification-Title: ef-sdk-java
 Implementation-Vendor-Id: mx.emite

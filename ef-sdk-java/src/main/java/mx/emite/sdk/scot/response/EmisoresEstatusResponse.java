@@ -44,6 +44,11 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	private Boolean liberado;
 	
 	/**
+	 * @return contrasena Contraseña de consumo
+	 */
+	private String contrasena;
+	
+	/**
 	 * @return cuentasporpagar Lista de cuentas por pagar del emisor
 	 */
 	private List<CuentasPorPagar> cuentasporpagar = new ArrayList<>();

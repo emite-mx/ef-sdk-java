@@ -33,9 +33,9 @@ public abstract class Operacion<ENVIO,RESPUESTA extends Respuesta> {
 		switch(cliente.getAmbiente()){
 		case LOCAL: path.append("http://localhost:8080/").append(proveedor.getServidor()).append(ruta.getRuta());
 			break;
-		case PRODUCCION: path.append("https://").append(proveedor.getServidor()).append(".emitefacturacion.mx").append(ruta.getRuta());
+		case PRODUCCION: path.append("https://").append(proveedor.getServidor()).append(".emite.mx").append(ruta.getRuta());
 			break;
-		case PRUEBAS: path.append("http://").append(proveedor.getServidor()).append("-qa.emitefacturacion.mx").append(ruta.getRuta());
+		case PRUEBAS: path.append("http://").append(proveedor.getServidor()).append("-qa.emite.mx").append(ruta.getRuta());
 			break;		
 		}
 		return path.toString();

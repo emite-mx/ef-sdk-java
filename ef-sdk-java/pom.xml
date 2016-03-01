@@ -30,9 +30,9 @@
 		<developer>
 			<name>Enrique Sánchez de la Barquera</name>
 			<email>enrique@emitefacturacion.com.mx</email>
-			<url>http://www.emitefacturacion.mx</url>
+			<url>http://www.emite.mx</url>
       		<organization>EMITE</organization>
-      		<organizationUrl>http://www.emitefacturacion.mx</organizationUrl>
+      		<organizationUrl>http://www.emite.mx</organizationUrl>
       		<roles>
         		<role>architect</role>
         		<role>developer</role>
@@ -42,7 +42,7 @@
   </developers> 
   <organization>
     <name>Emite Facturacion SA de CV</name>
-    <url>http://www.emitefacturacion.mx</url>
+    <url>http://www.emite.mx</url>
   </organization>
   <dependencies>
 		<dependency>

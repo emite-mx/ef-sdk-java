@@ -59,4 +59,12 @@ public enum RegimenesFiscales implements Sat{
 		return null;
 	}
 	
+	public Integer getIdRegimen(){
+		return idSat;
+	}
+
+	public static RegimenesFiscales[] regimenes() {
+		return values();
+	}
+	
 }
