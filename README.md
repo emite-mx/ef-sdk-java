@@ -63,7 +63,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 
 # Ejemplos de utilización
 -------------------------------------------------------
-Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](https://github.com/emitefacturacion/ef-sdk-java/tree/master/ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos) podrá encontrar ejemplos sobre los servicios que estan soportados por la libreria, para su referencia se muestra a continuación un ejemplo de generación, sellado y timbrado de un CFDI:
+Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](https://github.com/emite-mx/ef-sdk-java/tree/master/ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos) podrá encontrar ejemplos sobre los servicios que estan soportados por la libreria, para su referencia se muestra a continuación un ejemplo de generación, sellado y timbrado de un CFDI:
 
 ## Servicios de Emisor
 -------------------------------------------------------
