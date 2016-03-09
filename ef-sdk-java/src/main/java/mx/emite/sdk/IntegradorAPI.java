@@ -9,6 +9,7 @@ import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsd;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresCsdConsulta;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresDocumentos;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresEstatus;
+import mx.emite.sdk.clientes.operaciones.integradores.EmisoresModificacion;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
 import mx.emite.sdk.clientes.operaciones.integradores.SucursalesAlta;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
@@ -36,6 +37,7 @@ public class IntegradorAPI {
 	private final Emisores emisores;
 	private final Sucursales sucursales;
 	private final EmisoresAlta emisoresalta;
+	private final EmisoresModificacion emisoresmodificacion;
 	private final EmisoresCsd emisorescsd;
 	private final EmisoresCsdConsulta emisorescsdconsulta;
 	private final EmisoresEstatus emisoresestatus;
@@ -81,6 +83,7 @@ public class IntegradorAPI {
 		this.emisores=new Emisores(this.cliente);
 		this.sucursales=new Sucursales(this.cliente);
 		this.emisoresalta=new EmisoresAlta(this.cliente);
+		this.emisoresmodificacion=new EmisoresModificacion(this.cliente);
 		this.emisorescsd=new EmisoresCsd(this.cliente);
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 		this.emisoresestatus=new EmisoresEstatus(this.cliente);
@@ -211,6 +214,14 @@ public class IntegradorAPI {
 		return emisoresdocumentos;
 	}
 
+	/**
+	 * Servicio de modificación de emisores
+	 * @return emisoresmodificacion
+	 * @since 0.0.6
+	 */
+	public EmisoresModificacion emisoresmodificacion() {
+		return emisoresmodificacion;
+	}
 	
 	
 	

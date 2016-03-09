@@ -1,11 +1,15 @@
 package mx.emite.sdk.proxy.request;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.ToString;
 import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.proxy.request.extra.CamposNombreArchivo;
 import mx.emite.sdk.proxy.request.extra.ConsultaFiltro;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -35,7 +39,10 @@ public class ZipRequest{
 	@Valid @NotNull
 	private ConsultaFiltro filtro;
 	
-	
+	@NotNull
+	private List<CamposNombreArchivo> folder;
+	@NotNull
+	private List<CamposNombreArchivo> archivo;
 	
 	public ZipRequest() {
 		super();
@@ -53,9 +60,8 @@ public class ZipRequest{
 		private Boolean pdf=false;
 		private Boolean acuses=false;
 		private ConsultaFiltro filtro;
-		
-
-		
+		private List<CamposNombreArchivo> folder;
+		private List<CamposNombreArchivo> archivo;
 		
 		public ZipRequestBuilder usuario(String usuario) {
 			this.usuario = usuario;
@@ -100,6 +106,51 @@ public class ZipRequest{
 			return this;
 		}
 		
+		/**
+		 * @param nombre del folder
+		 * @return builder
+		 */
+		public ZipRequestBuilder folder(CamposNombreArchivo nombre) {
+			if(this.folder==null)
+				this.folder=new ArrayList<>();
+			this.folder.add(nombre);
+			return this;
+		}
+		
+		/**
+		 * @param nombre del folder
+		 * @return builder
+		 */
+		public ZipRequestBuilder folders(List<CamposNombreArchivo> nombre) {
+			if(this.folder==null)
+				this.folder=nombre;
+			else
+				this.folder.addAll(nombre);
+			return this;
+		}
+		
+		/**
+		 * @param nombre del archivo
+		 * @return builder
+		 */
+		public ZipRequestBuilder archivo(CamposNombreArchivo nombre) {
+			if(this.archivo==null)
+				this.archivo=new ArrayList<>();
+			this.archivo.add(nombre);
+			return this;
+		}
+		
+		/**
+		 * @param nombre del archivo
+		 * @return builder
+		 */
+		public ZipRequestBuilder archivos(List<CamposNombreArchivo> nombre) {
+			if(this.archivo==null)
+				this.archivo=nombre;
+			else
+				this.archivo.addAll(nombre);
+			return this;
+		}
 
 		public ZipRequest build() throws ApiException {
 			return new ZipRequest(this);
@@ -115,6 +166,8 @@ public class ZipRequest{
 		this.pdf=builder.pdf;
 		this.acuses=builder.acuses;
 		this.filtro=builder.filtro;
+		this.folder=builder.folder;
+		this.archivo=builder.archivo;
 		Utilerias.valida(this);
 	}
 	
