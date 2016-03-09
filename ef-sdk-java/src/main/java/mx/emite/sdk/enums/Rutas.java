@@ -27,9 +27,11 @@ public enum Rutas {
 	EMISORESESTATUS("/api/integrador/emisores/estatus"),
 	SUCURSALES("/api/integrador/sucursales"),
 	SUCURSALESALTA("/api/integrador/sucursales/alta"),
+	SUCURSALESNOMBRE("/api/integrador/sucursales/nombre"),
+	SUCURSALESMODIFICACION("/api/integrador/sucursales/modificacion"),
 	
 	@Deprecated
-	FACTURAEMITE("/api/emite/factura"),     
+	FACTURAEMITE("/api/emite/factura"),       
 	;
 	
 	private final String ruta;

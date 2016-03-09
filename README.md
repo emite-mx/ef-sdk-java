@@ -43,7 +43,9 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Carga de CSD
 - Consulta de CSD
 - Consulta de Estatus de Emisores
-- Alta / Modificación de Sucursales
+- Alta de Sucursales
+- Modificación de Sucursales
+- Cambio de nombre a Sucursales
 - Servicio de carga de documentación
 
 ### Requerimientos de utilización
@@ -441,7 +443,7 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 	final EmisoresEstatusResponse respuesta = api.emisoresestatus().ejecuta(timbresreq);
 ```
 
-### Ejemplo de Alta / Modificación de Sucursales
+### Ejemplo de Alta de Sucursales
 -------------------------------------------------------
 ```java
 	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
@@ -468,6 +470,54 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 				.build())				
 		.build();
 	final SucursalesAltaResponse respuesta = api.sucursalesalta().ejecuta(timbresreq);
+```
+
+### Ejemplo de Modificación de Sucursales
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final SucursalesModificacionRequest timbresreq = SucursalesModificacionRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc("XAXX010101000")
+		.sucursal(SucursalInfo.builder()
+				.nombre("nombresucursal")
+				.correo("test@test.com")
+				.razonSocial("Razon Social")
+				.calle("calle")
+				.cp("04300")
+				.municipio("Benito Juarez")
+				.idEstado(Estados.DISTRITOFEDERAL )
+				.idPais(Paises.MEXICO )
+				.idRegimen(RegimenesFiscales.GENERALDELEYPERSONASMORALES)
+				.idFormaPago(FormasPago.TRANSFERENCIA)
+				.cuentapago("1234")								
+				.build())				
+		.build();
+	final SucursalesModificacionResponse respuesta = api.sucursalesmodificacion().ejecuta(timbresreq);
+	
+```
+
+### Ejemplo de Cambio de Nombre a Sucursal
+-------------------------------------------------------
+```java
+	final IntegradorAPI api = new IntegradorAPI(Ambiente.PRUEBAS);
+	final TokenRequest tr = TokenRequest.builder()
+			.usuario(props.getProperty("integrador.usuario"))
+			.contrasena(props.getProperty("integrador.contrasena"))
+			.build();
+	final TokenResponse tokenresp = api.token().ejecuta(tr);	
+	final SucursalesNombreRequest timbresreq = SucursalesNombreRequest.builder()
+		.token(tokenresp.getToken())
+		.rfc("XAXX010101000")
+		.nombreAnterior("sucursal")
+		.nombreNuevo("sucursal 2")
+		.build();
+	final SucursalesNombreResponse respuesta = api.sucursalesnombre().ejecuta(timbresreq);
 ```
 
 ### Ejemplo de Servicio de Carga de Documentación

@@ -12,6 +12,8 @@ import mx.emite.sdk.clientes.operaciones.integradores.EmisoresEstatus;
 import mx.emite.sdk.clientes.operaciones.integradores.EmisoresModificacion;
 import mx.emite.sdk.clientes.operaciones.integradores.Sucursales;
 import mx.emite.sdk.clientes.operaciones.integradores.SucursalesAlta;
+import mx.emite.sdk.clientes.operaciones.integradores.SucursalesModificacion;
+import mx.emite.sdk.clientes.operaciones.integradores.SucursalesNombre;
 import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
 import mx.emite.sdk.enums.Ambiente;
@@ -42,6 +44,8 @@ public class IntegradorAPI {
 	private final EmisoresCsdConsulta emisorescsdconsulta;
 	private final EmisoresEstatus emisoresestatus;
 	private final SucursalesAlta sucursalesalta;
+	private final SucursalesModificacion sucursalesmodificacion;
+	private final SucursalesNombre sucursalesnombre;
 	private final EmisoresDocumentos emisoresdocumentos;
 	
 	private String contrasena;
@@ -88,6 +92,8 @@ public class IntegradorAPI {
 		this.emisorescsdconsulta=new EmisoresCsdConsulta(this.cliente);
 		this.emisoresestatus=new EmisoresEstatus(this.cliente);
 		this.sucursalesalta=new SucursalesAlta(this.cliente);
+		this.sucursalesmodificacion=new SucursalesModificacion(this.cliente);
+		this.sucursalesnombre=new SucursalesNombre(this.cliente);
 		this.emisoresdocumentos=new EmisoresDocumentos(this.cliente);
 		this.usuario=usuario;
 		this.contrasena=contrasena;
@@ -223,6 +229,22 @@ public class IntegradorAPI {
 		return emisoresmodificacion;
 	}
 	
+	/**
+	 * Servicio de cambio de nombre a sucursal
+	 * @return sucursalesnombre
+	 * @since 0.0.6
+	 */
+	public SucursalesNombre sucursalesnombre() {
+		return sucursalesnombre;
+	}
 	
+	/**
+	 * Servicio de modificación de sucursal
+	 * @return sucursalesmodificacion
+	 * @since 0.0.6
+	 */
+	public SucursalesModificacion sucursalesmodificacion() {
+		return sucursalesmodificacion;
+	}
 	
 }
