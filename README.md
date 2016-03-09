@@ -1,4 +1,4 @@
-![alt text](https://github.com/emitefacturacion/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
+![alt text](https://github.com/emite-mx/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emite.mx](https://www.emite.mx)
 
 ## ef-sdk-java-0.0.6
