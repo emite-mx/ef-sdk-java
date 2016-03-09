@@ -1,5 +1,7 @@
 package mx.emite.sdk.proxy.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -15,12 +17,19 @@ public class XmlResponse extends ProxyResponse {
 	private String xml;
 	
 	
+	@JsonIgnore
 	public String getXmlDecodificado(){
 		return Utilerias.decodifica64Utf8(xml);
 	}
 	
+	@JsonIgnore
 	public void guardaXml(String ruta) throws ApiException{
 		Utilerias.guardaArchivo(ruta,Utilerias.decodifica64Utf8Byte(xml));		
+	}
+
+	@JsonIgnore
+	public byte[] getXmlDecodificadoBinario() {
+		return Utilerias.decodifica64Utf8Byte(xml);
 	}
 	
 	

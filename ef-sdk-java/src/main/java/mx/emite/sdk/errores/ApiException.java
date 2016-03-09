@@ -2,6 +2,7 @@ package mx.emite.sdk.errores;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -109,6 +110,12 @@ public class ApiException extends RuntimeException{
 		return excepcion;
 	}
 
+	/**
+	 * @return todos los mensajes de error en un solo String
+	 */
+	public String getMensajesLista(){
+		return Arrays.toString(mensajes.toArray());
+	}
 
 	
 

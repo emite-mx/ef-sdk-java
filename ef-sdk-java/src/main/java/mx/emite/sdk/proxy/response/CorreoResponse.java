@@ -31,5 +31,8 @@ public class CorreoResponse extends ProxyResponse {
 		return Utilerias.decodifica64Utf8(xml);
 	}
 	
+	public byte[] getXmlDecodificadoBinario(){
+		return Utilerias.decodifica64Utf8Byte(xml);
+	}
 	
 }

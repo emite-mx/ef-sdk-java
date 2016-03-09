@@ -6,7 +6,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.cfdi32.anotaciones.Uuid;
 import mx.emite.sdk.enums.EstadoTimbre;
@@ -15,6 +17,7 @@ import mx.emite.sdk.serializers.FechaSerializer;
 
 
 @Data
+@NoArgsConstructor @AllArgsConstructor
 public class ConsultaFiltro {
 
 	@NotNull 

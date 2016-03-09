@@ -60,7 +60,8 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	
 	@JsonIgnore
 	public Boolean getAlertas(){
-		return !habilitado||!liberado||!csd||cuentasporpagar.stream().filter(i->i.getVencida()).findAny().isPresent()
+		return !habilitado||!liberado||!csd||
+				(!cuentasporpagar.isEmpty() && cuentasporpagar.stream().filter(i->i.getVencida()).findAny().isPresent())
 				||documentos.stream().filter(d->d.getAprobado()==false).findAny().isPresent();
 		
 	}

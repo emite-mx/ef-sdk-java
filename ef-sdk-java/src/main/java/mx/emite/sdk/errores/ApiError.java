@@ -40,6 +40,9 @@ public class ApiError {
 		this.descripcion=api.getError().getDescripcion();
 		this.errores=api.getErrores();
 	}
+	public boolean ok() {
+		return this.codigo.equals(I_Api_Errores.OK.getId());
+	}
 	
 	
 	

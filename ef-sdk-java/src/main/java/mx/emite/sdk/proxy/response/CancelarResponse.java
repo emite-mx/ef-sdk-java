@@ -2,6 +2,8 @@ package mx.emite.sdk.proxy.response;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -20,6 +22,7 @@ public class CancelarResponse extends ProxyResponse{
 	
 	private List<InfoCancelacion> info;
 	
+	@JsonIgnore
 	public String getXmlDecodificado(){
 		return Utilerias.decodifica64Utf8(xml);
 	}

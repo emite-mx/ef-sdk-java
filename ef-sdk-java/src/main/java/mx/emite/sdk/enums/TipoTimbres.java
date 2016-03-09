@@ -9,5 +9,11 @@ public enum TipoTimbres {
 	CONTABILIDAD,
 	;
 	
+	public TipoTimbres[] consultables(){
+		final TipoTimbres[] res = new TipoTimbres[values().length-1];
+		for(int x=1;x<values().length;x++)
+			res[x-1]=values()[x];
+		return res;
+	}
 	
 }
