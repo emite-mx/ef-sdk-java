@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>mx.emite</groupId>
   <artifactId>ef-sdk-java</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
   <packaging>jar</packaging>
   <name>ef-sdk-java</name> 
   <description>Este kit de consumo provee a los integradores de Apis de Java para construir software que consuma los diferentes servicios web publicados por Emite Facturacion</description>

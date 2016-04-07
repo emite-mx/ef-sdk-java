@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emite-mx/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emite.mx](https://www.emite.mx)
 
-## ef-sdk-java-0.0.6
+## ef-sdk-java-0.0.8
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven

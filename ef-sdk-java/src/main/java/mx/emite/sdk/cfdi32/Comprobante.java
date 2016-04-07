@@ -24,9 +24,9 @@ import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
 import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -82,12 +82,12 @@ public class Comprobante  {
 
 	@XmlAttribute(required = true)
 	@NotNull 
-	@XmlJavaTypeAdapter(FormasPagoAdapter.class)
+	@XmlJavaTypeAdapter(TipoPagoAdapter.class)
 	protected TipoPago formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
 
 	@XmlAttribute
 	@NotNull
-	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
+	@XmlJavaTypeAdapter(FormasPagoAdapter.class)
 	protected FormasPago metodoDePago;
 
 	@XmlAttribute(required = true)
