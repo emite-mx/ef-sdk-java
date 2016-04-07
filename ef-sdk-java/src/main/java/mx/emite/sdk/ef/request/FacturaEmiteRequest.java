@@ -1,17 +1,24 @@
 package mx.emite.sdk.ef.request;
 
-import java.math.BigDecimal;
+import java.util.List;
 
-import javax.validation.constraints.Digits;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
 import mx.emite.sdk.enums.TipoCobros;
 import mx.emite.sdk.enums.TipoFacturas;
 
+
 @Data
 @Builder
+@AllArgsConstructor @NoArgsConstructor
 public class FacturaEmiteRequest {
 
 	private String tokenEmite;
@@ -52,24 +59,17 @@ public class FacturaEmiteRequest {
 	private String sucursal;	
 	
 	/**
-	 * @param claveConcepto Clave de concepto a facturar
+	 * @param diasVencimiento Número de dias para cálculo de vencimiento de la factura 
 	 */
 	@NotNull
-	private String claveConcepto;
+	private Integer diasVencimiento;	
+	
 	
 	/**
-	 * @param concepto Concepto a facturar
+	 * @param conceptos Lista de conceptos a facturar 
 	 */
-	@NotNull
-	private String concepto;
-	
-	/**
-	 * @param montosiniva 
-	 */
-	@NotNull @Digits(integer = 10, fraction = 2)
-	private BigDecimal montosiniva;	
-	
-	
+	@NotEmpty @Valid @Singular
+	private List<FacturaEmiteConcepto> conceptos;	
 	
 	
 	

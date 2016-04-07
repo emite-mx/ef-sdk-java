@@ -32,7 +32,7 @@ public class CuentasPorPagar {
 	/**
 	 * @return folio Número de folio
 	 */
-	private Integer folio;
+	private Long folio;
 	
 	/**
 	 * @return subtotal subtotal

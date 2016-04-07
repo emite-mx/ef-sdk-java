@@ -76,7 +76,7 @@ public class ClienteHttp {
 
     public RespuestaHttp get(final String url) throws ApiException {
         HttpGet request = new HttpGet(url);
-        return this.executeOperation(request);
+        return this.executeOperation(request,url);
     }
 
     
@@ -88,7 +88,7 @@ public class ClienteHttp {
             uri = this.createUriWithParams(url, queryParams);
         }
         HttpGet request = new HttpGet(uri);
-        return this.executeOperation(request);
+        return this.executeOperation(request,url);
 
     }
     
@@ -111,22 +111,22 @@ public class ClienteHttp {
 
     public RespuestaHttp delete(final String url) throws ApiException {
         HttpDelete request = new HttpDelete(URI.create(url));
-        return this.executeOperation(request);
+        return this.executeOperation(request,url);
     }
 
     public RespuestaHttp put(final String url, final String json) throws ApiException {
         HttpPut request = new HttpPut(URI.create(url));
         request.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
-        return this.executeOperation(request);
+        return this.executeOperation(request,url);
     }
 
     public RespuestaHttp post(final String url, final String json) throws ApiException {
         HttpPost request = new HttpPost(URI.create(url));
         request.setEntity(new StringEntity(json, Consts.UTF_8.name()));
-        return this.executeOperation(request);
+        return this.executeOperation(request,url);
     }
 
-    protected RespuestaHttp executeOperation(final HttpRequestBase request) throws ApiException {
+    protected RespuestaHttp executeOperation(final HttpRequestBase request, final String url) throws ApiException {
         this.addHeaders(request);
        
         long init = System.currentTimeMillis();
@@ -137,7 +137,7 @@ public class ClienteHttp {
         } finally {
             HttpClientUtils.closeQuietly(response);
         }
-        log.trace("Tiempo Respuesta: {}", (System.currentTimeMillis() - init));
+        log.trace(url+" -> Tiempo Respuesta: {}", (System.currentTimeMillis() - init));
         return serviceResponse;
     }
 

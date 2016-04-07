@@ -36,7 +36,7 @@ public class SucursalesModificacionRequest  {
 	/**
 	 * @param sucursal datos de la sucursal 
 	 */
-	@Valid @NotEmpty 
+	@Valid @NotNull
 	private SucursalInfo sucursal;
 	
 	

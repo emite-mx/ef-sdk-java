@@ -31,6 +31,18 @@ public class EmisoresEstatusRequest {
 	private String rfc;
 	
 	
+	/**
+	 * @param documentacion Si se requiere consultar tambien el estatus de documentación	
+	 */
+	@NotNull
+	private Boolean documentacion;
+	
+	 
+	/**
+	 * @param cuentasporpagar Si se requiere consultar tambien el estatus de cuentas por pagar	
+	 */
+	@NotNull
+	private Boolean cuentasporpagar;
 	
 		 
 	

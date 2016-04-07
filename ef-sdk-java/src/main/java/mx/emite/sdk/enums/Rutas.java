@@ -31,7 +31,13 @@ public enum Rutas {
 	SUCURSALESMODIFICACION("/api/integrador/sucursales/modificacion"),
 	
 	@Deprecated
-	FACTURAEMITE("/api/emite/factura"),       
+	FACTURAEMITE("/api/emite/factura"),
+	@Deprecated
+	CONSUMOTOKEN("/api/emite/consumo/token"),
+	@Deprecated
+	CONSUME("/api/emite/consumo/consume"), 
+	@Deprecated
+	CONSUMEEMITE("/api/emite/consumo/emite"),
 	;
 	
 	private final String ruta;

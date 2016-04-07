@@ -78,7 +78,7 @@ public class Comprobante  {
 
 	@XmlAttribute(required = true)
 	@Min(value = 0)
-	protected Integer folio;
+	protected Long folio;
 
 	@XmlAttribute(required = true)
 	@NotNull 
