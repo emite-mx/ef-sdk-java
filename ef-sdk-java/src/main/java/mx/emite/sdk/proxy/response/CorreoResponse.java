@@ -16,6 +16,11 @@ public class CorreoResponse extends ProxyResponse {
 	
 	private String pdf;
 	
+	private Integer correoCodigo;
+	
+	private String correoMensaje;
+	
+	
 	public byte[] getPdfDecodificado() throws ApiException{
 		return Utilerias.decodificaBinario(pdf);
 	}

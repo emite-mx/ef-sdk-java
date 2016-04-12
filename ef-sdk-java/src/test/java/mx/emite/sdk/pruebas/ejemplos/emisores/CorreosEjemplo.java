@@ -1,5 +1,6 @@
 package mx.emite.sdk.pruebas.ejemplos.emisores;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -25,10 +26,12 @@ public class CorreosEjemplo extends Ejemplo{
 				.usuario(props.getProperty("emisor.usuario"))
 				.contrasena(props.getProperty("emisor.contrasena"))
 				.uuid(props.getProperty("xml.uuid"))
-				.plantilla("EMITE")
+				.plantilla("SUBWAY")
+				
 				.recuperarArchivos(true)
 				.correo(CorreoParametros.builder()
-						.asunto("asunto")
+						.asunto(LocalDateTime.now().toString())
+						.plantillaUuid(props.getProperty("plantillacorreo"))
 						.para(Correo.builder()
 								.correo(props.getProperty("destinatario"))
 							 	.build())

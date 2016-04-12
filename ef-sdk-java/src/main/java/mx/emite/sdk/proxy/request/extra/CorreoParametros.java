@@ -18,6 +18,7 @@ public class CorreoParametros {
 
 
 	private String asunto;
+	private String plantillaUuid;
 	
 	@NotEmpty @Valid
 	@JsonProperty(value="para")
