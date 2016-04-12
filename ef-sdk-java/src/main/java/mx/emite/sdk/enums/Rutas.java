@@ -15,6 +15,7 @@ public enum Rutas {
 	PDF("/api/cfdi/3.2/pdf"),
 	CORREO("/api/cfdi/3.2/correo"),
 	DESCARGA("/api/cfdi/3.2/descarga"),
+	VALIDADOR32("/api/cfdi/3.2/validador"),
 	
 	TOKEN("/api/integrador/token"),
 	TIMBRES("/api/integrador/timbres"), 
@@ -31,7 +32,13 @@ public enum Rutas {
 	SUCURSALESMODIFICACION("/api/integrador/sucursales/modificacion"),
 	
 	@Deprecated
-	FACTURAEMITE("/api/emite/factura"),       
+	FACTURAEMITE("/api/emite/factura"),
+	@Deprecated
+	CONSUMOTOKEN("/api/emite/consumo/token"),
+	@Deprecated
+	CONSUME("/api/emite/consumo/consume"), 
+	@Deprecated
+	CONSUMEEMITE("/api/emite/consumo/emite"),
 	;
 	
 	private final String ruta;

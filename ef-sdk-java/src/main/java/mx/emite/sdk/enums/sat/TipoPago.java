@@ -6,8 +6,8 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum TipoPago implements Sat{
 	
-	PAGOENUNASOLAEXHIBICION(1,"pago en una sola exhibición"),
-	PAGOENPARCIALIDADES(2,"pago en parcialidades"),
+	PAGOENUNASOLAEXHIBICION(1,"Pago En Una Sola Exhibición"),
+	PAGOENPARCIALIDADES(2,"Pago En Parcialidades"),
 	;
 	
 	final Integer idSat;
@@ -43,6 +43,10 @@ public enum TipoPago implements Sat{
 				return m;
 		}
 		return null;
+	}
+	
+	public Integer getIdTipoPago(){
+		return idSat;
 	}
 	
 }

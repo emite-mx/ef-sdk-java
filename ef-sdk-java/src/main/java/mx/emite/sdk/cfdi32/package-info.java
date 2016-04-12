@@ -4,11 +4,14 @@
 }
 , elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
 )
-
+@XmlJavaTypeAdapter(value=StringAdapter.class, type=String.class)
 
 package mx.emite.sdk.cfdi32;
 
 import javax.xml.bind.annotation.XmlNs;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import mx.emite.sdk.enums.sat.adaptadores.StringAdapter;
 	
 
 	

@@ -11,6 +11,7 @@ import mx.emite.sdk.clientes.operaciones.emisores.PdfAcuse;
 import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbrador32;
 import mx.emite.sdk.clientes.operaciones.emisores.Servicios;
 import mx.emite.sdk.clientes.operaciones.emisores.Timbrador32;
+import mx.emite.sdk.clientes.operaciones.emisores.Validador32;
 import mx.emite.sdk.enums.Ambiente;
 
 
@@ -28,6 +29,7 @@ public class EmiteAPI {
 	
 	private final Servicios servicios;
 	private final Timbrador32 timbrador32;
+	private final Validador32 validador32;
 	private final SelladorYTimbrador32 selladorytimbrador32;
 	private final Cancelador32 cancelador32;
 	private final DescargaXml descargaxml;
@@ -58,6 +60,7 @@ public class EmiteAPI {
 		this.pdfacuse = new PdfAcuse(this.cliente);
 		this.correos=new Correos(this.cliente);
 		this.descargamasiva=new DescargaMasiva(this.cliente);
+		this.validador32=new Validador32(this.cliente);
 	}
 	
 	/**
@@ -151,5 +154,14 @@ public class EmiteAPI {
 	 */
 	public DescargaMasiva descargamasiva(){
 		return descargamasiva;
+	}
+	
+	/**
+	 * Servicio de Validación de CFDI
+	 * @return validador32
+	 * @since 0.0.9
+	 */
+	public Validador32 validador32(){
+		return validador32;
 	}
 }

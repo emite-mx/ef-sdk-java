@@ -46,7 +46,7 @@ public class ConsultaFiltro {
 	private String serie;
 	
 	
-	private Integer folio;
+	private Long folio;
 	
 	public static ConsultaFiltroBuilder builder() {
 		return new ConsultaFiltroBuilder();
@@ -62,7 +62,7 @@ public class ConsultaFiltro {
 		private String receptor;
 		private String uuid;
 		private String serie;
-		private Integer folio;
+		private Long folio;
 		
 		/**
 		 * @param tipoTimbre por default CFDI
@@ -127,7 +127,7 @@ public class ConsultaFiltro {
 		 * @param folio del timbre o comprobante
 		 * @return builder
 		 */
-		public ConsultaFiltroBuilder folio(Integer folio) {
+		public ConsultaFiltroBuilder folio(Long folio) {
 		this.folio=folio;
 		return this;
 		}

@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emite-mx/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emite.mx](https://www.emite.mx)
 
-## ef-sdk-java-0.0.6
+## ef-sdk-java-0.0.9
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -12,7 +12,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 <dependency>
 	<groupId>mx.emite</groupId>
 	<artifactId>ef-sdk-java</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.9</version>
 </dependency>
 ```
 ### Requerimientos Técnicos
@@ -31,6 +31,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Pdf de Acuse de Cancelación
 - Envio de Xml y Pdf por correo
 - Descarga Masiva de Xml, Pdf y Acuses de Cancelación
+- Validación de CFDI 3.2
 
 ### Servicios de Integrador 
 -------------------------------------------------------
@@ -274,6 +275,18 @@ Dentro de la carpeta [ef-sdk-java/src/test/java/mx/emite/sdk/pruebas/ejemplos](h
 			; 		
 	final ZipResponse respuesta = api.descargamasiva().ejecuta(request);
 	respuesta.guardaZip(props.getProperty("zip.ruta"));
+```
+
+### Ejemplo de Validación de CFDI 3.2
+-------------------------------------------------------
+```java
+	final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+	final ValidadorRequest request = ValidadorRequest.builder()
+				.usuario(props.getProperty("emisor.usuario"))
+				.contrasena(props.getProperty("emisor.contrasena"))
+				.xml(props.getProperty("xml.base64"))
+				.build();
+	final ValidadorResponse respuesta = api.validador32().ejecuta(request);
 ```
 
 ## Servicios de Integrador

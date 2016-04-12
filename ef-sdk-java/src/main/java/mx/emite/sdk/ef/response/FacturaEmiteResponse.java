@@ -17,7 +17,7 @@ public class FacturaEmiteResponse extends ScotResponse {
 	
 	private String serie;
 	
-	private Integer folio;
+	private Long folio;
 	
 	private String vencimiento;
 	

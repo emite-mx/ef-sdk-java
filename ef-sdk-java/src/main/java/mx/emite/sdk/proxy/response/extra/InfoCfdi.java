@@ -19,7 +19,7 @@ import mx.emite.sdk.serializers.FechaHoraDeserializer;
 public class InfoCfdi{
 
 	private String serie;
-	private Integer folio;
+	private Long folio;
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	private LocalDateTime fecha;
 	private String moneda; 

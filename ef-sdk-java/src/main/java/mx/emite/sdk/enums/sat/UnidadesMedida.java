@@ -6,7 +6,7 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum UnidadesMedida implements Sat{
 	
-	
+	NOAPLICA(0,"NO APLICA"),
 	BARRIL(15,"BARRIL"),
 	BOTELLA(21,"BOTELLA"),
 	CABEZA(7,"CABEZA"),

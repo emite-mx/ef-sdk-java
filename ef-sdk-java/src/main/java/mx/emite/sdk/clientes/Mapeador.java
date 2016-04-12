@@ -1,6 +1,7 @@
 package mx.emite.sdk.clientes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -20,7 +21,7 @@ public class Mapeador extends ObjectMapper{
 		enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		disable(SerializationFeature.INDENT_OUTPUT);
-		
+		disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
 	}
 
