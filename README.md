@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emite-mx/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emite.mx](https://www.emite.mx)
 
-## ef-sdk-java-0.0.8
+## ef-sdk-java-0.0.9
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -31,6 +31,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Descarga de Pdf de Acuse de Cancelación
 - Envio de Xml y Pdf por correo
 - Descarga Masiva de Xml, Pdf y Acuses de Cancelación
+- Validación de CFDI 3.2
 
 ### Servicios de Integrador 
 -------------------------------------------------------

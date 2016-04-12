@@ -15,6 +15,7 @@ public enum Rutas {
 	PDF("/api/cfdi/3.2/pdf"),
 	CORREO("/api/cfdi/3.2/correo"),
 	DESCARGA("/api/cfdi/3.2/descarga"),
+	VALIDADOR32("/api/cfdi/3.2/validador"),
 	
 	TOKEN("/api/integrador/token"),
 	TIMBRES("/api/integrador/timbres"), 
