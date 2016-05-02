@@ -19,7 +19,10 @@ public class RegimenesSerializer extends JsonSerializer<RegimenesFiscales>{
 	public void serialize(RegimenesFiscales regimen, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
 		if(regimen==null)
 			gen.writeNull();
-		gen.writeNumber(regimen.getIdSat());
+		else if(regimen.getIdSat()==null)
+			gen.writeNull();
+		else
+			gen.writeNumber(regimen.getIdSat());
 	}
 	
 }

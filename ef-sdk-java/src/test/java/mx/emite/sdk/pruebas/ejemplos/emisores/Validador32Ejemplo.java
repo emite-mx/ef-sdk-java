@@ -26,7 +26,7 @@ public class Validador32Ejemplo extends Ejemplo{
 				.build();
 		
 		final ValidadorResponse respuesta = api.validador32().ejecuta(request);
-		log.debug(respuesta.toString());	
+		log.debug(respuesta.toString().replace(",", ",\n"));	
 		}catch(ApiException ae){
 			log.error("error",ae);
 		}

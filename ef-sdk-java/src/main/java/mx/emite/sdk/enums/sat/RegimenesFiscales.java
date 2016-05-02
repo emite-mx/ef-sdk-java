@@ -1,6 +1,11 @@
 package mx.emite.sdk.enums.sat;
 
+import org.apache.commons.lang3.StringUtils;
+import org.beanio.types.TypeConversionException;
+
 import lombok.Getter;
+import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
@@ -39,8 +44,16 @@ public enum RegimenesFiscales implements Sat{
 	 * @return RegimenesFiscales valor del enum de acuerdo al regimen
 	 */
 	public static RegimenesFiscales busca(String descripcion) {
+		if(StringUtils.isEmpty(descripcion))
+			return null;
+		if(StringUtils.startsWithIgnoreCase(descripcion,"regimen ")||StringUtils.startsWithIgnoreCase(descripcion,"régimen "))
+			descripcion = descripcion.substring(8);
+		if(StringUtils.startsWithIgnoreCase(descripcion,"regimen de ")||StringUtils.startsWithIgnoreCase(descripcion,"régimen de "))
+			descripcion = descripcion.substring(11);
 		for(RegimenesFiscales m:values()){
 			if(Utilerias.compara(m.descripcion,descripcion))
+				return m;
+			else if(Utilerias.compara(m.idSat.toString(),descripcion))
 				return m;
 		}
 		return null;
@@ -65,6 +78,27 @@ public enum RegimenesFiscales implements Sat{
 
 	public static RegimenesFiscales[] regimenes() {
 		return values();
+	}
+	
+	public static RegimenesFiscales unmarshall(String metodo) throws ApiException{
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		final RegimenesFiscales estado =  RegimenesFiscales.busca(metodo);		
+		if(estado==null)
+			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El régimen "+metodo+" no se encuentra en el catálogo de regimenes del SAT");
+		else
+			return estado;
+	}
+	
+	
+	public static String marshall(RegimenesFiscales v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getDescripcion();
+	}
+	
+	public static Object parse(String text) throws TypeConversionException, ApiException {
+		return unmarshall(text);
 	}
 	
 }

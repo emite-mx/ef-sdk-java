@@ -12,6 +12,11 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class CorreoResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6619310263242344182L;
+
 	private String xml;
 	
 	private String pdf;

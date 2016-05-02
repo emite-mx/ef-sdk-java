@@ -71,14 +71,16 @@ public class Comprobante  {
 	@Min(value = 0)
 	protected BigDecimal descuento;
 
+	@XmlAttribute(name="motivoDescuento")
+	protected String motivoDescuento;
+	
 	@XmlAttribute(required = true)
 	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	@NotNull
 	protected LocalDateTime fecha;
 
 	@XmlAttribute(required = true)
-	@Min(value = 0)
-	protected Long folio;
+	protected String folio;
 
 	@XmlAttribute(required = true)
 	@NotNull 

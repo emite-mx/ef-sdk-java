@@ -15,6 +15,10 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class SellarYTimbrarResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8519792812410960704L;
 	private Integer timbresRestantes;
 	private String cadenaOriginal;
 	private String xml;

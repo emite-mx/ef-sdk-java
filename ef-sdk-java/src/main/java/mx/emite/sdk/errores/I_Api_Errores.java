@@ -1,6 +1,8 @@
 package mx.emite.sdk.errores;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,15 +50,20 @@ public enum I_Api_Errores {
 	PROXY_TIMBRANDO_RESPUESTA(141,"No se obtuvo respuesta del timbrador"),
 	PROXY_YATIMBRADO(142,"El xml ya esta timbrado"),
 	PROXY_XML_DATOINVALIDO(143,"Error al convertir un campo del XML"),
-	PROXY_CANCELANDO(150,"Error al cancelar los uuids"),
-	PROXY_CANCELANDO_RESPUESTA(151,"No se obtuvo respuesta del cancelador"),
-	PROXY_GENERANDO_PDF(152,"Error generando PDF"),
-	PROXY_ENVIANDO_CORREO(153,"Error enviando correo"),
-	PROXY_LEYENDO_XML(154,"Error al leer el XML"),
-	PROXY_GENERANDO_CADENAORIGINAL(155,"Error al generar la cadena original"),
-	PROXY_GENERANDO_PFX(156,"Error generando PFX de cancelación"),
-	PROXY_DESENCRIPTANDO(157,"Error al desencriptar información"),
-	PROXY_GENERANDO_ZIP(158,"Error al generar el ZIP"),
+	PROXY_CANCELANDO(144,"Error al cancelar los uuids"),
+	PROXY_CANCELANDO_RESPUESTA(145,"No se obtuvo respuesta del cancelador"),
+	PROXY_GENERANDO_PDF(146,"Error generando PDF"),
+	PROXY_ENVIANDO_CORREO(147,"Error enviando correo"),
+	PROXY_LEYENDO_XML(148,"Error al leer el XML"),
+	PROXY_LEYENDO_TXT(149,"Error al leer el archivo de texto"),
+	PROXY_GENERANDO_COMPROBANTE(150,"Error al generar el comprobante"),
+	PROXY_GENERANDO_CADENAORIGINAL(151,"Error al generar la cadena original"),
+	PROXY_GENERANDO_PFX(152,"Error generando PFX de cancelación"),
+	PROXY_DESENCRIPTANDO(153,"Error al desencriptar información"),
+	PROXY_GENERANDO_ZIP(154,"Error al generar el ZIP"),
+	PROXY_VALIDANDO(155,"Error validando comprobante"),
+	PROXY_VALIDANDO_RESPUESTA(156,"No se obtuvo respuesta del validador"),
+	
 	
 	//Errores de scot
 	SCOT_CONSUMIENDO(160,"Error ejecutando transacción de consumo"),
@@ -120,7 +127,7 @@ public enum I_Api_Errores {
 	EF_PREVIAMENTE_TIMBRADO(506	, "Comprobante timbrado anteriormente"),
 	EF_PREVIAMENTE_CANCELADO(507	, "Comprobante previamente cancelado"),
 	EF_INFORMACION_INVALIDA(601,"La información para buscar el comprobante no es válida."),
-	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),        
+	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),         
 	 
 	
 	
@@ -210,6 +217,13 @@ public enum I_Api_Errores {
 		if(tipo==null)
 			return defaultnoencontrado.getDescripcion();
 		return tipo.getDescripcion();
+	}
+	public static List<ApiError> catalogo() {
+		final List<ApiError> res = new ArrayList<>();
+		for(I_Api_Errores e:values()){
+			res.add(new ApiError(e));
+		}
+		return res;
 	}
 	
 	

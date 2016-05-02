@@ -1,11 +1,18 @@
 package mx.emite.sdk.enums.sat;
 
+import org.apache.commons.lang3.StringUtils;
+import org.beanio.types.TypeConversionException;
+
 import lombok.Getter;
+import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
 public enum Monedas implements Sat{
-
+	MXN("MXN","Peso Mexicano",2,new String[]{"PESOS","M.N.","MN"}),
+	USD("USD","Dolar americano",2,new String[]{"DOLARES"}),
+	EUR("EUR","Euro",2,new String[]{"EUROS"}),
 	AED("AED","Dirham de EAU",2),
 	AFN("AFN","Afghani",2),
 	ALL("ALL","Lek",2),
@@ -54,7 +61,6 @@ public enum Monedas implements Sat{
 	EGP("EGP","Libra egipcia",2),
 	ERN("ERN","Nakfa",2),
 	ETB("ETB","Birr etíope",2),
-	EUR("EUR","Euro",2),
 	FJD("FJD","Dólar de Fiji",2),
 	FKP("FKP","Libra malvinense",2),
 	GBP("GBP","Libra Esterlina",2),
@@ -105,7 +111,7 @@ public enum Monedas implements Sat{
 	MUR("MUR","Rupia de Mauricio",2),
 	MVR("MVR","Rupia",2),
 	MWK("MWK","Kwacha",2),
-	MXN("MXN","Peso Mexicano",2),
+	
 	MXV("MXV","México Unidad de Inversión (UDI)",2),
 	MYR("MYR","Ringgit malayo",2),
 	MZN("MZN","Mozambique Metical",2),
@@ -154,7 +160,7 @@ public enum Monedas implements Sat{
 	TZS("TZS","Shilling tanzano",2),
 	UAH("UAH","Hryvnia",2),
 	UGX("UGX","Shilling de Uganda",0),
-	USD("USD","Dolar americano",2),
+	
 	USN("USN","Dólar estadounidense (día siguiente)",2),
 	UYI("UYI","Peso Uruguay en Unidades Indexadas (URUIURUI)",0),
 	UYU("UYU","Peso Uruguayo",2),
@@ -187,11 +193,17 @@ public enum Monedas implements Sat{
 	
 	private final String idSat,descripcionMoneda;
 	private final Integer decimales;
+	private final String[] sinonimos;
 	
 	Monedas(String idSat,String descripcion,Integer decimales){
+		this(idSat,descripcion,decimales,null);
+	}
+	
+	Monedas(String idSat,String descripcion,Integer decimales,String[] sinonimos){
 		this.idSat=idSat;
 		this.descripcionMoneda=descripcion;
 		this.decimales=decimales;
+		this.sinonimos=sinonimos;
 	}
 	
 	@Override
@@ -203,8 +215,39 @@ public enum Monedas implements Sat{
 		for(Monedas m:values()){
 			if(Utilerias.compara(m.idSat,metodo))
 				return m;
+			else if(Utilerias.compara(m.descripcionMoneda, metodo)){
+				return m;
+			}
+			else if(m.sinonimos!=null){
+				for(String s:m.sinonimos){
+					if(Utilerias.compara(s, metodo))
+						return m;
+				}
+			}
 		}
 		return null;
 	}
+	
+	public static Monedas unmarshall(String metodo) throws ApiException{
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		final Monedas estado =  Monedas.busca(metodo);		
+		if(estado==null)
+			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"La moneda del comprobante "+metodo+" no se encuentra en el catálogo de monedas SAT (ISO 4217)");
+		else
+			return estado;
+	}
+	
+	
+	public static String marshall(Monedas v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getDescripcion();
+	}
+	
+	public static Object parse(String text) throws TypeConversionException, ApiException {
+		return unmarshall(text);
+	}
+	
 	
 }

@@ -9,6 +9,9 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -63,7 +66,14 @@ public class ApiException extends RuntimeException{
 		mensajes.add(mensaje);		
 	}
 	
+	public ApiException(I_Api_Errores error,BindingResult result) {
+		this(error);
+		procesaErrores(result);
+		
+	}
 	
+	
+
 	
 
 	public ApiException(I_Api_Errores tipo, List<String> errores) {
@@ -71,14 +81,14 @@ public class ApiException extends RuntimeException{
 		mensajes.addAll(errores);
 	}
 
-	/*private void procesaErrores(BindingResult result) {
+	private void procesaErrores(BindingResult result) {
 		List<FieldError> fieldErrors = result.getFieldErrors();
 		List<ObjectError> globalErrors = result.getGlobalErrors();
 		fieldErrors.stream().forEach(i->mensajes.add(String.join(":", i.getField(),i.getDefaultMessage())));
 		globalErrors.stream().forEach(i->mensajes.add(String.join(":", i.getObjectName(),i.getDefaultMessage())));
-	}*/
+	}
 
-	public ApiException(I_Api_Errores tipo, Set<ConstraintViolation<Object>> errores) {
+	public <T> ApiException(I_Api_Errores tipo, Set<ConstraintViolation<T>> errores) {
 		this(tipo);
 		errores.stream().forEach(i->
 				mensajes.add(i.getPropertyPath() + "\t"+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
@@ -116,6 +126,13 @@ public class ApiException extends RuntimeException{
 	public String getMensajesLista(){
 		return Arrays.toString(mensajes.toArray());
 	}
+
+	@Override
+	public String getMessage() {
+		return super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+	}
+
+	
 
 	
 

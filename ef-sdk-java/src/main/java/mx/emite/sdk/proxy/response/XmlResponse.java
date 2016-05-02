@@ -14,6 +14,10 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class XmlResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5836695054771320915L;
 	private String xml;
 	
 	

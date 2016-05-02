@@ -11,6 +11,11 @@ import mx.emite.sdk.proxy.response.extra.InfoValidacion;
 @ToString(callSuper=true)
 public class ValidadorResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2329094578765391410L;
+
 	private Integer timbresRestantes;
 	
 	private String pdf;

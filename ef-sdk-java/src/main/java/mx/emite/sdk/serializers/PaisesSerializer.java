@@ -17,9 +17,10 @@ public class PaisesSerializer extends JsonSerializer<Paises>{
 
 	@Override
 	public void serialize(Paises paise, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
-		if(paise==null)
+		if(paise==null||paise.getIdSat()==null)
 			gen.writeNull();
-		gen.writeString(paise.getIdSat());
+		else
+			gen.writeString(paise.getIdSat());
 	}
 	
 }

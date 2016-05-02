@@ -39,6 +39,8 @@ public enum Rutas {
 	CONSUME("/api/emite/consumo/consume"), 
 	@Deprecated
 	CONSUMEEMITE("/api/emite/consumo/emite"),
+	@Deprecated
+	SELLAEMITE("/api/emite/sella"),
 	;
 	
 	private final String ruta;

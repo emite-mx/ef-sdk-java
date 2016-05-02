@@ -16,6 +16,11 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class CancelarResponse extends ProxyResponse{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4366917477059471931L;
+
 	private Integer timbresRestantes;
 	
 	private String xml;
