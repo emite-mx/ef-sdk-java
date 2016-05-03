@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32;
+package mx.emite.sdk.cfdi32.nomina;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +19,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.emite.sdk.cfdi32.Conceptos;
+import mx.emite.sdk.cfdi32.Emisor;
+import mx.emite.sdk.cfdi32.Impuestos;
+import mx.emite.sdk.cfdi32.Receptor;
 import mx.emite.sdk.enums.sat.FormasPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
@@ -37,7 +41,7 @@ import mx.emite.sdk.utils.Utilerias;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comprobante  {
+public class ComprobanteNomina  {
 
 	
 	@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
@@ -108,7 +112,7 @@ public class Comprobante  {
 	@XmlAttribute(required = true)
 	@XmlJavaTypeAdapter(TipoDeComprobanteAdapter.class)
 	@NotNull
-	protected TipoDeComprobante tipoDeComprobante;
+	protected final TipoDeComprobante tipoDeComprobante = TipoDeComprobante.EGRESO;
 
 	@XmlAttribute(required = true)
 	@NotNull @Min(value = 0)
@@ -130,6 +134,6 @@ public class Comprobante  {
 	protected String numCtaPago;
 
 	public String generaXml(){
-		return Utilerias.marshallcfdi32(this);
+		return Utilerias.marshallnom32(this);
 	}
 }

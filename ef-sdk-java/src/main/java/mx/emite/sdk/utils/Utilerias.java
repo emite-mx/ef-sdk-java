@@ -30,6 +30,7 @@ import org.beanio.StreamFactory;
 
 import lombok.Cleanup;
 import mx.emite.sdk.cfdi32.Comprobante;
+import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura;
@@ -129,11 +130,16 @@ public class Utilerias {
 		}
 	}
 
-	public static String marshall(Comprobante comprobante) throws ApiException {
+	public static String marshallcfdi32(Comprobante comprobante) throws ApiException {
 		valida(comprobante);
 		return MarshallerUnmarshaller.marshallCfdi32(comprobante);
 	}
 
+	public static String marshallnom32(ComprobanteNomina comprobante) throws ApiException {
+		valida(comprobante);
+		return MarshallerUnmarshaller.marshallNomina32(comprobante);
+	}
+	
 	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {
 		
 		return MarshallerUnmarshaller.unmarshallGenerico(xml);

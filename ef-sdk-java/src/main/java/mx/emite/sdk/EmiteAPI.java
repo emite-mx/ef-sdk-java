@@ -9,8 +9,10 @@ import mx.emite.sdk.clientes.operaciones.emisores.DescargaXml;
 import mx.emite.sdk.clientes.operaciones.emisores.Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.PdfAcuse;
 import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbrador32;
+import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbradorNomina32;
 import mx.emite.sdk.clientes.operaciones.emisores.Servicios;
 import mx.emite.sdk.clientes.operaciones.emisores.Timbrador32;
+import mx.emite.sdk.clientes.operaciones.emisores.TimbradorNomina32;
 import mx.emite.sdk.clientes.operaciones.emisores.Validador32;
 import mx.emite.sdk.enums.Ambiente;
 
@@ -29,8 +31,10 @@ public class EmiteAPI {
 	
 	private final Servicios servicios;
 	private final Timbrador32 timbrador32;
+	private final TimbradorNomina32 timbradornomina32;
 	private final Validador32 validador32;
 	private final SelladorYTimbrador32 selladorytimbrador32;
+	private final SelladorYTimbradorNomina32 selladorytimbradornomina32;
 	private final Cancelador32 cancelador32;
 	private final DescargaXml descargaxml;
 	private final DescargaAcuseXml descargaacusexml;
@@ -52,6 +56,7 @@ public class EmiteAPI {
 		this.cliente=new ClienteJson(ambiente);
 		this.servicios=new Servicios(this.cliente);
 		this.timbrador32=new Timbrador32(this.cliente);
+		this.timbradornomina32=new TimbradorNomina32(this.cliente);
 		this.selladorytimbrador32=new SelladorYTimbrador32(this.cliente);
 		this.cancelador32=new Cancelador32(this.cliente);
 		this.descargaxml=new DescargaXml(this.cliente);
@@ -61,6 +66,7 @@ public class EmiteAPI {
 		this.correos=new Correos(this.cliente);
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		this.validador32=new Validador32(this.cliente);
+		this.selladorytimbradornomina32=new SelladorYTimbradorNomina32(this.cliente);
 	}
 	
 	/**
@@ -164,4 +170,23 @@ public class EmiteAPI {
 	public Validador32 validador32(){
 		return validador32;
 	}
+	
+	/**
+	 * Servicio de Sellado y Timbrado de Nomina 3.2
+	 * @return selladorytimbradornomina32
+	 * @since 0.1.0
+	 */
+	public SelladorYTimbradorNomina32 selladorytimbradornomina32(){
+		return selladorytimbradornomina32;
+	}
+	
+	/**
+	 * Servicio Timbrado de Nómina de CFDI 3.2
+	 * @return timbradornomina32
+	 * @since 0.1.0
+	 */
+	public TimbradorNomina32 timbradornomina32(){
+		return timbradornomina32;
+	}
+	
 }

@@ -1,10 +1,10 @@
-package mx.emite.sdk.cfdi32;
+package mx.emite.sdk.cfdi32.nomina;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -12,27 +12,29 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.cfdi32.anotaciones.Rfc;
+import mx.emite.sdk.cfdi32.TimbreFiscalDigital;
+
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "domicilio" })
+@XmlType(name = "")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Receptor{
+@Builder
+public class Complemento {
 
-	@XmlElement(name = "Domicilio", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	@XmlElement(name="TimbreFiscalDigital")
+	@Null
+	private TimbreFiscalDigital timbre;
+
+	@XmlElement(name = "Nomina", namespace="http://www.sat.gob.mx/nomina")
 	@Valid
-	private TUbicacion domicilio;
-	
-	@XmlAttribute(required = true)
 	@NotNull
-	protected String nombre;
+	private Nomina nomina;
 	
-	@XmlAttribute(required = true)
-	@NotNull @Rfc
-	protected String rfc;
+	
 
+
+	
 	
 }
