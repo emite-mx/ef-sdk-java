@@ -41,6 +41,15 @@ public class CancelarRequest {
 
 	private String contrasenaPfx;
 	
+	/**
+	 * Rfc del Emisor Opcional 
+	 * -- SETTER --
+	 * 
+	 * @param rfc 
+	 * 
+	 */
+	private String rfc;
+	
 	@NotNull @UuidLista
 	private List<String> uuids;
 	
@@ -55,6 +64,7 @@ public class CancelarRequest {
 		private String contrasena;
 		private String sucursal;
 		private String pfx;
+		private String rfc;
 		private String contrasenaPfx;
 		private List<String> uuids = new ArrayList<>();
 		
@@ -77,6 +87,11 @@ public class CancelarRequest {
 
 		public CancelarRequestBuilder pfx(String pfx) {
 			this.pfx = pfx;
+			return this;
+		}
+		
+		public CancelarRequestBuilder rfc(String rfc) {
+			this.rfc = rfc;
 			return this;
 		}
 		
@@ -112,6 +127,7 @@ public class CancelarRequest {
 		this.pfx=builder.pfx;
 		this.contrasenaPfx=builder.contrasenaPfx;
 		this.uuids=builder.uuids;
+		this.rfc=builder.rfc;
 		Utilerias.valida(this);
 	}
 	

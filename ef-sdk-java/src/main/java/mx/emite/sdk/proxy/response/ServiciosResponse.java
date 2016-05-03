@@ -12,6 +12,10 @@ import mx.emite.sdk.proxy.ProxyResponse;
 public class ServiciosResponse extends ProxyResponse {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6316760067681980578L;
 	private List<String> servicios = new ArrayList<>();
 	
 	

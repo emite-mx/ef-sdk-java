@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beanio xmlns="http://www.beanio.org/2012/03" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+  <template name="domicilio">
+	<field name="calle"/>
+    <field name="noExterior"/>
+    <field name="noInterior"/>
+    <field name="colonia"/>
+    <field name="municipio"/>
+    <field name="estado" typeHandler="EstadosAdapter"/>
+    <field name="cp"/>
+    <field name="pais" typeHandler="PaisesAdapter" default="MEX"/>
+  </template>
+
+
+  <stream name="emiteGenerico" format="delimited" minOccurs="1">
+  	<parser>
+      <property name="delimiter" value="|" />
+    </parser>
+    <typeHandler name="TipoPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter"/>
+    <typeHandler name="FormasPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter"/>
+    <typeHandler name="MonedasAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter"/>
+    <typeHandler name="TipoDeComprobanteAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter"/>
+    <typeHandler name="EstadosAdapter" class="mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter"/>
+    <typeHandler name="PaisesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter"/>
+    <typeHandler name="RegimenesFiscalesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter"/>
+    <typeHandler name="UnidadesMedidaAdapter" class="mx.emite.sdk.enums.sat.adaptadores.UnidadesMedidaAdapter"/>
+    <group name="factura" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura">
+    	<record name="generales" order="1"> 
+		      <field name="tipo" rid="true" literal="01" ignore="true" />
+		      <field name="subtotal" />
+		      <field name="total" />
+		      <field name="formaDePago" typeHandler="TipoPagoAdapter" />
+		      <field name="descuento" />
+		      <field name="motivoDescuento"/>
+		      <field name="correoCliente" ignore="true"/>
+		      <field name="noTicket" ignore="true"/>
+		      <field name="lugarExpedicion"/>
+		      <field name="metodoPago" typeHandler="FormasPagoAdapter"/>
+		      <field name="numeroCuentaPago"/>
+		      <field name="serie"/>
+		      <field name="folio"/>
+		      <field name="tipoCambio"/>
+		      <field name="moneda" typeHandler="MonedasAdapter"/>
+		      <field name="tipoComprobante" typeHandler="TipoDeComprobanteAdapter"/>
+		      <field name="regimen" typeHandler="RegimenesFiscalesAdapter"/>
+		      <field name="comentario" ignore="true"/>
+       </record>
+       <record name="receptor" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoReceptor" order="2" maxOccurs="1">
+       		  <field name="tipo" rid="true" literal="02" ignore="true" />
+       		  <field name="rfc"/>
+       		  <field name="nombre"/>
+       		  <include template="domicilio"/>
+       </record>
+       <record name="expedidoEn" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoExpedidoEn"  order="3" maxOccurs="1">
+       		  <field name="tipo" rid="true" literal="03" ignore="true" />
+       		  <include template="domicilio"/>       		  
+       </record>
+       <record name="conceptos" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoConcepto" collection="list" order="4">
+       		  <field name="tipo" rid="true" literal="04" ignore="true" />
+       		  <field name="cantidad"/>
+       		  <field name="unidad" typeHandler="UnidadesMedidaAdapter"/>
+       		  <field name="descripcion"/>
+       		  <field name="precioUnitario"/>
+       		  <field name="iva" ignore="true"/>
+       		  <field name="tasaIva"/>
+       		  <field name="retIsr"/>
+       		  <field name="retIva"/>
+       </record>
+    </group>
+    
+    
+  </stream>
+</beanio>

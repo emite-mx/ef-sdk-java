@@ -17,9 +17,10 @@ public class FormasPagoSerializer extends JsonSerializer<FormasPago>{
 
 	@Override
 	public void serialize(FormasPago fp, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
-		if(fp==null)
+		if(fp==null||fp.getIdSat()==null)
 			gen.writeNull();
-		gen.writeNumber(fp.getIdSat());
+		else
+			gen.writeNumber(fp.getIdSat());
 	}
 	
 }

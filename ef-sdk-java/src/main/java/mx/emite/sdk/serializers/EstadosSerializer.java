@@ -17,9 +17,10 @@ public class EstadosSerializer extends JsonSerializer<Estados>{
 
 	@Override
 	public void serialize(Estados estado, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
-		if(estado==null)
+		if(estado==null||estado.getIdSat()==null)
 			gen.writeNull();
-		gen.writeString(estado.getIdSat());
+		else
+			gen.writeString(estado.getIdSat());
 	}
 	
 }

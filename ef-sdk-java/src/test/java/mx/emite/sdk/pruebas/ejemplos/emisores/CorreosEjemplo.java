@@ -35,12 +35,15 @@ public class CorreosEjemplo extends Ejemplo{
 						.para(Correo.builder()
 								.correo(props.getProperty("destinatario"))
 							 	.build())
+						.cc(Correo.builder()
+								.correo(props.getProperty("cc"))
+								.build())
 						.build())
 				.build(); 
 		final CorreoResponse respuesta = api.correos().ejecuta(request);
-		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
-		respuesta.guardaXml(props.getProperty("pdf.ruta")+".xml");
-		log.debug(respuesta.toString());
+		//respuesta.guardaPdf(props.getProperty("pdf.ruta"));
+		//respuesta.guardaXml(props.getProperty("pdf.ruta")+".xml");
+		log.debug(respuesta.toString().replace(",", ",\n"));
 		log.debug(respuesta.getPdf());
 		}		
 		catch(ApiException ex){

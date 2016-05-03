@@ -13,6 +13,12 @@ import mx.emite.sdk.utils.Utilerias;
 public class ZipResponse extends ProxyResponse {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4439735625158977043L;
+
+
 	private Long totalTimbres;
 	
 	

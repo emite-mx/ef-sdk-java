@@ -1,6 +1,11 @@
 package mx.emite.sdk.enums.sat;
 
+import org.apache.commons.lang3.StringUtils;
+import org.beanio.types.TypeConversionException;
+
 import lombok.Getter;
+import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
@@ -23,15 +28,20 @@ public enum FormasPago implements Sat{
 	CONDONACION(15,"Condonación"),
 	CANCELACION(16,"Cancelación"),
 	COMPENSACION(17,"Compensación"),
-	OTRO(99,"Otro");
+	OTRO(99,"Otro",new String[]{"No Identificado"});
 	
 	final Integer idSat;
 	final String descripcion;
-	
+	final String[] sinonimos;
 	
 	FormasPago(Integer idSat,String descripcion){
+		this(idSat,descripcion,null);
+	}
+	
+	FormasPago(Integer idSat,String descripcion,String[] sinonimos){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
+		this.sinonimos=sinonimos;
 	}
 
 	/**
@@ -43,6 +53,12 @@ public enum FormasPago implements Sat{
 		for(FormasPago m:values()){
 			if(Utilerias.compara(m.descripcion,descripcion))
 				return m;
+			else if(m.sinonimos!=null){
+				for(String s:m.sinonimos){
+					if(Utilerias.compara(s,descripcion))
+						return m;
+				}
+			}
 		}
 		return null;
 	}
@@ -68,5 +84,27 @@ public enum FormasPago implements Sat{
 		
 		return values();
 	}
+	
+	public static FormasPago unmarshall(String metodo) throws ApiException{
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		final FormasPago estado =  FormasPago.busca(metodo);		
+		if(estado==null)
+			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El método de pago "+metodo+" no se encuentra en el catálogo de métodos de pago del SAT");
+		else
+			return estado;
+	}
+	
+	
+	public static String marshall(FormasPago v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getDescripcion();
+	}
+	
+	public static Object parse(String text) throws TypeConversionException, ApiException {
+		return unmarshall(text);
+	}
+	
 	
 }

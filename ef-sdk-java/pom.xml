@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>mx.emite</groupId>
   <artifactId>ef-sdk-java</artifactId>
-  <version>0.0.9</version>
+  <version>0.1.0</version>
   <packaging>jar</packaging>
   <name>ef-sdk-java</name> 
   <description>Este kit de consumo provee a los integradores de Apis de Java para construir software que consuma los diferentes servicios web publicados por Emite Facturacion</description>
@@ -15,6 +15,7 @@
 		<project.httpcomponents.core.version>4.3.1</project.httpcomponents.core.version>
 		<project.httpcomponents.client.version>4.3.2</project.httpcomponents.client.version>		
 		<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
+		<springframework.version>4.1.7.RELEASE</springframework.version>
    </properties>
   <licenses>
 		<license>
@@ -24,7 +25,9 @@
 		</license>
 	</licenses> 
   <scm>
-  <url>http://svn.apache.org/viewvc/maven</url>
+  	<connection>scm:git:git@github.com:emite-mx/ef-sdk-java.git</connection>
+	<url>scm:git:git@github.com:emite-mx/ef-sdk-java.git</url>
+	<developerConnection>scm:git:git@github.com:emite-mx/ef-sdk-java.git</developerConnection>
   </scm>
   <developers> 
 		<developer>
@@ -110,6 +113,7 @@
 				</exclusion>
 			</exclusions>
 			<scope>test</scope>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
@@ -144,7 +148,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -156,7 +160,7 @@
 			<groupId>org.skyscreamer</groupId>
 			<artifactId>jsonassert</artifactId>
 			<version>1.2.1</version>
-			<scope>test</scope>
+			<scope>test</scope> 
 		</dependency>
 		<dependency>
 		  <groupId>commons-httpclient</groupId>
@@ -164,6 +168,29 @@
 		  <version>20020423</version>
 		  <scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<!-- Documentacion -->
+<dependency>
+        <groupId>org.jsondoc</groupId>
+        <artifactId>jsondoc-springmvc</artifactId>
+        <version>1.2.11</version>
+</dependency>
+<dependency>
+        <groupId>org.jsondoc</groupId>
+        <artifactId>jsondoc-ui</artifactId>
+        <version>1.2.11</version>
+</dependency>
+
+<dependency>
+      <groupId>org.beanio</groupId>
+      <artifactId>beanio</artifactId>
+      <version>2.0.4</version>
+</dependency>
+	
 	</dependencies>
    
    		<distributionManagement>

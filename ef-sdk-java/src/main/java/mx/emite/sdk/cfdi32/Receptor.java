@@ -23,7 +23,7 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 public class Receptor{
 
 	@XmlElement(name = "Domicilio", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
-	@NotNull @Valid
+	@Valid
 	private TUbicacion domicilio;
 	
 	@XmlAttribute(required = true)

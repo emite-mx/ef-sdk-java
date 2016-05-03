@@ -4,6 +4,7 @@ package mx.emite.sdk.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -24,10 +25,15 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.beanio.BeanReader;
+import org.beanio.StreamFactory;
+
 import lombok.Cleanup;
 import mx.emite.sdk.cfdi32.Comprobante;
+import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
+import mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura;
 
 public class Utilerias {
 
@@ -93,9 +99,9 @@ public class Utilerias {
 		}
 	}
 
-	public static void valida(Object objeto) throws ApiException{
+	public static <T> void valida(T objeto) throws ApiException{
 		if(objeto==null) return;
-		final Set<ConstraintViolation<Object>> errores = validator.validate(objeto);
+		final Set<ConstraintViolation<T>> errores = validator.validate(objeto);
 		if(errores.isEmpty())
 			return;
 		throw new ApiException(I_Api_Errores.CLIENTE_REQUEST_INVALIDO,errores);
@@ -124,11 +130,21 @@ public class Utilerias {
 		}
 	}
 
-	public static String marshall(Comprobante comprobante) throws ApiException {
+	public static String marshallcfdi32(Comprobante comprobante) throws ApiException {
 		valida(comprobante);
-		return MarshallerUnmarshaller.marshall(comprobante);
+		return MarshallerUnmarshaller.marshallCfdi32(comprobante);
 	}
 
+	public static String marshallnom32(ComprobanteNomina comprobante) throws ApiException {
+		valida(comprobante);
+		return MarshallerUnmarshaller.marshallNomina32(comprobante);
+	}
+	
+	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {
+		
+		return MarshallerUnmarshaller.unmarshallGenerico(xml);
+	}
+	
 	public static boolean compara(String source, String target) {
 		return comparador.compare(source, target)==0;
 	}
@@ -162,6 +178,53 @@ public class Utilerias {
 			throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
 	}
 		
+	}
+
+	public static <T> T nvl(T valor,T sinulo) {
+		if(valor==null)
+			return sinulo;
+		return valor;
+	}
+	
+	public static void main(String[] args){
+		try{
+			String xml="01|1231.43|1428.46|PAGO EN UNA SOLA EXHIBICIÓN|||dcabiedes@cofine.com.mx||MÉXICO DF|NO IDENTIFICADO|NO IDENTIFICADO|AA|35571||PESOS|ingreso|General de ley personas morales|Esta factura forma parte de la expedida el 2014-10-08 13:47:04, folio fiscal ED514122-49D9-4648-BDFD-628792DF5509 por un monto de 55551.12|\n" + 
+					"02|COBS620908A54|SERGIO JESUS CORDERO BLANCO|LEONARDO NO 205|||RENACIMIENTO 1A Y 2A SEC.|MONTERREY|NUEVO LEON|64925|MEXICO|\n" + 
+					"03|CALLE|COLONIA|EXT|INT|||||P10036|P10036|4937.18|Recuperacion parcial del financiamiento otorgado para el apoyo de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|GR-2673-14|||||||\n" + 
+					"04|1.00|NO APLICA|Recuperacion  del costo financiero correspondiente al financiamiento otorgado para el proyecto de ahorro de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|1231.43|197.03|16.00|100|||||||||||\n"+
+					"04|2.00|NO APLICA|Recuperacion  del costo financiero correspondiente al financiamiento otorgado para el proyecto de ahorro de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|1231.43|197.03|16.00||||||||||||\n"+
+					"05|||";
+			GenericoFactura fac = unmarshallTxtGenerico(codifica64Utf8(xml));
+			System.out.println(fac.toString().replace(", ", ",\n"));
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+	public static GenericoFactura unmarshallTxtGenerico(String txt) throws ApiException {
+		BeanReader in=null;
+		try{
+		final StreamFactory factory = StreamFactory.newInstance();
+        factory.load(Utilerias.class.getResourceAsStream("/facturagenericatxt.xml"));
+        final StringReader sr = new StringReader(decodifica64Utf8(txt));
+        // use a StreamFactory to create a BeanReader
+        in = factory.createReader("emiteGenerico",sr);
+        GenericoFactura res = (GenericoFactura) in.read();
+        in.close();
+        return res;
+        
+		}
+		catch(ApiException api){throw api;}
+		catch(Exception ex){
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.PROXY_LEYENDO_TXT,ex);
+		}
+		finally{
+			if(in!=null)
+				try{in.close();}catch(Exception ex){ex.printStackTrace();}
+		}
 	}
 
 	

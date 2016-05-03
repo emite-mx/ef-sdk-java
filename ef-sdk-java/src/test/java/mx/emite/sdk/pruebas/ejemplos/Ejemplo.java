@@ -8,7 +8,7 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.junit.Before;
-
+ 
 public abstract class Ejemplo {
 
 	protected Properties props = new Properties();
@@ -28,7 +28,8 @@ public abstract class Ejemplo {
 	    
 	}
 	
-	
+	  
 	
 	
 }
+ 

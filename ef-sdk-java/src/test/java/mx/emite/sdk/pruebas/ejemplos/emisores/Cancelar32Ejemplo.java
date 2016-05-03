@@ -22,7 +22,10 @@ public class Cancelar32Ejemplo extends Ejemplo{
 		final CancelarRequest request = CancelarRequest.builder()
 				.usuario(props.getProperty("emisor.usuario"))
 				.contrasena(props.getProperty("emisor.contrasena"))
-				.uuid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
+				.pfx(props.getProperty("emisor.pfx"))
+				.rfc("SATE7710317T6")
+				.contrasenaPfx(props.getProperty("emisor.pfx.password"))
+				.uuid("0808E6BB-485B-429D-A47E-43CBD30D492E")
 				.build()
 				; 
 		

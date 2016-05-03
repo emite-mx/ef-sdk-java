@@ -6,6 +6,7 @@ import mx.emite.sdk.clientes.operaciones.ef.Consume;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumeEmite;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumoToken;
 import mx.emite.sdk.clientes.operaciones.ef.FacturaEmite;
+import mx.emite.sdk.clientes.operaciones.ef.SellaXml;
 import mx.emite.sdk.enums.Ambiente;
 
 
@@ -26,6 +27,7 @@ public class EFAPI {
 	private final ConsumoToken consumotoken;
 	private final Consume consume;
 	private final ConsumeEmite consumeemite;
+	private final SellaXml sellaxml;
 	
 	@Getter private String contrasena;
 	@Getter private String usuario;
@@ -37,6 +39,7 @@ public class EFAPI {
 		this.consumotoken=new ConsumoToken(this.cliente);
 		this.consume=new Consume(this.cliente);
 		this.consumeemite=new ConsumeEmite(this.cliente);
+		this.sellaxml=new SellaXml(this.cliente);
 		this.usuario=usuario;
 		this.contrasena=contrasena;
 		
@@ -54,6 +57,9 @@ public class EFAPI {
 		return consumeemite;
 	}
 	
+	public SellaXml sellaxml(){
+		return sellaxml;
+	}
 	
 	public Consume consume(){
 		return consume;

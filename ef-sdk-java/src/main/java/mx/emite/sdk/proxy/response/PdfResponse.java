@@ -12,6 +12,10 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class PdfResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1781942089550712419L;
 	private String pdf;
 	
 	public byte[] getPdfDecodificado() throws ApiException{

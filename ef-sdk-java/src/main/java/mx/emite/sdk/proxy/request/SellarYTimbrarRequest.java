@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.ToString;
 import mx.emite.sdk.cfdi32.Comprobante;
+import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -59,7 +60,11 @@ public class SellarYTimbrarRequest {
 		}
 		
 		public SellarYTimbrarRequestBuilder comprobante(Comprobante comprobante) throws ApiException{
-			return codifica(Utilerias.marshall(comprobante));
+			return codifica(Utilerias.marshallcfdi32(comprobante));
+		}
+		
+		public SellarYTimbrarRequestBuilder comprobante(ComprobanteNomina comprobante) throws ApiException{
+			return codifica(Utilerias.marshallnom32(comprobante));
 		}
 		
 		public SellarYTimbrarRequestBuilder usuario(String usuario) {

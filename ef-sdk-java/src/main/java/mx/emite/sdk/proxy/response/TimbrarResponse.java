@@ -13,6 +13,11 @@ import mx.emite.sdk.utils.Utilerias;
 @ToString(callSuper=true)
 public class TimbrarResponse extends ProxyResponse {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6076627368662272834L;
+
 	private Integer timbresRestantes;
 	
 	private String xml;
