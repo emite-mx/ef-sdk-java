@@ -223,7 +223,7 @@ public class Utilerias {
 		}
 		finally{
 			if(in!=null)
-				try{in.close();}catch(Exception ex){;}
+				try{in.close();}catch(Exception ex){ex.printStackTrace();}
 		}
 	}
 
