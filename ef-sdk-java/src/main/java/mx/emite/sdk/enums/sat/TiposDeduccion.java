@@ -11,7 +11,7 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum TiposDeduccion implements Sat{
 	
-	SEGURIDADSOCIAL("001","Seguridad social"),
+	IMSS("001","Seguridad social"),
 	ISR("002","ISR"),
 	APORTACIONESARETIROCESANTIAYVEJEZ("003","Aportaciones a retiro, cesantía en edad avanzada y vejez."),
 	OTROS("004","Otros"),
@@ -55,6 +55,8 @@ public enum TiposDeduccion implements Sat{
 		for(TiposDeduccion m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
+			else if(Utilerias.compara(m.idSat.toString(),metodo))
+				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
 					if(Utilerias.compara(s,metodo))
@@ -85,6 +87,21 @@ public enum TiposDeduccion implements Sat{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
+	
+	public boolean in(TiposDeduccion... tipos){
+		for(TiposDeduccion t:tipos){
+			if(this.equals(t)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean notin(TiposDeduccion... tipos){
+		return !in(tipos);
+	}
+	
 
 	public String getClave() {
 		return idSat;

@@ -25,7 +25,7 @@ public class PdfAcuseEjemplo extends Ejemplo{
 				.uuid(props.getProperty("xml.uuid"))
 				.build()
 				; 
-		final PdfResponse respuesta = api.pdfacuse().ejecuta(request);
+		final PdfResponse respuesta = api.cfdi32_DescargaAcusePdf().ejecuta(request);
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getPdf());

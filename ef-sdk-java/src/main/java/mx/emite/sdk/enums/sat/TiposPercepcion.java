@@ -76,6 +76,8 @@ public enum TiposPercepcion implements Sat{
 		for(TiposPercepcion m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
+			else if(Utilerias.compara(m.idSat.toString(),metodo))
+				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
 					if(Utilerias.compara(s,metodo))

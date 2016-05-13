@@ -1,4 +1,4 @@
-package mx.emite.sdk.proxy.request.extra.generico.xml;
+package mx.emite.sdk.proxy.request.extra.generico.cfdi.xml;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;

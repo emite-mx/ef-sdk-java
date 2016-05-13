@@ -15,14 +15,15 @@ import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
-import mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura;
+import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
+import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina;
 
 @Slf4j
 public class MarshallerUnmarshaller {
 
 		
 	//private final static Marshaller marshaller = xmlMarshaller();
-	private final static JAXBContext contexto = contexto(Comprobante.class,GenericoFactura.class,ComprobanteNomina.class);
+	private final static JAXBContext contexto = contexto(Comprobante.class,GenericoFactura.class,GenericoNomina.class,ComprobanteNomina.class);
 	
 	
 	private static Marshaller xmlMarshaller(){
@@ -64,6 +65,20 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private static Marshaller genericoMarshaller(){
+		try{
+		
+			final Marshaller m = contexto.createMarshaller();
+			m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			return m;
+		}catch(Exception ex){
+			log.error("creando marshaller",ex);
+			return null;
+		}
+	}
+	
 	private static JAXBContext contexto(Class<?>... clase) {
 		try{
 			return JAXBContext.newInstance(clase);
@@ -87,6 +102,34 @@ public class MarshallerUnmarshaller {
 			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
 		}
 	}
+	
+
+	public static String marshallGenericoXml(GenericoFactura comprobante) {
+		try{
+			final StringWriter writer = new StringWriter();
+			genericoMarshaller().marshal(comprobante,writer);
+			final String xml = writer.toString();
+			log.debug(xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallGenericoNominaXml(GenericoNomina comprobante) {
+		try{
+			final StringWriter writer = new StringWriter();
+			genericoMarshaller().marshal(comprobante,writer);
+			final String xml = writer.toString();
+			log.debug(xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+		}
+	}
+	
 	
 	public static String marshallNomina32(ComprobanteNomina comp) throws ApiException{
 		try{
@@ -119,7 +162,25 @@ public class MarshallerUnmarshaller {
 				throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,ex);
 		}
 	}
-	
+
+	public static GenericoNomina unmarshallGenericoNomina(String xml) {
+		if(!Base64.isBase64(xml))
+			throw new ApiException(I_Api_Errores.CLIENTE_XML_BASE64);
+		try{
+			final StringReader res = new StringReader(Utilerias.decodifica64Utf8(xml));
+			final StreamSource source = new StreamSource(res);
+			return (GenericoNomina) genericoUnmarshaller().unmarshal(source);
+		}
+		catch(ApiException ae){
+			throw ae;
+		}
+		catch(Exception ex){
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,ex);
+		}
+	}
 	
 	
 }

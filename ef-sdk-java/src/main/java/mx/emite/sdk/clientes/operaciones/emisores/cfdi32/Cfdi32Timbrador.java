@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.cfdi32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.TimbrarResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Timbrador32 extends Operacion<TimbrarRequest,TimbrarResponse> {
+public class Cfdi32Timbrador extends Operacion<TimbrarRequest,TimbrarResponse> {
 
-	public Timbrador32(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.TIMBRAR32);
+	public Cfdi32Timbrador(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_TIMBRAR);
 	}
 
 	

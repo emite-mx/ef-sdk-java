@@ -43,6 +43,8 @@ public enum TiposRegimen implements Sat{
 		for(TiposRegimen m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
+			else if(Utilerias.compara(m.idSat.toString(),metodo))
+				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
 					if(Utilerias.compara(s,metodo))

@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.cfdi32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -9,22 +9,22 @@ import mx.emite.sdk.proxy.request.PdfRequest;
 import mx.emite.sdk.proxy.response.PdfResponse;
 
 /**
- *  <h1>Operacion de descarga de acuse de cancelación </h1>
+ *  <h1>Operacion de descarga de pdf</h1>
  *	
  * 
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class PdfAcuse extends Operacion<PdfRequest,PdfResponse> {
+public class Cfdi32Pdf extends Operacion<PdfRequest,PdfResponse> {
 
-	public PdfAcuse(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.PDFACUSE);
+	public Cfdi32Pdf(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_PDF);
 	}
 
 	
 	
 	/**
-	 * Método que descarga un pdf de acuse de cancelación
+	 * Método que descarga un pdf
 	 * 
 	 * @param request Parametros de descarga (usuario, contraseña, uuid)
 	 * @return Objeto con el pdf binario codificado en Base 64

@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.cfdi32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.XmlResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class DescargaAcuseXml extends Operacion<XmlRequest,XmlResponse> {
+public class Cfdi32DescargaAcuseXml extends Operacion<XmlRequest,XmlResponse> {
 
-	public DescargaAcuseXml(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.ACUSE);
+	public Cfdi32DescargaAcuseXml(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_ACUSE);
 	}
 
 	

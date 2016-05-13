@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.valida32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.ValidadorResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Validador32 extends Operacion<ValidadorRequest,ValidadorResponse> {
+public class Valida32Validador extends Operacion<ValidadorRequest,ValidadorResponse> {
 
-	public Validador32(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.VALIDADOR32);
+	public Valida32Validador(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.VALIDA32_VALIDADOR32);
 	}
 
 	

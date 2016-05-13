@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.validation.BindingResult;
@@ -50,8 +51,18 @@ public class ApiException extends RuntimeException{
 	
 	public ApiException(I_Api_Errores error, Exception ex) {
 		super(error.getDescripcion(),ex);
+		if(ex instanceof ConstraintViolationException)
+			this.mensajes.addAll(sacaError(((ConstraintViolationException)ex)));
 		this.error=error;
 		this.excepcion=ex;		
+	}
+
+	private List<String>  sacaError(ConstraintViolationException ce) {
+		final List<String> res = new ArrayList<>();
+		ce.getConstraintViolations().stream().forEach(i->
+			res.add(i.getPropertyPath() + "\t "+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
+		);
+		return res;
 	}
 
 	public ApiException(I_Api_Errores error,String mensaje, Exception ex) {

@@ -29,7 +29,7 @@ public class Cancelar32Ejemplo extends Ejemplo{
 				.build()
 				; 
 		
-		final CancelarResponse respuesta = api.cancelador32().ejecuta(request);
+		final CancelarResponse respuesta = api.cfdi32_Cancelador().ejecuta(request);
 		
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());

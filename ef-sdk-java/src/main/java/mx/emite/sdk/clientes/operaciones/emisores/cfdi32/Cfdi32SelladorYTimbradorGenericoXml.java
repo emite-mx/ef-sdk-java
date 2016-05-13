@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.cfdi32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -9,24 +9,24 @@ import mx.emite.sdk.proxy.request.SellarYTimbrarRequest;
 import mx.emite.sdk.proxy.response.SellarYTimbrarResponse;
 
 /**
- *  <h1>Operacion de timbrado de cfdi sellado en version 3.2</h1>
+ *  <h1>Operacion de timbrado de xml generico sellado en version 3.2</h1>
  *	
  * 
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class SelladorYTimbradorNomina32 extends Operacion<SellarYTimbrarRequest,SellarYTimbrarResponse> {
+public class Cfdi32SelladorYTimbradorGenericoXml extends Operacion<SellarYTimbrarRequest,SellarYTimbrarResponse> {
 
-	public SelladorYTimbradorNomina32(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.SELLARYTIMBRARNOMINA32);
+	public Cfdi32SelladorYTimbradorGenericoXml(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_SELLARYTIMBRARGENERICOXML);
 	}
 
 	
 	
 	/**
-	 * Método que sella y timbra un comprobante de nómina cfdi 3.2 sellado en Base64
+	 * Método que sella y timbra un comprobante generico a cfdi 3.2 
 	 * 
-	 * @param request Parametros de uso de sellado y timbrado (usuario, contraseña y xml en base 64)
+	 * @param request Parametros de uso de sellado y timbrado (usuario, contraseña y xml generico en base 64)
 	 * @return Objeto con el xml sellado y timbrado en Base64
 	 * @throws ApiException en caso de que ocurra algun error
 	 * @see SellarYTimbrarRequest

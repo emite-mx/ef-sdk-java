@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.nom32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.PdfResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Pdf extends Operacion<PdfRequest,PdfResponse> {
+public class Nom32Pdf extends Operacion<PdfRequest,PdfResponse> {
 
-	public Pdf(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.PDF);
+	public Nom32Pdf(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.NOM32_PDF);
 	}
 
 	
