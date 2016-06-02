@@ -1,6 +1,7 @@
 package mx.emite.sdk.proxy.request;
 
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import javax.validation.constraints.NotNull;
 
@@ -52,6 +53,10 @@ public class SellarYTimbrarTxtRequest {
 		
 		public SellarYTimbrarRequestBuilder archivo(final String rutaArchivoSinCodificar) throws ApiException {
 			  
+			return codifica(Utilerias.leeArchivo(rutaArchivoSinCodificar));
+		}
+		
+		public SellarYTimbrarRequestBuilder archivo(final Path rutaArchivoSinCodificar) throws ApiException {
 			return codifica(Utilerias.leeArchivo(rutaArchivoSinCodificar));
 		}
 		

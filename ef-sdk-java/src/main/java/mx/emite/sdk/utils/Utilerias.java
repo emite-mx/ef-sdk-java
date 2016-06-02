@@ -13,6 +13,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.Collator;
@@ -26,6 +27,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.beanio.BeanReader;
 import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
@@ -102,6 +104,16 @@ public class Utilerias {
 		}
 	}
 
+	public static String leeArchivo(Path ruta) throws ApiException {
+		try{
+			return utf8(Files.readAllBytes(ruta));
+		}
+		catch(Exception io){
+			throw new ApiException(I_Api_Errores.LEYENDO_ARCHIVO,io);
+		}
+	}
+
+	
 	public static <T> void valida(T objeto) throws ApiException{
 		if(objeto==null) return;
 		final Set<ConstraintViolation<T>> errores = validator.validate(objeto);
@@ -152,6 +164,8 @@ public class Utilerias {
 	}
 	
 	public static boolean compara(String source, String target) {
+		if(StringUtils.isEmpty(target))
+			return false;
 		return comparador.compare(source, target)==0;
 	}
 

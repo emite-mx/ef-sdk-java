@@ -16,9 +16,17 @@ import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.anotaciones.Curp;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.enums.sat.Bancos;
+import mx.emite.sdk.enums.sat.TiposContrato;
+import mx.emite.sdk.enums.sat.TiposJornada;
+import mx.emite.sdk.enums.sat.TiposPeriodicidad;
 import mx.emite.sdk.enums.sat.TiposRegimen;
+import mx.emite.sdk.enums.sat.TiposRiesgo;
 import mx.emite.sdk.enums.sat.adaptadores.BancosAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposContratoAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposJornadaAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposRegimenAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposRiesgoAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
 
 
@@ -39,6 +47,22 @@ public class GenericoEmpleado {
 	@Curp @NotNull 
 	private String curp;
 	
+	@XmlAttribute(name="tipoContrato")
+	@XmlJavaTypeAdapter(TiposContratoAdapter.class)
+	private TiposContrato tipoContrato;
+	
+	@XmlAttribute(name="tipoJornada")
+	@XmlJavaTypeAdapter(TiposJornadaAdapter.class)
+	private TiposJornada tipoJornada;
+	
+	@XmlAttribute(name="tipoPeriodicidad")
+	@XmlJavaTypeAdapter(TiposPeriodicidadAdapter.class)
+	private TiposPeriodicidad tipoPeriodicidad;
+	
+	@XmlAttribute(name="tipoRiesgo")
+	@XmlJavaTypeAdapter(TiposRiesgoAdapter.class)
+	private TiposRiesgo tipoRiesgo;
+	
 	@XmlAttribute(name="tipoRegimen")
 	@XmlJavaTypeAdapter(TiposRegimenAdapter.class)
 	@NotNull
@@ -57,6 +81,10 @@ public class GenericoEmpleado {
 	@XmlAttribute(name="departamento")
 	@Size(max=100)
 	private String departamento;
+	
+	@XmlAttribute(name="puesto")
+	@Size(max=100)
+	private String puesto;
 	
 	
 	@XmlAttribute(name="salarioDiarioIntegrado")

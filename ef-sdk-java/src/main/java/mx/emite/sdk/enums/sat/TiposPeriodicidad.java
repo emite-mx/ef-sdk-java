@@ -38,13 +38,15 @@ public enum TiposPeriodicidad implements Sat{
 		
 	}
 
-	public static TiposPeriodicidad busca(String metodo) {
+	public static TiposPeriodicidad busca(String descripcion) {
+		if(StringUtils.isEmpty(descripcion))
+			return null;
 		for(TiposPeriodicidad m:values()){
-			if(Utilerias.compara(m.descripcion,metodo))
+			if(Utilerias.compara(m.descripcion,descripcion))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
-					if(Utilerias.compara(s,metodo))
+					if(Utilerias.compara(s,descripcion))
 						return m;
 				}
 			}

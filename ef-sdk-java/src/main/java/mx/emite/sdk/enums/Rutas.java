@@ -28,7 +28,7 @@ public enum Rutas {
 	NOM32_PDF("/api/nomina/3.2/pdf"),
 	NOM32_XML("/api/nomina/3.2/xml"),
 	NOM32_ACUSE("/api/nomina/3.2/acusecancelacion/xml"),
-	
+	EMISORES_ESTATUS("/api/scot/estatus"),
 	
 	TOKEN("/api/integrador/token"),
 	TIMBRES("/api/integrador/timbres"), 

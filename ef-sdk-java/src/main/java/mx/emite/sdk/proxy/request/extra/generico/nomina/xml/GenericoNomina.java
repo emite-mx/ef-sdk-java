@@ -39,7 +39,7 @@ public class GenericoNomina {
 	private String folio;
 	
 	@XmlAttribute(name="concepto")
-	@NotNull
+	@NotNull @Size(max=150)
 	private String concepto;
 	
 	@XmlAttribute(name="lugarExpedicion")
@@ -55,6 +55,11 @@ public class GenericoNomina {
 	@XmlAttribute(name="numCuentaPago")
 	@NotNull @Size(max=25)
 	private String numCuentaPago;
+	
+	@XmlAttribute(name="registroPatronal")
+	@Size(max=25)
+	private String registroPatronal;
+	
 	
 	@XmlAttribute(name="fechaInicialPago")
 	@NotNull
@@ -72,6 +77,10 @@ public class GenericoNomina {
 	
 	@XmlAttribute(name="numDiasPagados")
 	private Integer numDiasPagados;
+	
+	@XmlAttribute(name="observaciones")
+	@Size(max=200)
+	private String observaciones;
 	
 	@XmlAttribute(name="periodicidadPago")
 	@XmlJavaTypeAdapter(TiposPeriodicidadAdapter.class)

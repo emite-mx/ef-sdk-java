@@ -73,6 +73,9 @@ public enum TiposPercepcion implements Sat{
 	}
 
 	public static TiposPercepcion busca(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		
 		for(TiposPercepcion m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
