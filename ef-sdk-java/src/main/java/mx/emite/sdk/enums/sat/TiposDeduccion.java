@@ -52,6 +52,8 @@ public enum TiposDeduccion implements Sat{
 	}
 
 	public static TiposDeduccion busca(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
 		for(TiposDeduccion m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;

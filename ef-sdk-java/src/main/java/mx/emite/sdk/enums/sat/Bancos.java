@@ -150,11 +150,6 @@ public enum Bancos implements Sat{
 
 
 	
-	public String getIdEstado(){
-		return idSat;
-	}
-
-
 	public static Bancos unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;

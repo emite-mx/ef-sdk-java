@@ -39,7 +39,7 @@ public class GenericoPercepcion {
 	
 	@XmlAttribute(name="clave")
 	@NotNull
-	@Size(max=150)
+	@Size(max=25)
 	private String clave;
 	
 	@XmlAttribute(name="tipo")

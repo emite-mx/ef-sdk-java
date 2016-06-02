@@ -135,6 +135,15 @@ public enum I_Api_Errores {
 	PORTAL_GENERANDO_FACTURA(1002,"Error al generar la factura"),  
 	PORTAL_TIMBRANDO(1003,"Error al timbrar el comprobante"), 
 	PORTAL_NOIMPLEMENTADO(1004,"No implementado"),
+	PORTAL_UUID_NOENCONTRADO(1005,"UUID no encontrado"),
+	PORTAL_UUID_INCORRECTO(1006,"Error validando UUID"),
+	PORTAL_GUARDANDO(1007,"Error al guardar en la BD"),
+	PORTAL_RECEPCIONES_ARCHIVOS(1008,"No se encontrarón los archivos para recepción"),
+	PORTAL_RECEPCIONES_PROCESANDO(1009,"Error procesando recepción"),
+	
+	CONNECT_DATOSINSUFICIENTES(2010,"Datos insuficientes"),
+	CONNECT_CONFIGURACION(2011,"Error en configuración"),
+	CONNECT_TIMBRANDO(2012,"Error al timbrar"),
 	
 	
 	;

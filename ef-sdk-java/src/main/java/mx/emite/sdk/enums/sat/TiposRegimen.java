@@ -40,6 +40,8 @@ public enum TiposRegimen implements Sat{
 	}
 
 	public static TiposRegimen busca(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
 		for(TiposRegimen m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;

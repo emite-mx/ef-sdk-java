@@ -36,7 +36,7 @@ public class ApiException extends RuntimeException{
 	private List<String> mensajes = new ArrayList<String>();
 	
 	@JsonIgnore
-	private Exception excepcion;
+	private Throwable excepcion;
 	
 	@Deprecated
 	public ApiException(){
@@ -49,7 +49,7 @@ public class ApiException extends RuntimeException{
 		this.excepcion=null;	
 	}
 	
-	public ApiException(I_Api_Errores error, Exception ex) {
+	public ApiException(I_Api_Errores error, Throwable ex) {
 		super(error.getDescripcion(),ex);
 		if(ex instanceof ConstraintViolationException)
 			this.mensajes.addAll(sacaError(((ConstraintViolationException)ex)));
@@ -65,7 +65,7 @@ public class ApiException extends RuntimeException{
 		return res;
 	}
 
-	public ApiException(I_Api_Errores error,String mensaje, Exception ex) {
+	public ApiException(I_Api_Errores error,String mensaje, Throwable ex) {
 		super(error.getDescripcion(),ex);
 		this.error=error;
 		this.excepcion=ex;	
@@ -127,7 +127,7 @@ public class ApiException extends RuntimeException{
 		this.mensajes = mensajes;
 	}
 
-	public Exception getExcepcion() {
+	public Throwable getExcepcion() {
 		return excepcion;
 	}
 
@@ -140,7 +140,13 @@ public class ApiException extends RuntimeException{
 
 	@Override
 	public String getMessage() {
-		return super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+		return (error==null?"":"EMITE["+error.getId()+"]: ")+ super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+	}
+
+	@Override
+	@Deprecated
+	public String getLocalizedMessage() {
+		return super.getLocalizedMessage();
 	}
 
 	

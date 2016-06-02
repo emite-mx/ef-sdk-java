@@ -1,7 +1,10 @@
 package mx.emite.sdk;
 
+import lombok.Getter;
+import lombok.Setter;
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.emisores.DescargaMasiva;
+import mx.emite.sdk.clientes.operaciones.emisores.Estatus;
 import mx.emite.sdk.clientes.operaciones.emisores.Servicios;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Cancelador;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Correo;
@@ -42,6 +45,7 @@ public class EmiteAPI {
 	private final Servicios servicios;
 	private final DescargaMasiva descargamasiva;
 	private final Valida32Validador valida32_validador;
+	private final Estatus estatus;
 	
 	private final Cfdi32Timbrador cfdi32_timbrador;
 	private final Cfdi32SelladorYTimbrador cfdi32_selladorytimbrador;
@@ -67,6 +71,8 @@ public class EmiteAPI {
 	private final Nom32Cancelador nom32_cancelador;
 	private final Nom32Correo nom32_correo;
 	
+	@Getter @Setter
+	private String usuarioWs,contrasenaWs;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -78,8 +84,27 @@ public class EmiteAPI {
 	 * @see Ambiente
 	 */
 	public EmiteAPI(final Ambiente ambiente){
+		this(ambiente,null,null);
+	}
+	
+	/**
+	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
+	 * 
+	 * @param ambiente 
+	 * <h3>PRODUCCION</h3><p>Ambiente productivo</p>
+	 * <h3>PRUEBAS</h3><p>Ambiente de pruebas</p>
+	 * <h3>LOCAL</h3><p>Ambiente de uso exclusivo emite</p>
+	 * @param usuarioWs usuario del WebService para almacenamiento local
+	 * @param contrasenaWs contraseña del WebService para almacenamiento local
+	 * @see Ambiente
+	 */
+	public EmiteAPI(final Ambiente ambiente,final String usuarioWs,final String contrasenaWs){
 		this.cliente=new ClienteJson(ambiente);
+		this.usuarioWs=usuarioWs;
+		this.contrasenaWs=contrasenaWs;
+		
 		this.servicios=new Servicios(this.cliente);
+		this.estatus=new Estatus(this.cliente);
 		
 		this.cfdi32_timbrador=new Cfdi32Timbrador(this.cliente);
 		this.cfdi32_cancelador=new Cfdi32Cancelador(this.cliente);
@@ -318,4 +343,12 @@ public class EmiteAPI {
 		return nom32_descargaacusexml;
 	}
 	
+	/**
+	 * Servicio de Consulta de Estatus de Emisores
+	 * @return estatus
+	 * @since 0.1.2
+	 */
+	public Estatus estatus(){
+		return estatus;
+	}
 }

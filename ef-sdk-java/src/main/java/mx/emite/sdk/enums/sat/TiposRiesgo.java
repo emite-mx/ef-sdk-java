@@ -67,6 +67,16 @@ public enum TiposRiesgo implements Sat{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
+
+	public static TiposRiesgo busca(Integer tipoRiesgo) {
+		if(tipoRiesgo==null)
+			return null;
+		for(TiposRiesgo t:values()){
+			if(t.getIdSat().equals(tipoRiesgo))
+				return t;
+		}
+		return null;
+	}
 	
 	
 }

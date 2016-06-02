@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import org.apache.commons.lang3.text.WordUtils;
+import org.apache.http.impl.cookie.DateParseException;
 import org.apache.log4j.Logger;
 
 public class FU {
@@ -258,6 +259,14 @@ public class FU {
 			
 			//return null;
 		}
+		
+
+		public LocalDate parseYYYYMMDD(String fecha) throws DateParseException{
+			if(fecha==null)
+				return null;
+			return LocalDate.parse(fecha,getFormat(FechaFormatos.YYYYMMDD));
+		}
+
 		
 		public LocalDateTime parseISO(String fecha) {
 			return parseT(fecha,FechaFormatos.ISO);
