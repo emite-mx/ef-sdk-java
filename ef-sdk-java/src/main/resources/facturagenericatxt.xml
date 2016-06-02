@@ -27,7 +27,7 @@
     <typeHandler name="PaisesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter"/>
     <typeHandler name="RegimenesFiscalesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter"/>
     <typeHandler name="UnidadesMedidaAdapter" class="mx.emite.sdk.enums.sat.adaptadores.UnidadesMedidaAdapter"/>
-    <group name="factura" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura">
+    <group name="factura" class="mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura">
     	<record name="generales" order="1"> 
 		      <field name="tipo" rid="true" literal="01" ignore="true" />
 		      <field name="subtotal" />
@@ -35,8 +35,6 @@
 		      <field name="formaDePago" typeHandler="TipoPagoAdapter" />
 		      <field name="descuento" />
 		      <field name="motivoDescuento"/>
-		      <field name="correoCliente" ignore="true"/>
-		      <field name="noTicket" ignore="true"/>
 		      <field name="lugarExpedicion"/>
 		      <field name="metodoPago" typeHandler="FormasPagoAdapter"/>
 		      <field name="numeroCuentaPago"/>
@@ -45,32 +43,123 @@
 		      <field name="tipoCambio"/>
 		      <field name="moneda" typeHandler="MonedasAdapter"/>
 		      <field name="tipoComprobante" typeHandler="TipoDeComprobanteAdapter"/>
-		      <field name="regimen" typeHandler="RegimenesFiscalesAdapter"/>
-		      <field name="comentario" ignore="true"/>
+		      <field name="regimen" typeHandler="RegimenesFiscalesAdapter"/>		      
        </record>
-       <record name="receptor" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoReceptor" order="2" maxOccurs="1">
+       <record name="receptor" class="mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoReceptor" order="2" maxOccurs="1">
        		  <field name="tipo" rid="true" literal="02" ignore="true" />
        		  <field name="rfc"/>
        		  <field name="nombre"/>
        		  <include template="domicilio"/>
        </record>
-       <record name="expedidoEn" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoExpedidoEn"  order="3" maxOccurs="1">
+       <record name="expedidoEn" class="mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoExpedidoEn"  order="3" maxOccurs="1">
        		  <field name="tipo" rid="true" literal="03" ignore="true" />
        		  <include template="domicilio"/>       		  
        </record>
-       <record name="conceptos" class="mx.emite.sdk.proxy.request.extra.generico.xml.GenericoConcepto" collection="list" order="4">
+       <record name="conceptos" class="mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoConcepto" collection="list" order="4">
        		  <field name="tipo" rid="true" literal="04" ignore="true" />
        		  <field name="cantidad"/>
        		  <field name="unidad" typeHandler="UnidadesMedidaAdapter"/>
        		  <field name="descripcion"/>
        		  <field name="precioUnitario"/>
-       		  <field name="iva" ignore="true"/>
        		  <field name="tasaIva"/>
        		  <field name="retIsr"/>
        		  <field name="retIva"/>
        </record>
+       <record name="envio" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEnvio" minOccurs="1" maxOccurs="1" order="9">
+       		  <field name="tipo" rid="true" literal="09" ignore="true" />
+       		  <field name="observaciones"/>
+       		  <field name="correos" collection="list"/>
+       		  
+       </record>
+       <record name="fin" minOccurs="1" maxOccurs="1" order="10">
+       		  <field name="tipo" rid="true" literal="10" ignore="true" />
+       </record>     
     </group>
     
+  </stream>
+  
+  
+  <stream name="emiteGenericoNomina" format="delimited" minOccurs="1">
+  	<parser>
+      <property name="delimiter" value="|" />
+    </parser>
+    <typeHandler name="TipoPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter"/>
+    <typeHandler name="FormasPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter"/>
+    <typeHandler name="MonedasAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter"/>
+    <typeHandler name="TipoDeComprobanteAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter"/>
+    <typeHandler name="EstadosAdapter" class="mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter"/>
+    <typeHandler name="PaisesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter"/>
+    <typeHandler name="RegimenesFiscalesAdapter" class="mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter"/>
+    <typeHandler name="UnidadesMedidaAdapter" class="mx.emite.sdk.enums.sat.adaptadores.UnidadesMedidaAdapter"/>
+    <typeHandler name="TiposPeriodicidadAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter"/>
+    <typeHandler name="TiposRegimenAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TiposRegimenAdapter"/>
+    <typeHandler name="TiposPercepcionAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TiposPercepcionAdapter"/>
+    <typeHandler name="TiposDeduccionAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TiposDeduccionAdapter"/>
+    <typeHandler name="BancosAdapter" class="mx.emite.sdk.enums.sat.adaptadores.BancosAdapter"/>
+    <typeHandler name="LocalDateAdapter" class="mx.emite.sdk.serializers.LocalDateAdapter"/>
+    
+    <group name="nomina" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina">
+    	<record name="generales" order="1" minOccurs="1" maxOccurs="1"> 
+		      <field name="tipo" rid="true" literal="01" ignore="true" />
+		      <field name="serie" />
+		      <field name="folio" />
+		      <field name="concepto" />
+		      <field name="lugarExpedicion" />
+		      <field name="metodoPago" typeHandler="FormasPagoAdapter" />
+		      <field name="numCuentaPago" />
+		      <field name="fechaInicialPago" typeHandler="LocalDateAdapter" />
+		      <field name="fechaFinalPago" typeHandler="LocalDateAdapter" />
+		      <field name="fechaPago" typeHandler="LocalDateAdapter" />
+		      <field name="numDiasPagados"/>
+		      <field name="periodicidadPago" typeHandler="TiposPeriodicidadAdapter"/>
+		  
+       </record>
+        
+       <record name="empleado" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEmpleado" order="2" minOccurs="1" maxOccurs="1">
+       		  <field name="tipo" rid="true" literal="02" ignore="true" />
+       		  <field name="rfc"/>
+       		  <field name="nombre"/>
+       		  <field name="curp"/>
+       		  <field name="tipoRegimen" typeHandler="TiposRegimenAdapter"/>
+       		  <field name="numSeguridadSocial"/>
+       		  <field name="numEmpleado"/>
+       		  <field name="departamento"/>
+       		  <field name="salarioDiarioIntegrado"/>
+       		  <field name="salarioBaseCotApor"/>
+       		  <field name="fechaInicioRelacionLaboral" typeHandler="LocalDateAdapter" />
+       		  <field name="banco" typeHandler="BancosAdapter"/>
+       		  <field name="clabe"/>
+       </record>
+       <record name="percepciones" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoPercepcion" collection="list" order="3">
+       		  <field name="tipo" rid="true" literal="03" ignore="true" />
+       		  <field name="tipo" typeHandler="TiposPercepcionAdapter"/>
+       		  <field name="clave"/>
+       		  <field name="concepto"/>
+       		  <field name="importeExento"/>
+       		  <field name="importeGravado"/>
+       		  
+       </record>
+       <record name="deducciones" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoDeduccion" collection="list" order="4">
+       		  <field name="tipo" rid="true" literal="04" ignore="true" />
+       		  <field name="tipo" typeHandler="TiposDeduccionAdapter"/>
+       		  <field name="clave"/>
+       		  <field name="concepto"/>
+       		  <field name="importeExento"/>
+       		  <field name="importeGravado"/>
+       		  
+       </record>
+       <record name="envio" class="mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEnvio" minOccurs="1" maxOccurs="1" order="9">
+       		  <field name="tipo" rid="true" literal="09" ignore="true" />
+       		  <field name="observaciones"/>
+       		  <field name="correos" collection="list"/>
+       		  
+       </record>
+       <record name="fin" minOccurs="1" maxOccurs="1" order="10">
+       		  <field name="tipo" rid="true" literal="10" ignore="true" />
+       </record>     
+    </group>
     
   </stream>
+  
+  
 </beanio>

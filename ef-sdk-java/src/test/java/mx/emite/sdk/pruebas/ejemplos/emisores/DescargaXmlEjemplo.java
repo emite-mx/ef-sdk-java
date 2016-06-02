@@ -26,7 +26,7 @@ public class DescargaXmlEjemplo extends Ejemplo{
 				.build()
 				; 
 		
-		final XmlResponse respuesta = api.descargaxml().ejecuta(request);
+		final XmlResponse respuesta = api.cfdi32_DescargaXml().ejecuta(request);
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 		}		

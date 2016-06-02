@@ -2,8 +2,10 @@ package mx.emite.sdk.proxy.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.proxy.ProxyResponse;
@@ -13,6 +15,7 @@ import mx.emite.sdk.utils.Utilerias;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @ToString(callSuper=true)
+@NoArgsConstructor @AllArgsConstructor
 public class SellarYTimbrarResponse extends ProxyResponse {
 
 	/**

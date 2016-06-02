@@ -40,7 +40,7 @@ public class CorreosEjemplo extends Ejemplo{
 								.build())
 						.build())
 				.build(); 
-		final CorreoResponse respuesta = api.correos().ejecuta(request);
+		final CorreoResponse respuesta = api.cfdi32_Correo().ejecuta(request);
 		//respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 		//respuesta.guardaXml(props.getProperty("pdf.ruta")+".xml");
 		log.debug(respuesta.toString().replace(",", ",\n"));

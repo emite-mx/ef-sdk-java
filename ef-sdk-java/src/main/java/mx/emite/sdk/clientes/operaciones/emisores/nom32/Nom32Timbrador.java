@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.nom32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.TimbrarResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class TimbradorNomina32 extends Operacion<TimbrarRequest,TimbrarResponse> {
+public class Nom32Timbrador extends Operacion<TimbrarRequest,TimbrarResponse> {
 
-	public TimbradorNomina32(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.TIMBRARNOMINA32);
+	public Nom32Timbrador(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.NOM32_TIMBRAR);
 	}
 
 	

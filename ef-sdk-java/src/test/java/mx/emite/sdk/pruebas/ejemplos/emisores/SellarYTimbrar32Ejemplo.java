@@ -29,7 +29,7 @@ public class SellarYTimbrar32Ejemplo extends Ejemplo{
 				.xml(props.getProperty("xml.base64"))
 				.build();
 		
-		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+		final SellarYTimbrarResponse respuesta = api.cfdi32_SelladorTimbrador().ejecuta(request);
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 		}catch(ApiException ex){
@@ -49,7 +49,7 @@ public class SellarYTimbrar32Ejemplo extends Ejemplo{
 				.build()				
 				;
 		
-		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+		final SellarYTimbrarResponse respuesta = api.cfdi32_SelladorTimbrador().ejecuta(request);
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 		}catch(ApiException ex){
@@ -70,7 +70,7 @@ public class SellarYTimbrar32Ejemplo extends Ejemplo{
 					
 					; 
 			
-			final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+			final SellarYTimbrarResponse respuesta = api.cfdi32_SelladorTimbrador().ejecuta(request);
 			log.debug(respuesta.toString());
 			log.debug(respuesta.getXmlDecodificado());
 			}catch(ApiException ex){
@@ -91,7 +91,7 @@ public class SellarYTimbrar32Ejemplo extends Ejemplo{
 				
 				; 
 		
-		final SellarYTimbrarResponse respuesta = api.selladorytimbrador32().ejecuta(request);
+		final SellarYTimbrarResponse respuesta = api.cfdi32_SelladorTimbrador().ejecuta(request);
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 		}

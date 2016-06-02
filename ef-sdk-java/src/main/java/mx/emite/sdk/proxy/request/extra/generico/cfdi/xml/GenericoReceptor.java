@@ -1,4 +1,4 @@
-package mx.emite.sdk.proxy.request.extra.generico.xml;
+package mx.emite.sdk.proxy.request.extra.generico.cfdi.xml;
 
 
 
@@ -8,7 +8,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.enums.sat.Estados;
 import mx.emite.sdk.enums.sat.Paises;
@@ -17,6 +20,7 @@ import mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter;
 
 
 @Data
+@Builder @NoArgsConstructor @AllArgsConstructor
 public class GenericoReceptor {
 
 	@XmlAttribute(name="rfc")

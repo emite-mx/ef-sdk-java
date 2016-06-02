@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -12,6 +13,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.Collator;
@@ -25,7 +27,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.beanio.BeanReader;
+import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
 
 import lombok.Cleanup;
@@ -33,7 +37,8 @@ import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
-import mx.emite.sdk.proxy.request.extra.generico.xml.GenericoFactura;
+import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
+import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina;
 
 public class Utilerias {
 
@@ -99,6 +104,16 @@ public class Utilerias {
 		}
 	}
 
+	public static String leeArchivo(Path ruta) throws ApiException {
+		try{
+			return utf8(Files.readAllBytes(ruta));
+		}
+		catch(Exception io){
+			throw new ApiException(I_Api_Errores.LEYENDO_ARCHIVO,io);
+		}
+	}
+
+	
 	public static <T> void valida(T objeto) throws ApiException{
 		if(objeto==null) return;
 		final Set<ConstraintViolation<T>> errores = validator.validate(objeto);
@@ -141,11 +156,16 @@ public class Utilerias {
 	}
 	
 	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {
-		
 		return MarshallerUnmarshaller.unmarshallGenerico(xml);
 	}
 	
+	public static GenericoNomina unmarshallGenericoNomina(final String xml) throws ApiException {
+		return MarshallerUnmarshaller.unmarshallGenericoNomina(xml);
+	}
+	
 	public static boolean compara(String source, String target) {
+		if(StringUtils.isEmpty(target))
+			return false;
 		return comparador.compare(source, target)==0;
 	}
 
@@ -186,20 +206,7 @@ public class Utilerias {
 		return valor;
 	}
 	
-	public static void main(String[] args){
-		try{
-			String xml="01|1231.43|1428.46|PAGO EN UNA SOLA EXHIBICIÓN|||dcabiedes@cofine.com.mx||MÉXICO DF|NO IDENTIFICADO|NO IDENTIFICADO|AA|35571||PESOS|ingreso|General de ley personas morales|Esta factura forma parte de la expedida el 2014-10-08 13:47:04, folio fiscal ED514122-49D9-4648-BDFD-628792DF5509 por un monto de 55551.12|\n" + 
-					"02|COBS620908A54|SERGIO JESUS CORDERO BLANCO|LEONARDO NO 205|||RENACIMIENTO 1A Y 2A SEC.|MONTERREY|NUEVO LEON|64925|MEXICO|\n" + 
-					"03|CALLE|COLONIA|EXT|INT|||||P10036|P10036|4937.18|Recuperacion parcial del financiamiento otorgado para el apoyo de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|GR-2673-14|||||||\n" + 
-					"04|1.00|NO APLICA|Recuperacion  del costo financiero correspondiente al financiamiento otorgado para el proyecto de ahorro de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|1231.43|197.03|16.00|100|||||||||||\n"+
-					"04|2.00|NO APLICA|Recuperacion  del costo financiero correspondiente al financiamiento otorgado para el proyecto de ahorro de Energia Electrica, llevado a cabo en su empresa. Parcialidad 19/48)|1231.43|197.03|16.00||||||||||||\n"+
-					"05|||";
-			GenericoFactura fac = unmarshallTxtGenerico(codifica64Utf8(xml));
-			System.out.println(fac.toString().replace(", ", ",\n"));
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-	}
+	
 
 	public static GenericoFactura unmarshallTxtGenerico(String txt) throws ApiException {
 		BeanReader in=null;
@@ -224,6 +231,77 @@ public class Utilerias {
 		finally{
 			if(in!=null)
 				try{in.close();}catch(Exception ex){ex.printStackTrace();}
+		}
+	}
+
+	public static GenericoNomina unmarshallTxtGenericoNomina(String txt) throws ApiException {
+		BeanReader in=null;
+		try{
+		final StreamFactory factory = StreamFactory.newInstance();
+        factory.load(Utilerias.class.getResourceAsStream("/facturagenericatxt.xml"));
+        final StringReader sr = new StringReader(decodifica64Utf8(txt));
+        // use a StreamFactory to create a BeanReader
+        in = factory.createReader("emiteGenericoNomina",sr);
+        GenericoNomina res = (GenericoNomina) in.read();
+        in.close();
+        return res;
+        
+		}
+		catch(ApiException api){
+			try{if(in!=null)in.close();}catch(Exception ex){ex.printStackTrace();}
+			throw api;
+		}
+		catch(Exception ex){
+			try{if(in!=null)in.close();}catch(Exception ex3){ex3.printStackTrace();}
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.PROXY_LEYENDO_TXT,ex);
+		}
+		
+	}
+
+	public static String marshallTxtGenericoNomina(final GenericoNomina txt) throws ApiException {
+		BeanWriter out=null;
+		try{
+		final StreamFactory factory = StreamFactory.newInstance();
+        factory.load(Utilerias.class.getResourceAsStream("/facturagenericatxt.xml"));
+        final StringWriter writer = new StringWriter();
+        out = factory.createWriter("emiteGenericoNomina", writer);
+        out.write(txt);
+        out.close();
+        return writer.toString();
+        
+		}
+		catch(ApiException api){
+			try{if(out!=null) out.close();}catch(Exception ex){ex.printStackTrace();}
+			throw api;
+		}
+		catch(Exception ex){
+			try{if(out!=null) out.close();}catch(Exception ex3){ex3.printStackTrace();}
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.PROXY_LEYENDO_TXT,ex);
+		}
+		
+	}
+	
+	
+	public static String marshallGenerico(GenericoFactura comprobante) {
+		return MarshallerUnmarshaller.marshallGenericoXml(comprobante);
+	}
+
+	public static String marshallGenericoNomina(GenericoNomina comprobante) {
+		return MarshallerUnmarshaller.marshallGenericoNominaXml(comprobante);
+	}
+	
+	public static Long toLong(String folio, I_Api_Errores error, String campo) throws ApiException{
+		try{
+			return Long.parseLong(folio);
+		}
+		catch(Exception ex){
+			throw new ApiException(error,"El "+campo+ " "+ folio + " no es un número válido",ex);
 		}
 	}
 

@@ -25,7 +25,7 @@ public class Validador32Ejemplo extends Ejemplo{
 				.xml(props.getProperty("xml.base64"))
 				.build();
 		
-		final ValidadorResponse respuesta = api.validador32().ejecuta(request);
+		final ValidadorResponse respuesta = api.valida32_Validador().ejecuta(request);
 		log.debug(respuesta.toString().replace(",", ",\n"));	
 		}catch(ApiException ae){
 			log.error("error",ae);

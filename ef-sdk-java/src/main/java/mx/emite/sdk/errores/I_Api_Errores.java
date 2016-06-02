@@ -44,6 +44,7 @@ public enum I_Api_Errores {
 	CLIENTE_CSD_KEY_INVALIDO(120,"El certificado privado .key, no puede ser leido"),
 	CLIENTE_REQUEST_ZIP(121,"El archivo zip esta dañado"),
 	CLIENTE_PLANTILLA_INVALIDA(122,"La plantilla solicitada no existe"),
+	CLIENTE_XML_MALFORMADO(123,"El documento enviado es un documento XML mal formado"),
 	
 	//Errores de proxy de timbrado
 	PROXY_TIMBRANDO(140,"Error al timbrar el XML"),
@@ -101,6 +102,7 @@ public enum I_Api_Errores {
 	SCOT_EMITE_INTEGRADOR_NOEXISTE(192,"El integrador no existe"), 
 	SCOT_EMITE_INTEGRADOR_CONTRASENA(193,"La contraseña de integrador es incorrecta"),
 	SCOT_RECEPTOR_NOENCONTRADO(194,"El receptor no ha sido encontrado"),
+	SCOT_BUSQUEDA_VACIA(195,"La consulta no arrojó resultados"),
 	//Errores de timbrador
 	
 	EF_CANCELA_EXITOSAMENTE(201,"UUID Cancelado exitosamente"),
@@ -127,9 +129,21 @@ public enum I_Api_Errores {
 	EF_PREVIAMENTE_TIMBRADO(506	, "Comprobante timbrado anteriormente"),
 	EF_PREVIAMENTE_CANCELADO(507	, "Comprobante previamente cancelado"),
 	EF_INFORMACION_INVALIDA(601,"La información para buscar el comprobante no es válida."),
-	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),         
-	 
+	EF_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."), 
 	
+	PORTAL_AUTENTICACION(1001,"Error de autenticación (credenciales inválidas)"),
+	PORTAL_GENERANDO_FACTURA(1002,"Error al generar la factura"),  
+	PORTAL_TIMBRANDO(1003,"Error al timbrar el comprobante"), 
+	PORTAL_NOIMPLEMENTADO(1004,"No implementado"),
+	PORTAL_UUID_NOENCONTRADO(1005,"UUID no encontrado"),
+	PORTAL_UUID_INCORRECTO(1006,"Error validando UUID"),
+	PORTAL_GUARDANDO(1007,"Error al guardar en la BD"),
+	PORTAL_RECEPCIONES_ARCHIVOS(1008,"No se encontrarón los archivos para recepción"),
+	PORTAL_RECEPCIONES_PROCESANDO(1009,"Error procesando recepción"),
+	
+	CONNECT_DATOSINSUFICIENTES(2010,"Datos insuficientes"),
+	CONNECT_CONFIGURACION(2011,"Error en configuración"),
+	CONNECT_TIMBRANDO(2012,"Error al timbrar"),
 	
 	
 	;

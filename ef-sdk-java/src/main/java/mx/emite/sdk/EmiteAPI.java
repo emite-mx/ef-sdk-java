@@ -1,19 +1,32 @@
 package mx.emite.sdk;
 
+import lombok.Getter;
+import lombok.Setter;
 import mx.emite.sdk.clientes.ClienteJson;
-import mx.emite.sdk.clientes.operaciones.emisores.Cancelador32;
-import mx.emite.sdk.clientes.operaciones.emisores.Correos;
-import mx.emite.sdk.clientes.operaciones.emisores.DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.emisores.DescargaMasiva;
-import mx.emite.sdk.clientes.operaciones.emisores.DescargaXml;
-import mx.emite.sdk.clientes.operaciones.emisores.Pdf;
-import mx.emite.sdk.clientes.operaciones.emisores.PdfAcuse;
-import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbrador32;
-import mx.emite.sdk.clientes.operaciones.emisores.SelladorYTimbradorNomina32;
+import mx.emite.sdk.clientes.operaciones.emisores.Estatus;
 import mx.emite.sdk.clientes.operaciones.emisores.Servicios;
-import mx.emite.sdk.clientes.operaciones.emisores.Timbrador32;
-import mx.emite.sdk.clientes.operaciones.emisores.TimbradorNomina32;
-import mx.emite.sdk.clientes.operaciones.emisores.Validador32;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoTxt;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoXml;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoTxt;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoXml;
+import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.valida32.Valida32Validador;
 import mx.emite.sdk.enums.Ambiente;
 
 
@@ -30,18 +43,36 @@ public class EmiteAPI {
 	private final ClienteJson cliente;
 	
 	private final Servicios servicios;
-	private final Timbrador32 timbrador32;
-	private final TimbradorNomina32 timbradornomina32;
-	private final Validador32 validador32;
-	private final SelladorYTimbrador32 selladorytimbrador32;
-	private final SelladorYTimbradorNomina32 selladorytimbradornomina32;
-	private final Cancelador32 cancelador32;
-	private final DescargaXml descargaxml;
-	private final DescargaAcuseXml descargaacusexml;
-	private final Pdf pdf;
-	private final PdfAcuse pdfacuse;
-	private final Correos correos;
 	private final DescargaMasiva descargamasiva;
+	private final Valida32Validador valida32_validador;
+	private final Estatus estatus;
+	
+	private final Cfdi32Timbrador cfdi32_timbrador;
+	private final Cfdi32SelladorYTimbrador cfdi32_selladorytimbrador;
+	private final Cfdi32SelladorYTimbradorGenericoXml cfdi32_selladorytimbradorgenericoxml;
+	private final Cfdi32SelladorYTimbradorGenericoTxt cfdi32_selladorytimbradorgenericotxt;
+	private final Cfdi32Cancelador cfdi32_cancelador;
+	private final Cfdi32DescargaXml cfdi32_descargaxml;
+	private final Cfdi32DescargaAcuseXml cfdi32_descargaacusexml;
+	private final Cfdi32Pdf cfdi32_pdf;
+	private final Cfdi32PdfAcuse cfdi32_pdfacuse;
+	private final Cfdi32Correo cfdi32_correo;
+	
+	
+	private final Nom32Timbrador nom32_timbrador;
+	private final Nom32SelladorYTimbrador nom32_selladorytimbrador;
+	private final Nom32SelladorYTimbradorGenericoXml nom32_selladorytimbradorgenericoxml;
+	private final Nom32SelladorYTimbradorGenericoTxt nom32_selladorytimbradorgenericotxt;
+	private final Nom32DescargaXml nom32_descargaxml;
+	private final Nom32DescargaAcuseXml nom32_descargaacusexml;
+	private final Nom32Pdf nom32_pdf;
+	private final Nom32PdfAcuse nom32_pdfacuse;
+	
+	private final Nom32Cancelador nom32_cancelador;
+	private final Nom32Correo nom32_correo;
+	
+	@Getter @Setter
+	private String usuarioWs,contrasenaWs;
 	
 	/**
 	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
@@ -53,20 +84,53 @@ public class EmiteAPI {
 	 * @see Ambiente
 	 */
 	public EmiteAPI(final Ambiente ambiente){
+		this(ambiente,null,null);
+	}
+	
+	/**
+	 * Se crea un objeto de tipo api, mediante el cual se ejecutarán todos los servicios implementados
+	 * 
+	 * @param ambiente 
+	 * <h3>PRODUCCION</h3><p>Ambiente productivo</p>
+	 * <h3>PRUEBAS</h3><p>Ambiente de pruebas</p>
+	 * <h3>LOCAL</h3><p>Ambiente de uso exclusivo emite</p>
+	 * @param usuarioWs usuario del WebService para almacenamiento local
+	 * @param contrasenaWs contraseña del WebService para almacenamiento local
+	 * @see Ambiente
+	 */
+	public EmiteAPI(final Ambiente ambiente,final String usuarioWs,final String contrasenaWs){
 		this.cliente=new ClienteJson(ambiente);
+		this.usuarioWs=usuarioWs;
+		this.contrasenaWs=contrasenaWs;
+		
 		this.servicios=new Servicios(this.cliente);
-		this.timbrador32=new Timbrador32(this.cliente);
-		this.timbradornomina32=new TimbradorNomina32(this.cliente);
-		this.selladorytimbrador32=new SelladorYTimbrador32(this.cliente);
-		this.cancelador32=new Cancelador32(this.cliente);
-		this.descargaxml=new DescargaXml(this.cliente);
-		this.descargaacusexml=new DescargaAcuseXml(this.cliente);
-		this.pdf = new Pdf(this.cliente);
-		this.pdfacuse = new PdfAcuse(this.cliente);
-		this.correos=new Correos(this.cliente);
+		this.estatus=new Estatus(this.cliente);
+		
+		this.cfdi32_timbrador=new Cfdi32Timbrador(this.cliente);
+		this.cfdi32_cancelador=new Cfdi32Cancelador(this.cliente);
+		this.cfdi32_selladorytimbrador=new Cfdi32SelladorYTimbrador(this.cliente);
+		this.cfdi32_selladorytimbradorgenericoxml=new Cfdi32SelladorYTimbradorGenericoXml(this.cliente);
+		this.cfdi32_selladorytimbradorgenericotxt=new Cfdi32SelladorYTimbradorGenericoTxt(this.cliente);
+		this.cfdi32_descargaxml=new Cfdi32DescargaXml(this.cliente);
+		this.cfdi32_descargaacusexml=new Cfdi32DescargaAcuseXml(this.cliente);
+		this.cfdi32_pdf = new Cfdi32Pdf(this.cliente);
+		this.cfdi32_pdfacuse = new Cfdi32PdfAcuse(this.cliente);
+		this.cfdi32_correo=new Cfdi32Correo(this.cliente);
+		
 		this.descargamasiva=new DescargaMasiva(this.cliente);
-		this.validador32=new Validador32(this.cliente);
-		this.selladorytimbradornomina32=new SelladorYTimbradorNomina32(this.cliente);
+		
+		this.valida32_validador=new Valida32Validador(this.cliente);
+		
+		this.nom32_timbrador=new Nom32Timbrador(this.cliente);
+		this.nom32_selladorytimbrador=new Nom32SelladorYTimbrador(this.cliente);
+		this.nom32_cancelador=new Nom32Cancelador(this.cliente);
+		this.nom32_selladorytimbradorgenericoxml=new Nom32SelladorYTimbradorGenericoXml(this.cliente);
+		this.nom32_selladorytimbradorgenericotxt=new Nom32SelladorYTimbradorGenericoTxt(this.cliente);
+		this.nom32_descargaxml=new Nom32DescargaXml(this.cliente);
+		this.nom32_descargaacusexml=new Nom32DescargaAcuseXml(this.cliente);
+		this.nom32_pdf = new Nom32Pdf(this.cliente);
+		this.nom32_pdfacuse = new Nom32PdfAcuse(this.cliente);
+		this.nom32_correo=new Nom32Correo(this.cliente);
 	}
 	
 	/**
@@ -80,77 +144,95 @@ public class EmiteAPI {
 
 	/**
 	 * Servicio Timbrado de CFDI 3.2
-	 * @return timbrador32
+	 * @return cfdi32_timbrador
 	 * @since 0.0.1
 	 */
-	public Timbrador32 timbrador32(){
-		return timbrador32;
+	public Cfdi32Timbrador cfdi32_Timbrador(){
+		return cfdi32_timbrador;
 	}
 	
 	
 	
 	/**
 	 * Servicio de Sellado y Timbrado de CFDI 3.2
-	 * @return selladorytimbrador32
+	 * @return cfdi32_selladorytimbrador
 	 * @since 0.0.1
 	 */
-	public SelladorYTimbrador32 selladorytimbrador32(){
-		return selladorytimbrador32;
+	public Cfdi32SelladorYTimbrador cfdi32_SelladorTimbrador(){
+		return cfdi32_selladorytimbrador;
 	}
 	
 
 	/**
 	 * Servicio de Cancelación de CFDI 3.2
-	 * @return cancelador32
+	 * @return cfdi32_cancelador
 	 * @since 0.0.2
 	 */
-	public Cancelador32 cancelador32(){
-		return cancelador32;
+	public Cfdi32Cancelador cfdi32_Cancelador(){
+		return cfdi32_cancelador;
 	}
 	
 	/**
 	 * Servicio de Descarga de CFDI 3.2
-	 * @return descargaxml
+	 * @return cfdi32_descargaxml
 	 * @since 0.0.2
 	 */
-	public DescargaXml descargaxml(){
-		return descargaxml;
+	public Cfdi32DescargaXml cfdi32_DescargaXml(){
+		return cfdi32_descargaxml;
 	}
 	
 	/**
 	 * Servicio de Descarga Acuses de Cancelación
-	 * @return descargaacusexml
+	 * @return cfdi32_descargaacusexml
 	 * @since 0.0.2
 	 */
-	public DescargaAcuseXml descargaacusexml(){
-		return descargaacusexml;
+	public Cfdi32DescargaAcuseXml cfdi32_DescargaAcuseXml(){
+		return cfdi32_descargaacusexml;
 	}
 
 	/**
 	 * Servicio de Descarga de Pdf
-	 * @return pdf
+	 * @return cfdi32_pdf
 	 * @since 0.0.2
 	 */
-	public Pdf pdf(){
-		return pdf;
+	public Cfdi32Pdf cfdi32_pdf(){
+		return cfdi32_pdf;
 	}
 	
 	/**
 	 * Servicio de Descarga de Pdf de acuse
-	 * @return pdf
+	 * @return cfdi32_pdfacuse
 	 * @since 0.0.2
 	 */
-	public PdfAcuse pdfacuse(){
-		return pdfacuse;
+	public Cfdi32PdfAcuse cfdi32_DescargaAcusePdf(){
+		return cfdi32_pdfacuse;
 	}
 	
 	/**
 	 * Servicio de Envio de Correos
-	 * @return correos
+	 * @return cfdi32_correo
 	 * @since 0.0.2
 	 */
-	public Correos correos(){
-		return correos;
+	public Cfdi32Correo cfdi32_Correo(){
+		return cfdi32_correo;
+	}
+	
+	/**
+	 * Servicio Timbrado de Xml Genérico 3.2
+	 * @return cfdi32_selladorytimbradorgenericoxml
+	 * @since 0.1.1
+	 */
+	public Cfdi32SelladorYTimbradorGenericoXml cfdi32_SelladorTimbradorGenericoXml(){
+		return cfdi32_selladorytimbradorgenericoxml;
+	}
+	
+	/**
+	 * Servicio Timbrado de Txt Genérico 3.2
+	 * @return cfdi32_selladorytimbradorgenericotxt
+	 * @since 0.1.1
+	 */
+	public Cfdi32SelladorYTimbradorGenericoTxt cfdi32_SelladorTimbradorGenericoTxt(){
+		return cfdi32_selladorytimbradorgenericotxt;
 	}
 	
 	/**
@@ -164,29 +246,109 @@ public class EmiteAPI {
 	
 	/**
 	 * Servicio de Validación de CFDI
-	 * @return validador32
+	 * @return valida32_validador
 	 * @since 0.0.9
 	 */
-	public Validador32 validador32(){
-		return validador32;
+	public Valida32Validador valida32_Validador(){
+		return valida32_validador;
 	}
 	
 	/**
 	 * Servicio de Sellado y Timbrado de Nomina 3.2
-	 * @return selladorytimbradornomina32
+	 * @return nom32_selladorytimbrador
 	 * @since 0.1.0
 	 */
-	public SelladorYTimbradorNomina32 selladorytimbradornomina32(){
-		return selladorytimbradornomina32;
+	public Nom32SelladorYTimbrador nom32_SelladorTimbrador(){
+		return nom32_selladorytimbrador;
 	}
 	
 	/**
 	 * Servicio Timbrado de Nómina de CFDI 3.2
-	 * @return timbradornomina32
+	 * @return nom32_timbrador
 	 * @since 0.1.0
 	 */
-	public TimbradorNomina32 timbradornomina32(){
-		return timbradornomina32;
+	public Nom32Timbrador nom32_Timbrador(){
+		return nom32_timbrador;
 	}
 	
+	/**
+	 * Servicio de Cancelación de CFDI 3.2
+	 * @return nom32_cancelador
+	 * @since 0.1.1
+	 */
+	public Nom32Cancelador nom32_Cancelador(){
+		return nom32_cancelador;
+	}
+	
+	/**
+	 * Servicio de Envio de Correos de nómina
+	 * @return nom32_correo
+	 * @since 0.1.1
+	 */
+	public Nom32Correo nom32_Correo(){
+		return nom32_correo;
+	}
+	
+	/**
+	 * Servicio Timbrado de Xml Genérico 3.2 de nómina
+	 * @return nom32_selladorytimbradorgenericoxml
+	 * @since 0.1.1
+	 */
+	public Nom32SelladorYTimbradorGenericoXml nom32_SelladorTimbradorGenericoXml(){
+		return nom32_selladorytimbradorgenericoxml;
+	}
+	
+	/**
+	 * Servicio Timbrado de Txt Genérico 3.2 de nómina
+	 * @return nom32_selladorytimbradorgenericotxt
+	 * @since 0.1.1
+	 */
+	public Nom32SelladorYTimbradorGenericoTxt nom32_SelladorTimbradorGenericoTxt(){
+		return nom32_selladorytimbradorgenericotxt;
+	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de nomina
+	 * @return nom32_pdf
+	 * @since 0.1.1
+	 */
+	public Nom32Pdf nom32_pdf(){
+		return nom32_pdf;
+	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de acuse
+	 * @return nom32_pdfacuse
+	 * @since 0.1.1
+	 */
+	public Nom32PdfAcuse nom32_DescargaAcusePdf(){
+		return nom32_pdfacuse;
+	}
+	
+	/**
+	 * Servicio de Descarga de CFDI 3.2 de nómina
+	 * @return nom32_descargaxml
+	 * @since 0.1.1
+	 */
+	public Nom32DescargaXml nom32_DescargaXml(){
+		return nom32_descargaxml;
+	}
+	
+	/**
+	 * Servicio de Descarga Acuses de Cancelación de Nómina
+	 * @return nom32_descargaacusexml
+	 * @since 0.1.1
+	 */
+	public Nom32DescargaAcuseXml nom32_DescargaAcuseXml(){
+		return nom32_descargaacusexml;
+	}
+	
+	/**
+	 * Servicio de Consulta de Estatus de Emisores
+	 * @return estatus
+	 * @since 0.1.2
+	 */
+	public Estatus estatus(){
+		return estatus;
+	}
 }

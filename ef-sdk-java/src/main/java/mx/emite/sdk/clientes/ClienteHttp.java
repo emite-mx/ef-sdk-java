@@ -25,7 +25,9 @@ import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultServiceUnavailableRetryStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
@@ -39,7 +41,8 @@ public class ClienteHttp {
 
 	private static final String AGENTE = "ef-sdk-java/";
 
-    private static final int DEFAULT_CONNECTION_TIMEOUT = 90000;
+    private static final int DEFAULT_CONNECTION_TIMEOUT = 10000;
+    private static final int DEFAULT_SOCKET_TIMEOUT = 120000;
 
     private final CloseableHttpClient httpClient;
 
@@ -49,7 +52,7 @@ public class ClienteHttp {
 
     public ClienteHttp() {
         this.httpClient = this.initHttpClient(true, DEFAULT_CONNECTION_TIMEOUT,
-                DEFAULT_CONNECTION_TIMEOUT);
+                DEFAULT_SOCKET_TIMEOUT);
         String version = this.getClass().getPackage().getImplementationVersion();
         if (version == null) {
             version = "UNKNOWN";
@@ -63,13 +66,18 @@ public class ClienteHttp {
         HttpClientConnectionManager manager;
         manager = new PoolingHttpClientConnectionManager();
        
-        this.requestConfig = RequestConfig.custom().setConnectTimeout(connectionTimeout)
-                .setSocketTimeout(socketTimeout).build();
-        ConnectionConfig connnectionConfig = ConnectionConfig.custom().setCharset(Charset.forName("UTF-8")).build();
+        this.requestConfig = RequestConfig.custom()
+			    .setSocketTimeout(socketTimeout)
+			    .setConnectTimeout(connectionTimeout)
+			    .setConnectionRequestTimeout(connectionTimeout)
+			    .build(); 
+        final ConnectionConfig connnectionConfig = ConnectionConfig.custom().setCharset(Charset.forName("UTF-8")).build();
         httpClient = HttpClientBuilder.create()
                 .setConnectionManager(manager)
                 .setDefaultConnectionConfig(connnectionConfig)
                 .setDefaultRequestConfig(this.requestConfig)
+                .setRetryHandler(new StandardHttpRequestRetryHandler(5, true))
+				.setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy(5, 500))
                 .build();
         return httpClient;
     }

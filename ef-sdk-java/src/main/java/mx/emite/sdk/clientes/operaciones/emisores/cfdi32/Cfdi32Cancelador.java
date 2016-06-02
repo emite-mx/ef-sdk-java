@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.cfdi32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.CancelarResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Cancelador32 extends Operacion<CancelarRequest,CancelarResponse> {
+public class Cfdi32Cancelador extends Operacion<CancelarRequest,CancelarResponse> {
 
-	public Cancelador32(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.CANCELAR32);
+	public Cfdi32Cancelador(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_CANCELAR);
 	}
 
 	

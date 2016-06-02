@@ -18,7 +18,7 @@ import mx.emite.sdk.proxy.response.ZipResponse;
 public class DescargaMasiva extends Operacion<ZipRequest,ZipResponse> {
 
 	public DescargaMasiva(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.DESCARGA);
+		super(cliente,Proveedor.PROXY,Rutas.CFDI32_DESCARGA);
 	}
 
 	

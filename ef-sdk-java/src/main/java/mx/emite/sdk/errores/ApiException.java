@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class ApiException extends RuntimeException{
 	private List<String> mensajes = new ArrayList<String>();
 	
 	@JsonIgnore
-	private Exception excepcion;
+	private Throwable excepcion;
 	
 	@Deprecated
 	public ApiException(){
@@ -48,13 +49,23 @@ public class ApiException extends RuntimeException{
 		this.excepcion=null;	
 	}
 	
-	public ApiException(I_Api_Errores error, Exception ex) {
+	public ApiException(I_Api_Errores error, Throwable ex) {
 		super(error.getDescripcion(),ex);
+		if(ex instanceof ConstraintViolationException)
+			this.mensajes.addAll(sacaError(((ConstraintViolationException)ex)));
 		this.error=error;
 		this.excepcion=ex;		
 	}
 
-	public ApiException(I_Api_Errores error,String mensaje, Exception ex) {
+	private List<String>  sacaError(ConstraintViolationException ce) {
+		final List<String> res = new ArrayList<>();
+		ce.getConstraintViolations().stream().forEach(i->
+			res.add(i.getPropertyPath() + "\t "+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
+		);
+		return res;
+	}
+
+	public ApiException(I_Api_Errores error,String mensaje, Throwable ex) {
 		super(error.getDescripcion(),ex);
 		this.error=error;
 		this.excepcion=ex;	
@@ -116,7 +127,7 @@ public class ApiException extends RuntimeException{
 		this.mensajes = mensajes;
 	}
 
-	public Exception getExcepcion() {
+	public Throwable getExcepcion() {
 		return excepcion;
 	}
 
@@ -129,7 +140,13 @@ public class ApiException extends RuntimeException{
 
 	@Override
 	public String getMessage() {
-		return super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+		return (error==null?"":"EMITE["+error.getId()+"]: ")+ super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+	}
+
+	@Override
+	@Deprecated
+	public String getLocalizedMessage() {
+		return super.getLocalizedMessage();
 	}
 
 	

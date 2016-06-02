@@ -1,4 +1,4 @@
-package mx.emite.sdk.proxy.request.extra.generico.xml;
+package mx.emite.sdk.proxy.request.extra.generico.cfdi.xml;
 
 import java.math.BigDecimal;
 
@@ -8,12 +8,17 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import mx.emite.sdk.NU;
 import mx.emite.sdk.enums.sat.UnidadesMedida;
 import mx.emite.sdk.enums.sat.adaptadores.UnidadesMedidaAdapter;
 
 @Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 public class GenericoConcepto {
 
 	@XmlAttribute(name="noIdentificacion")
@@ -73,6 +78,8 @@ public class GenericoConcepto {
 		return NU.multiplica(cantidad, precioUnitario, 6);
 	}
 	
+	
+	
 	public BigDecimal getIva(){
 		if(tasaIva==null)
 			return BigDecimal.ZERO;
@@ -101,6 +108,12 @@ public class GenericoConcepto {
 		return  NU.divide(NU.multiplica(getImporte(), tasaRetIsr, 6),BigDecimal.valueOf(100),6);
 	}
 	
+	public BigDecimal getTotalImpuestosTrasladados(){
+		return getIva();
+	}
 	
+	public BigDecimal getTotalImpuestosRetenidos(){
+		return getIvaRetenido().add(getIsr());
+	}
 	
 }

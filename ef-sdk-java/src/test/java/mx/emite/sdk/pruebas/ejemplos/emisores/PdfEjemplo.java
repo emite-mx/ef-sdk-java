@@ -26,7 +26,7 @@ public class PdfEjemplo extends Ejemplo{
 				.plantilla("EMITE")
 				.build()
 				; 
-		final PdfResponse respuesta = api.pdf().ejecuta(request);
+		final PdfResponse respuesta = api.cfdi32_pdf().ejecuta(request);
 		respuesta.guardaPdf(props.getProperty("pdf.ruta"));
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getPdf());

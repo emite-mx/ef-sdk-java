@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.nom32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.XmlResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class DescargaXml extends Operacion<XmlRequest,XmlResponse> {
+public class Nom32DescargaXml extends Operacion<XmlRequest,XmlResponse> {
 
-	public DescargaXml(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.XML);
+	public Nom32DescargaXml(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.NOM32_XML);
 	}
 
 	

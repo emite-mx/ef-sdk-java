@@ -25,7 +25,7 @@ public class TimbrarNomina32Ejemplo extends Ejemplo{
 				.xml(props.getProperty("xml.nomina64"))
 				.build();
 		
-		final TimbrarResponse respuesta = api.timbradornomina32().ejecuta(request);
+		final TimbrarResponse respuesta = api.nom32_Timbrador().ejecuta(request);
 		log.debug(respuesta.toString());
 		log.debug(respuesta.getXmlDecodificado());
 		}catch(ApiException ae){

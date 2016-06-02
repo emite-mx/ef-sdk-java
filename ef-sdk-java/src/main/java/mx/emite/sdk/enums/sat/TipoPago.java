@@ -34,6 +34,8 @@ public enum TipoPago implements Sat{
 	 * @return FormasPago valor del enum de acuerdo a la descripcion
 	 */
 	public static TipoPago busca(String descripcion) {
+		if(StringUtils.isEmpty(descripcion))
+			return null;
 		for(TipoPago m:values()){
 			if(Utilerias.compara(m.descripcion,descripcion))
 				return m;

@@ -1,4 +1,4 @@
-package mx.emite.sdk.clientes.operaciones.emisores;
+package mx.emite.sdk.clientes.operaciones.emisores.nom32;
 
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.Operacion;
@@ -15,10 +15,10 @@ import mx.emite.sdk.proxy.response.CorreoResponse;
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Correos extends Operacion<CorreoRequest,CorreoResponse> {
+public class Nom32Correo extends Operacion<CorreoRequest,CorreoResponse> {
 
-	public Correos(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.CORREO);
+	public Nom32Correo(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.NOM32_CORREO);
 	}
 
 	

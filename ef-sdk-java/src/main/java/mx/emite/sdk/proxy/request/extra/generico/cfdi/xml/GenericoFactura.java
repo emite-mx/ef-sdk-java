@@ -1,4 +1,4 @@
-package mx.emite.sdk.proxy.request.extra.generico.xml;
+package mx.emite.sdk.proxy.request.extra.generico.cfdi.xml;
 
 
 
@@ -14,7 +14,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
 import mx.emite.sdk.enums.sat.FormasPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.RegimenesFiscales;
@@ -25,10 +29,13 @@ import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
+import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEnvio;
 
 
 @XmlRootElement(name="Factura")
 @Data
+@Builder
+@NoArgsConstructor @AllArgsConstructor
 public class GenericoFactura {
 
 	@XmlAttribute(name="tipoComprobante")
@@ -94,12 +101,10 @@ public class GenericoFactura {
 	@XmlJavaTypeAdapter(RegimenesFiscalesAdapter.class)
 	private RegimenesFiscales regimen;
 	
-	//@XmlAttribute(name="comentario")
-	//@Size(max=200)
-	//private String comentario;
+	
 	
 	@XmlElement(name="ExpedidoEn")
-	@Valid @NotNull
+	@Valid 
 	private GenericoExpedidoEn expedidoEn;
 	
 	@XmlElement(name="Receptor")
@@ -107,43 +112,22 @@ public class GenericoFactura {
 	private GenericoReceptor receptor;
 	
 	@XmlElement(name="Conceptos")
-	@Valid @NotNull
+	@Valid @NotNull @Singular
 	private List<GenericoConcepto> conceptos;
 	
-	
-	
-	/*public void setEmisor(GenericoEmisor emisor){
-		if(this.emisor==null)
-			this.emisor=emisor;
-		else{
-			if(this.emisor.getRegimenFiscal()==null)
-				this.emisor.setRegimenFiscal(emisor.getRegimenFiscal());
-			if(this.emisor.getExpedidoEn()==null)
-				this.emisor.setExpedidoEn(emisor.getExpedidoEn());
-		}
+	@XmlElement(name="Envio")
+	@Valid 
+	private GenericoEnvio envio;
+
+	public BigDecimal getTotalImpuestosTrasladados() {
+		return conceptos.stream().map(GenericoConcepto::getTotalImpuestosTrasladados).reduce(BigDecimal.ZERO,BigDecimal::add);
 	}
-	
-	public List<GenericoConcepto> getPartidas(){
-		if(conceptos==null)
-			conceptos=new GenericoConceptos();
-		return conceptos.getConcepto();
+
+	public BigDecimal getTotalImpuestosRetenidos() {
+		return conceptos.stream().map(GenericoConcepto::getTotalImpuestosRetenidos).reduce(BigDecimal.ZERO,BigDecimal::add);
 	}
+
 	
-	public void setPartidas(List<GenericoConcepto> c){
-		if(conceptos==null)
-			conceptos=new GenericoConceptos();
-		conceptos.setConcepto(c);
-	}*/
+	
 	
 }
-/*
-<factura tipoComprobante="ingreso" serie="E" folio="0000000112" subtotal="13251185.4000" descuento="5279085.1400" total="7972100.2600" formaDePago="PAGO EN UNA SOLA EXHIBICION" noTicket="1447" lugarExpedicion="MEXICO, DISTRITO FEDERAL" metodoPago="NO IDENTIFICADO" numeroCuentaPago="NO IDENTIFICADO" moneda="MXN" tipoCambio="" comentario="">
-<emisor>
-	<RegimenFiscal Regimen="REGIMEN GENERAL DE LEY PERSONAS MORALES"/>
-	<ExpedidoEn calle="REPUBLICA DE ARGENTINA" noExterior="15" noInterior="" colonia="CENTRO" municipio="CUAUHTEMOC" estado="DISTRITO FEDERAL" pais="Mexico" cp="06020"/>
-</emisor>
-<receptor rfc="LPH510514IQ7" nombre="LIBRERIA DE PORRUA HERMANOS Y COMPANIA, S.A. DE C.V." calle="REPUBLICA DE ARGENTINA" noExterior="15" noInterior="" colonia="CENTRO" localidad="" municipio="CUAUHTEMOC" estado="DISTRITO FEDERAL" cp="06020" pais="Mexico"/>
-<conceptos>
-	<concepto noIdentificacion="9789700767987" cantidad="11" unidad="PZA" descripcion="12 DISCIPLINAS PARA ALCANZAR TUS SUEOS" precioUnitario="105.00" iva="0.0000" importe="1155.0000" tasaIva="0.00"/>
-</conceptos>
-</factura>*/

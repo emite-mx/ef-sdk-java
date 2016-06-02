@@ -39,6 +39,8 @@ public enum TiposJornada implements Sat{
 	}
 
 	public static TiposJornada busca(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
 		for(TiposJornada m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;

@@ -25,7 +25,7 @@ public class Timbrar32Ejemplo extends Ejemplo{
 				.xml(props.getProperty("xml.base64"))
 				.build();
 		
-		final TimbrarResponse respuesta = api.timbrador32().ejecuta(request);
+		final TimbrarResponse respuesta = api.cfdi32_Timbrador().ejecuta(request);
 		log.debug(respuesta.toString());	
 		}catch(ApiException ae){
 			log.error("error",ae);
