@@ -64,7 +64,8 @@ public enum I_Api_Errores {
 	PROXY_GENERANDO_ZIP(154,"Error al generar el ZIP"),
 	PROXY_VALIDANDO(155,"Error validando comprobante"),
 	PROXY_VALIDANDO_RESPUESTA(156,"No se obtuvo respuesta del validador"),
-	
+	PROXY_MASIVA_ENPROCESO(157,"La consulta se esta ejecutando, espere a que termine el proceso"),
+	PROXY_SERVICIONODISPONIBLE(158,"Servicio no disponible"),
 	
 	//Errores de scot
 	SCOT_CONSUMIENDO(160,"Error ejecutando transacción de consumo"),
@@ -144,6 +145,19 @@ public enum I_Api_Errores {
 	CONNECT_DATOSINSUFICIENTES(2010,"Datos insuficientes"),
 	CONNECT_CONFIGURACION(2011,"Error en configuración"),
 	CONNECT_TIMBRANDO(2012,"Error al timbrar"),
+	
+	ENVIO_CANCELACION_TOKENCANCELACION(4000,"Obteniendo token de cancelación"),
+	ENVIO_CANCELACION_VACIOS(4001,"Parámetros vacios"),
+	ENVIO_CANCELACION_CERTIFICADOINVALIDO(4002,"El certificado pfx es inválido"),
+	ENVIO_CANCELACION_CONTRASENAINVALIDA(4003,"La contraseña del pfx es inválida"),
+	ENVIO_CANCELACION_FIRMANDOXML(4004,"Error generando la firma del XML de cancelación"),
+	ENVIO_CANCELACION_ERRORSERVIDOR(4005,"Error del servidor"),
+	ENVIO_CANCELACION_GENERANDOHASH(4006,"Generando hash de envio"),
+	ENVIO_CANCELACION_FIRMANDO(4007,"Firmando envio"),
+	ENVIO_CANCELACION_CODIFICANDOCERTIFICADO(4008,"Codificando el certificado"),
+	ENVIO_CANCELACION_SERVICIOCANCELACION(4009,"Servicio de cancelación del SAT no disponible"),
+	ENVIO_CANCELACION_LEYENDORESPUESTA(4010,"Leyendo la respuesta del SAT"),
+	ENVIO_CANCELACION_ENMANTENIMIENTO(4999,"El servicio de cancelación de encuentra en mantenimiento, intente mas tarde"), 
 	
 	
 	;

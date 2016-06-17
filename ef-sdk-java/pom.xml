@@ -16,6 +16,8 @@
 		<project.httpcomponents.client.version>4.3.2</project.httpcomponents.client.version>		
 		<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
 		<springframework.version>4.1.7.RELEASE</springframework.version>
+		<hibernate.version>5.0.2.Final</hibernate.version>
+		<hibernate.version.validator>5.1.3.Final</hibernate.version.validator>
    </properties>
   <licenses>
 		<license>
@@ -90,7 +92,14 @@
 	    <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.1.3.Final</version>
+			<version>${hibernate.version.validator}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 		   <groupId>javax.el</groupId>

@@ -6,4 +6,6 @@ public interface Respuesta {
 
 	public ApiError getError();
 
+	public String getUuid();
+
 }

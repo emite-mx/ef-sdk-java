@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 import org.apache.http.impl.cookie.DateParseException;
 import org.apache.log4j.Logger;
@@ -114,6 +115,18 @@ public class FU {
 		}
 		}
 		
+		public  String format(Date fecha,FechaFormatos formato){
+			if(fecha==null)
+				return null;			
+			return format(fecha.toInstant().atZone(zona).toLocalDate(),formato);
+		}
+		
+		public  String format(Date fecha){
+			if(fecha==null)
+				return null;			
+			return format(fecha.toInstant().atZone(zona).toLocalDate(),FechaFormatos.DDMMYYYY);
+		}
+		
 		public  String format(LocalDateTime fecha,FechaFormatos formato){
 			if(fecha==null)
 				return null;			
@@ -136,6 +149,22 @@ public class FU {
 				log.error(ex.getMessage(),ex);
 			}
 			return DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		}
+		
+		public LocalDate parseDDMMYYYY(String fecha) {
+			return parse(fecha,FechaFormatos.DDMMYYYY);
+		}
+		
+		public  LocalDate parse(String fecha,FechaFormatos formato){
+			if(StringUtils.isEmpty(fecha))
+				return null;
+			//DateTimeFormatter df = getFormat(formato);
+			return LocalDate.parse(fecha,getFormat(formato));
+			
+		}
+		
+		public static Date convierte(LocalDate fecha) {
+			return Date.from(fecha.atStartOfDay(zona).toInstant());
 		}
 		
 		/*

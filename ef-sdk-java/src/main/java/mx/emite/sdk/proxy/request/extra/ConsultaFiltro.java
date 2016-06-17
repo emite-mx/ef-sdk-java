@@ -34,7 +34,7 @@ public class ConsultaFiltro {
 	@JsonSerialize(using=FechaSerializer.class)
 	private LocalDate rango2;
 	
-	private String sucursal;
+	//private String sucursal;
 	
 	@Rfc
 	private String receptor;
@@ -46,7 +46,7 @@ public class ConsultaFiltro {
 	private String serie;
 	
 	
-	private Long folio;
+	private String folio;
 	
 	public static ConsultaFiltroBuilder builder() {
 		return new ConsultaFiltroBuilder();
@@ -58,11 +58,11 @@ public class ConsultaFiltro {
 		private EstadoTimbre estado=EstadoTimbre.TODAS;
 		private LocalDate rango1;
 		private LocalDate rango2;
-		private String sucursal;
+		//private String sucursal;
 		private String receptor;
 		private String uuid;
 		private String serie;
-		private Long folio;
+		private String folio;
 		
 		/**
 		 * @param tipoTimbre por default CFDI
@@ -94,7 +94,6 @@ public class ConsultaFiltro {
 		/**
 		 * @param sucursal en caso de emisores con manejo de sucursales
 		 * @return builder
-		 */
 		public ConsultaFiltroBuilder sucursal(String sucursal) {
 		this.sucursal=sucursal;
 		return this;
@@ -106,7 +105,7 @@ public class ConsultaFiltro {
 		public ConsultaFiltroBuilder receptor(String receptor) {
 		this.receptor=receptor;
 		return this;
-		}
+		} 
 		/**
 		 * @param uuid del timbre o comprobante
 		 * @return builder
@@ -127,7 +126,7 @@ public class ConsultaFiltro {
 		 * @param folio del timbre o comprobante
 		 * @return builder
 		 */
-		public ConsultaFiltroBuilder folio(Long folio) {
+		public ConsultaFiltroBuilder folio(String folio) {
 		this.folio=folio;
 		return this;
 		}
@@ -141,7 +140,7 @@ public class ConsultaFiltro {
 	this.estado=builder.estado;
 	this.rango1=builder.rango1;
 	this.rango2=builder.rango2;
-	this.sucursal=builder.sucursal;
+	
 	this.receptor=builder.receptor;
 	this.uuid=builder.uuid;
 	this.serie=builder.serie;

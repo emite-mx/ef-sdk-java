@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32.validadores;
+package mx.emite.sdk.cfdi32.anotaciones;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;

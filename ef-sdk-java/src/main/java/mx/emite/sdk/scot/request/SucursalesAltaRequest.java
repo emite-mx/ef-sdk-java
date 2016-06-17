@@ -44,6 +44,12 @@ public class SucursalesAltaRequest {
 	
 	
 	
+	/**
+	 *  modificar si la sucursal ya se encuentra dado de alta
+	 */
+	@NotNull 
+	public Boolean modificar;
+	
 	
 
 	
