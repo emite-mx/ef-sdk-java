@@ -145,6 +145,7 @@ public enum I_Api_Errores {
 	CONNECT_DATOSINSUFICIENTES(2010,"Datos insuficientes"),
 	CONNECT_CONFIGURACION(2011,"Error en configuración"),
 	CONNECT_TIMBRANDO(2012,"Error al timbrar"),
+
 	
 	ENVIO_CANCELACION_TOKENCANCELACION(4000,"Obteniendo token de cancelación"),
 	ENVIO_CANCELACION_VACIOS(4001,"Parámetros vacios"),
