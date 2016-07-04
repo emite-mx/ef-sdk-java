@@ -13,7 +13,6 @@ import java.util.TimeZone;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
-import org.apache.http.impl.cookie.DateParseException;
 import org.apache.log4j.Logger;
 
 public class FU {
@@ -290,7 +289,7 @@ public class FU {
 		}
 		
 
-		public LocalDate parseYYYYMMDD(String fecha) throws DateParseException{
+		public LocalDate parseYYYYMMDD(String fecha) throws DateTimeParseException{
 			if(fecha==null)
 				return null;
 			return LocalDate.parse(fecha,getFormat(FechaFormatos.YYYYMMDD));

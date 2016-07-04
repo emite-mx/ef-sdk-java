@@ -49,6 +49,11 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	private String contrasena;
 	
 	/**
+	 * @return plantilla plantilla del emisor
+	 */
+	private String plantilla;
+	
+	/**
 	 * @return cuentasporpagar Lista de cuentas por pagar del emisor
 	 */
 	private List<CuentasPorPagar> cuentasporpagar = new ArrayList<>();

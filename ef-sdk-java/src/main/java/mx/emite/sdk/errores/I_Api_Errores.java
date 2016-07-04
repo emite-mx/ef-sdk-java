@@ -42,7 +42,7 @@ public enum I_Api_Errores {
 	CLIENTE_XML_TOTAL_INVALIDO(118,"El total enviado no corresponde a el total que contiene el XML"),
 	CLIENTE_CSD_CER_INVALIDO(119,"El certificado público .cer, no puede ser leido"),
 	CLIENTE_CSD_KEY_INVALIDO(120,"El certificado privado .key, no puede ser leido"),
-	CLIENTE_REQUEST_ZIP(121,"El archivo zip esta dañado"),
+	CLIENTE_REQUEST_ZIP(121,"El archivo zip esta dañado"), 
 	CLIENTE_PLANTILLA_INVALIDA(122,"La plantilla solicitada no existe"),
 	CLIENTE_XML_MALFORMADO(123,"El documento enviado es un documento XML mal formado"),
 	
@@ -158,7 +158,23 @@ public enum I_Api_Errores {
 	ENVIO_CANCELACION_CODIFICANDOCERTIFICADO(4008,"Codificando el certificado"),
 	ENVIO_CANCELACION_SERVICIOCANCELACION(4009,"Servicio de cancelación del SAT no disponible"),
 	ENVIO_CANCELACION_LEYENDORESPUESTA(4010,"Leyendo la respuesta del SAT"),
-	ENVIO_CANCELACION_ENMANTENIMIENTO(4999,"El servicio de cancelación de encuentra en mantenimiento, intente mas tarde"), 
+	ENVIO_CANCELACION_ENMANTENIMIENTO(4999,"El servicio de cancelación de encuentra en mantenimiento, intente mas tarde"),
+	
+	TIMBRADOR_XMLINVALIDO(301,"El documento no es un XML válido"),
+	TIMBRADOR_TIMBREPREVIO(307,"Timbre previo"),
+	TIMBRADOR_VALIDACIONXSD(301,"Error de estructura (validando el XML contra el XSD)"),
+	TIMBRADOR_VALIDACIONFECHA(401,"Validando fecha de expedición"),
+	TIMBRADOR_VALIDACIONCERTIFICADO(308,"Error validando certificado de emisor"),
+	TIMBRADOR_CSDAPOCRIFO(308,"El CSD del emisor no fue firmado por los certificados de autoridad del SAT"),
+	TIMBRADOR_EMISORCSD(303,"El rfc del CSD no corresponde al rfc del emisor del comprobante"),
+	TIMBRADOR_CSDVIGENCIA(305,"La fecha de emisión no esta dentro de la vigencia del CSD del emisor"),
+	TIMBRADOR_SELLOINVALIDO(302,"El sello de emisor no es válido"),
+	TIMBRADOR_CSDFIEL(306,"El certificado es FIEL y no CSD"),
+	TIMBRADOR_SERVICIONODISPONIBLE(350,"Servicio temporalmente fuera de servicio"),
+	TIMBRADOR_LCO_REVOCADO(304,"El CSD del emisor esta revocado"),
+	TIMBRADOR_LCO(402,"El certificado no se encuentra en la LCO"),
+	TIMBRADOR_HSM(351,"Error en consumo de HSM"),
+	TIMBRADOR_ENVIANDOCOMPROBANTE(352,"Error al enviar el comprobante al SAT"), 
 	
 	
 	;

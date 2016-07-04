@@ -92,8 +92,8 @@ public class ConsultaFiltro {
 		return this;
 		}
 		/**
-		 * @param sucursal en caso de emisores con manejo de sucursales
-		 * @return builder
+		 *  sucursal en caso de emisores con manejo de sucursales
+		 * builder
 		public ConsultaFiltroBuilder sucursal(String sucursal) {
 		this.sucursal=sucursal;
 		return this;

@@ -26,6 +26,7 @@ import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.valida32.Valida32Validador;
 import mx.emite.sdk.enums.Ambiente;
 
@@ -70,6 +71,9 @@ public class EmiteAPI {
 	
 	private final Nom32Cancelador nom32_cancelador;
 	private final Nom32Correo nom32_correo;
+	
+	
+	private final Ret10SelladorYTimbrador ret10_selladorytimbrador;
 	
 	@Getter @Setter
 	private String usuarioWs,contrasenaWs;
@@ -131,6 +135,7 @@ public class EmiteAPI {
 		this.nom32_pdf = new Nom32Pdf(this.cliente);
 		this.nom32_pdfacuse = new Nom32PdfAcuse(this.cliente);
 		this.nom32_correo=new Nom32Correo(this.cliente);
+		this.ret10_selladorytimbrador=new Ret10SelladorYTimbrador(this.cliente);
 	}
 	
 	/**
@@ -350,5 +355,14 @@ public class EmiteAPI {
 	 */
 	public Estatus estatus(){
 		return estatus;
+	}
+	
+	/**
+	 * Servicio de Sellado y Timbrado de Retenciones
+	 * @return estatus
+	 * @since 0.1.4
+	 */
+	public Ret10SelladorYTimbrador ret10_SelladorTimbrador(){
+		return ret10_selladorytimbrador;
 	}
 }

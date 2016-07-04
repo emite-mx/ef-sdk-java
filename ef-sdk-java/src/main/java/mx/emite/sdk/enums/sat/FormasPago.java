@@ -17,21 +17,24 @@ public enum FormasPago implements Sat{
 	TARJETASDECREDITO(4,"Tarjetas de crédito"),
 	MONEDEROSELECTRONICOS(5,"Monederos electrónicos"),
 	DINEROELECTRONICO(6,"Dinero electrónico"),
-	//TARJETASDIGITALES(7,"Tarjetas digitales"),
+	
 	VALESDEDESPENSA(8,"Vales de despensa"),
 	TARJETADEDEBITO(28,"Tarjeta de Débito"),
 	TARJETADESERVICIO(29,"Tarjeta de Servicio"),
-	//BIENES(9,"Bienes"),
-	//SERVICIO(10,"Servicio"),
-	//PORCUENTADETERCERO(11,"Por cuenta de tercero"),
-	//DACIONENPAGO(12,"Dación en pago"),
-	//PAGOPORSUBROGACION(13,"Pago por subrogación"),
-	//PAGOPORCONSIGNACION(14,"Pago por consignación"),
-	//CONDONACION(15,"Condonación"),
-	//CANCELACION(16,"Cancelación"),
-	//COMPENSACION(17,"Compensación"),
-	//NOAPLICA(98,"NA"),
+	
 	OTROS(99,"Otro",new String[]{"No Identificado"});
+	
+	//TARJETASDIGITALES(7,"Tarjetas digitales"),
+	//BIENES(9,"Bienes"),
+		//SERVICIO(10,"Servicio"),
+		//PORCUENTADETERCERO(11,"Por cuenta de tercero"),
+		//DACIONENPAGO(12,"Dación en pago"),
+		//PAGOPORSUBROGACION(13,"Pago por subrogación"),
+		//PAGOPORCONSIGNACION(14,"Pago por consignación"),
+		//CONDONACION(15,"Condonación"),
+		//CANCELACION(16,"Cancelación"),
+		//COMPENSACION(17,"Compensación"),
+		//NOAPLICA(98,"NA"),
 	
 	final Integer idSat;
 	final String descripcion;
@@ -92,6 +95,8 @@ public enum FormasPago implements Sat{
 		}
 	}
 
+	
+	
 	/**
 	 * Busca una formapago de acuerdo a su id del SAT
 	 * @param idSat de acuerdo al catalogo del SAT

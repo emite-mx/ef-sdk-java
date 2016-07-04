@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -59,7 +61,7 @@ public class ApiError implements Serializable{
 		return this.codigo.equals(I_Api_Errores.OK.getId());
 	}
 	
-	
+	@JsonIgnore
 	public String getHtml(){
 		final StringBuilder res = new StringBuilder("<b>").append(codigo.toString()).append("</b>");
 		if(descripcion!=null)

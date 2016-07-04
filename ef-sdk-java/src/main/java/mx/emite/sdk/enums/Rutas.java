@@ -28,6 +28,7 @@ public enum Rutas {
 	NOM32_PDF("/api/nomina/3.2/pdf"),
 	NOM32_XML("/api/nomina/3.2/xml"),
 	NOM32_ACUSE("/api/nomina/3.2/acusecancelacion/xml"),
+	RET10_SELLARYTIMBRAR("/api/retenciones/1.0/sellarytimbrar"),
 	EMISORES_ESTATUS("/api/scot/estatus"),
 	
 	TOKEN("/api/integrador/token"),
@@ -55,7 +56,7 @@ public enum Rutas {
 	@Deprecated
 	SELLAEMITE("/api/emite/sella"),
 	@Deprecated
-	CANCELAEMITE("/api/cfdi/3.2/cancelar"), 
+	CANCELAEMITE("/api/cfdi/3.2/cancelar"),  
 	;
 	
 	private final String ruta;
