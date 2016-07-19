@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 public class Extranjero {
 
 	/**
-	 * @param numRegIdTrib Atributo opcional para expresar el número de registro de identificación fiscal del receptor del documento cuando sea residente en el extranjero
+	 *  numRegIdTrib Atributo opcional para expresar el número de registro de identificación fiscal del receptor del documento cuando sea residente en el extranjero
 	 */
 	@XmlAttribute(required = false,name="NumRegIdTrib")
 	@Size(max=20) 
 	protected String numRegIdTrib;
 	
 	/**
-	 * @param razonSocial Atributo requerido para expresar el nombre, denominación o razón social del receptor del documento cuando sea residente en el extranjero
+	 *  razonSocial Atributo requerido para expresar el nombre, denominación o razón social del receptor del documento cuando sea residente en el extranjero
 	 */
 	@XmlAttribute(required = true,name="NomDenRazSocR")
 	@NotNull @Size(max=300)

@@ -30,21 +30,21 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class EnajenaciondeAcciones extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
 	private String version="1.0";
 	
 	/**
-	 * @param contratoIntermediacion Atributo requerido para expresar la descripción del contrato de intermediación.
+	 *  contratoIntermediacion Atributo requerido para expresar la descripción del contrato de intermediación.
 	 */
 	@XmlAttribute(name="ContratoIntermediacion")
 	@NotNull @Size(min=1,max=300)
 	private String contratoIntermediacion;
 	
 	/**
-	 * @param ganancia Atributo requerido para expresar la ganancia obtenida por la enajenación de acciones u operación de valores
+	 *  ganancia Atributo requerido para expresar la ganancia obtenida por la enajenación de acciones u operación de valores
 	 */
 	@XmlAttribute(required = true,name="Ganancia")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -52,7 +52,7 @@ public class EnajenaciondeAcciones extends ComplementoInterface{
 	protected BigDecimal ganancia;
 	
 	/**
-	 * @param perdida Atributo requerido para expresar la pérdida en el contrato de intermediación
+	 *  perdida Atributo requerido para expresar la pérdida en el contrato de intermediación
 	 */
 	@XmlAttribute(required = true,name="Perdida")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

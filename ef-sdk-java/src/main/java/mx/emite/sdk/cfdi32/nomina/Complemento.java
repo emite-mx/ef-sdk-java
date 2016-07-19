@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.cfdi32.TimbreFiscalDigital;
+import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)

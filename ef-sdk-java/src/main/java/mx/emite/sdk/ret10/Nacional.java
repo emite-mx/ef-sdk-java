@@ -29,21 +29,21 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 public class Nacional {
 
 	/**
-	 * @param rfc Atributo requerido para la clave del Registro Federal de Contribuyentes correspondiente al contribuyente receptor del documento
+	 *  rfc Atributo requerido para la clave del Registro Federal de Contribuyentes correspondiente al contribuyente receptor del documento
 	 */
 	@XmlAttribute(required = true,name="RFCRecep")
 	@NotNull @Rfc
 	protected String rfc;
 	
 	/**
-	 * @param razonSocial Atributo opcional para el nombre, denominación o razón social del contribuyente receptor del documento.
+	 *  razonSocial Atributo opcional para el nombre, denominación o razón social del contribuyente receptor del documento.
 	 */
 	@XmlAttribute(required = false,name="NomDenRazSocR")
 	@Size(max=300)
 	protected String razonSocial;
 	
 	/**
-	 * @param curp Atributo opcional para la Clave Única del Registro Poblacional del contribuyente receptor del documento
+	 *  curp Atributo opcional para la Clave Única del Registro Poblacional del contribuyente receptor del documento
 	 */
 	@XmlAttribute(required = false,name="CURPR")
 	@Curp

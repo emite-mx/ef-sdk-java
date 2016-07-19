@@ -22,7 +22,7 @@ public class IntegracIngresos {
 	
 	
 	/**
-	 * @param concepto Atributo requerido para expresar la descripción del concepto de ingresos de los fideicomisos que no realizan actividades empresariales
+	 *  concepto Atributo requerido para expresar la descripción del concepto de ingresos de los fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlAttribute(required = true,name="Concepto")
 	@NotNull @Size(min=1,max=100)

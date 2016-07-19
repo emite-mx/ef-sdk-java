@@ -27,14 +27,14 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Fideicomisonoempresarial extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
 	private String version="1.0";
 	
 	/**
-	 * @param ingresosOEntradas Nodo requerido para expresar el importe de los ingresos del periodo de fideicomisos que no realizan actividades empresariales
+	 *  ingresosOEntradas Nodo requerido para expresar el importe de los ingresos del periodo de fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlElement(name="IngresosOEntradas",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 	@Valid @NotNull
@@ -43,14 +43,14 @@ public class Fideicomisonoempresarial extends ComplementoInterface{
 	
 	
 	/**
-	 * @param deduccOSalidas Nodo requerido para expresar el importe de los egresos del periodo de fideicomisos que no realizan actividades empresariales
+	 *  deduccOSalidas Nodo requerido para expresar el importe de los egresos del periodo de fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlElement(name="DeduccOSalidas",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 	@Valid @NotNull
 	private DeduccOSalidas deduccOSalidas;
 	
 	/**
-	 * @param retEfectFideicomiso Nodo requerido para expresar las retenciones efectuadas al fideicomiso
+	 *  retEfectFideicomiso Nodo requerido para expresar las retenciones efectuadas al fideicomiso
 	 */
 	@XmlElement(name="RetEfectFideicomiso",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 	@Valid @NotNull

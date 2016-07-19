@@ -248,6 +248,14 @@ public enum Monedas implements Sat{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
+
+	public static boolean existe(String mon) {
+		for(Monedas m:values()){
+			if(m.idSat.equals(mon))
+				return true;
+		}
+		return false;
+	}
 	
 	
 }

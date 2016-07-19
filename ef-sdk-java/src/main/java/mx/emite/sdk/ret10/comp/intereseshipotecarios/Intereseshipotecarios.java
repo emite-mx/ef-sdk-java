@@ -30,7 +30,7 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Intereseshipotecarios extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de intereses reales deducibles por crédito hipotecarios
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de intereses reales deducibles por crédito hipotecarios
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
@@ -38,7 +38,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param creditoDeInstFinanc Atributo requerido para expresar si el crédito otorgado fue por institución financiera
+	 *  creditoDeInstFinanc Atributo requerido para expresar si el crédito otorgado fue por institución financiera
 	 */
 	@XmlAttribute(name="CreditoDeInstFinanc")
 	@NotNull  @Pattern(regexp="(SI|NO)",message="debe ser SI o NO")
@@ -46,7 +46,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param saldoInsoluto Atributo requerido para expresar el saldo insoluto al 31 de diciembre del ejercicio inmediato anterior o fecha de contratación si se llevo a cabo en el ejercicio en curso
+	 *  saldoInsoluto Atributo requerido para expresar el saldo insoluto al 31 de diciembre del ejercicio inmediato anterior o fecha de contratación si se llevo a cabo en el ejercicio en curso
 	 */
 	@XmlAttribute(required = false,name="SaldoInsoluto")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -54,7 +54,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	protected BigDecimal saldoInsoluto;
 	
 	/**
-	 * @param propDeducDelCredit Atributo opcional que expresa la proporción deducible del crédito aplicable sobre los intereses reales devengados y pagados
+	 *  propDeducDelCredit Atributo opcional que expresa la proporción deducible del crédito aplicable sobre los intereses reales devengados y pagados
 	 */
 	@XmlAttribute(required = false,name="PropDeducDelCredit")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -62,7 +62,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param montTotIntNominalesDev Atributo opcional que expresa el monto total de intereses nominales devengados
+	 *  montTotIntNominalesDev Atributo opcional que expresa el monto total de intereses nominales devengados
 	 */
 	@XmlAttribute(required = false,name="MontTotIntNominalesDev")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -70,7 +70,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param montTotIntNominalesDevYPag Atributo opcional que expresa el monto total de intereses nominales devengados y pagados
+	 *  montTotIntNominalesDevYPag Atributo opcional que expresa el monto total de intereses nominales devengados y pagados
 	 */
 	@XmlAttribute(required = false,name="MontTotIntNominalesDevYPag")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -78,7 +78,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param montTotIntRealPagDeduc Atributo opcional que expresa el monto total de intereses reales pagados deducibles
+	 *  montTotIntRealPagDeduc Atributo opcional que expresa el monto total de intereses reales pagados deducibles
 	 */
 	@XmlAttribute(required = false,name="MontTotIntRealPagDeduc")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -86,7 +86,7 @@ public class Intereseshipotecarios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param numContrato Atributo opcional que expresa el número de contrato del crédito hipotecario
+	 *  numContrato Atributo opcional que expresa el número de contrato del crédito hipotecario
 	 */
 	@XmlAttribute(name="NumContrato")
 	@Size(max=300)

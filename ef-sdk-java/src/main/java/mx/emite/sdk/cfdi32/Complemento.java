@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)

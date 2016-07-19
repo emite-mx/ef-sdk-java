@@ -30,7 +30,7 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Arrendamientoenfideicomiso extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de arrendamiento financiero
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de arrendamiento financiero
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
@@ -38,7 +38,7 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	
 	
 	/**
-	 * @param pagProvEfecPorFiduc Atributo requerido para expresar el importe del pago efectuado por parte del fiduciario al arrendador de bienes en el periodo
+	 *  pagProvEfecPorFiduc Atributo requerido para expresar el importe del pago efectuado por parte del fiduciario al arrendador de bienes en el periodo
 	 */
 	@XmlAttribute(required = true,name="PagProvEfecPorFiduc")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -46,7 +46,7 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	protected BigDecimal pagProvEfecPorFiduc;
 	
 	/**
-	 * @param rendimFideicom Atributo requerido para expresar el importe de los rendimientos obtenidos en el periodo por el arrendamiento de bienes
+	 *  rendimFideicom Atributo requerido para expresar el importe de los rendimientos obtenidos en el periodo por el arrendamiento de bienes
 	 */
 	@XmlAttribute(required = true,name="RendimFideicom")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -54,7 +54,7 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	protected BigDecimal rendimFideicom;
 	
 	/**
-	 * @param deduccCorresp Atributo requerido para expresar el importe de las deducciones correspondientes al arrendamiento de los bienes durante el periodo
+	 *  deduccCorresp Atributo requerido para expresar el importe de las deducciones correspondientes al arrendamiento de los bienes durante el periodo
 	 */
 	@XmlAttribute(required = true,name="DeduccCorresp")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -62,21 +62,21 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	protected BigDecimal deduccCorresp;
 	
 	/**
-	 * @param montTotRet Atributo opcional para expresar el monto total de la retención del arrendamiento de los bienes del periodo
+	 *  montTotRet Atributo opcional para expresar el monto total de la retención del arrendamiento de los bienes del periodo
 	 */
 	@XmlAttribute(required = true,name="MontTotRet")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montTotRet;
 	
 	/**
-	 * @param montResFiscDistFibras Atributo opcional para expresar el monto del resultado fiscal distribuido por FIBRAS
+	 *  montResFiscDistFibras Atributo opcional para expresar el monto del resultado fiscal distribuido por FIBRAS
 	 */
 	@XmlAttribute(required = true,name="MontResFiscDistFibras")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montResFiscDistFibras;
 	
 	/**
-	 * @param montOtrosConceptDistr Atributo opcional para expresar el monto de otros conceptos distribuidos
+	 *  montOtrosConceptDistr Atributo opcional para expresar el monto de otros conceptos distribuidos
 	 */
 	@XmlAttribute(required = true,name="MontOtrosConceptDistr")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -84,7 +84,7 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	
 	
 	/**
-	 * @param descrMontOtrosConceptDistr Atributo opcional para describir los conceptos distribuidos cuando se señalen otros conceptos.
+	 *  descrMontOtrosConceptDistr Atributo opcional para describir los conceptos distribuidos cuando se señalen otros conceptos.
 	 */
 	@XmlAttribute(required = true,name="DescrMontOtrosConceptDistr")
 	@Size(max=300)

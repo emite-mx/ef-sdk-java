@@ -35,28 +35,28 @@ import mx.emite.sdk.enums.sat.adaptadores.TiposImpuestoRetencionesAdapter;
 public class ImpRetenidos {
 
 	/**
-	 * @param baseRetencion Atributo opcional para expresar la  base del impuesto, que puede ser la diferencia entre los ingresos percibidos y las deducciones autorizadas
+	 *  baseRetencion Atributo opcional para expresar la  base del impuesto, que puede ser la diferencia entre los ingresos percibidos y las deducciones autorizadas
 	 */
 	@XmlAttribute(required = false,name="BaseRet")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal baseRetencion;
 	
 	/**
-	 * @param impuesto Atributo opcional para señalar el tipo de impuesto retenido del periodo o ejercicio conforme al catálogo.
+	 *  impuesto Atributo opcional para señalar el tipo de impuesto retenido del periodo o ejercicio conforme al catálogo.
 	 */
 	@XmlAttribute(required = false,name="Impuesto")
 	@XmlJavaTypeAdapter(TiposImpuestoRetencionesAdapter.class)
 	protected TipoImpuestoRetenciones impuesto;
 	
 	/**
-	 * @param montoRet Atributo requerido para expresar el importe del impuesto retenido en el periodo o ejercicio
+	 *  montoRet Atributo requerido para expresar el importe del impuesto retenido en el periodo o ejercicio
 	 */
 	@XmlAttribute(required = false,name="montoRet")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montoRetencion;
 	
 	/**
-	 * @param tipoPagoRetencion Atributo requerido para precisar si el monto de la retención es considerado pago definitivo o pago provisional
+	 *  tipoPagoRetencion Atributo requerido para precisar si el monto de la retención es considerado pago definitivo o pago provisional
 	 */
 	@XmlAttribute(required = true,name="TipoPagoRet")
 	@XmlJavaTypeAdapter(TipoPagoRetencionAdapter.class)

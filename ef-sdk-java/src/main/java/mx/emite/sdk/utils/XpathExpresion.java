@@ -87,6 +87,7 @@ public class XpathExpresion extends ThreadLocal<XPathExpression> implements XPat
             final XPath xPath = XPathFactory.newInstance().newXPath();
             if(context!=null)
             	xPath.setNamespaceContext(context);
+            
             return xPath.compile(expression);
         } catch (XPathExpressionException e) {
             throw new IllegalArgumentException("Invalid XPath expression");

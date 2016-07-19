@@ -1,5 +1,6 @@
 package mx.emite.sdk.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -8,9 +9,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.xpath.XPathConstants;
@@ -50,7 +54,8 @@ public class MarshallerUnmarshaller {
 	private final static JAXBContext contexto = contexto(Comprobante.class,GenericoFactura.class,GenericoNomina.class,ComprobanteNomina.class,Retenciones.class,EnajenaciondeAcciones.class
 			,Dividendos.class,Intereses.class,Arrendamientoenfideicomiso.class,Pagosaextranjeros.class,
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
-			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class);
+			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
+			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
 	/** DocumentBuilderFactory. */
@@ -131,6 +136,20 @@ public class MarshallerUnmarshaller {
 		}catch(Exception ex){
 			log.error("creando marshaller",ex);
 			return null;
+		}
+	}
+	
+	private static Marshaller xmlCfdiComplementoMarshaller(final ComplementoInterface c) throws Exception{
+		try{
+		
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.setProperty(Marshaller.JAXB_FRAGMENT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, c.getEsquemaLocation());
+		return m;
+		}catch(Exception ex){
+			throw ex;
 		}
 	}
 	
@@ -250,7 +269,39 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	public static String marshallCfdi32Complemento(ComplementoInterface comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			xmlCfdiComplementoMarshaller(comp).marshal(comp,writer);
+			final String xml = writer.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+		}
+	}
 	
+	public static String formatea(String xml)  {
+		try{
+			 final Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+			 serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+			 serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			 serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2");
+		     serializer.setOutputProperty("{http://xml.customer.org/xslt}indent-amount","2");
+		     final Source source = new SAXSource(new InputSource(new ByteArrayInputStream(xml.getBytes("UTF-8"))));
+		     final StringWriter w = new StringWriter();
+		     final StreamResult res = new StreamResult(w);
+		     serializer.transform(source, res);
+		     return w.toString();
+		}
+		catch(Exception ex){
+			log.error("formateando",ex);
+			return xml;
+		}
+	}
+
+
 	public static GenericoFactura unmarshallGenerico(String xml) {
 		if(!Base64.isBase64(xml))
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_BASE64);

@@ -160,6 +160,8 @@ public enum I_Api_Errores {
 	ENVIO_CANCELACION_LEYENDORESPUESTA(4010,"Leyendo la respuesta del SAT"),
 	ENVIO_CANCELACION_ENMANTENIMIENTO(4999,"El servicio de cancelación de encuentra en mantenimiento, intente mas tarde"),
 	
+	ENVIO_RETENCIONES_SUBIENDOXML(5002,"Error al subir XML"),
+	
 	TIMBRADOR_XMLINVALIDO(301,"El documento no es un XML válido"),
 	TIMBRADOR_TIMBREPREVIO(307,"Timbre previo"),
 	TIMBRADOR_VALIDACIONXSD(301,"Error de estructura (validando el XML contra el XSD)"),
@@ -176,6 +178,17 @@ public enum I_Api_Errores {
 	TIMBRADOR_HSM(351,"Error en consumo de HSM"),
 	TIMBRADOR_ENVIANDOCOMPROBANTE(352,"Error al enviar el comprobante al SAT"), 
 	
+	CANCELADOR_RETENCIONES_UUIDPROCESADO(1200,"UUID Procesado"),
+	CANCELADOR_RETENCIONES_UUIDCANCELADO(1201,"UUID Cancelado"),
+	CANCELADOR_RETENCIONES_UUIDPREVIAMENTECANCELADO(1202,"UUID Cancelado"),
+	CANCELADOR_RETENCIONES_UUIDNOENCONTRADO(1203,"UUID No encontrado o no corresponde al emisor"),
+	CANCELADOR_RETENCIONES_UUIDNOAPLICABLECANCELACION(1204,"UUID No aplicable para cancelación"),
+	CANCELADOR_RETENCIONES_UUIDNOEXISTE(1205,"UUID No existe"),
+	CANCELADOR_RETENCIONES_UUIDNOCORRESPONDE(1206,"UUID no corresponde a un CFDI del Sector Primario"),
+	CANCELADOR_RETENCIONES_XMLMALFORMADO(1301,"XML mal formado"),
+	CANCELADOR_RETENCIONES_SELLOMALFORMADO(1302,"Sello mal formado o inválido"),
+	CANCELADOR_RETENCIONES_SELLONOCORRESPONDEEMISOR(1303,"Sello no corresponde al emisor"),
+	CANCELADOR_RETENCIONES_CERTIFICADOREVOCADO(1304,"Certificado revocado o caduco"),
 	
 	;
 	

@@ -34,7 +34,7 @@ import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 public class Totales {
 
 	/**
-	 * @param montoTotalOperacion Atributo requerido para expresar  el total del monto de la operación  que se relaciona en el comprobante
+	 *  montoTotalOperacion Atributo requerido para expresar  el total del monto de la operación  que se relaciona en el comprobante
 	 */
 	@XmlAttribute(required = true,name="montoTotOperacion")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -43,7 +43,7 @@ public class Totales {
 	
 	
 	/**
-	 * @param montoTotalGravado Atributo requerido para expresar el total del monto gravado de la operación  que se relaciona en el comprobante.
+	 *  montoTotalGravado Atributo requerido para expresar el total del monto gravado de la operación  que se relaciona en el comprobante.
 	 */
 	@XmlAttribute(required = true,name="montoTotGrav")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -51,7 +51,7 @@ public class Totales {
 	protected BigDecimal montoTotalGravado;
 	
 	/**
-	 * @param montoTotalExento Atributo requerido para expresar el total del monto exento de la operación  que se relaciona en el comprobante.
+	 *  montoTotalExento Atributo requerido para expresar el total del monto exento de la operación  que se relaciona en el comprobante.
 	 */
 	@XmlAttribute(required = true,name="montoTotExent")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -59,7 +59,7 @@ public class Totales {
 	protected BigDecimal montoTotalExento;
 	
 	/**
-	 * @param montoTotalRetenido Atributo requerido para expresar el monto total de las retenciones. Sumatoria de los montos de retención del nodo ImpRetenidos.
+	 *  montoTotalRetenido Atributo requerido para expresar el monto total de las retenciones. Sumatoria de los montos de retención del nodo ImpRetenidos.
 	 */
 	@XmlAttribute(required = true,name="montoTotRet")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -67,7 +67,7 @@ public class Totales {
 	protected BigDecimal montoTotalRetenido;
 	
 	/**
-	 * @param impuestosRetenidos Nodo opcional para expresar el total de los impuestos retenidos que se desprenden de los conceptos expresados en el documento de retenciones e información de pagos.
+	 *  impuestosRetenidos Nodo opcional para expresar el total de los impuestos retenidos que se desprenden de los conceptos expresados en el documento de retenciones e información de pagos.
 	 */
 	@XmlElement(required = true,name="ImpRetenidos")
 	@Valid @Singular("impuestoRetenido")

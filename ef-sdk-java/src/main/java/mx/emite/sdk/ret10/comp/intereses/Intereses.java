@@ -29,14 +29,14 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Intereses extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de intereses obtenidos en el periodo o ejercicio
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de intereses obtenidos en el periodo o ejercicio
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
 	private String version="1.0";
 	
 	/**
-	 * @param sistFinanciero Atributo requerido para expresar si los interés obtenidos en el periodo o ejercicio provienen del sistema financiero
+	 *  sistFinanciero Atributo requerido para expresar si los interés obtenidos en el periodo o ejercicio provienen del sistema financiero
 	 */
 	@XmlAttribute(name="SistFinanciero")
 	@NotNull  @Pattern(regexp="(SI|NO)",message="debe ser SI o NO")
@@ -44,21 +44,21 @@ public class Intereses extends ComplementoInterface{
 	
 	
 	/**
-	 * @param retiroAORESRetInt Atributo requerido para expresar si los intereses obtenidos fueron retirados en el periodo o ejercicio
+	 *  retiroAORESRetInt Atributo requerido para expresar si los intereses obtenidos fueron retirados en el periodo o ejercicio
 	 */
 	@XmlAttribute(name="RetiroAORESRetInt")
 	@NotNull  @Pattern(regexp="(SI|NO)",message="debe ser SI o NO")
 	private String retiroAORESRetInt;
 	
 	/**
-	 * @param operFinancDerivad Atributo requerido para expresar si los intereses obtenidos corresponden a operaciones financieras derivadas.
+	 *  operFinancDerivad Atributo requerido para expresar si los intereses obtenidos corresponden a operaciones financieras derivadas.
 	 */
 	@XmlAttribute(name="OperFinancDerivad")
 	@NotNull  @Pattern(regexp="(SI|NO)",message="debe ser SI o NO")
 	private String operFinancDerivad;
 	
 	/**
-	 * @param montIntNominal Atributo requerido para expresar el importe del interés Nóminal obtenido en un periodo o ejercicio
+	 *  montIntNominal Atributo requerido para expresar el importe del interés Nóminal obtenido en un periodo o ejercicio
 	 */
 	@XmlAttribute(required = true,name="MontIntNominal")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -66,7 +66,7 @@ public class Intereses extends ComplementoInterface{
 	protected BigDecimal montIntNominal;
 	
 	/**
-	 * @param montIntReal Atributo requerido para expresar el monto de los intereses reales (diferencia que se obtiene restando al tipo de interés nominal y la tasa de inflación del periodo o ejercicio )
+	 *  montIntReal Atributo requerido para expresar el monto de los intereses reales (diferencia que se obtiene restando al tipo de interés nominal y la tasa de inflación del periodo o ejercicio )
 	 */
 	@XmlAttribute(required = true,name="MontIntReal")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -74,7 +74,7 @@ public class Intereses extends ComplementoInterface{
 	protected BigDecimal montIntReal;
 	
 	/**
-	 * @param perdida Atributo requerido para expresar la pérdida por los intereses obtenidos en el periodo o ejercicio
+	 *  perdida Atributo requerido para expresar la pérdida por los intereses obtenidos en el periodo o ejercicio
 	 */
 	@XmlAttribute(required = true,name="Perdida")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

@@ -24,7 +24,7 @@ import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 public class RetEfectFideicomiso {
 
 	/**
-	 * @param montRetRelPagFideic Atributo requerido para expresar el monto de la retenciones con relación al fideicomiso
+	 *  montRetRelPagFideic Atributo requerido para expresar el monto de la retenciones con relación al fideicomiso
 	 */
 	@XmlAttribute(required = true,name="MontRetRelPagFideic")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -33,7 +33,7 @@ public class RetEfectFideicomiso {
 	
 	
 	/**
-	 * @param descRetRelPagFideic Atributo requerido para expresar la descripción de las retenciones con relación al fideicomiso
+	 *  descRetRelPagFideic Atributo requerido para expresar la descripción de las retenciones con relación al fideicomiso
 	 */
 	@XmlAttribute(required = true,name="DescRetRelPagFideic")
 	@NotNull @Size(min=1,max=100)

@@ -139,6 +139,8 @@ public enum FormasPago implements Sat{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
+
+	
 	
 	
 }

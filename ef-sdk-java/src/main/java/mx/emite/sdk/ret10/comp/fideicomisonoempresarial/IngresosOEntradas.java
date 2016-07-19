@@ -25,7 +25,7 @@ import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 public class IngresosOEntradas {
 
 	/**
-	 * @param montTotEntradasPeriodo Atributo requerido para expresar el importe total de los ingresos del periodo de los fideicomisos que no realizan actividades empresariales
+	 *  montTotEntradasPeriodo Atributo requerido para expresar el importe total de los ingresos del periodo de los fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlAttribute(required = true,name="MontTotEntradasPeriodo")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -34,7 +34,7 @@ public class IngresosOEntradas {
 	
 	
 	/**
-	 * @param partPropAcumDelFideicom Atributo requerido para expresar la parte proporcional de los ingresos acumulables del periodo que correspondan al fideicomisario o fideicomitente
+	 *  partPropAcumDelFideicom Atributo requerido para expresar la parte proporcional de los ingresos acumulables del periodo que correspondan al fideicomisario o fideicomitente
 	 */
 	@XmlAttribute(required = true,name="PartPropAcumDelFideicom")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -42,7 +42,7 @@ public class IngresosOEntradas {
 	protected BigDecimal partPropAcumDelFideicom;
 	
 	/**
-	 * @param propDelMontTot Atributo requerido para expresar la proporción de participación del fideicomisario o fideicomitente de acuerdo al contrato
+	 *  propDelMontTot Atributo requerido para expresar la proporción de participación del fideicomisario o fideicomitente de acuerdo al contrato
 	 */
 	@XmlAttribute(required = true,name="PropDelMontTot")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -51,7 +51,7 @@ public class IngresosOEntradas {
 	
 	
 	/**
-	 * @param integracIngresos Nodo requerido para expresar el detalle de la integración de los ingresos obtenidos en el periodo por fideicomisos que no realizan actividades empresariales
+	 *  integracIngresos Nodo requerido para expresar el detalle de la integración de los ingresos obtenidos en el periodo por fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlElement(name="IntegracIngresos",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 	@Valid @NotNull

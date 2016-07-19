@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -47,20 +48,26 @@ public class ClienteHttp {
     private final CloseableHttpClient httpClient;
 
     private final String userAgent;
-
+    private final String apiKey;
+    
     private RequestConfig requestConfig;
 
     public ClienteHttp() {
-        this.httpClient = this.initHttpClient(true, DEFAULT_CONNECTION_TIMEOUT,
-                DEFAULT_SOCKET_TIMEOUT);
-        String version = this.getClass().getPackage().getImplementationVersion();
-        if (version == null) {
-            version = "UNKNOWN";
-        }
-        this.userAgent = AGENTE + version;
+       this(null);
     }
     
-    protected CloseableHttpClient initHttpClient(final boolean requirePoolManager, final int connectionTimeout,
+    public ClienteHttp(String apikey) {
+    	 this.httpClient = this.initHttpClient(true, DEFAULT_CONNECTION_TIMEOUT,
+                 DEFAULT_SOCKET_TIMEOUT);
+         String version = this.getClass().getPackage().getImplementationVersion();
+         if (version == null) {
+             version = "UNKNOWN";
+         }
+         this.userAgent = AGENTE + version;
+         this.apiKey=apikey;
+	}
+
+	protected CloseableHttpClient initHttpClient(final boolean requirePoolManager, final int connectionTimeout,
             final int socketTimeout) {
         CloseableHttpClient httpClient;
         HttpClientConnectionManager manager;
@@ -130,6 +137,9 @@ public class ClienteHttp {
 
     public RespuestaHttp post(final String url, final String json) throws ApiException {
         HttpPost request = new HttpPost(URI.create(url));
+        if(!StringUtils.isEmpty(apiKey))
+        	request.addHeader("x-api-key", apiKey);
+        
         request.setEntity(new StringEntity(json, Consts.UTF_8.name()));
         return this.executeOperation(request,url);
     }
@@ -177,7 +187,7 @@ public class ClienteHttp {
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             try {
-                serviceResponse.setBody(EntityUtils.toString(entity));
+                serviceResponse.setBody(EntityUtils.toString(entity,"UTF-8"));
             } catch (IOException e) {
                 log.error("Error obteniendo body del request", e);
             }

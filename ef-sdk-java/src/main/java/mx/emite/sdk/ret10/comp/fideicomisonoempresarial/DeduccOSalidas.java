@@ -25,7 +25,7 @@ import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 public class DeduccOSalidas {
 
 	/**
-	 * @param montTotEgresPeriodo Atributo requerido para expresar el importe total de los egresos del periodo de fideicomiso que no realizan actividades empresariales
+	 *  montTotEgresPeriodo Atributo requerido para expresar el importe total de los egresos del periodo de fideicomiso que no realizan actividades empresariales
 	 */
 	@XmlAttribute(required = true,name="MontTotEgresPeriodo")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -34,7 +34,7 @@ public class DeduccOSalidas {
 	
 	
 	/**
-	 * @param partPropDelFideicom Atributo requerido para expresar la parte proporcional de las deducciones autorizadas del periodo que corresponden al fideicomisario o fideicomitente
+	 *  partPropDelFideicom Atributo requerido para expresar la parte proporcional de las deducciones autorizadas del periodo que corresponden al fideicomisario o fideicomitente
 	 */
 	@XmlAttribute(required = true,name="PartPropDelFideicom")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -42,7 +42,7 @@ public class DeduccOSalidas {
 	protected BigDecimal partPropDelFideicom;
 	
 	/**
-	 * @param propDelMontTot Atributo requerido para expresar la proporción de participación del fideicomisario o fideicomitente de acuerdo al contrato
+	 *  propDelMontTot Atributo requerido para expresar la proporción de participación del fideicomisario o fideicomitente de acuerdo al contrato
 	 */
 	@XmlAttribute(required = true,name="PropDelMontTot")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -51,7 +51,7 @@ public class DeduccOSalidas {
 	
 	
 	/**
-	 * @param integracEgresos Nodo requerido para expresar la integración de las deducciones en los ingresos obtenidos por fideicomisos que no realizan actividades empresariales
+	 *  integracEgresos Nodo requerido para expresar la integración de las deducciones en los ingresos obtenidos por fideicomisos que no realizan actividades empresariales
 	 */
 	@XmlElement(name="IntegracEgresos",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 	@Valid @NotNull

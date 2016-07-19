@@ -27,21 +27,21 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Dividendos extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de la enajenación de acciones u operaciones de valores
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
 	private String version="1.0";
 	
 	/**
-	 * @param dividOUtil Nodo opcional que expresa los dividendos o utilidades distribuidas del periodo o ejercicio
+	 *  dividOUtil Nodo opcional que expresa los dividendos o utilidades distribuidas del periodo o ejercicio
 	 */
 	@XmlElement(name="DividOUtil",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos")
 	@Valid
 	private DividOUtil dividOUtil;
 	
 	/**
-	 * @param remanente Nodo opcional que expresa el resultado obtenido de la diferencia entre ingresos y egresos de las personas morales que distribuyan anticipos o rendimientos o sociedades de producción, sociedades y asociaciones civiles.
+	 *  remanente Nodo opcional que expresa el resultado obtenido de la diferencia entre ingresos y egresos de las personas morales que distribuyan anticipos o rendimientos o sociedades de producción, sociedades y asociaciones civiles.
 	 */
 	@XmlElement(name="Remanente",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos")
 	@Valid

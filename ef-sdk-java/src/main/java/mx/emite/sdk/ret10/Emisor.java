@@ -21,21 +21,21 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 public class Emisor {
 
 	/**
-	 * @param rfc Atributo requerido para incorporar la clave en el Registro Federal de Contribuyentes correspondiente al contribuyente emisor del documento de retención e información de pagos, sin guiones o espacios.
+	 * rfc Atributo requerido para incorporar la clave en el Registro Federal de Contribuyentes correspondiente al contribuyente emisor del documento de retención e información de pagos, sin guiones o espacios.
 	 */
 	@XmlAttribute(required = true,name="RFCEmisor")
 	@NotNull @Rfc
 	protected String rfc;
 	
 	/**
-	 * @param razonSocial Atributo opcional para el nombre, denominación o razón social del contribuyente emisor del documento de retención e información de pagos.
+	 * razonSocial Atributo opcional para el nombre, denominación o razón social del contribuyente emisor del documento de retención e información de pagos.
 	 */
 	@XmlAttribute(required = false,name="NomDenRazSocE")
 	@Size(max=300)
 	protected String razonSocial;
 	
 	/**
-	 * @param curp Atributo opcional para la Clave Única del Registro Poblacional del contribuyente emisor del documento de retención e información de pagos.
+	 * curp Atributo opcional para la Clave Única del Registro Poblacional del contribuyente emisor del documento de retención e información de pagos.
 	 */
 	@XmlAttribute(required = false,name="CURPE")
 	@Curp

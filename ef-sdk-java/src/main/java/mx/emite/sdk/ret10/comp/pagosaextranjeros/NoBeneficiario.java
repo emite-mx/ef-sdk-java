@@ -26,7 +26,7 @@ public class NoBeneficiario {
 
 	
 	/**
-	 * @param paisDeResidParaEfecFisc Atributo requerido para expresar la clave del país de residencia del extranjero, conforme al catálogo de países publicado en el Anexo 10 de la RMF.
+	 *  paisDeResidParaEfecFisc Atributo requerido para expresar la clave del país de residencia del extranjero, conforme al catálogo de países publicado en el Anexo 10 de la RMF.
 	 */
 	@XmlAttribute(required = true,name="PaisDeResidParaEfecFisc")
 	@XmlJavaTypeAdapter(PaisesRetencionAdapter.class)
@@ -34,7 +34,7 @@ public class NoBeneficiario {
 	private PaisesRetencion paisDeResidParaEfecFisc;
 
 	/**
-	 * @param ConceptoPago Atributo requerido para expresar el tipo contribuyente sujeto a la retención, conforme al catálogo.
+	 *  ConceptoPago Atributo requerido para expresar el tipo contribuyente sujeto a la retención, conforme al catálogo.
 	 */
 	@XmlAttribute(required = true,name="ConceptoPago")
 	@XmlJavaTypeAdapter(TipoContribuyenteSujetoRetencionAdapter.class)
@@ -42,7 +42,7 @@ public class NoBeneficiario {
 	private TipoContribuyenteSujetoRetencion conceptoPago;
 	
 	/**
-	 * @param descripcionConcepto Atributo requerido para expresar la descripción de la definición del pago del residente en el extranjero
+	 *  descripcionConcepto Atributo requerido para expresar la descripción de la definición del pago del residente en el extranjero
 	 */
 	@XmlAttribute(required = true,name="DescripcionConcepto")
 	@NotNull @Size(min=1,max=255)

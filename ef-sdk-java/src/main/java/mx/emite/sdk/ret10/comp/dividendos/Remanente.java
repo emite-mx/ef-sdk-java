@@ -24,7 +24,7 @@ public class Remanente {
 	
 	
 	/**
-	 * @param proporcionRem Atributo opcional que expresa el porcentaje de participación de sus integrantes o accionistas
+	 *  proporcionRem Atributo opcional que expresa el porcentaje de participación de sus integrantes o accionistas
 	 */
 	@XmlAttribute(required = true,name="ProporcionRem")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

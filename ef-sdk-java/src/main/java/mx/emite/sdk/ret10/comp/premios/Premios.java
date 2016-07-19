@@ -31,7 +31,7 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Premios extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de premios obtenidos
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de premios obtenidos
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
@@ -39,7 +39,7 @@ public class Premios extends ComplementoInterface{
 	
 	
 	/**
-	 * @param entidadFederativa Atributo requerido para expresar la entidad federativa en la que se paga el premio obtenido, conforme al catálogo.
+	 *  entidadFederativa Atributo requerido para expresar la entidad federativa en la que se paga el premio obtenido, conforme al catálogo.
 	 */
 	@XmlAttribute(required = true,name="EntidadFederativa")
 	@XmlJavaTypeAdapter(EntidadesFederativasAdapter.class)
@@ -47,7 +47,7 @@ public class Premios extends ComplementoInterface{
 	protected EntidadesFederativas entidadFederativa;
 	
 	/**
-	 * @param montTotPago Atributo requerido para expresar el importe del pago realizado por la obtención de un premio
+	 *  montTotPago Atributo requerido para expresar el importe del pago realizado por la obtención de un premio
 	 */
 	@XmlAttribute(required = true,name="MontTotPago")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -55,7 +55,7 @@ public class Premios extends ComplementoInterface{
 	protected BigDecimal montTotPago;
 	
 	/**
-	 * @param montTotPagoGrav Atributo requerido para expresar el importe gravado en la obtención de un premio
+	 *  montTotPagoGrav Atributo requerido para expresar el importe gravado en la obtención de un premio
 	 */
 	@XmlAttribute(required = true,name="MontTotPagoGrav")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -63,7 +63,7 @@ public class Premios extends ComplementoInterface{
 	protected BigDecimal montTotPagoGrav;
 	
 	/**
-	 * @param montTotPagoExent Atributo requerido para expresar el monto total exento en la obtención de un premio
+	 *  montTotPagoExent Atributo requerido para expresar el monto total exento en la obtención de un premio
 	 */
 	@XmlAttribute(required = true,name="MontTotPagoExent")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

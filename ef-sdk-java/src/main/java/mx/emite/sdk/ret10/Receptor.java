@@ -31,7 +31,7 @@ import mx.emite.sdk.enums.sat.adaptadores.NacionalidadAdapter;
 public class Receptor {
 
 	/**
-	 * @param nacionalidad 
+	 *  nacionalidad 
 	 */
 	@XmlAttribute(name="Nacionalidad")
 	@XmlJavaTypeAdapter(NacionalidadAdapter.class)
@@ -39,14 +39,14 @@ public class Receptor {
 	private Nacionalidad nacionalidad;
 	
 	/**
-	 * @param nacional Nodo requerido para expresar la información del contribuyente receptor en caso de que sea de nacionalidad mexicana
+	 *  nacional Nodo requerido para expresar la información del contribuyente receptor en caso de que sea de nacionalidad mexicana
 	 */
 	@XmlElement(name="Nacional")
 	@Valid
 	private Nacional nacional;
 	
 	/**
-	 * @param extranjero Nodo requerido para expresar la información del contribuyente receptor del documento cuando sea residente en el extranjero
+	 *  extranjero Nodo requerido para expresar la información del contribuyente receptor del documento cuando sea residente en el extranjero
 	 */
 	@XmlElement(name="Extranjero")
 	@Valid

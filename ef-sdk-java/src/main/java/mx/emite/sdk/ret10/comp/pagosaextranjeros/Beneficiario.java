@@ -26,21 +26,21 @@ public class Beneficiario {
 
 	
 	/**
-	 * @param rfc Atributo requerido para expresar la clave del registro federal de contribuyentes del representante legal en México
+	 *  rfc Atributo requerido para expresar la clave del registro federal de contribuyentes del representante legal en México
 	 */
 	@XmlAttribute(required = true,name="RFC")
 	@NotNull @Rfc
 	protected String rfc;
 	
 	/**
-	 * @param curp Atributo requerido para la expresión de la CURP del representante legal
+	 *  curp Atributo requerido para la expresión de la CURP del representante legal
 	 */
 	@XmlAttribute(required = false,name="CURP")
 	@NotNull @Curp
 	protected String curp;
 	
 	/**
-	 * @param nomDenRazSocB Atributo requerido para expresar el nombre, denominación o razón social del contribuyente en México
+	 *  nomDenRazSocB Atributo requerido para expresar el nombre, denominación o razón social del contribuyente en México
 	 */
 	@XmlAttribute(required = false,name="NomDenRazSocB")
 	@NotNull @Size(min=1,max=300)
@@ -48,7 +48,7 @@ public class Beneficiario {
 	
 	
 	/**
-	 * @param ConceptoPago Atributo requerido para expresar el tipo contribuyente sujeto a la retención, conforme al catálogo.
+	 *  ConceptoPago Atributo requerido para expresar el tipo contribuyente sujeto a la retención, conforme al catálogo.
 	 */
 	@XmlAttribute(required = true,name="ConceptoPago")
 	@XmlJavaTypeAdapter(TipoContribuyenteSujetoRetencionAdapter.class)
@@ -56,7 +56,7 @@ public class Beneficiario {
 	private TipoContribuyenteSujetoRetencion conceptoPago;
 	
 	/**
-	 * @param descripcionConcepto Atributo requerido para expresar la descripción de la definición del pago del residente en el extranjero
+	 *  descripcionConcepto Atributo requerido para expresar la descripción de la definición del pago del residente en el extranjero
 	 */
 	@XmlAttribute(required = true,name="DescripcionConcepto")
 	@NotNull @Size(min=1,max=255)

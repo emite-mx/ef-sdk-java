@@ -28,21 +28,21 @@ import lombok.NoArgsConstructor;
 public class Periodo {
 
 	/**
-	 * @param mesInicial Atributo requerido para la expresión del mes inicial del periodo de la retención e información de pagos
+	 *  mesInicial Atributo requerido para la expresión del mes inicial del periodo de la retención e información de pagos
 	 */
 	@XmlAttribute(required = true,name="MesIni")
 	@NotNull @Min(1) @Max(12)
 	protected Integer mesInicial;
 	
 	/**
-	 * @param mesFinal Atributo requerido para la expresión del mes final del periodo de la retención e información de pagos
+	 *  mesFinal Atributo requerido para la expresión del mes final del periodo de la retención e información de pagos
 	 */
 	@XmlAttribute(required = true,name="MesFin")
 	@NotNull @Min(1) @Max(12)
 	protected Integer mesFinal;
 	
 	/**
-	 * @param ejercicio Atributo requerido para la expresión del ejercicio fiscal (año)
+	 *  ejercicio Atributo requerido para la expresión del ejercicio fiscal (año)
 	 */
 	@XmlAttribute(required = true,name="Ejerc")
 	@NotNull @Min(2004) @Max(2024)

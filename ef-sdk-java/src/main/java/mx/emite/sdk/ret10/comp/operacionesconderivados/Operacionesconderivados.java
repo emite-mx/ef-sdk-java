@@ -29,7 +29,7 @@ import mx.emite.sdk.ret10.comp.ComplementoInterface;
 public class Operacionesconderivados extends ComplementoInterface{
 
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del complemento de las operaciones financieras derivadas de capital.
+	 *  version Atributo requerido con valor prefijado que indica la versión del complemento de las operaciones financieras derivadas de capital.
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
@@ -37,7 +37,7 @@ public class Operacionesconderivados extends ComplementoInterface{
 	
 	
 	/**
-	 * @param montGanAcum Atributo requerido para expresar el monto de la ganancia acumulable.
+	 *  montGanAcum Atributo requerido para expresar el monto de la ganancia acumulable.
 	 */
 	@XmlAttribute(required = false,name="MontGanAcum")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -47,7 +47,7 @@ public class Operacionesconderivados extends ComplementoInterface{
 	
 	
 	/**
-	 * @param montPerdDed Atributo requerido para expresar el monto de la pérdida deducible.
+	 *  montPerdDed Atributo requerido para expresar el monto de la pérdida deducible.
 	 */
 	@XmlAttribute(required = false,name="MontPerdDed")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

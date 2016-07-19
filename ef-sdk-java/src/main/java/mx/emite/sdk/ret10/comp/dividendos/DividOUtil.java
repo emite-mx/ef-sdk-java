@@ -27,7 +27,7 @@ import mx.emite.sdk.enums.sat.adaptadores.TipoSocDistrDivAdapter;
 public class DividOUtil {
 
 	/**
-	 * @param cveTipDivOUtil Atributo requerido para expresar la clave del tipo de dividendo o utilidad distribuida de acuerdo al catálogo.
+	 *  cveTipDivOUtil Atributo requerido para expresar la clave del tipo de dividendo o utilidad distribuida de acuerdo al catálogo.
 	 */
 	@XmlAttribute(required = true,name="CveTipDivOUtil")
 	@XmlJavaTypeAdapter(TipoDividendosOUtilidadDistribuidaAdapter.class)
@@ -35,7 +35,7 @@ public class DividOUtil {
 	private TipoDividendosOUtilidadDistribuida cveTipDivOUtil;
 
 	/**
-	 * @param montISRAcredRetMexico Atributo requerido para expresar el importe o retención del dividendo o utilidad en territorio nacional
+	 *  montISRAcredRetMexico Atributo requerido para expresar el importe o retención del dividendo o utilidad en territorio nacional
 	 */
 	@XmlAttribute(required = true,name="MontISRAcredRetMexico")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -43,7 +43,7 @@ public class DividOUtil {
 	protected BigDecimal montISRAcredRetMexico;
 	
 	/**
-	 * @param montISRAcredRetExtranjero Atributo requerido para expresar el importe o retención del dividendo o utilidad en territorio extranjero
+	 *  montISRAcredRetExtranjero Atributo requerido para expresar el importe o retención del dividendo o utilidad en territorio extranjero
 	 */
 	@XmlAttribute(required = true,name="MontISRAcredRetExtranjero")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
@@ -51,14 +51,14 @@ public class DividOUtil {
 	protected BigDecimal montISRAcredRetExtranjero;
 	
 	/**
-	 * @param montRetExtDivExt Atributo opcional para expresar el monto de la retención en el extranjero sobre dividendos del extranjero
+	 *  montRetExtDivExt Atributo opcional para expresar el monto de la retención en el extranjero sobre dividendos del extranjero
 	 */
 	@XmlAttribute(required = true,name="MontRetExtDivExt")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montRetExtDivExt;
 	
 	/**
-	 * @param cveTipDivOUtil Atributo requerido para expresar la clave del tipo de dividendo o utilidad distribuida de acuerdo al catálogo.
+	 *  cveTipDivOUtil Atributo requerido para expresar la clave del tipo de dividendo o utilidad distribuida de acuerdo al catálogo.
 	 */
 	@XmlAttribute(required = true,name="TipoSocDistrDiv")
 	@XmlJavaTypeAdapter(TipoSocDistrDivAdapter.class)
@@ -66,21 +66,21 @@ public class DividOUtil {
 	private TipoSocDistrDiv tipoSocDistrDiv;
 	
 	/**
-	 * @param montISRAcredNal Atributo opcional para expresar el monto del ISR acreditable nacional
+	 *  montISRAcredNal Atributo opcional para expresar el monto del ISR acreditable nacional
 	 */
 	@XmlAttribute(required = true,name="MontISRAcredNal")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montISRAcredNal;
 	
 	/**
-	 * @param montDivAcumNal Atributo opcional para expresar el monto del dividendo acumulable nacional
+	 *  montDivAcumNal Atributo opcional para expresar el monto del dividendo acumulable nacional
 	 */
 	@XmlAttribute(required = true,name="MontDivAcumNal")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
 	protected BigDecimal montDivAcumNal;
 	
 	/**
-	 * @param montDivAcumExt Atributo opcional para expresar el monto del dividendo acumulable extranjero
+	 *  montDivAcumExt Atributo opcional para expresar el monto del dividendo acumulable extranjero
 	 */
 	@XmlAttribute(required = true,name="MontDivAcumExt")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)

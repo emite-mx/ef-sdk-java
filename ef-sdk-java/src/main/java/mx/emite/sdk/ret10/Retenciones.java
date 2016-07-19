@@ -51,27 +51,27 @@ public class Retenciones {
 	private Complemento complemento;
 	
 	/**
-	 * @param version Atributo requerido con valor prefijado que indica la versión del estándar bajo el que se encuentra expresada la retención y/o comprobante de información de pagos.
+	 *  version Atributo requerido con valor prefijado que indica la versión del estándar bajo el que se encuentra expresada la retención y/o comprobante de información de pagos.
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
 	private String version="1.0";
 	
 	/**
-	 * @param folio Atributo opcional para control interno del contribuyente que expresa el folio del documento que ampara la retención e información de pagos. Permite números y/o letras.
+	 *  folio Atributo opcional para control interno del contribuyente que expresa el folio del documento que ampara la retención e información de pagos. Permite números y/o letras.
 	 */
 	@XmlAttribute(name="FolioInt")
 	@Size(max=20)
 	private String folio;
 	
 	/**
-	 * @param sello Atributo requerido para contener el sello digital del documento de retención e información de pagos. El sello deberá ser expresado como una cadena de texto en formato base 64.
+	 *  sello Atributo requerido para contener el sello digital del documento de retención e información de pagos. El sello deberá ser expresado como una cadena de texto en formato base 64.
 	 */
 	@XmlAttribute(name="Sello")
 	private String sello;
 
 	/**
-	 * @param numCertificado Atributo requerido para expresar el número de serie del certificado de sello digital con el que se selló digitalmente el documento de la retención e información de pagos.
+	 *  numCertificado Atributo requerido para expresar el número de serie del certificado de sello digital con el que se selló digitalmente el documento de la retención e información de pagos.
 	 */
 	@XmlAttribute(name="NumCert")
 	@Size(min=20,max=20) @NotNull
@@ -79,13 +79,13 @@ public class Retenciones {
 	
 	
 	/**
-	 * @param certificado Atributo requerido que sirve para incorporar el certificado de sello digital que ampara el documento de retención e información de pagos como texto, en formato base 64.
+	 *  certificado Atributo requerido que sirve para incorporar el certificado de sello digital que ampara el documento de retención e información de pagos como texto, en formato base 64.
 	 */
 	@XmlAttribute(name="Cert")
 	private String certificado;
 	
 	/**
-	 * @param fechaExpedicion Atributo requerido para la expresión de la fecha y hora de expedición del documento de retención e información de pagos. Se expresa en la forma yyyy-mm-ddThh:mm:ssTZD-6, de acuerdo con la especificación ISO 8601.
+	 *  fechaExpedicion Atributo requerido para la expresión de la fecha y hora de expedición del documento de retención e información de pagos. Se expresa en la forma yyyy-mm-ddThh:mm:ssTZD-6, de acuerdo con la especificación ISO 8601.
 	 */
 	@XmlAttribute(required = true,name="FechaExp")
 	@XmlJavaTypeAdapter(ZonedDateTimeAdapter.class)
@@ -93,7 +93,7 @@ public class Retenciones {
 	private ZonedDateTime fechaExpedicion;
 	
 	/**
-	 * @param claveRetencion Atributo requerido para expresar la clave de la retención e información de pagos de acuerdo al catálogo publicado en internet por el SAT.
+	 *  claveRetencion Atributo requerido para expresar la clave de la retención e información de pagos de acuerdo al catálogo publicado en internet por el SAT.
 	 */
 	@XmlAttribute(required = true,name="CveRetenc")
 	@XmlJavaTypeAdapter(ClavesRetencionesAdapter.class)
@@ -101,7 +101,7 @@ public class Retenciones {
 	private ClavesRetenciones claveRetencion;
 	
 	/**
-	 * @param descripcionRetencion Atributo opcional que expresa la descripción de la retención e información de pagos en caso de que en el atributo CveRetenc se haya elegido el valor para 'otro tipo de retenciones'
+	 *  descripcionRetencion Atributo opcional que expresa la descripción de la retención e información de pagos en caso de que en el atributo CveRetenc se haya elegido el valor para 'otro tipo de retenciones'
 	 */
 	@XmlAttribute(name="DescRetenc")
 	@Size(max=100)
