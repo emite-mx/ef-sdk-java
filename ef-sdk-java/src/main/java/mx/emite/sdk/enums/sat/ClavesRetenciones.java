@@ -18,7 +18,7 @@ public enum ClavesRetenciones implements Sat{
 	SERVICIOSPRESTADOSCOMISIONISTAS("04","Servicios prestados por comisionistas"),
 	ARRENDAMIENTO ("05","Arrendamiento"),
 	ENAJENACIONDEACCIONES("06","Enajenación de acciones"),
-	ENAJENACIONLIEPS("07","Enajenación de bienes objeto de la LIEPS, a través de mediadores, agentes, representantes, corredores, consignatarios o distribuidores"),
+	ENAJENACIONLIEPS("07","Enajenación de bienes objeto de la LIEPS"),
 	ENAJENACIONBIENESINMUEBLES("08","Enajenación de bienes inmuebles consignada en escritura pública"),
 	ENAJENACIONOTROSBIENES ("09","Enajenación de otros bienes, no consignada en escritura pública"),
 	ADQUISICIONDESPERDICIOSINDUSTRIALES("10","Adquisición de desperdicios industriales"),

@@ -11,10 +11,12 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import lombok.Getter;
+
 public class XpathExpresion extends ThreadLocal<XPathExpression> implements XPathExpression {
 
     /** XPath expression */
-    private final String expression;
+    @Getter private final String expression;
 
     /** Namespace context. */
     private final NamespaceContext context;
