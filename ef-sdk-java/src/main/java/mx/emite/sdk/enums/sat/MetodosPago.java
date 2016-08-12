@@ -13,8 +13,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-@Deprecated
-public enum FormasPago implements Sat<Integer>{
+public enum MetodosPago implements Sat<Integer>{
 	
 	EFECTIVO(1,"Efectivo"),
 	CHEQUE(2,"Cheque"),
@@ -45,11 +44,11 @@ public enum FormasPago implements Sat<Integer>{
 	final String descripcion;
 	final String[] sinonimos;
 	
-	FormasPago(Integer idSat,String descripcion){
+	MetodosPago(Integer idSat,String descripcion){
 		this(idSat,descripcion,null);
 	}
 	
-	FormasPago(Integer idSat,String descripcion,String[] sinonimos){
+	MetodosPago(Integer idSat,String descripcion,String[] sinonimos){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
@@ -60,10 +59,10 @@ public enum FormasPago implements Sat<Integer>{
 	 * @param descripcion de acuerdo al catalogo del SAT
 	 * @return FormasPago valor del enum de acuerdo a la forma de pago
 	 */
-	public static FormasPago busca(String descripcion) {
+	public static MetodosPago busca(String descripcion) {
 		if(StringUtils.isEmpty(descripcion))
 			return null;
-		for(FormasPago m:values()){
+		for(MetodosPago m:values()){
 			final Integer clavedesc = sacaInt(descripcion);
 			if(clavedesc!=null){
 				if(m.idSat.equals(clavedesc)){
@@ -83,10 +82,10 @@ public enum FormasPago implements Sat<Integer>{
 		return null;
 	}
 	
-	public static FormasPago buscaSinNulo(String descripcion) {
-		final FormasPago fd = busca(descripcion);
+	public static MetodosPago buscaSinNulo(String descripcion) {
+		final MetodosPago fd = busca(descripcion);
 		if(fd==null)
-			return FormasPago.OTROS;
+			return MetodosPago.OTROS;
 		else
 			return fd;
 	}
@@ -107,8 +106,8 @@ public enum FormasPago implements Sat<Integer>{
 	 * @param idSat de acuerdo al catalogo del SAT
 	 * @return formapago valor del enum de acuerdo a la forma de pago
 	 */
-	public static FormasPago id(Integer idSat) {
-		for(FormasPago m:values()){
+	public static MetodosPago id(Integer idSat) {
+		for(MetodosPago m:values()){
 			if(m.idSat.equals(idSat))
 				return m;
 		}
@@ -119,15 +118,15 @@ public enum FormasPago implements Sat<Integer>{
 		return idSat;
 	}
 
-	public static FormasPago[] formaspago() {
+	public static MetodosPago[] formaspago() {
 		
 		return values();
 	}
 	
-	public static FormasPago unmarshall(String metodo) throws ApiException{
+	public static MetodosPago unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final FormasPago estado =  FormasPago.busca(metodo);		
+		final MetodosPago estado =  MetodosPago.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El método de pago "+metodo+" no se encuentra en el catálogo de métodos de pago del SAT");
 		else
@@ -135,7 +134,7 @@ public enum FormasPago implements Sat<Integer>{
 	}
 	
 	
-	public static String marshall(FormasPago v) throws Exception {
+	public static String marshall(MetodosPago v) throws Exception {
 		if(v==null)
 			return null;
 		return v.marshall();
@@ -154,8 +153,11 @@ public enum FormasPago implements Sat<Integer>{
 	}
 
 	public static List<String> ids() {
-		return Arrays.asList(values()).stream().map(FormasPago::getIdSatString).collect(Collectors.toList());		
+		return Arrays.asList(values()).stream().map(MetodosPago::getIdSatString).collect(Collectors.toList());		
 	}
 	
+	public static List<Integer> idsint() {
+		return Arrays.asList(values()).stream().map(MetodosPago::getIdSat).collect(Collectors.toList());		
+	}
 	
 }

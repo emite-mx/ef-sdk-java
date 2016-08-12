@@ -1,5 +1,9 @@
 package mx.emite.sdk.enums.sat;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
 
@@ -9,7 +13,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum RegimenesFiscales implements Sat{
+public enum RegimenesFiscales implements Sat<Integer>{
 	
 	GENERALDELEYPERSONASMORALES(601,"General de Ley Personas Morales"),
 	PERSONASMORALESCONFINESNOLUCRATIVOS(603,"Personas Morales con Fines no Lucrativos"),
@@ -99,6 +103,18 @@ public enum RegimenesFiscales implements Sat{
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+	public static boolean existe(Integer idSat) {
+		for(RegimenesFiscales reg:values()){
+			if(reg.getIdSat().equals(idSat))
+				return true;
+		}
+		return false;
+	}
+
+	public static List<Integer> ids() {
+		return Arrays.asList(values()).stream().map(RegimenesFiscales::getIdSat).collect(Collectors.toList());		
 	}
 	
 }

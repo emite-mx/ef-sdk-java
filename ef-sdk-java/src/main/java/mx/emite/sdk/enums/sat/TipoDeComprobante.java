@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoDeComprobante implements Sat {
+public enum TipoDeComprobante implements Sat<Integer> {
 	
 	INGRESO(1,"ingreso"),
 	EGRESO(2,"egreso"),

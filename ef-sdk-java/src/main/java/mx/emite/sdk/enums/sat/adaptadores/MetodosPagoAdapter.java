@@ -6,24 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.FormasPago;
+import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-@Deprecated
-public class FormasPagoAdapter extends XmlAdapter<String,FormasPago> implements TypeHandler{
+public class MetodosPagoAdapter extends XmlAdapter<String,MetodosPago> implements TypeHandler{
 
 	@Override
-	public FormasPago unmarshal(String metodo) throws ApiException {
-		return FormasPago.unmarshall(metodo);
+	public MetodosPago unmarshal(String metodo) throws ApiException {
+		return MetodosPago.unmarshall(metodo);
 	}
 	@Override
-	public Class<FormasPago> getType() {
-		return FormasPago.class;
+	public Class<MetodosPago> getType() {
+		return MetodosPago.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return FormasPago.parse(text);
+		return MetodosPago.parse(text);
 	}
 
 
@@ -31,8 +30,8 @@ public class FormasPagoAdapter extends XmlAdapter<String,FormasPago> implements 
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof FormasPago)
-			return FormasPago.marshall((FormasPago)value);
+		if(value instanceof MetodosPago)
+			return MetodosPago.marshall((MetodosPago)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -43,8 +42,8 @@ public class FormasPagoAdapter extends XmlAdapter<String,FormasPago> implements 
 
 
 	@Override
-	public String marshal(FormasPago v) throws Exception {
-		return FormasPago.marshall(v);
+	public String marshal(MetodosPago v) throws Exception {
+		return MetodosPago.marshall(v);
 	}
 	
 	/*

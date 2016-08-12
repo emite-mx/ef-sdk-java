@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum EntidadesFederativas implements Sat{
+public enum EntidadesFederativas implements Sat<String>{
 	
 	AGUASCALIENTES("01","Aguascalientes"),
 	BAJACALIFORNIA("02","Baja California"),

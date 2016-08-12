@@ -31,5 +31,9 @@ public class ZonedDateTimeAdapter extends XmlAdapter<String, ZonedDateTime> {
 	    return date.format(df);
 	  }
 
-
+   public static DateTimeFormatter getZonaFormatter(){
+	   return df;
+   }
+	  
+	  
 }

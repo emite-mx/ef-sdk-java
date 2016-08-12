@@ -56,7 +56,9 @@ public enum Rutas {
 	@Deprecated
 	SELLAEMITE("/api/emite/sella"),
 	@Deprecated
-	CANCELAEMITE("/api/cfdi/3.2/cancelar"),  
+	CANCELAEMITE("/api/cfdi/3.2/cancelar"),
+	@Deprecated
+	CANCELARETEMITE("/api/ret/1.0/cancelarmasiva"),  
 	;
 	
 	private final String ruta;

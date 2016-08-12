@@ -36,6 +36,12 @@ public abstract class NumeroLetra {
     	return "";
     }
     
+    public static String convierte(final String numero){
+    	if(numero!=null)
+    		return convertNumberToLetter(numero);
+    	return "";
+    }
+    
     public static String convierte(final Double numero){
     	if(numero!=null)
     		return convertNumberToLetter(numero);

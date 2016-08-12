@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposRegimen implements Sat{
+public enum TiposRegimen implements Sat<Integer>{
 	
 	SUELDOS(2,"Sueldos"),
 	JUBILADOS(3,"Jubilados"),

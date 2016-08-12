@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoContribuyenteSujetoRetencion implements Sat{
+public enum TipoContribuyenteSujetoRetencion implements Sat<String>{
 	
 	ARTISTASDEPORTISTAS("1","Artistas, deportistas y espectáculos públicos"),
 	OTRASPERSONASFISICAS("2","Otras personas físicas"),

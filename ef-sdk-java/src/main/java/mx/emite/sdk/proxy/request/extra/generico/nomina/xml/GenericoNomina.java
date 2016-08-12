@@ -17,10 +17,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.enums.sat.FormasPago;
+import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.TiposDeduccion;
 import mx.emite.sdk.enums.sat.TiposPeriodicidad;
-import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
 
@@ -49,8 +49,8 @@ public class GenericoNomina {
 	
 	@XmlAttribute(name="metodoPago")
 	@NotNull
-	@XmlJavaTypeAdapter(FormasPagoAdapter.class)
-	private FormasPago metodoPago;
+	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
+	private MetodosPago metodoPago;
 	
 	@XmlAttribute(name="numCuentaPago")
 	@NotNull @Size(max=25)

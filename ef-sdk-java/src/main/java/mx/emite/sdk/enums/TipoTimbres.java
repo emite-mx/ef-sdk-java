@@ -155,10 +155,10 @@ public enum TipoTimbres {
 		switch(this){
 		case NOMINA:
 		case CFDI:
+		case RETENCIONES:
 			return true;
 		case CONTABILIDAD:
 		case PSRDD:
-		case RETENCIONES:
 		case TODOS:
 		case VALIDACION:
 			return false;

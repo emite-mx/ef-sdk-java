@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum Monedas implements Sat{
+public enum Monedas implements Sat<String>{
 	MXN("MXN","Peso Mexicano",2,new String[]{"PESOS","M.N.","MN"}),
 	USD("USD","Dolar americano",2,new String[]{"DOLARES"}),
 	EUR("EUR","Euro",2,new String[]{"EUROS"}),

@@ -11,7 +11,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoPagoRetencion implements Sat{
+public enum TipoPagoRetencion implements Sat<String>{
 	
 	DEFINITIVO("Pago definitivo"),
 	PROVISIONAL("Pago provisional")

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoDividendosOUtilidadDistribuida implements Sat{
+public enum TipoDividendosOUtilidadDistribuida implements Sat<String>{
 	
 	CUFIN("01","Proviene de CUFIN"),
 	NOCUFIN("02","No proviene de CUFIN"),

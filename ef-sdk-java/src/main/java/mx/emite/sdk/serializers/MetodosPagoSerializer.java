@@ -7,17 +7,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-import mx.emite.sdk.enums.sat.FormasPago;
+import mx.emite.sdk.enums.sat.MetodosPago;
 
-@Deprecated
-public class FormasPagoSerializer extends JsonSerializer<FormasPago>{
-
-	
-	
-	
+public class MetodosPagoSerializer extends JsonSerializer<MetodosPago>{
 
 	@Override
-	public void serialize(FormasPago fp, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
+	public void serialize(MetodosPago fp, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
 		if(fp==null||fp.getIdSat()==null)
 			gen.writeNull();
 		else

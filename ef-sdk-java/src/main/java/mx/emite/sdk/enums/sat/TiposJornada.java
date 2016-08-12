@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposJornada implements Sat{
+public enum TiposJornada implements Sat<String>{
 	
 	DIURNA("01","Diurna"),
 	NOCTURNA("02","Nocturna"),

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum Nacionalidad implements Sat{
+public enum Nacionalidad implements Sat<String>{
 	
 	NACIONAL("Nacional"),
 	EXTRANJERO("Extranjero")
@@ -73,6 +73,11 @@ public enum Nacionalidad implements Sat{
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+
+	public boolean nacional() {
+		return equals(NACIONAL);
 	}
 	
 }

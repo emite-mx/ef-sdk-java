@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum ClavesRetenciones implements Sat{
+public enum ClavesRetenciones implements Sat<String>{
 	
 	
 	SERVICIOSPROFESIONALES ("01","Servicios profesionales"),

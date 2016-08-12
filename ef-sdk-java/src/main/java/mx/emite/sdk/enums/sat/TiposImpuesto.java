@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposImpuesto implements Sat{
+public enum TiposImpuesto implements Sat<Integer>{
 	
 	ISR(1,"ISR",new String[]{"i.s.r."}),
 	IVA(2,"IVA",new String[]{"i.v.a."}),

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposContrato implements Sat{
+public enum TiposContrato implements Sat<String>{
 	
 	BASE("01","Base"),
 	SINDICALIZADO("02","Sindicalizado"),

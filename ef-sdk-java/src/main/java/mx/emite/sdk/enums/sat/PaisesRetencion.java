@@ -7,7 +7,7 @@ import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
-public enum PaisesRetencion implements Sat{
+public enum PaisesRetencion implements Sat<String>{
 	
 	MEXICO("MX","México",484,"MEX"),
 	ESTADOS_UNIDOS_DE_AMERICA("US","Estados Unidos de América",840,"USA"),
@@ -311,6 +311,7 @@ public enum PaisesRetencion implements Sat{
 		return idSat;
 	}
 
+	@Override
 	public String getIdSat() {
 		return idSat;
 	}

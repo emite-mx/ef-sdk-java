@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoSocDistrDiv implements Sat{
+public enum TipoSocDistrDiv implements Sat<String>{
 	
 	NACIONAL("Sociedad Nacional"),
 	EXTRANJERO("Sociedad Extranjera")

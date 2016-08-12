@@ -19,12 +19,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.enums.sat.FormasPago;
+import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.RegimenesFiscales;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
 import mx.emite.sdk.enums.sat.TipoPago;
-import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
@@ -82,8 +82,8 @@ public class GenericoFactura {
 	
 	@XmlAttribute(name="metodoPago")
 	@NotNull
-	@XmlJavaTypeAdapter(FormasPagoAdapter.class)
-	private FormasPago metodoPago;
+	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
+	private MetodosPago metodoPago;
 
 	@XmlAttribute(name="numeroCuentaPago")
 	@NotNull
