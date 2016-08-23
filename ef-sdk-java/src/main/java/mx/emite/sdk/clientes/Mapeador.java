@@ -1,6 +1,9 @@
 package mx.emite.sdk.clientes;
 
+
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -22,6 +25,7 @@ public class Mapeador extends ObjectMapper{
 		disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		disable(SerializationFeature.INDENT_OUTPUT);
 		disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		setDefaultPrettyPrinter(new DefaultPrettyPrinter());
 
 	}
 
@@ -47,7 +51,7 @@ public class Mapeador extends ObjectMapper{
 		if(objeto==null)
 			return "";
 		try {
-			final String json = writeValueAsString(objeto);
+			final String json = writer().withDefaultPrettyPrinter().writeValueAsString(objeto);
 			return json;
 		} catch (JsonProcessingException e) {
 			throw new ApiException(I_Api_Errores.SERIALIZANDO,e);

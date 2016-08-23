@@ -8,12 +8,12 @@ import mx.emite.sdk.enums.Proveedor;
 import mx.emite.sdk.enums.Rutas;
 import mx.emite.sdk.errores.ApiException;
 
-public class CancelaRetEmite extends Operacion<CancelarEmiteRequest,CancelarEmiteResponse>{
+public class CancelaRetUnicaEmite extends Operacion<CancelarEmiteRequest,CancelarEmiteResponse>{
 
 	
 	@Deprecated
-	public CancelaRetEmite(final ClienteJson cliente) {
-		super(cliente,Proveedor.ENVIOCFDI,Rutas.CANCELARETEMITE);
+	public CancelaRetUnicaEmite(final ClienteJson cliente) {
+		super(cliente,Proveedor.ENVIOCFDI,Rutas.CANCELARETUNICAEMITE);
 	}
 
 	@Override

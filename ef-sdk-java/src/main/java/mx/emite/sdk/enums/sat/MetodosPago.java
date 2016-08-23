@@ -16,8 +16,8 @@ import mx.emite.sdk.utils.Utilerias;
 public enum MetodosPago implements Sat<Integer>{
 	
 	EFECTIVO(1,"Efectivo"),
-	CHEQUE(2,"Cheque"),
-	TRANSFERENCIA(3,"Transferencia"),
+	CHEQUE(2,"Cheque nominativo"),
+	TRANSFERENCIA(3,"Transferencia electrónica de fondos"),
 	TARJETASDECREDITO(4,"Tarjetas de crédito"),
 	MONEDEROSELECTRONICOS(5,"Monederos electrónicos"),
 	DINEROELECTRONICO(6,"Dinero electrónico"),
@@ -26,7 +26,7 @@ public enum MetodosPago implements Sat<Integer>{
 	TARJETADEDEBITO(28,"Tarjeta de Débito"),
 	TARJETADESERVICIO(29,"Tarjeta de Servicio"),
 	
-	OTROS(99,"Otro",new String[]{"No Identificado"});
+	OTROS(99,"Otros",new String[]{"No Identificado"});
 	
 	//TARJETASDIGITALES(7,"Tarjetas digitales"),
 	//BIENES(9,"Bienes"),

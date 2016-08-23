@@ -3,7 +3,8 @@ package mx.emite.sdk;
 import lombok.Getter;
 import mx.emite.sdk.clientes.ClienteJson;
 import mx.emite.sdk.clientes.operaciones.ef.CancelaEmite;
-import mx.emite.sdk.clientes.operaciones.ef.CancelaRetEmite;
+import mx.emite.sdk.clientes.operaciones.ef.CancelaRetMasivaEmite;
+import mx.emite.sdk.clientes.operaciones.ef.CancelaRetUnicaEmite;
 import mx.emite.sdk.clientes.operaciones.ef.Consume;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumeEmite;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumoToken;
@@ -31,7 +32,8 @@ public class EFAPI {
 	private final ConsumeEmite consumeemite;
 	private final SellaXml sellaxml;
 	private final CancelaEmite cancelaemite;
-	private final CancelaRetEmite cancelaretemite;
+	private final CancelaRetUnicaEmite cancelaretunicaemite;
+	private final CancelaRetMasivaEmite cancelaretmasivaemite;
 	
 	@Getter private String contrasena;
 	@Getter private String usuario;
@@ -50,7 +52,8 @@ public class EFAPI {
 		this.consumeemite=new ConsumeEmite(this.cliente);
 		this.sellaxml=new SellaXml(this.cliente);
 		this.cancelaemite=new CancelaEmite(this.cliente);
-		this.cancelaretemite=new CancelaRetEmite(this.cliente);
+		this.cancelaretunicaemite=new CancelaRetUnicaEmite(this.cliente);
+		this.cancelaretmasivaemite=new CancelaRetMasivaEmite(this.cliente);
 		this.usuario=usuario;
 		this.contrasena=contrasena;
 		
@@ -80,8 +83,12 @@ public class EFAPI {
 		return cancelaemite;
 	}
 	
-	public CancelaRetEmite cancelaret(){
-		return cancelaretemite;
+	public CancelaRetUnicaEmite cancelaretunica(){
+		return cancelaretunicaemite;
+	}
+	
+	public CancelaRetMasivaEmite cancelaretmasiva(){
+		return cancelaretmasivaemite;
 	}
 	
 }

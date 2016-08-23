@@ -13,11 +13,10 @@ import java.util.TimeZone;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
-import org.apache.log4j.Logger;
 
 public class FU {
 	
-		private  final Logger log =  Logger.getLogger(FU.class);
+		//private  final Logger log =  Logger.getLogger(FU.class);
 	 //dateTimeFormat = new SimpleDateFormat
      //cardDateFormat = new SimpleDateFormat("MMyyyy");
 	
@@ -145,7 +144,8 @@ public class FU {
 				
 				return Cache.get(formato);
 			}catch(Exception ex){
-				log.error(ex.getMessage(),ex);
+				ex.printStackTrace();
+				//log.error(ex.getMessage(),ex);
 			}
 			return DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		}
@@ -164,6 +164,10 @@ public class FU {
 		
 		public static Date convierte(LocalDate fecha) {
 			return Date.from(fecha.atStartOfDay(zona).toInstant());
+		}
+		
+		public static Date convierte(LocalDateTime fecha) {
+			return Date.from(fecha.atZone(zona).toInstant());
 		}
 		
 		/*

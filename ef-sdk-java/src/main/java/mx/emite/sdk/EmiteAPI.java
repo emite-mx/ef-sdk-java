@@ -26,7 +26,12 @@ import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.valida32.Valida32Validador;
 import mx.emite.sdk.enums.Ambiente;
 
@@ -74,6 +79,11 @@ public class EmiteAPI {
 	
 	
 	private final Ret10SelladorYTimbrador ret10_selladorytimbrador;
+	private final Ret10Timbrador ret10_timbrador;
+	private final Ret10Correo ret10_correo;
+	private final Ret10Pdf ret10_pdf;
+	private final Ret10Cancelador ret10_cancelador;
+	private final Ret10DescargaXml ret10_descargaxml;
 	
 	@Getter @Setter
 	private String usuarioWs,contrasenaWs;
@@ -136,6 +146,12 @@ public class EmiteAPI {
 		this.nom32_pdfacuse = new Nom32PdfAcuse(this.cliente);
 		this.nom32_correo=new Nom32Correo(this.cliente);
 		this.ret10_selladorytimbrador=new Ret10SelladorYTimbrador(this.cliente);
+		this.ret10_cancelador=new Ret10Cancelador(this.cliente);
+		this.ret10_correo=new Ret10Correo(this.cliente);
+		this.ret10_descargaxml=new Ret10DescargaXml(this.cliente);
+		this.ret10_pdf=new Ret10Pdf(this.cliente);
+		this.ret10_timbrador=new Ret10Timbrador(this.cliente);
+		
 	}
 	
 	/**
@@ -365,4 +381,51 @@ public class EmiteAPI {
 	public Ret10SelladorYTimbrador ret10_SelladorTimbrador(){
 		return ret10_selladorytimbrador;
 	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de retenciones
+	 * @return ret10_pdf
+	 * @since 0.1.5
+	 */
+	public Ret10Pdf ret10_Pdf(){
+		return ret10_pdf;
+	}
+	
+	/**
+	 * Servicio de envio de correo de retenciones
+	 * @return nom32_pdf
+	 * @since 0.1.5
+	 */
+	public Ret10Correo ret10_Correo(){
+		return ret10_correo;
+	}
+	
+	/**
+	 * Servicio de Cancelación de Retenciones 1.0
+	 * @return ret10_cancelador
+	 * @since 0.1.5
+	 */
+	public Ret10Cancelador ret10_Cancelador(){
+		return ret10_cancelador;
+	}
+	
+	/**
+	 * Servicio Timbrado de Retenciones 1.0
+	 * @return ret10_timbrador
+	 * @since 0.1.5
+	 */
+	public Ret10Timbrador ret10_Timbrador(){
+		return ret10_timbrador;
+	}
+	
+	/**
+	 * Servicio de Descarga de Retenciones 1.0
+	 * @return ret10_descargaxml
+	 * @since 0.1.5
+	 */
+	public Ret10DescargaXml ret10_DescargaXml(){
+		return ret10_descargaxml;
+	}
+	
+	
 }

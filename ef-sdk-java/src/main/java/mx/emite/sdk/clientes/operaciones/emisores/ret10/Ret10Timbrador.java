@@ -6,19 +6,20 @@ import mx.emite.sdk.enums.Proveedor;
 import mx.emite.sdk.enums.Rutas;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.proxy.request.SellarYTimbrarRequest;
-import mx.emite.sdk.proxy.response.SellarYTimbrarResponse;
+import mx.emite.sdk.proxy.request.TimbrarRequest;
+import mx.emite.sdk.proxy.response.TimbrarResponse;
 
 /**
- *  <h1>Operacion de timbrado de retenciones sin sello en version 1.0</h1>
+ *  <h1>Operacion de timbrado de retenciones sellado en version 1.0</h1>
  *	
  * 
  * @author Enrique Sánchez de la Barquera
  *
  */
-public class Ret10SelladorYTimbrador extends Operacion<SellarYTimbrarRequest,SellarYTimbrarResponse> {
+public class Ret10Timbrador extends Operacion<TimbrarRequest,TimbrarResponse> {
 
-	public Ret10SelladorYTimbrador(final ClienteJson cliente) {
-		super(cliente,Proveedor.PROXY,Rutas.RET10_SELLARYTIMBRAR);
+	public Ret10Timbrador(final ClienteJson cliente) {
+		super(cliente,Proveedor.PROXY,Rutas.RET10_TIMBRAR);
 	}
 
 	
@@ -32,9 +33,9 @@ public class Ret10SelladorYTimbrador extends Operacion<SellarYTimbrarRequest,Sel
 	 * @see SellarYTimbrarRequest
 	 */
 	@Override
-	public SellarYTimbrarResponse ejecuta(SellarYTimbrarRequest request) throws ApiException{
+	public TimbrarResponse ejecuta(TimbrarRequest request) throws ApiException{
 		final String ruta = creaRuta(request);
-		return procesa(this.getCliente().post(ruta,request,SellarYTimbrarResponse.class));
+		return procesa(this.getCliente().post(ruta,request,TimbrarResponse.class));
 	}
 	
 }
