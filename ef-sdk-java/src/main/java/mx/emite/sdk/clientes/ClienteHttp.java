@@ -69,7 +69,7 @@ public class ClienteHttp {
 
 	protected CloseableHttpClient initHttpClient(final boolean requirePoolManager, final int connectionTimeout,
             final int socketTimeout) {
-        CloseableHttpClient httpClient;
+        final CloseableHttpClient httpClient;
         HttpClientConnectionManager manager;
         manager = new PoolingHttpClientConnectionManager();
        

@@ -205,6 +205,7 @@ public enum I_Api_Errores {
 	VALIDADOR_CONSULTANDOSAT(5007,"Servicio de Consulta del SAT no disponible"),
 	VALIDADOR_CFDINOEXISTESAT(5008,"El uuid no esta registrado ante el SAT"),
 	VALIDADOR_CFDINOESTAVIGENTESAT(5009,"El uuid no esta vigente ante el SAT"),
+	VALIDADOR_GENERANDOPDF(5010,"Error al generar el pdf de validación"),
 	
 	;
 	
