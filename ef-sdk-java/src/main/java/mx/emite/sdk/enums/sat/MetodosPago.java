@@ -114,11 +114,11 @@ public enum MetodosPago implements Sat<Integer>{
 		return null;
 	}
 	
-	public Integer getIdFormaPago(){
+	public Integer getIdMetodoPago(){
 		return idSat;
 	}
 
-	public static MetodosPago[] formaspago() {
+	public static MetodosPago[] metodospago() {
 		
 		return values();
 	}

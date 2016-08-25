@@ -66,8 +66,7 @@ public abstract class NumeroLetra {
      * Convierte un numero en representacion numerica a uno en representacion de
      * texto. El numero es valido si esta entre 0 y 999'999.999
      * 
-     * @param number
-     *            Numero a convertir
+     * @param numero   Numero a convertir
      * @return Numero convertido a texto
      * @throws NumberFormatException
      *             Si el numero esta fuera del rango

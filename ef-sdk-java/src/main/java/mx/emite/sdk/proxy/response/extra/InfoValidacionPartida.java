@@ -1,5 +1,6 @@
 package mx.emite.sdk.proxy.response.extra;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,7 +12,12 @@ import mx.emite.sdk.serializers.FechaHoraDeserializer;
 import mx.emite.sdk.serializers.FechaHoraSerializer;
 
 @Data
-public class InfoValidacionPartida {
+public class InfoValidacionPartida implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5344316892383217550L;
 
 	@JsonIgnore
 	private Boolean cfdi;

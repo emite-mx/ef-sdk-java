@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
 import mx.emite.sdk.serializers.FechaHoraSerializer;
+import mx.emite.sdk.serializers.MontoDeserializer;
 
 @Data
 public class InfoValidacion  implements Serializable{
@@ -24,18 +25,22 @@ public class InfoValidacion  implements Serializable{
 	 */
 	private static final long serialVersionUID = 5697692311089637308L;
 
-	private Boolean valida=false;
-	
 	private String serie;
 	private String folio;
-	private String tipoDeComprobante;
 	private String moneda;
-	private String subtotal;
-	private String descuento;
-	private String total;
-	private String tipoCambio;
-	private String traslados;
-	private String retenciones;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal subtotal;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal descuento;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal total;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal tipoCambio;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal traslados;
+	@JsonDeserialize(using=MontoDeserializer.class)
+	private BigDecimal retenciones;
+	
 	private List<String> conceptos=new ArrayList<>();
 	
 	private BigDecimal version=BigDecimal.valueOf(3.2);
@@ -45,6 +50,8 @@ public class InfoValidacion  implements Serializable{
 	private InfoValidacionEmisorReceptor emisor;
 	private InfoValidacionEmisorReceptor receptor;
 	
+	
+	private Boolean valida=false;
 	private String uuid;
 	@JsonSerialize(using=FechaHoraSerializer.class)
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
@@ -55,16 +62,17 @@ public class InfoValidacion  implements Serializable{
 	private Long milis;
 	private String tipoComprobante;
 	
-	private String estadoSat;
-	private String mensajeSat;
 	private String traza;
 	private String qr;
 	
-	private InfoValidacionPartida cfdi = new InfoValidacionPartida(true);
-	private List<String> complementos = new ArrayList<>();
-	private List<String> addendas = new ArrayList<>();
-	private InfoValidacionPartida tfd = new InfoValidacionPartida(false);
-	private List<InfoValidacionError> errores = new ArrayList<>();
+	private InfoValidacionPartida cfdi;
+	private InfoValidacionPartida tfd;
+	private InfoValidacionSat sat;
+	
+	private List<String> complementos;
+	private List<String> addendas;
+	
+	private List<InfoValidacionError> errores;
 	
 	
 	public String getSerieFolio(){
