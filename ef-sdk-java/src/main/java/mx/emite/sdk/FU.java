@@ -67,7 +67,7 @@ public class FU {
 		YYYYMMDDPAR("(yyyyMMdd)"),
 		YYYYMMDDSINGUION("yyyyMMdd"),
 		DIASEMANA("EEE-dd",true),
-		RECIBORSA("yyyy-MM-dd HH:mm:ss.S"),
+		XLOG("yyyy-MM-dd HH:mm:ss.S"),
 		COMPLETO("EEEE dd' de 'MMMM' de 'yyyy"),
 		BITACORA("EEEE dd' de 'MMMM"),
 		MM_YY("MM/yy"),
@@ -86,7 +86,8 @@ public class FU {
 		MES("MMMM"),
 		MESANO("MMM yy"),
 		YYYYMM("yyyy/MM"),
-		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss")
+		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss"),
+		YYYYMMSINGUION("yyyyMM")
 		;
 		//private  SimpleDateFormat dftc = new SimpleDateFormat("dd/MM/yy HH:mm");
 		//private  SimpleDateFormat dft = new SimpleDateFormat();
@@ -344,6 +345,10 @@ public class FU {
 
 		public LocalDateTime convierteUnix(BigDecimal fecha){
 			return new Timestamp(fecha.longValue()).toLocalDateTime();
+		}
+
+		public static long fechaUnix(LocalDateTime fecha) {
+			return Timestamp.valueOf(fecha).getTime()/1000L;			
 		}
 
 		/*

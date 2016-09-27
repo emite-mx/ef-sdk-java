@@ -353,6 +353,15 @@ public enum PaisesRetencion implements Sat<String>{
 		return iso3166;
 	}
 	
+	public static void main(String[] args){
+		for(PaisesRetencion c:values()){
+			System.out.println(c.idSat);
+		}
+		System.out.println();
+		for(PaisesRetencion c:values()){
+			System.out.println(c.descripcionPais);
+		}
+	}
 	
 	
 }

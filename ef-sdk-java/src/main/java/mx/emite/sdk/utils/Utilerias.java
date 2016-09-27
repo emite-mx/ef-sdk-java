@@ -28,6 +28,10 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.BeanReader;
@@ -359,6 +363,16 @@ public class Utilerias {
 	        return s.substring(1);
 	    }
 	    return s;
+	}
+
+	public static String transforma(Document tempo) throws Exception {
+		DOMSource domSource = new DOMSource(tempo);
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.transform(domSource, result);
+		return writer.toString();
 	}
 
 	 

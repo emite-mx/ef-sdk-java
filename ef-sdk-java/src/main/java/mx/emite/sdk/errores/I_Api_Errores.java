@@ -66,7 +66,7 @@ public enum I_Api_Errores {
 	PROXY_VALIDANDO_RESPUESTA(156,"No se obtuvo respuesta del validador"),
 	PROXY_MASIVA_ENPROCESO(157,"La consulta se esta ejecutando, espere a que termine el proceso"),
 	PROXY_SERVICIONODISPONIBLE(158,"Servicio no disponible"),
-	
+	PROXY_CONSULTANDOSAT(159,"Consultando Sat"),
 	//Errores de scot
 	SCOT_CONSUMIENDO(160,"Error ejecutando transacción de consumo"),
 	SCOT_EMITE_CONTRASENA(161,"El token interno es inválido"),
@@ -205,7 +205,7 @@ public enum I_Api_Errores {
 	VALIDADOR_CONSULTANDOSAT(5007,"Servicio de Consulta del SAT no disponible"),
 	VALIDADOR_CFDINOEXISTESAT(5008,"El uuid no esta registrado ante el SAT"),
 	VALIDADOR_CFDINOESTAVIGENTESAT(5009,"El uuid no esta vigente ante el SAT"),
-	VALIDADOR_GENERANDOPDF(5010,"Error al generar el pdf de validación"),
+	VALIDADOR_GENERANDOPDF(5010,"Error al generar el pdf de validación"), 
 	
 	;
 	

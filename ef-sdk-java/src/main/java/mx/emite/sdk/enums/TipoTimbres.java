@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsondoc.core.annotation.ApiObject;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 
+@ApiObject
 public enum TipoTimbres {
 	
 	TODOS(0,"TODOS",true),
@@ -104,6 +106,10 @@ public enum TipoTimbres {
 		for(int x=1;x<values().length;x++)
 			res[x-1]=values()[x];
 		return res;
+	}
+	
+	public static TipoTimbres cargaTipo(TipoTimbres tipoTimbre,TipoTimbres erroren) throws ApiException{
+		return cargaTipo(tipoTimbre.name(),erroren);
 	}
 	
 	public static TipoTimbres cargaTipo(String tipoTimbre,TipoTimbres erroren) throws ApiException{

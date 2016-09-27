@@ -1,17 +1,24 @@
 package mx.emite.sdk.proxy.response.extra;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
 import mx.emite.sdk.serializers.FechaHoraSerializer;
 
 @Data
-public class InfoCancelacion {
+@EqualsAndHashCode(callSuper=false)
+public class InfoCancelacion extends Info implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3347532633354990822L;
 	private final String uuid;
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	@JsonSerialize(using=FechaHoraSerializer.class)

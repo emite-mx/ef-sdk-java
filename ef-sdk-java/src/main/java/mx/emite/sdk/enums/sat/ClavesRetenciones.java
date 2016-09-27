@@ -100,4 +100,14 @@ public enum ClavesRetenciones implements Sat<String>{
 		return unmarshall(text);
 	}
 	
+	public static void main(String[] args){
+		for(ClavesRetenciones c:values()){
+			System.out.println(c.idSat);
+		}
+		System.out.println();
+		for(ClavesRetenciones c:values()){
+			System.out.println(c.descripcion);
+		}
+	}
+	
 }

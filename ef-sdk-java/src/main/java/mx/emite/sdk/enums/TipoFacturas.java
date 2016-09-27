@@ -1,5 +1,8 @@
 package mx.emite.sdk.enums;
 
+import org.jsondoc.core.annotation.ApiObject;
+
+@ApiObject
 public enum TipoFacturas {
 	CORTEMENSUAL('C',"tipofactura.cortemensual"),
 	INSCRIPCION('I',"tipofactura.inscripcion"),

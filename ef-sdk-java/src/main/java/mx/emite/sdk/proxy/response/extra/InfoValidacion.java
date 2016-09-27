@@ -12,12 +12,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
 import mx.emite.sdk.serializers.FechaHoraSerializer;
 import mx.emite.sdk.serializers.MontoDeserializer;
 
 @Data
-public class InfoValidacion  implements Serializable{
+@EqualsAndHashCode(callSuper=false)
+public class InfoValidacion extends Info  implements Serializable{
 	
 	
 	/**

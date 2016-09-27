@@ -390,6 +390,9 @@ public class NU {
 		    }
 		}
 		
+		public static BigDecimal redondeadecimales(BigDecimal numero, int i) {
+			return numero.setScale(i,RoundingMode.HALF_UP);
+		}
 		
 		/*public  void main(String[] args){
 			final BigDecimal factor = divide(BigDecimal.valueOf(9.2),BigDecimal.valueOf(100),3);

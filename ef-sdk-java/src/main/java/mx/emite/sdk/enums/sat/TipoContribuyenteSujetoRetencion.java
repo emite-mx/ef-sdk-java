@@ -72,5 +72,15 @@ public enum TipoContribuyenteSujetoRetencion implements Sat<String>{
 		return unmarshall(text);
 	}
 	
+	public static void main(String[] args){
+		for(TipoContribuyenteSujetoRetencion c:values()){
+			System.out.println(c.idSat);
+		}
+		System.out.println();
+		for(TipoContribuyenteSujetoRetencion c:values()){
+			System.out.println(c.descripcion);
+		}
+	}
+	
 	
 }

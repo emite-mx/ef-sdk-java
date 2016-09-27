@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsondoc.core.annotation.ApiObject;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -11,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 
-
+@ApiObject
 public enum EstadoTimbre{
 	TIMBRADAS,CANCELADAS, TODAS;
 	
