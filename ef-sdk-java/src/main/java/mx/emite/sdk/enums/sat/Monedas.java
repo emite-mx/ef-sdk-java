@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum Monedas implements Sat{
+public enum Monedas implements Sat<String>{
 	MXN("MXN","Peso Mexicano",2,new String[]{"PESOS","M.N.","MN"}),
 	USD("USD","Dolar americano",2,new String[]{"DOLARES"}),
 	EUR("EUR","Euro",2,new String[]{"EUROS"}),
@@ -247,6 +247,14 @@ public enum Monedas implements Sat{
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+	public static boolean existe(String mon) {
+		for(Monedas m:values()){
+			if(m.idSat.equals(mon))
+				return true;
+		}
+		return false;
 	}
 	
 	

@@ -1,5 +1,9 @@
 package mx.emite.sdk.enums.sat;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
 
@@ -9,7 +13,8 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum FormasPago implements Sat{
+@Deprecated
+public enum FormasPago implements Sat<Integer>{
 	
 	EFECTIVO(1,"Efectivo"),
 	CHEQUE(2,"Cheque"),
@@ -17,19 +22,24 @@ public enum FormasPago implements Sat{
 	TARJETASDECREDITO(4,"Tarjetas de crédito"),
 	MONEDEROSELECTRONICOS(5,"Monederos electrónicos"),
 	DINEROELECTRONICO(6,"Dinero electrónico"),
-	TARJETASDIGITALES(7,"Tarjetas digitales"),
+	
 	VALESDEDESPENSA(8,"Vales de despensa"),
-	BIENES(9,"Bienes"),
-	SERVICIO(10,"Servicio"),
-	PORCUENTADETERCERO(11,"Por cuenta de tercero"),
-	DACIONENPAGO(12,"Dación en pago"),
-	PAGOPORSUBROGACION(13,"Pago por subrogación"),
-	PAGOPORCONSIGNACION(14,"Pago por consignación"),
-	CONDONACION(15,"Condonación"),
-	CANCELACION(16,"Cancelación"),
-	COMPENSACION(17,"Compensación"),
-	NOAPLICA(98,"NA"),
-	OTRO(99,"Otro",new String[]{"No Identificado"});
+	TARJETADEDEBITO(28,"Tarjeta de Débito"),
+	TARJETADESERVICIO(29,"Tarjeta de Servicio"),
+	
+	OTROS(99,"Otro",new String[]{"No Identificado"});
+	
+	//TARJETASDIGITALES(7,"Tarjetas digitales"),
+	//BIENES(9,"Bienes"),
+		//SERVICIO(10,"Servicio"),
+		//PORCUENTADETERCERO(11,"Por cuenta de tercero"),
+		//DACIONENPAGO(12,"Dación en pago"),
+		//PAGOPORSUBROGACION(13,"Pago por subrogación"),
+		//PAGOPORCONSIGNACION(14,"Pago por consignación"),
+		//CONDONACION(15,"Condonación"),
+		//CANCELACION(16,"Cancelación"),
+		//COMPENSACION(17,"Compensación"),
+		//NOAPLICA(98,"NA"),
 	
 	final Integer idSat;
 	final String descripcion;
@@ -73,6 +83,14 @@ public enum FormasPago implements Sat{
 		return null;
 	}
 	
+	public static FormasPago buscaSinNulo(String descripcion) {
+		final FormasPago fd = busca(descripcion);
+		if(fd==null)
+			return FormasPago.OTROS;
+		else
+			return fd;
+	}
+	
 	private static Integer sacaInt(String descripcion) {
 		try{
 			return Integer.parseInt(descripcion);
@@ -82,6 +100,8 @@ public enum FormasPago implements Sat{
 		}
 	}
 
+	
+	
 	/**
 	 * Busca una formapago de acuerdo a su id del SAT
 	 * @param idSat de acuerdo al catalogo del SAT
@@ -118,11 +138,23 @@ public enum FormasPago implements Sat{
 	public static String marshall(FormasPago v) throws Exception {
 		if(v==null)
 			return null;
-		return Integer.toString(v.getIdSat());
+		return v.marshall();
+	}
+	
+	private String marshall(){
+		return getIdSat().intValue()<10?"0"+Integer.toString(getIdSat()): Integer.toString(getIdSat());
+	}
+	
+	private String getIdSatString(){
+		return marshall();
 	}
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+	public static List<String> ids() {
+		return Arrays.asList(values()).stream().map(FormasPago::getIdSatString).collect(Collectors.toList());		
 	}
 	
 	

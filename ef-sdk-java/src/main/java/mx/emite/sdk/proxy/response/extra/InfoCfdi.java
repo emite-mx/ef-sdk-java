@@ -1,5 +1,6 @@
 package mx.emite.sdk.proxy.response.extra;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
 import mx.emite.sdk.serializers.FechaHoraSerializer;
@@ -23,8 +25,13 @@ import mx.emite.sdk.serializers.FechaHoraSerializer;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class InfoCfdi{
+@EqualsAndHashCode(callSuper=false)
+public class InfoCfdi extends Info implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6270940941390076313L;
 	private String serie;
 	private Long folio;
 	@JsonDeserialize(using=FechaHoraDeserializer.class)

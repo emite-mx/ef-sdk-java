@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposRiesgo implements Sat{
+public enum TiposRiesgo implements Sat<Integer>{
 	
 	CLASEI(1,"Clase I",new String[]{"Clase_I"}),
 	CLASEII(2,"Clase II",new String[]{"Clase_II"}),

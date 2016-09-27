@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposHoras implements Sat{
+public enum TiposHoras implements Sat<String>{
 	
 	DOBLES("01","Dobles"),
 	TRIPLES("02","Triples"),

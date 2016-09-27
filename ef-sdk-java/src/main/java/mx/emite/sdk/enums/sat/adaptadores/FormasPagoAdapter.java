@@ -10,6 +10,7 @@ import mx.emite.sdk.enums.sat.FormasPago;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
+@Deprecated
 public class FormasPagoAdapter extends XmlAdapter<String,FormasPago> implements TypeHandler{
 
 	@Override

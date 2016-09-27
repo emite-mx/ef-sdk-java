@@ -12,7 +12,7 @@ import mx.emite.sdk.utils.Utilerias;
 
 @Getter
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Bancos implements Sat{
+public enum Bancos implements Sat<String>{
 
 	BANAMEX("002","BANAMEX","Banco Nacional de México, S.A., Institución de Banca Múltiple, Grupo Financiero Banamex"),
 	BANCOMEXT("006","BANCOMEXT","Banco Nacional de Comercio Exterior, Sociedad Nacional de Crédito, Institución de Banca de Desarrollo"),

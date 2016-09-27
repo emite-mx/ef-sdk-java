@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum UnidadesMedida implements Sat{
+public enum UnidadesMedida implements Sat<Integer>{
 	
 	NOAPLICA(0,"NO APLICA"),
 	BARRIL(15,"BARRIL"),

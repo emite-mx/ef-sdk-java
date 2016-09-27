@@ -18,6 +18,7 @@ import mx.emite.sdk.clientes.operaciones.integradores.Timbres;
 import mx.emite.sdk.clientes.operaciones.integradores.Token;
 import mx.emite.sdk.enums.Ambiente;
 import mx.emite.sdk.errores.ApiException;
+import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.scot.request.TokenRequest;
 import mx.emite.sdk.scot.response.TokenResponse;
 
@@ -118,6 +119,8 @@ public class IntegradorAPI {
 	public String getTokenWs() throws ApiException{
 		if(this.tokenWs==null||this.expira==null||this.expira.isBefore(LocalDateTime.now()))
 		{
+			if(this.usuario==null || this.contrasena==null)
+				throw new ApiException(I_Api_Errores.SCOT_EMITE_USUARIO_EMISOR_CONTRASENA,"usuario / contrasaña no especificada");
 			final TokenRequest tr = TokenRequest.builder()
 					.usuario(this.usuario)
 					.contrasena(this.contrasena)

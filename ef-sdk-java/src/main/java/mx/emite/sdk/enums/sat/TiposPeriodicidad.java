@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposPeriodicidad implements Sat{
+public enum TiposPeriodicidad implements Sat<String>{
 	
 	DIARIO("01","Diario"),
 	SEMANAL("02","Semanal"),

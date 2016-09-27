@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposDeduccion implements Sat{
+public enum TiposDeduccion implements Sat<String>{
 	
 	IMSS("001","Seguridad social"),
 	ISR("002","ISR"),

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposPercepcion implements Sat{
+public enum TiposPercepcion implements Sat<String>{
 	
 	SUELDOSSALARIOSRAYASYJORNALES("001","Sueldos, Salarios  Rayas y Jornales"),
 	AGUINALDO("002","Gratificación Anual (Aguinaldo)"),

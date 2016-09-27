@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Data
+@ApiObject
 public class ApiError implements Serializable{
 
 	
@@ -36,6 +40,7 @@ public class ApiError implements Serializable{
 	}
 
 	
+	
 	public ApiError(I_Api_Errores e,String errores){
 		this(e,Collections.singletonList(errores));
 	}
@@ -51,12 +56,23 @@ public class ApiError implements Serializable{
 		this.descripcion=api.getError().getDescripcion();
 		this.errores=api.getErrores();
 	}
+	
+	
+	
 	public boolean ok() {
 		return this.codigo.equals(I_Api_Errores.OK.getId());
 	}
 	
-	
-	
+	@JsonIgnore
+	public String getHtml(){
+		final StringBuilder res = new StringBuilder("<b>").append(codigo.toString()).append("</b>");
+		if(descripcion!=null)
+			res.append(" ").append(descripcion);
+		if(errores!=null)
+			errores.stream().forEach(i->res.append("<br/>").append(i));
+		
+		return res.toString();
+	}
 
 	
 	

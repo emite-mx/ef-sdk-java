@@ -143,6 +143,11 @@ public class ApiException extends RuntimeException{
 		return (error==null?"":"EMITE["+error.getId()+"]: ")+ super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
 	}
 
+	
+	public String getMensajeCompleto() {
+		return (error==null?"":"EMITE["+error.getId()+"]: ")+ super.getMessage()+(mensajes==null?"":"\n"+getMensajesLista());
+	}
+
 	@Override
 	@Deprecated
 	public String getLocalizedMessage() {

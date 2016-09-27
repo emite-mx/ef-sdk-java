@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>mx.emite</groupId>
   <artifactId>ef-sdk-java</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.6</version>
   <packaging>jar</packaging>
   <name>ef-sdk-java</name> 
   <description>Este kit de consumo provee a los integradores de Apis de Java para construir software que consuma los diferentes servicios web publicados por Emite Facturacion</description>
@@ -12,10 +12,13 @@
 		<java.version>1.8</java.version>
 		<jackson.version>2.6.2</jackson.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.httpcomponents.core.version>4.3.1</project.httpcomponents.core.version>
-		<project.httpcomponents.client.version>4.3.2</project.httpcomponents.client.version>		
+		<project.httpcomponents.core.version>4.4.4</project.httpcomponents.core.version>
+		<project.httpcomponents.client.version>4.5.2</project.httpcomponents.client.version>		
 		<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
 		<springframework.version>4.1.7.RELEASE</springframework.version>
+		<hibernate.version>5.0.2.Final</hibernate.version>
+		<hibernate.version.validator>5.1.3.Final</hibernate.version.validator>
+		<slf4j.version>1.7.12</slf4j.version>
    </properties>
   <licenses>
 		<license>
@@ -90,7 +93,14 @@
 	    <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.1.3.Final</version>
+			<version>${hibernate.version.validator}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 		   <groupId>javax.el</groupId>
@@ -142,7 +152,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -177,12 +187,12 @@
 <dependency>
         <groupId>org.jsondoc</groupId>
         <artifactId>jsondoc-springmvc</artifactId>
-        <version>1.2.11</version>
+        <version>1.2.16</version>
 </dependency>
 <dependency>
         <groupId>org.jsondoc</groupId>
         <artifactId>jsondoc-ui</artifactId>
-        <version>1.2.11</version>
+        <version>1.2.16</version>
 </dependency>
 
 <dependency>
@@ -217,7 +227,7 @@
 		</resources>
 		
 		
-		
+		<pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -303,6 +313,7 @@
     		</plugin>
 			
 		</plugins>
+		</pluginManagement>
 	</build>
 
 	

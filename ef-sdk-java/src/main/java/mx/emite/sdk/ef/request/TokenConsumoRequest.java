@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.TipoTimbres;
 
-
 @Data
 @Builder
 @AllArgsConstructor @NoArgsConstructor

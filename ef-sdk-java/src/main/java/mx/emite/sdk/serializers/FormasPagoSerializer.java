@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import mx.emite.sdk.enums.sat.FormasPago;
 
+@Deprecated
 public class FormasPagoSerializer extends JsonSerializer<FormasPago>{
 
 	

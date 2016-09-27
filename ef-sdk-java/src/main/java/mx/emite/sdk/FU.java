@@ -11,13 +11,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
-import org.apache.http.impl.cookie.DateParseException;
-import org.apache.log4j.Logger;
 
 public class FU {
 	
-		private  final Logger log =  Logger.getLogger(FU.class);
+		//private  final Logger log =  Logger.getLogger(FU.class);
 	 //dateTimeFormat = new SimpleDateFormat
      //cardDateFormat = new SimpleDateFormat("MMyyyy");
 	
@@ -68,7 +67,7 @@ public class FU {
 		YYYYMMDDPAR("(yyyyMMdd)"),
 		YYYYMMDDSINGUION("yyyyMMdd"),
 		DIASEMANA("EEE-dd",true),
-		RECIBORSA("yyyy-MM-dd HH:mm:ss.S"),
+		XLOG("yyyy-MM-dd HH:mm:ss.S"),
 		COMPLETO("EEEE dd' de 'MMMM' de 'yyyy"),
 		BITACORA("EEEE dd' de 'MMMM"),
 		MM_YY("MM/yy"),
@@ -87,7 +86,8 @@ public class FU {
 		MES("MMMM"),
 		MESANO("MMM yy"),
 		YYYYMM("yyyy/MM"),
-		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss")
+		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss"),
+		YYYYMMSINGUION("yyyyMM")
 		;
 		//private  SimpleDateFormat dftc = new SimpleDateFormat("dd/MM/yy HH:mm");
 		//private  SimpleDateFormat dft = new SimpleDateFormat();
@@ -114,6 +114,18 @@ public class FU {
 		}
 		}
 		
+		public  String format(Date fecha,FechaFormatos formato){
+			if(fecha==null)
+				return null;			
+			return format(fecha.toInstant().atZone(zona).toLocalDate(),formato);
+		}
+		
+		public  String format(Date fecha){
+			if(fecha==null)
+				return null;			
+			return format(fecha.toInstant().atZone(zona).toLocalDate(),FechaFormatos.DDMMYYYY);
+		}
+		
 		public  String format(LocalDateTime fecha,FechaFormatos formato){
 			if(fecha==null)
 				return null;			
@@ -133,9 +145,30 @@ public class FU {
 				
 				return Cache.get(formato);
 			}catch(Exception ex){
-				log.error(ex.getMessage(),ex);
+				ex.printStackTrace();
+				//log.error(ex.getMessage(),ex);
 			}
 			return DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		}
+		
+		public LocalDate parseDDMMYYYY(String fecha) {
+			return parse(fecha,FechaFormatos.DDMMYYYY);
+		}
+		
+		public  LocalDate parse(String fecha,FechaFormatos formato){
+			if(StringUtils.isEmpty(fecha))
+				return null;
+			//DateTimeFormatter df = getFormat(formato);
+			return LocalDate.parse(fecha,getFormat(formato));
+			
+		}
+		
+		public static Date convierte(LocalDate fecha) {
+			return Date.from(fecha.atStartOfDay(zona).toInstant());
+		}
+		
+		public static Date convierte(LocalDateTime fecha) {
+			return Date.from(fecha.atZone(zona).toInstant());
 		}
 		
 		/*
@@ -261,7 +294,7 @@ public class FU {
 		}
 		
 
-		public LocalDate parseYYYYMMDD(String fecha) throws DateParseException{
+		public LocalDate parseYYYYMMDD(String fecha) throws DateTimeParseException{
 			if(fecha==null)
 				return null;
 			return LocalDate.parse(fecha,getFormat(FechaFormatos.YYYYMMDD));
@@ -312,6 +345,10 @@ public class FU {
 
 		public LocalDateTime convierteUnix(BigDecimal fecha){
 			return new Timestamp(fecha.longValue()).toLocalDateTime();
+		}
+
+		public static long fechaUnix(LocalDateTime fecha) {
+			return Timestamp.valueOf(fecha).getTime()/1000L;			
 		}
 
 		/*

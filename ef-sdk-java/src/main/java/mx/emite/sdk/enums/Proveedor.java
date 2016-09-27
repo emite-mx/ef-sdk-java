@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum Proveedor {
 
 	PROXY("proxy"),
-	SCOT("scot")
+	SCOT("scot"),
+	ENVIOCFDI("enviocfdi")
 	;
 	
 	final String servidor;

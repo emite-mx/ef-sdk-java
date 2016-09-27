@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TipoPago implements Sat{
+public enum TipoPago implements Sat<Integer>{
 	
 	PAGOENUNASOLAEXHIBICION(1,"Pago En Una Sola Exhibición",new String[]{"Pago En Una Sola Exhibicion"}),
 	PAGOENPARCIALIDADES(2,"Pago En Parcialidades"),

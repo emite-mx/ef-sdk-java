@@ -17,42 +17,61 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.BeanReader;
 import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
-import lombok.Cleanup;
 import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
 import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina;
+import mx.emite.sdk.ret10.Retenciones;
+import mx.emite.sdk.ret10.comp.ComplementoInterface;
 
 public class Utilerias {
 
 	
 	private final static Decoder decoder = Base64.getDecoder();
 	private final static Encoder encoder = Base64.getEncoder();
-	private final static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	private final static Validator validator = creaValidador();
 	private final static Collator comparador = creaComparador();
+	private final static String UTF8_BOM = "\uFEFF";
 	
 	public static String decodifica64Utf8(final String xmlBase64) throws ApiException{
 		try{
 		return new String(decodifica64Utf8Byte(xmlBase64));
 		}catch(Exception ex){
 			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+		}
+	}
+
+	private static Validator creaValidador() {
+		try{
+		return Validation.buildDefaultValidatorFactory().getValidator();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
 		}
 	}
 
@@ -65,9 +84,15 @@ public class Utilerias {
 	}
 	
 	private static Collator creaComparador() {
+		try{
 		final Collator res = Collator.getInstance(new Locale("es","MX"));
 		res.setStrength(Collator.NO_DECOMPOSITION);
 		return res;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	public static String codifica64Utf8(final String xml) throws ApiException{
@@ -124,7 +149,7 @@ public class Utilerias {
 
 	public static String leeArchivo(InputStream is) throws ApiException {
 		try{
-			@Cleanup ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		    byte[] buffer = new byte[1024];
 		    int length = 0;
 		    while ((length = is.read(buffer)) != -1) {
@@ -150,9 +175,35 @@ public class Utilerias {
 		return MarshallerUnmarshaller.marshallCfdi32(comprobante);
 	}
 
+	
+	
 	public static String marshallnom32(ComprobanteNomina comprobante) throws ApiException {
 		valida(comprobante);
 		return MarshallerUnmarshaller.marshallNomina32(comprobante);
+	}
+	
+	public static String marshallret10(Retenciones comprobante) throws ApiException {
+		valida(comprobante);
+		if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
+		{
+			final List<String> complementos = new ArrayList<>();
+			for(ComplementoInterface c : comprobante.getComplemento().getComplementos()){
+				complementos.add(MarshallerUnmarshaller.marshallRet10Complemento(c));
+			}
+			
+			final String xml = MarshallerUnmarshaller.marshallRet10(comprobante);
+		    final Document doc = MarshallerUnmarshaller.leeXml(xml);
+		    final Node complemento = MarshallerUnmarshaller.sacaNodo(MarshallerUnmarshaller.xComplemento, doc, "Complemento");
+		    for(String insertar:complementos){
+		    	final Document docin = MarshallerUnmarshaller.leeXml(insertar);
+		    	final Node importado = doc.importNode(docin.getFirstChild(), true);
+		    	complemento.appendChild(importado);
+		    }
+			return MarshallerUnmarshaller.marshall(doc);
+			
+		}
+		else
+			return MarshallerUnmarshaller.marshallRet10(comprobante);
 	}
 	
 	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {
@@ -305,7 +356,25 @@ public class Utilerias {
 		}
 	}
 
-	
+	public static String quitaBom(final String s) {
+		if(StringUtils.isEmpty(s))
+			return s;
+	    if (s.startsWith(UTF8_BOM)) {
+	        return s.substring(1);
+	    }
+	    return s;
+	}
+
+	public static String transforma(Document tempo) throws Exception {
+		DOMSource domSource = new DOMSource(tempo);
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.transform(domSource, result);
+		return writer.toString();
+	}
+
 	 
 	
 }

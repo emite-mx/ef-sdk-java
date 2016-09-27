@@ -2,6 +2,9 @@ package mx.emite.sdk;
 
 import lombok.Getter;
 import mx.emite.sdk.clientes.ClienteJson;
+import mx.emite.sdk.clientes.operaciones.ef.CancelaEmite;
+import mx.emite.sdk.clientes.operaciones.ef.CancelaRetMasivaEmite;
+import mx.emite.sdk.clientes.operaciones.ef.CancelaRetUnicaEmite;
 import mx.emite.sdk.clientes.operaciones.ef.Consume;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumeEmite;
 import mx.emite.sdk.clientes.operaciones.ef.ConsumoToken;
@@ -28,9 +31,17 @@ public class EFAPI {
 	private final Consume consume;
 	private final ConsumeEmite consumeemite;
 	private final SellaXml sellaxml;
+	private final CancelaEmite cancelaemite;
+	private final CancelaRetUnicaEmite cancelaretunicaemite;
+	private final CancelaRetMasivaEmite cancelaretmasivaemite;
 	
 	@Getter private String contrasena;
 	@Getter private String usuario;
+	
+	@Deprecated
+	public EFAPI(final Ambiente ambiente){
+		this(ambiente,null,null);
+	}
 	
 	@Deprecated
 	public EFAPI(final Ambiente ambiente,final String usuario,final String contrasena){
@@ -40,6 +51,9 @@ public class EFAPI {
 		this.consume=new Consume(this.cliente);
 		this.consumeemite=new ConsumeEmite(this.cliente);
 		this.sellaxml=new SellaXml(this.cliente);
+		this.cancelaemite=new CancelaEmite(this.cliente);
+		this.cancelaretunicaemite=new CancelaRetUnicaEmite(this.cliente);
+		this.cancelaretmasivaemite=new CancelaRetMasivaEmite(this.cliente);
 		this.usuario=usuario;
 		this.contrasena=contrasena;
 		
@@ -65,5 +79,16 @@ public class EFAPI {
 		return consume;
 	}
 	
+	public CancelaEmite cancela(){
+		return cancelaemite;
+	}
+	
+	public CancelaRetUnicaEmite cancelaretunica(){
+		return cancelaretunicaemite;
+	}
+	
+	public CancelaRetMasivaEmite cancelaretmasiva(){
+		return cancelaretmasivaemite;
+	}
 	
 }

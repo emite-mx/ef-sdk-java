@@ -2,7 +2,7 @@
 , xmlns = {
     @XmlNs(prefix = "cfdi", namespaceURI = "http://www.sat.gob.mx/cfd/3"),    
 }
-, elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
+, elementFormDefault = javax.xml.bind.annotation.XmlNsForm.UNQUALIFIED
 )
 @XmlJavaTypeAdapter(value=StringAdapter.class, type=String.class)
 

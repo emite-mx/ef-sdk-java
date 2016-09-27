@@ -23,11 +23,11 @@ import mx.emite.sdk.cfdi32.Conceptos;
 import mx.emite.sdk.cfdi32.Emisor;
 import mx.emite.sdk.cfdi32.Impuestos;
 import mx.emite.sdk.cfdi32.Receptor;
-import mx.emite.sdk.enums.sat.FormasPago;
+import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
 import mx.emite.sdk.enums.sat.TipoPago;
-import mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
@@ -93,8 +93,8 @@ public class ComprobanteNomina  {
 
 	@XmlAttribute
 	@NotNull
-	@XmlJavaTypeAdapter(FormasPagoAdapter.class)
-	protected FormasPago metodoDePago;
+	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
+	protected MetodosPago metodoDePago;
 
 	@XmlAttribute(required = true)
 	protected String noCertificado;
