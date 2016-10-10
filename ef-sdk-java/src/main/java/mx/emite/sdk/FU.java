@@ -27,6 +27,9 @@ public class FU {
 		public static void main(String[] agrs){
 			try{
 			String fecha="2015-12-15T14:55:26.6123714";
+			
+			DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss",new Locale("es","MX")).format(LocalDateTime.parse(fecha,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss",new Locale("es","MX"))).plusDays(5));
+			
 			if(fecha.indexOf(".")!=-1)
 				fecha = fecha.substring(0,fecha.lastIndexOf("."));
 			DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss",new Locale("es","MX"));
@@ -87,7 +90,8 @@ public class FU {
 		MESANO("MMM yy"),
 		YYYYMM("yyyy/MM"),
 		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss"),
-		YYYYMMSINGUION("yyyyMM")
+		YYYYMMSINGUION("yyyyMM"),
+		YYMMDD("yyMMdd")
 		;
 		//private  SimpleDateFormat dftc = new SimpleDateFormat("dd/MM/yy HH:mm");
 		//private  SimpleDateFormat dft = new SimpleDateFormat();
