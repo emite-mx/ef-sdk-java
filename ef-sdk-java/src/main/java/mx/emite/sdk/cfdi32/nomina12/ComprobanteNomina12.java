@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32.nomina;
+package mx.emite.sdk.cfdi32.nomina12;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -39,9 +39,9 @@ import mx.emite.sdk.utils.Utilerias;
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor 
 @AllArgsConstructor
-public class ComprobanteNomina  {
+public class ComprobanteNomina12  {
 
 	
 	@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
@@ -64,7 +64,6 @@ public class ComprobanteNomina  {
 	private Complemento complemento = null;
 
 	@XmlAttribute
-	@Digits(integer=20, fraction = 0)
 	protected String certificado;
 
 	@XmlAttribute(name = "LugarExpedicion")
@@ -97,6 +96,7 @@ public class ComprobanteNomina  {
 	protected MetodosPago metodoDePago;
 
 	@XmlAttribute(required = true)
+	@Digits(integer=20, fraction = 0)
 	protected String noCertificado;
 
 	@XmlAttribute(required = true)
@@ -120,7 +120,7 @@ public class ComprobanteNomina  {
 
 	@XmlAttribute(name = "Moneda")
 	@XmlJavaTypeAdapter(MonedasAdapter.class)
-	protected Monedas moneda = Monedas.MXN;
+	protected final Monedas moneda = Monedas.MXN;
 
 	@XmlAttribute(name = "TipoCambio")
 	@Min(value = 0)
@@ -134,6 +134,6 @@ public class ComprobanteNomina  {
 	protected String numCtaPago;
 
 	public String generaXml(){
-		return Utilerias.marshallnom32(this);
+		return Utilerias.marshallnom12(this);
 	}
 }

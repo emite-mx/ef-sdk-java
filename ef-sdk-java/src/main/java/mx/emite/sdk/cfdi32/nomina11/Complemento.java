@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32.nomina;
+package mx.emite.sdk.cfdi32.nomina11;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

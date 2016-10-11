@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32.nomina;
+package mx.emite.sdk.cfdi32.nomina11;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -24,13 +24,14 @@ import lombok.Singular;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class Percepciones implements Serializable {
+public class Deducciones implements Serializable {
 
 	
-    /**
+	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6456188308509936700L;
+	private static final long serialVersionUID = 2401057397602968982L;
+
 	@XmlAttribute(required = true,name="TotalGravado")
 	@NotNull
     private BigDecimal totalGravado;
@@ -38,13 +39,11 @@ public class Percepciones implements Serializable {
 	@XmlAttribute(required = true,name="TotalExento")
     private BigDecimal totalExento;
 	
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Percepcion")
-    @Singular(value="percepcion") @Valid
-    private List<Percepcion> percepciones;
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Deduccion")
+    @Valid @Singular(value="deduccion")
+    private List<Deduccion> deducciones;
 
     
 	
-	
-
     
 }

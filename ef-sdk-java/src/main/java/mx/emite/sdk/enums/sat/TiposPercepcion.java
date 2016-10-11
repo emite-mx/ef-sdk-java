@@ -25,7 +25,7 @@ public enum TiposPercepcion implements Sat<String>{
 	SUBSIDIOSPORINCAPACIDAD("014","Subsidios por incapacidad"),
 	BECASTRABAJADORESHIJOS("015","Becas para trabajadores y/o hijos"),
 	OTROS("016","Otros"),
-	SUBSIDIOPARAELEMPLEO("017","Subsidio para el empleo"),
+	//SUBSIDIOPARAELEMPLEO("017","Subsidio para el empleo"),
 	HORASEXTRA("019","Horas extra"),
 	PRIMADOMINICAL("020","Prima dominical"),
 	PRIMAVACACIONAL("021","Prima vacacional"),
@@ -47,13 +47,13 @@ public enum TiposPercepcion implements Sat<String>{
 	AYUDAPARAGASTOSDEFUNERAL("037","Ayuda para gastos de funeral"),
 	OTROSINGRESOSPORSALARIOS("038","Otros ingresos por salarios"),
 	JUBILACIONESPENSIONESHABERESDERETIRO("039","Jubilaciones, pensiones o haberes de retiro"),
-	INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOS("040","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales  con ingresos propios."),
-	INGRESOPORENTIDADESFEDERATIVASCONINGRESOSFEDERALES("041","Ingreso por Entidades federativas, municipios, o demarcaciones territoriales   del   Distrito  Federal,  organismos autónomos  y  entidades paraestatales y paramunicipales con ingresos federales."),
-	INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOSYFEDERALES("042","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales con ingresos propios y federales."),
-	VIATICOSYGASTOSDEVIAJE("043","Viáticos y Gastos de Viaje"),
+	//INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOS("040","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales  con ingresos propios."),
+	//INGRESOPORENTIDADESFEDERATIVASCONINGRESOSFEDERALES("041","Ingreso por Entidades federativas, municipios, o demarcaciones territoriales   del   Distrito  Federal,  organismos autónomos  y  entidades paraestatales y paramunicipales con ingresos federales."),
+	//INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOSYFEDERALES("042","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales con ingresos propios y federales."),
+	//VIATICOSYGASTOSDEVIAJE("043","Viáticos y Gastos de Viaje"),
 	JUBILACIONESPENSIONESOHABERESDERETIROENPARCIALIDADES("044","Jubilaciones, pensiones o haberes de retiro en parcialidades"),
 	INGRESOSENACCIONESOTITULOSVALORQUEREPRESENTANBIENES("045","Ingresos en acciones o títulos valor que representan bienes"),
-	
+	ASIMILADOSASALARIOS("046","Ingresos asimilados a salarios"),
 	
 	;
 	

@@ -26,7 +26,8 @@ import org.xml.sax.InputSource;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.emite.sdk.cfdi32.Comprobante;
-import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
+import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
+import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
@@ -51,7 +52,7 @@ public class MarshallerUnmarshaller {
 
 		
 	//private final static Marshaller marshaller = xmlMarshaller();
-	private final static JAXBContext contexto = contexto(Comprobante.class,GenericoFactura.class,GenericoNomina.class,ComprobanteNomina.class,Retenciones.class,EnajenaciondeAcciones.class
+	private final static JAXBContext contexto = contexto(Comprobante.class,GenericoFactura.class,GenericoNomina.class,ComprobanteNomina11.class,ComprobanteNomina12.class, Retenciones.class,EnajenaciondeAcciones.class
 			,Dividendos.class,Intereses.class,Arrendamientoenfideicomiso.class,Pagosaextranjeros.class,
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
 			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
@@ -103,6 +104,20 @@ public class MarshallerUnmarshaller {
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd http://www.sat.gob.mx/nomina http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina11.xsd");
+		return m;
+		}catch(Exception ex){
+			log.error("creando marshaller",ex);
+			return null;
+		}
+	}
+	
+	private static Marshaller xmlNomina12Marshaller(){
+		try{
+		
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd http://www.sat.gob.mx/nomina http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd");
 		return m;
 		}catch(Exception ex){
 			log.error("creando marshaller",ex);
@@ -230,10 +245,36 @@ public class MarshallerUnmarshaller {
 	}
 	
 	
-	public static String marshallNomina32(ComprobanteNomina comp) throws ApiException{
+	public static String marshallNomina32(ComprobanteNomina11 comp) throws ApiException{
 		try{
 			final StringWriter writer = new StringWriter();
 			xmlNominaMarshaller().marshal(comp,writer);
+			final String xml = writer.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallNomina32(ComprobanteNomina12 comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			xmlNominaMarshaller().marshal(comp,writer);
+			final String xml = writer.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallNomina12(ComprobanteNomina12 comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			xmlNomina12Marshaller().marshal(comp,writer);
 			final String xml = writer.toString();
 			log.debug("\n"+xml);
 			return xml;
