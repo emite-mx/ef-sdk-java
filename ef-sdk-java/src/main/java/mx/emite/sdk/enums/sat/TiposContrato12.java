@@ -11,37 +11,40 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum TiposContrato12 implements Sat<String>{
 	
-	TIEMPOINDETERMINADO("01","Contrato de trabajo por tiempo indeterminado"),
-	POROBRADETERMINADA("02","Contrato de trabajo para obra determinada"),
-	PORTIEMPODETERMINADO("03","Contrato de trabajo por tiempo determinado"),
-	PORTEMPORADA("04","Contrato de trabajo por temporada"),
-	APRUEBA("05","Contrato de trabajo sujeto a prueba"),
-	CAPACITACIONINICIAL("06","Contrato de trabajo con capacitación inicial"),
-	PORHORA("07","Modalidad de contratación por pago de hora laborada"),
-	PORCOMISION("08","Modalidad de trabajo por comisión laboral"),
-	SINRELACION("09","Modalidades de contratación donde no existe relación de trabajo"),
-	JUBILACION("10","Jubilación, pensión, retiro."),
-	OTROCONTRATO("99","Otro Contrato"),
+	TIEMPOINDETERMINADO("01","Contrato de trabajo por tiempo indeterminado",true),
+	POROBRADETERMINADA("02","Contrato de trabajo para obra determinada",true),
+	PORTIEMPODETERMINADO("03","Contrato de trabajo por tiempo determinado",true),
+	PORTEMPORADA("04","Contrato de trabajo por temporada",true),
+	APRUEBA("05","Contrato de trabajo sujeto a prueba",true),
+	CAPACITACIONINICIAL("06","Contrato de trabajo con capacitación inicial",true),
+	PORHORA("07","Modalidad de contratación por pago de hora laborada",true),
+	PORCOMISION("08","Modalidad de trabajo por comisión laboral",true),
+	SINRELACION("09","Modalidades de contratación donde no existe relación de trabajo",false),
+	JUBILACION("10","Jubilación, pensión, retiro.",false),
+	OTROCONTRATO("99","Otro Contrato",false),
 	;
 	
 	final String idSat;
 	final String descripcion;
 	final String[] sinonimos;
+	final Boolean requiereRegistroPatronal;
 	
-	TiposContrato12(String idSat,String descripcion){
-		this(idSat,descripcion,null);
+	TiposContrato12(String idSat,String descripcion,Boolean requiereRegistroPatronal){
+		this(idSat,descripcion,null,requiereRegistroPatronal);
 	}
 	
-	TiposContrato12(String idSat,String descripcion,String[] sinonimos){
+	TiposContrato12(String idSat,String descripcion,String[] sinonimos,Boolean requiereRegistroPatronal){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
-		
+		this.requiereRegistroPatronal=requiereRegistroPatronal;
 	}
 
 	public static TiposContrato12 busca(String metodo) {
 		for(TiposContrato12 m:values()){
-			if(Utilerias.compara(m.descripcion,metodo))
+			if(m.idSat.equals(metodo))
+				return m;
+			else if(Utilerias.compara(m.descripcion,metodo))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
@@ -67,7 +70,7 @@ public enum TiposContrato12 implements Sat<String>{
 	public static String marshall(TiposContrato12 v) throws Exception {
 		if(v==null)
 			return null;
-		return v.getDescripcion();
+		return v.getIdSat();
 	}
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {

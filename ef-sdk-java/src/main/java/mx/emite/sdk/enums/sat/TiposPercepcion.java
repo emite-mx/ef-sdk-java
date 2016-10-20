@@ -11,64 +11,66 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum TiposPercepcion implements Sat<String>{
 	
-	SUELDOSSALARIOSRAYASYJORNALES("001","Sueldos, Salarios  Rayas y Jornales"),
-	AGUINALDO("002","Gratificación Anual (Aguinaldo)"),
-	PTU("003","Participación de los Trabajadores en las Utilidades PTU"),
-	REEMBOLSODEGASTOSMEDICOSYHOSPITALARIOS("004","Reembolso de Gastos Médicos Dentales y Hospitalarios"),
-	FONDODEAHORRO("005","Fondo de Ahorro"),
-	CAJADEAHORRO("006","Caja de ahorro"),
-	CONTRIBUCIONESACARGODELTRABAJADORPAGADASPORELPATRON("009","Contribuciones a Cargo del Trabajador Pagadas por el Patrón"),
-	PREMIOSPORPUNTUALIDAD("010","Premios por puntualidad"),
-	PRIMADESEGURODEVIDA("011","Prima de Seguro de vida"),
-	SEGURODEGASTOSMEDICOSMAYORES("012","Seguro de Gastos Médicos Mayores"),
-	CUOTASSINDICALESPAGADASPORELPATRON("013","Cuotas Sindicales Pagadas por el Patrón"),
-	SUBSIDIOSPORINCAPACIDAD("014","Subsidios por incapacidad"),
-	BECASTRABAJADORESHIJOS("015","Becas para trabajadores y/o hijos"),
-	OTROS("016","Otros"),
+	SUELDOSSALARIOSRAYASYJORNALES("001","Sueldos, Salarios  Rayas y Jornales",TIPOPERCEPCION.SUELDOS),
+	AGUINALDO("002","Gratificación Anual (Aguinaldo)",TIPOPERCEPCION.SUELDOS),
+	PTU("003","Participación de los Trabajadores en las Utilidades PTU",TIPOPERCEPCION.SUELDOS),
+	REEMBOLSODEGASTOSMEDICOSYHOSPITALARIOS("004","Reembolso de Gastos Médicos Dentales y Hospitalarios",TIPOPERCEPCION.SUELDOS),
+	FONDODEAHORRO("005","Fondo de Ahorro",TIPOPERCEPCION.SUELDOS),
+	CAJADEAHORRO("006","Caja de ahorro",TIPOPERCEPCION.SUELDOS),
+	CONTRIBUCIONESACARGODELTRABAJADORPAGADASPORELPATRON("009","Contribuciones a Cargo del Trabajador Pagadas por el Patrón",TIPOPERCEPCION.SUELDOS),
+	PREMIOSPORPUNTUALIDAD("010","Premios por puntualidad",TIPOPERCEPCION.SUELDOS),
+	PRIMADESEGURODEVIDA("011","Prima de Seguro de vida",TIPOPERCEPCION.SUELDOS),
+	SEGURODEGASTOSMEDICOSMAYORES("012","Seguro de Gastos Médicos Mayores",TIPOPERCEPCION.SUELDOS),
+	CUOTASSINDICALESPAGADASPORELPATRON("013","Cuotas Sindicales Pagadas por el Patrón",TIPOPERCEPCION.SUELDOS),
+	SUBSIDIOSPORINCAPACIDAD("014","Subsidios por incapacidad",TIPOPERCEPCION.SUELDOS),
+	BECASTRABAJADORESHIJOS("015","Becas para trabajadores y/o hijos",TIPOPERCEPCION.SUELDOS),
+	OTROS("016","Otros",TIPOPERCEPCION.SUELDOS),
 	//SUBSIDIOPARAELEMPLEO("017","Subsidio para el empleo"),
-	HORASEXTRA("019","Horas extra"),
-	PRIMADOMINICAL("020","Prima dominical"),
-	PRIMAVACACIONAL("021","Prima vacacional"),
-	PRIMAANTIGUEDAD("022","Prima por antigüedad"),
-	PAGOSSEPARACIÓN("023","Pagos por separación"),
-	SEGURODERETIRO("024","Seguro de retiro"),
-	INDEMNIZACIONES("025","Indemnizaciones"),
-	REEMBOLSOPORFUNERAL("026","Reembolso por funeral"),
-	CUOTASDESEGURIDADSOCIAL("027","Cuotas de seguridad social pagadas por el patrón"),
-	COMISIONES("028","Comisiones"),
-	VALESDEDESPENSA("029","Vales de despensa"),
-	VALESDERESTAURANTE("030","Vales de restaurante"),
-	VALESDEGASOLINA("031","Vales de gasolina"),
-	VALESDEROPA("032","Vales de ropa"),
-	AYUDAPARARENTA("033","Ayuda para renta"),
-	AYUDAPARAARTICULOSESCOLARES("034","Ayuda para artículos escolares"),
-	AYUDAPARAANTEOJOS("035","Ayuda para anteojos"),
-	AYUDAPARATRANSPORTE("036","Ayuda para transporte"),
-	AYUDAPARAGASTOSDEFUNERAL("037","Ayuda para gastos de funeral"),
-	OTROSINGRESOSPORSALARIOS("038","Otros ingresos por salarios"),
-	JUBILACIONESPENSIONESHABERESDERETIRO("039","Jubilaciones, pensiones o haberes de retiro"),
+	HORASEXTRA("019","Horas extra",TIPOPERCEPCION.SUELDOS),
+	PRIMADOMINICAL("020","Prima dominical",TIPOPERCEPCION.SUELDOS),
+	PRIMAVACACIONAL("021","Prima vacacional",TIPOPERCEPCION.SUELDOS),
+	PRIMAANTIGUEDAD("022","Prima por antigüedad",TIPOPERCEPCION.SEPARACIONINDEMNIZACION),
+	PAGOSSEPARACION("023","Pagos por separación",TIPOPERCEPCION.SEPARACIONINDEMNIZACION),
+	SEGURODERETIRO("024","Seguro de retiro",TIPOPERCEPCION.SUELDOS),
+	INDEMNIZACIONES("025","Indemnizaciones",TIPOPERCEPCION.SEPARACIONINDEMNIZACION),
+	REEMBOLSOPORFUNERAL("026","Reembolso por funeral",TIPOPERCEPCION.SUELDOS),
+	CUOTASDESEGURIDADSOCIAL("027","Cuotas de seguridad social pagadas por el patrón",TIPOPERCEPCION.SUELDOS),
+	COMISIONES("028","Comisiones",TIPOPERCEPCION.SUELDOS),
+	VALESDEDESPENSA("029","Vales de despensa",TIPOPERCEPCION.SUELDOS),
+	VALESDERESTAURANTE("030","Vales de restaurante",TIPOPERCEPCION.SUELDOS),
+	VALESDEGASOLINA("031","Vales de gasolina",TIPOPERCEPCION.SUELDOS),
+	VALESDEROPA("032","Vales de ropa",TIPOPERCEPCION.SUELDOS),
+	AYUDAPARARENTA("033","Ayuda para renta",TIPOPERCEPCION.SUELDOS),
+	AYUDAPARAARTICULOSESCOLARES("034","Ayuda para artículos escolares",TIPOPERCEPCION.SUELDOS),
+	AYUDAPARAANTEOJOS("035","Ayuda para anteojos",TIPOPERCEPCION.SUELDOS),
+	AYUDAPARATRANSPORTE("036","Ayuda para transporte",TIPOPERCEPCION.SUELDOS),
+	AYUDAPARAGASTOSDEFUNERAL("037","Ayuda para gastos de funeral",TIPOPERCEPCION.SUELDOS),
+	OTROSINGRESOSPORSALARIOS("038","Otros ingresos por salarios",TIPOPERCEPCION.SUELDOS),
+	JUBILACIONESPENSIONESHABERESDERETIRO("039","Jubilaciones, pensiones o haberes de retiro",TIPOPERCEPCION.JUBILACION),
 	//INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOS("040","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales  con ingresos propios."),
 	//INGRESOPORENTIDADESFEDERATIVASCONINGRESOSFEDERALES("041","Ingreso por Entidades federativas, municipios, o demarcaciones territoriales   del   Distrito  Federal,  organismos autónomos  y  entidades paraestatales y paramunicipales con ingresos federales."),
 	//INGRESOPAGADOPORENTIDADESFEDERATIVASCONINGRESOSPROPIOSYFEDERALES("042","Ingreso pagado por Entidades federativas, municipios, o demarcaciones territoriales del Distrito Federal, organismos autónomos y entidades paraestatales y paramunicipales con ingresos propios y federales."),
 	//VIATICOSYGASTOSDEVIAJE("043","Viáticos y Gastos de Viaje"),
-	JUBILACIONESPENSIONESOHABERESDERETIROENPARCIALIDADES("044","Jubilaciones, pensiones o haberes de retiro en parcialidades"),
-	INGRESOSENACCIONESOTITULOSVALORQUEREPRESENTANBIENES("045","Ingresos en acciones o títulos valor que representan bienes"),
-	ASIMILADOSASALARIOS("046","Ingresos asimilados a salarios"),
+	JUBILACIONESPENSIONESOHABERESDERETIROENPARCIALIDADES("044","Jubilaciones, pensiones o haberes de retiro en parcialidades",TIPOPERCEPCION.JUBILACION),
+	INGRESOSENACCIONESOTITULOSVALORQUEREPRESENTANBIENES("045","Ingresos en acciones o títulos valor que representan bienes",TIPOPERCEPCION.SUELDOS),
+	ASIMILADOSASALARIOS("046","Ingresos asimilados a salarios",TIPOPERCEPCION.SUELDOS),
 	
 	;
 	
 	final String idSat;
 	final String descripcion;
 	final String[] sinonimos;
+	final TIPOPERCEPCION tipo;
 	
-	TiposPercepcion(String idSat,String descripcion){
-		this(idSat,descripcion,null);
+	TiposPercepcion(String idSat,String descripcion,TIPOPERCEPCION tipo){
+		this(idSat,descripcion,null,tipo);
 	}
 	
-	TiposPercepcion(String idSat,String descripcion,String[] sinonimos){
+	TiposPercepcion(String idSat,String descripcion,String[] sinonimos,TIPOPERCEPCION tipo){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
+		this.tipo=tipo;
 		
 	}
 
@@ -119,4 +121,39 @@ public enum TiposPercepcion implements Sat<String>{
 		return descripcion;
 	}
 	
+	public boolean esSueldo(){
+		return this.tipo.equals(TIPOPERCEPCION.SUELDOS);
+	}
+	
+	public boolean esSeparacionIndemnizacion(){
+		return this.tipo.equals(TIPOPERCEPCION.SEPARACIONINDEMNIZACION);
+	}
+	
+	public boolean esJubilacion(){
+		return this.tipo.equals(TIPOPERCEPCION.JUBILACION);
+	}
+	
+	public boolean esJubilacionUnaExhibicion(){
+		return this.equals(JUBILACIONESPENSIONESHABERESDERETIRO);
+	}
+	
+	public boolean esJubilacionParcialidades(){
+		return this.equals(JUBILACIONESPENSIONESOHABERESDERETIROENPARCIALIDADES);
+	}
+	
+	public static enum TIPOPERCEPCION{
+		SUELDOS,SEPARACIONINDEMNIZACION,JUBILACION
+	}
+
+	public boolean esAcciones() {
+		return this.equals(INGRESOSENACCIONESOTITULOSVALORQUEREPRESENTANBIENES);
+	}
+	
+	public boolean esHorasExtra() {
+		return this.equals(HORASEXTRA);
+	}
+	
+	public boolean esIncapacidad() {
+		return this.equals(SUBSIDIOSPORINCAPACIDAD);
+	}
 }

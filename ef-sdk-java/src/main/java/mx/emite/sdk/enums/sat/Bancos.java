@@ -164,11 +164,22 @@ public enum Bancos implements Sat<String>{
 	public static String marshall(Bancos v) throws Exception {
 		if(v==null)
 			return null;
-		return v.getDescripcion();
+		return v.getIdSat();
 	}
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+
+	public static Bancos getBanco(String banco) {
+		if(StringUtils.isEmpty(banco))
+			return null;
+		for(Bancos m:values()){
+			if(m.idSat.equals(banco))
+				return m;
+		}
+		return null;
 	}
 	
 }

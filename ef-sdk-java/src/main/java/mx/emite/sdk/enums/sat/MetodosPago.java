@@ -13,20 +13,21 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum MetodosPago implements Sat<Integer>{
+public enum MetodosPago implements Sat<String>{
 	
-	EFECTIVO(1,"Efectivo"),
-	CHEQUE(2,"Cheque nominativo"),
-	TRANSFERENCIA(3,"Transferencia electrónica de fondos"),
-	TARJETASDECREDITO(4,"Tarjetas de crédito"),
-	MONEDEROSELECTRONICOS(5,"Monederos electrónicos"),
-	DINEROELECTRONICO(6,"Dinero electrónico"),
+	EFECTIVO("01","Efectivo"),
+	CHEQUE("02","Cheque nominativo"),
+	TRANSFERENCIA("03","Transferencia electrónica de fondos"),
+	TARJETASDECREDITO("04","Tarjetas de crédito"),
+	MONEDEROSELECTRONICOS("05","Monederos electrónicos"),
+	DINEROELECTRONICO("06","Dinero electrónico"),
 	
-	VALESDEDESPENSA(8,"Vales de despensa"),
-	TARJETADEDEBITO(28,"Tarjeta de Débito"),
-	TARJETADESERVICIO(29,"Tarjeta de Servicio"),
+	VALESDEDESPENSA("08","Vales de despensa"),
+	TARJETADEDEBITO("28","Tarjeta de Débito"),
+	TARJETADESERVICIO("29","Tarjeta de Servicio"),
 	
-	OTROS(99,"Otros",new String[]{"No Identificado"});
+	OTROS("99","Otros",new String[]{"No Identificado"}),
+	NA("NA","NA");
 	
 	//TARJETASDIGITALES(7,"Tarjetas digitales"),
 	//BIENES(9,"Bienes"),
@@ -40,15 +41,16 @@ public enum MetodosPago implements Sat<Integer>{
 		//COMPENSACION(17,"Compensación"),
 		//NOAPLICA(98,"NA"),
 	
-	final Integer idSat;
+	final String idSat;
 	final String descripcion;
 	final String[] sinonimos;
 	
-	MetodosPago(Integer idSat,String descripcion){
+	
+	MetodosPago(String idSat,String descripcion){
 		this(idSat,descripcion,null);
 	}
 	
-	MetodosPago(Integer idSat,String descripcion,String[] sinonimos){
+	MetodosPago(String idSat,String descripcion,String[] sinonimos){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
@@ -106,6 +108,7 @@ public enum MetodosPago implements Sat<Integer>{
 	 * @param idSat de acuerdo al catalogo del SAT
 	 * @return formapago valor del enum de acuerdo a la forma de pago
 	 */
+	@Deprecated
 	public static MetodosPago id(Integer idSat) {
 		for(MetodosPago m:values()){
 			if(m.idSat.equals(idSat))
@@ -114,7 +117,17 @@ public enum MetodosPago implements Sat<Integer>{
 		return null;
 	}
 	
-	public Integer getIdMetodoPago(){
+	public static MetodosPago getMetodoPago(String idSat) {
+		if(StringUtils.isEmpty(idSat))
+			return null;
+		for(MetodosPago m:values()){
+			if(m.idSat.equals(idSat))
+				return m;
+		}
+		return null;
+	}
+	
+	public String getIdMetodoPago(){
 		return idSat;
 	}
 
@@ -141,7 +154,7 @@ public enum MetodosPago implements Sat<Integer>{
 	}
 	
 	private String marshall(){
-		return getIdSat().intValue()<10?"0"+Integer.toString(getIdSat()): Integer.toString(getIdSat());
+		return idSat;
 	}
 	
 	private String getIdSatString(){
@@ -156,7 +169,7 @@ public enum MetodosPago implements Sat<Integer>{
 		return Arrays.asList(values()).stream().map(MetodosPago::getIdSatString).collect(Collectors.toList());		
 	}
 	
-	public static List<Integer> idsint() {
+	public static List<String> idsint() {
 		return Arrays.asList(values()).stream().map(MetodosPago::getIdSat).collect(Collectors.toList());		
 	}
 	

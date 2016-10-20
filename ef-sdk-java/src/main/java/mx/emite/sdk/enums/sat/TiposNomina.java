@@ -58,6 +58,16 @@ public enum TiposNomina implements Sat<String>{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
+
+	public static TiposNomina getTipoNomina(String tipoNomina) {
+		if(StringUtils.isEmpty(tipoNomina))
+			return null;
+		for(TiposNomina m:values()){
+			if(m.idSat.equals(tipoNomina))
+				return m;
+		}
+		return null;
+	}
 	
 	
 }

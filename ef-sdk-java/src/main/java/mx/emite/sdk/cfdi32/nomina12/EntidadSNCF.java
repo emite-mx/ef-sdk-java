@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,7 +15,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.emite.sdk.enums.sat.OrigenRecurso;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.OrigenRecursoAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EntidadSNCF")
@@ -39,8 +40,9 @@ public class EntidadSNCF implements Serializable{
 	 * origenRecurso Atributo requerido para identificar el origen del recurso utilizado para el pago de nómina del personal que presta o desempeña un servicio personal subordinado o asimilado a salarios en las dependencias.
 	 */
 	@XmlAttribute(name="OrigenRecurso")
-	@NotNull @Size(max=100)
-	protected String origenRecurso;
+	@XmlJavaTypeAdapter(OrigenRecursoAdapter.class)
+	@NotNull 
+	protected OrigenRecurso origenRecurso;
 	
 	/**
 	 * montoRecursoPropio Atributo condicional para expresar el monto del recurso pagado con cargo a sus participaciones u otros ingresos locales (importe bruto de los ingresos propios, es decir total de gravados y exentos), cuando el origen es mixto.

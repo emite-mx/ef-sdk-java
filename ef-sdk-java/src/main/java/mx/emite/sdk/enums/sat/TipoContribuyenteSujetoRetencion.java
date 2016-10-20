@@ -37,9 +37,19 @@ public enum TipoContribuyenteSujetoRetencion implements Sat<String>{
 		
 	}
 
+	public static TipoContribuyenteSujetoRetencion busca(Integer metodo) {
+		for(TipoContribuyenteSujetoRetencion m:values()){
+			if(metodo == Integer.parseInt(m.getIdSat()))
+				return m;
+		}
+		return null;
+	}
+	
 	public static TipoContribuyenteSujetoRetencion busca(String metodo) {
 		for(TipoContribuyenteSujetoRetencion m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
+				return m;
+			else if(Utilerias.compara(m.idSat,metodo))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){

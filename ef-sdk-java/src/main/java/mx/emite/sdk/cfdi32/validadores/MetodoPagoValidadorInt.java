@@ -5,7 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 import mx.emite.sdk.cfdi32.anotaciones.MetodoPago;
 import mx.emite.sdk.enums.sat.MetodosPago;
 
-public class MetodoPagoValidadorInt extends CatalogoSatValidador<MetodoPago, Integer>{
+@Deprecated
+public class MetodoPagoValidadorInt extends CatalogoSatValidador<MetodoPago, String>{
 
 	@Override
 	public void initialize(MetodoPago anotacion) {
@@ -13,7 +14,7 @@ public class MetodoPagoValidadorInt extends CatalogoSatValidador<MetodoPago, Int
 
 	
 	@Override
-	public boolean isValid(Integer value, ConstraintValidatorContext context) {
+	public boolean isValid(String value, ConstraintValidatorContext context) {
 		return valida(value,context,MetodosPago.idsint());
 	}
 

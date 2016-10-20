@@ -112,4 +112,12 @@ public enum TiposDeduccion implements Sat<String>{
 		return descripcion;
 	}
 	
+	public boolean esIsr(){
+		return this.equals(ISR);
+	}
+
+	public boolean esIncapacidad() {
+		return this.equals(DESCUENTOPORINCAPACIDAD);
+	}
+	
 }

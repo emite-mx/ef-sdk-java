@@ -51,7 +51,6 @@ public class SeparacionIndemnizacion implements Serializable{
 	 * numAnosServicio Atributo requerido para expresar el número de años de servicio del trabajador. Se redondea al entero superior si la cifra contiene años y meses y hay más de 6 meses.
 	 */
 	@XmlAttribute(name="NumAñosServicio")
-	@XmlJavaTypeAdapter(ImporteMxnAdapter.class)
 	@NotNull
 	@DecimalMin("0") @DecimalMax("75")
 	protected BigInteger numAnosServicio;

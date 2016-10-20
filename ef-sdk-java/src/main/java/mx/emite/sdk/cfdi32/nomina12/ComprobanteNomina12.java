@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -19,10 +20,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.cfdi32.Conceptos;
-import mx.emite.sdk.cfdi32.Emisor;
-import mx.emite.sdk.cfdi32.Impuestos;
-import mx.emite.sdk.cfdi32.Receptor;
 import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
@@ -58,7 +55,7 @@ public class ComprobanteNomina12  {
 
 	@XmlElement(name = "Impuestos", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	@Valid @NotNull
-	private Impuestos impuestos;
+	private final Impuestos impuestos = new Impuestos();
 
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	private Complemento complemento = null;
@@ -93,7 +90,7 @@ public class ComprobanteNomina12  {
 	@XmlAttribute
 	@NotNull
 	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
-	protected MetodosPago metodoDePago;
+	protected final MetodosPago metodoDePago = MetodosPago.NA;
 
 	@XmlAttribute(required = true)
 	@Digits(integer=20, fraction = 0)
@@ -124,14 +121,14 @@ public class ComprobanteNomina12  {
 
 	@XmlAttribute(name = "TipoCambio")
 	@Min(value = 0)
-	protected BigDecimal tipoCambio;
+	protected final BigDecimal tipoCambio = null;
 
 	@XmlAttribute(required = true)
 	protected final String version = "3.2";
 
 	@XmlAttribute(required = true, name = "NumCtaPago")
-	@NotNull
-	protected String numCtaPago;
+	@Null
+	protected final String numCtaPago = null;
 
 	public String generaXml(){
 		return Utilerias.marshallnom12(this);

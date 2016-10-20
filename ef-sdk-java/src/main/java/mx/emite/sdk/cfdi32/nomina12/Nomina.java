@@ -24,7 +24,7 @@ import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposNominaAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "",propOrder={"emisor","receptor","percepciones","deducciones","otrosPagos","incapacidades"})
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
@@ -67,6 +67,7 @@ public class Nomina implements Serializable{
 	 */
 	@XmlAttribute(name="FechaInicialPago")
 	@XmlJavaTypeAdapter(LocalDateAdapter.class)
+	@NotNull
 	protected LocalDate fechaInicialPago; 
 	
 	/**
@@ -74,6 +75,7 @@ public class Nomina implements Serializable{
 	 */
 	@XmlAttribute(name="FechaFinalPago")
 	@XmlJavaTypeAdapter(LocalDateAdapter.class)
+	@NotNull
 	protected LocalDate fechaFinalPago; 
 	
 	/**
@@ -134,15 +136,14 @@ public class Nomina implements Serializable{
 	private Deducciones deducciones;
 	
 	/**
-	 * incapacidades Nodo condicional para expresar información de las incapacidades
-	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Incapacidades")
-	private Incapacidades incapacidades;
-	
-	/**
 	 * otrosPagos Nodo condicional para expresar otros pagos aplicables.
 	 */
 	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="OtrosPagos")
 	private OtrosPagos otrosPagos;
 	
+	/**
+	 * incapacidades Nodo condicional para expresar información de las incapacidades
+	 */
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Incapacidades")
+	private Incapacidades incapacidades;
 }

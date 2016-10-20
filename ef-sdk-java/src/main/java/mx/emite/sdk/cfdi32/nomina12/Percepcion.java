@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -101,4 +102,9 @@ public class Percepcion implements Serializable {
 	private List<HorasExtra> horasExtra;
 	
     
+	@XmlTransient
+	public BigDecimal getImporte(){
+		return (importeGravado==null?BigDecimal.ZERO:importeGravado).add(importeExento==null?BigDecimal.ZERO:importeExento);
+	}
+	
 }

@@ -21,23 +21,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 import mx.emite.sdk.cfdi32.anotaciones.Antiguedad;
 import mx.emite.sdk.cfdi32.anotaciones.Curp;
 import mx.emite.sdk.cfdi32.anotaciones.NumEmpleado;
 import mx.emite.sdk.cfdi32.anotaciones.NumSeguridadSocial;
 import mx.emite.sdk.enums.sat.Bancos;
+import mx.emite.sdk.enums.sat.Estados;
 import mx.emite.sdk.enums.sat.TiposContrato12;
 import mx.emite.sdk.enums.sat.TiposJornada;
 import mx.emite.sdk.enums.sat.TiposPeriodicidad;
 import mx.emite.sdk.enums.sat.TiposRegimen12;
 import mx.emite.sdk.enums.sat.TiposRiesgo;
 import mx.emite.sdk.enums.sat.adaptadores.BancosAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposContrato12Adapter;
-import mx.emite.sdk.enums.sat.adaptadores.TiposJornadaAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposJornadaIdSatAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposRegimen12Adapter;
-import mx.emite.sdk.enums.sat.adaptadores.TiposRiesgoAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposRiesgoIdSatAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -105,7 +108,7 @@ public class ReceptorNomina implements Serializable{
 	 * tipoJornada Atributo condicional para expresar el tipo de jornada que cubre el trabajador. Se debe ingresar cuando se esté obligado conforme a otras disposiciones distintas a las fiscales.
 	 */
 	@XmlAttribute(name="TipoJornada")
-	@XmlJavaTypeAdapter(TiposJornadaAdapter.class)
+	@XmlJavaTypeAdapter(TiposJornadaIdSatAdapter.class)
 	protected TiposJornada tipoJornada; 
 	
 	/**
@@ -142,7 +145,7 @@ public class ReceptorNomina implements Serializable{
 	 * riesgoPuesto Atributo opcional para expresar la clave conforme a la Clase en que deben inscribirse los patrones, de acuerdo con las actividades que desempeñan sus trabajadores, según lo previsto en el artículo 196 del Reglamento en Materia de Afiliación Clasificación de Empresas, Recaudación y Fiscalización, o conforme con la normatividad del Instituto de Seguridad Social del trabajador. Catálogo publicado en el Portal del SAT en internet. Se debe ingresar cuando se cuente con él, o se esté obligado conforme a otras disposiciones distintas a las fiscales.
 	 */
 	@XmlAttribute(name="RiesgoPuesto")
-	@XmlJavaTypeAdapter(TiposRiesgoAdapter.class)
+	@XmlJavaTypeAdapter(TiposRiesgoIdSatAdapter.class)
 	protected TiposRiesgo riesgoPuesto; 
 	
 	/**
@@ -185,11 +188,20 @@ public class ReceptorNomina implements Serializable{
 	
 
 	/**
+	 * claveEntFed Atributo requerido para expresar la clave de la entidad federativa en donde el receptor del recibo prestó el servicio, conforme al catálogo de estados publicado en el Portal del SAT.
+	 */
+	@XmlAttribute(name="ClaveEntFed")
+	@XmlJavaTypeAdapter(EstadosAdapter.class)
+	@NotNull
+	protected Estados claveEntFed; 
+	
+	
+	/**
 	 * subcontratacion Nodo condicional para expresar la lista de las personas que los subcontrataron.
 	 */
 	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="SubContratacion")
-	@Valid
-	protected List<Subcontratacion> subcontratacion; 
+	@Valid @Singular(value="subcontratacion")
+	protected List<Subcontratacion> subcontrataciones; 
 	
 	
 }

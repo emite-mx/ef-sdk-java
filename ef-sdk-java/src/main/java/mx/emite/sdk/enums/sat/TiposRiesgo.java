@@ -35,7 +35,9 @@ public enum TiposRiesgo implements Sat<Integer>{
 
 	public static TiposRiesgo busca(String metodo) {
 		for(TiposRiesgo m:values()){
-			if(Utilerias.compara(m.descripcion,metodo))
+			if(m.idSat.equals(metodo))
+				return m;
+			else if(Utilerias.compara(m.descripcion,metodo))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
@@ -64,6 +66,12 @@ public enum TiposRiesgo implements Sat<Integer>{
 		return v.getDescripcion();
 	}
 	
+	public static String marshallIdSat(TiposRiesgo v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getIdSat().toString();
+	}
+	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
@@ -74,6 +82,22 @@ public enum TiposRiesgo implements Sat<Integer>{
 		for(TiposRiesgo t:values()){
 			if(t.getIdSat().equals(tipoRiesgo))
 				return t;
+		}
+		return null;
+	}
+
+	public static TiposRiesgo getTipoRiesgo(String riesgoPuesto) {
+		if(StringUtils.isEmpty(riesgoPuesto)){
+			return null;
+		}
+		int id;
+		try{
+			id = Integer.parseInt(riesgoPuesto);
+		}catch(Exception ex){return null;}
+		
+		for(TiposRiesgo m:values()){
+			if(m.idSat.equals(id))
+				return m;
 		}
 		return null;
 	}

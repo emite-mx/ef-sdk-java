@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.TiposHoras;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.TiposHorasAdapter;
+import mx.emite.sdk.enums.sat.adaptadores.TiposHorasIdSatAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "HorasExtra")
@@ -48,7 +48,7 @@ public class HorasExtra implements Serializable {
 	 * tipoHoras Atributo requerido para expresar el tipo de pago de las horas extra.
 	 */
 	@XmlAttribute(name="TipoHoras")
-	@XmlJavaTypeAdapter(TiposHorasAdapter.class)
+	@XmlJavaTypeAdapter(TiposHorasIdSatAdapter.class)
 	@NotNull
     private TiposHoras tipoHoras;
 	

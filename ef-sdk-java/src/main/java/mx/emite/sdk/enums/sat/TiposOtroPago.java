@@ -14,7 +14,7 @@ public enum TiposOtroPago implements Sat<String>{
 	DEVOLUCIONISR("001","Devolución de ISR"),
 	SUBSIDIO("002","Subsidio efectivamente entregado al trabajador"),
 	VIATICOS("003","Viáticos"),
-	
+	COMPENSACION("004","Compensación de saldos a favor")
 	;
 	
 	final String idSat;
@@ -65,5 +65,16 @@ public enum TiposOtroPago implements Sat<String>{
 		return null;
 	}
 	
+	public boolean esSubsidioAlEmpleo(){
+		return this.equals(SUBSIDIO);
+	}
 	
+	public boolean esCompensasionSaldos(){
+		return this.equals(COMPENSACION);
+	}
+	
+	public boolean esViaticos(){
+		return this.equals(VIATICOS);
+	}
 }
+
