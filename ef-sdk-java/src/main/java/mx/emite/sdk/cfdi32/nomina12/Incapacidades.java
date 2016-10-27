@@ -33,7 +33,7 @@ public class Incapacidades implements Serializable {
 	/**
 	 * incapacidades Nodo condicional para expresar información de las incapacidades
 	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Incapacidad")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Incapacidad")
     @Singular(value="incapacidad")
     @Valid @NotEmpty
     private List<Incapacidad> incapacidades;

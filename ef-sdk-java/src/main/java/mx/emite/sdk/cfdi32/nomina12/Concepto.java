@@ -32,6 +32,12 @@ public class Concepto {
 	@NotNull
 	private final String descripcion = "Pago de nómina";
 	
+	/*
+	@XmlAttribute(name="ClaveProdServ",required = true)
+	@NotNull
+	private final String ClaveProdServ = "84111505";
+	*/
+	
 	@XmlAttribute(name="importe",required = true)
 	@NotNull @Min(value = 0)
 	private BigDecimal importe;

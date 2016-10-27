@@ -14,7 +14,8 @@ public enum TiposOtroPago implements Sat<String>{
 	DEVOLUCIONISR("001","Devolución de ISR"),
 	SUBSIDIO("002","Subsidio efectivamente entregado al trabajador"),
 	VIATICOS("003","Viáticos"),
-	COMPENSACION("004","Compensación de saldos a favor")
+	COMPENSACION("004","Aplicación de saldo a favor por compensación anual"),
+	OTROS("999","Pagos distintos a los listados y que no deben considerarse como ingreso por sueldos")
 	;
 	
 	final String idSat;
@@ -59,7 +60,7 @@ public enum TiposOtroPago implements Sat<String>{
 		if(tipoRiesgo==null)
 			return null;
 		for(TiposOtroPago t:values()){
-			if(t.getIdSat().equals(tipoRiesgo))
+			if(t.getIdSat().equals(tipoRiesgo<100?tipoRiesgo<10?"0"+tipoRiesgo:"00"+tipoRiesgo:tipoRiesgo.toString()))
 				return t;
 		}
 		return null;

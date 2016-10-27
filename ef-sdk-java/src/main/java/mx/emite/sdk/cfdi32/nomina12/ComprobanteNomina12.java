@@ -23,11 +23,9 @@ import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
-import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -82,10 +80,9 @@ public class ComprobanteNomina12  {
 	@XmlAttribute(required = true)
 	protected String folio;
 
-	@XmlAttribute(required = true)
+	@XmlAttribute(required = true,name="formaDePago")
 	@NotNull 
-	@XmlJavaTypeAdapter(TipoPagoAdapter.class)
-	protected TipoPago formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
+	protected final String formaDePago = "En una sola exhibición";
 
 	@XmlAttribute
 	@NotNull

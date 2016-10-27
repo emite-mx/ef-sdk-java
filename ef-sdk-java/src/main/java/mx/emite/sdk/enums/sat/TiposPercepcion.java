@@ -24,7 +24,7 @@ public enum TiposPercepcion implements Sat<String>{
 	CUOTASSINDICALESPAGADASPORELPATRON("013","Cuotas Sindicales Pagadas por el Patrón",TIPOPERCEPCION.SUELDOS),
 	SUBSIDIOSPORINCAPACIDAD("014","Subsidios por incapacidad",TIPOPERCEPCION.SUELDOS),
 	BECASTRABAJADORESHIJOS("015","Becas para trabajadores y/o hijos",TIPOPERCEPCION.SUELDOS),
-	OTROS("016","Otros",TIPOPERCEPCION.SUELDOS),
+	//OTROS("016","Otros",TIPOPERCEPCION.SUELDOS),
 	//SUBSIDIOPARAELEMPLEO("017","Subsidio para el empleo"),
 	HORASEXTRA("019","Horas extra",TIPOPERCEPCION.SUELDOS),
 	PRIMADOMINICAL("020","Prima dominical",TIPOPERCEPCION.SUELDOS),
@@ -54,7 +54,9 @@ public enum TiposPercepcion implements Sat<String>{
 	JUBILACIONESPENSIONESOHABERESDERETIROENPARCIALIDADES("044","Jubilaciones, pensiones o haberes de retiro en parcialidades",TIPOPERCEPCION.JUBILACION),
 	INGRESOSENACCIONESOTITULOSVALORQUEREPRESENTANBIENES("045","Ingresos en acciones o títulos valor que representan bienes",TIPOPERCEPCION.SUELDOS),
 	ASIMILADOSASALARIOS("046","Ingresos asimilados a salarios",TIPOPERCEPCION.SUELDOS),
-	
+	ALIMENTACION("047","Alimentación",TIPOPERCEPCION.SUELDOS),
+	HABITACION("048","Habitación",TIPOPERCEPCION.SUELDOS),
+	PREMIOSASISTENCIA("049","Premios por asistencia",TIPOPERCEPCION.SUELDOS),
 	;
 	
 	final String idSat;

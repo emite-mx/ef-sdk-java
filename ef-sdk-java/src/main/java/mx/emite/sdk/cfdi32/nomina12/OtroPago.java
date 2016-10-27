@@ -79,14 +79,14 @@ public class OtroPago implements Serializable {
 	/**
 	 * subsidioAlEmpleo Nodo para expresar la información referente al subsidio al empleo del trabajador.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="SubsidioAlEmpleo")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="SubsidioAlEmpleo")
 	@Valid
     private SubsidioAlEmpleo subsidioAlEmpleo;
    
 	/**
 	 * compensacionSaldosAFavor Nodo condicional para expresar la información referente a la compensación de saldos a favor de un trabajador.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="CompensacionSaldosAFavor")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="CompensacionSaldosAFavor")
 	@Valid
     private CompensacionSaldosAFavor compensacionSaldosAFavor;
     

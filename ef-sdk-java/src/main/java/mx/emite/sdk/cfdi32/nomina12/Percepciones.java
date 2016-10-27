@@ -83,7 +83,7 @@ public class Percepciones implements Serializable {
 	/**
 	 * percepciones Nodo requerido para expresar la información detallada de una percepcion
 	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Percepcion")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Percepcion")
     @Singular(value="percepcion") @Valid @NotEmpty
     private List<Percepcion> percepciones;
 
@@ -91,14 +91,14 @@ public class Percepciones implements Serializable {
     /**
 	 * jubilacionPensionRetiro Nodo condicional para expresar la información detallada de pagos por jubilación, pensiones o haberes de retiro.
 	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="JubilacionPensionRetiro")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="JubilacionPensionRetiro")
     @Valid
     private JubilacionPensionRetiro jubilacionPensionRetiro;
 	
     /**
    	 * separacionIndemnizacion Nodo condicional para expresar la información detallada de otros pagos por separación.
    	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="SeparacionIndemnizacion")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="SeparacionIndemnizacion")
     @Valid
     private SeparacionIndemnizacion separacionIndemnizacion;
 

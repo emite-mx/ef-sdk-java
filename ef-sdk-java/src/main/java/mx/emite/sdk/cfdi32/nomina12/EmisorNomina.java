@@ -58,7 +58,7 @@ public class EmisorNomina implements Serializable{
 	/**
 	 * Nodo condicional para que las entidades adheridas al Sistema Nacional de Coordinación Fiscal realicen la identificación del origen de los recursos utilizados en el pago de nómina del personal que presta o desempeña un servicio personal subordinado en las dependencias de la entidad federativa, del municipio o demarcación territorial de la Ciudad de México, así como en sus respectivos organismos autónomos y entidades paraestatales y paramunicipales
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="EntidadSNCF")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="EntidadSNCF")
 	@Valid
 	private EntidadSNCF entidadSncf;
 	

@@ -39,7 +39,7 @@ public class OtrosPagos implements Serializable {
 	/**
 	 * otrosPagos Nodo requerido para expresar la información detallada del otro pago.
 	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="OtroPago")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="OtroPago")
     @Singular(value="otroPago")
     @Valid @NotEmpty
     private List<OtroPago> otrosPagos;

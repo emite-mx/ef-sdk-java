@@ -101,7 +101,7 @@ public class ReceptorNomina implements Serializable{
 	 * sindicalizado Atributo opcional para indicar si el trabajador está asociado a un sindicato. Si se omite se asume que no está asociado a algún sindicato.
 	 */
 	@XmlAttribute(name="Sindicalizado")
-	@Pattern(regexp="(SI|NO)",message="Sindicalizado debe ser SI o NO")
+	@Pattern(regexp="(Sí|No)",message="Sindicalizado debe ser SI o NO")
 	private String sindicalizado;
 	
 	/**
@@ -199,7 +199,7 @@ public class ReceptorNomina implements Serializable{
 	/**
 	 * subcontratacion Nodo condicional para expresar la lista de las personas que los subcontrataron.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="SubContratacion")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="SubContratacion")
 	@Valid @Singular(value="subcontratacion")
 	protected List<Subcontratacion> subcontrataciones; 
 	

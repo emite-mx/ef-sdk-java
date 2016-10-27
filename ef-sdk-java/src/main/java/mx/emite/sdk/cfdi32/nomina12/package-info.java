@@ -1,7 +1,7 @@
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.sat.gob.mx/cfd/3"
 , xmlns = {
     @XmlNs(prefix = "cfdi", namespaceURI = "http://www.sat.gob.mx/cfd/3"),    
-    @XmlNs(prefix = "nomina", namespaceURI = "http://www.sat.gob.mx/nomina"),
+    @XmlNs(prefix = "nomina12", namespaceURI = "http://www.sat.gob.mx/nomina12"),
 }
 , elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
 )

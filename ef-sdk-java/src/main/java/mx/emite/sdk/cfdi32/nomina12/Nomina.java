@@ -109,7 +109,7 @@ public class Nomina implements Serializable{
 	@DecimalMin("0")
 	protected BigDecimal totalOtrosPagos;
 	
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Emisor")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Emisor")
 	@Valid
 	/**
 	 * emisor Nodo condicional para expresar la información del contribuyente emisor del comprobante de nómina.
@@ -119,31 +119,31 @@ public class Nomina implements Serializable{
 	/**
 	 * receptor Nodo requerido para precisar la información del contribuyente receptor del comprobante de nómina.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Receptor")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Receptor")
 	@Valid @NotNull
 	private ReceptorNomina receptor;
 	
 	/**
 	 * percepciones Nodo condicional para expresar las percepciones aplicables.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Percepciones")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Percepciones")
 	private Percepciones percepciones;
 	
 	/**
 	 * deducciones Nodo opcional para expresar las deducciones aplicables.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Deducciones")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Deducciones")
 	private Deducciones deducciones;
 	
 	/**
 	 * otrosPagos Nodo condicional para expresar otros pagos aplicables.
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="OtrosPagos")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="OtrosPagos")
 	private OtrosPagos otrosPagos;
 	
 	/**
 	 * incapacidades Nodo condicional para expresar información de las incapacidades
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Incapacidades")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Incapacidades")
 	private Incapacidades incapacidades;
 }

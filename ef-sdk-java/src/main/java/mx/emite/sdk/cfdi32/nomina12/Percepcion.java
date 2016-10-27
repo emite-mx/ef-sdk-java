@@ -90,14 +90,14 @@ public class Percepcion implements Serializable {
 	/**
 	 * accionesOTitulos Nodo condicional para expresar ingresos por acciones o títulos valor que representan bienes. Se vuelve requerido cuando existan ingresos por sueldos derivados de adquisición de acciones o títulos (Art. 94, fracción VII LISR).
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="AccionesOTitulos")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="AccionesOTitulos")
 	@Valid
 	private AccionesOTitulos accionesOTitulos;
    
 	/**
 	 * horasExtra Nodo condicional para expresar las horas extra aplicables..
 	 */
-	@XmlElement(namespace="http://www.sat.gob.mx/nomina",name="HorasExtra")
+	@XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="HorasExtra")
 	@Valid @Singular("horaExtra")
 	private List<HorasExtra> horasExtra;
 	

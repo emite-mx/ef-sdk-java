@@ -35,7 +35,7 @@ public enum TiposRiesgo implements Sat<Integer>{
 
 	public static TiposRiesgo busca(String metodo) {
 		for(TiposRiesgo m:values()){
-			if(m.idSat.equals(metodo))
+			if(m.idSat.toString().equals(metodo))
 				return m;
 			else if(Utilerias.compara(m.descripcion,metodo))
 				return m;

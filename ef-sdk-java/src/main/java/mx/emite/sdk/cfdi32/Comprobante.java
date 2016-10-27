@@ -60,7 +60,6 @@ public class Comprobante  {
 	private Complemento complemento = null;
 
 	@XmlAttribute
-	@Digits(integer=20, fraction = 0)
 	protected String certificado;
 
 	@XmlAttribute(name = "LugarExpedicion")
@@ -93,6 +92,7 @@ public class Comprobante  {
 	protected MetodosPago metodoDePago;
 
 	@XmlAttribute(required = true)
+	@Digits(integer=20, fraction = 0)
 	protected String noCertificado;
 
 	@XmlAttribute(required = true)

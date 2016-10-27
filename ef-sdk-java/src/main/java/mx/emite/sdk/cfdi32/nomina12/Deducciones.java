@@ -56,7 +56,7 @@ public class Deducciones implements Serializable {
 	/**
 	 * percepciones Nodo requerido para expresar la información detallada de una deduccion
 	 */
-    @XmlElement(namespace="http://www.sat.gob.mx/nomina",name="Deduccion")
+    @XmlElement(namespace="http://www.sat.gob.mx/nomina12",name="Deduccion")
     @Singular(value="deduccion") @Valid @NotEmpty
     private List<Deduccion> deducciones;
 

@@ -1,5 +1,7 @@
 package mx.emite.sdk.cfdi32.nomina12;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -12,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Complemento")
@@ -24,8 +27,9 @@ public class Complemento {
 	@Null
 	private TimbreFiscalDigital timbre;
 
-	@XmlElement(name = "Nomina", namespace="http://www.sat.gob.mx/nomina")
+	@XmlElement(name = "Nomina", namespace="http://www.sat.gob.mx/nomina12")
 	@Valid
 	@NotNull
-	private Nomina nomina;
+	@Singular(value="nomina")
+	private List<Nomina> nominas;
 }

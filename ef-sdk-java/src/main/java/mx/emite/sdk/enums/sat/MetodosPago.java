@@ -67,7 +67,7 @@ public enum MetodosPago implements Sat<String>{
 		for(MetodosPago m:values()){
 			final Integer clavedesc = sacaInt(descripcion);
 			if(clavedesc!=null){
-				if(m.idSat.equals(clavedesc)){
+				if(m.idSat.equals(descripcion)){
 					return m;
 				}
 			}
@@ -111,7 +111,7 @@ public enum MetodosPago implements Sat<String>{
 	@Deprecated
 	public static MetodosPago id(Integer idSat) {
 		for(MetodosPago m:values()){
-			if(m.idSat.equals(idSat))
+			if(m.idSat.equals(idSat <10?"0"+idSat:idSat))
 				return m;
 		}
 		return null;

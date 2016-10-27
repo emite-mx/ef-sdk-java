@@ -55,11 +55,12 @@ public enum TiposIncapacidad implements Sat<String>{
 		return unmarshall(text);
 	}
 
+	@Deprecated
 	public static TiposIncapacidad busca(Integer tipoRiesgo) {
 		if(tipoRiesgo==null)
 			return null;
 		for(TiposIncapacidad t:values()){
-			if(t.getIdSat().equals(tipoRiesgo))
+			if(t.getIdSat().equals(tipoRiesgo<10?"0"+tipoRiesgo:tipoRiesgo))
 				return t;
 		}
 		return null;
