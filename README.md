@@ -1,7 +1,7 @@
 ![alt text](https://github.com/emite-mx/ef-sdk-java/blob/master/emite.png "Emite Facturacion")
 # EmiteFacturacion [emite.mx](https://www.emite.mx)
 
-## ef-sdk-java-0.1.6
+## ef-sdk-java-0.1.7
 **** Kit de consumo de servicios Emite Facturación
 
 ### Instalación Maven
@@ -12,7 +12,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 <dependency>
 	<groupId>mx.emite</groupId>
 	<artifactId>ef-sdk-java</artifactId>
-	<version>0.1.6</version>
+	<version>0.1.7</version>
 </dependency>
 ```
 ### Requerimientos Técnicos
@@ -21,7 +21,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 
 ## Servicios de Emisor 
 -------------------------------------------------------
-- Timbrado de CFDI 3.2 de Factura y Nómina
+- Timbrado de CFDI 3.2 de Factura y Nómina (1.1 y 1.2)
 - Sellado y Timbrado de CFDI 3.2
 - Generación completa de CFDI (Xml + Sellado + Timbrado)
 - Cancelación de CFDI 3.2
@@ -32,6 +32,7 @@ Para instalar esta libreria es necesario que agregue el siguiente codigo en su a
 - Envio de Xml y Pdf por correo
 - Descarga Masiva de Xml, Pdf y Acuses de Cancelación
 - Validación de CFDI 3.2
+ 
 
 ### Servicios de Integrador 
 -------------------------------------------------------

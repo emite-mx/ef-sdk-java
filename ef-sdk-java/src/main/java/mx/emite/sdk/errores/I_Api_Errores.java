@@ -119,6 +119,7 @@ public enum I_Api_Errores {
 	EF_CERTIFICADO_ESFIEL(306	, "El certificado corresponde a una FIEL. Debe utilizar un CSD."),
 	EF_TIMBREPREVIO(307	, "El CFDI contiene un timbre previo "),
 	EF_CERTIFICADO_NO_FIRMADO(308	, "El CFDI contiene un certificado no firmado por una entidad autorizada (SAT)"),
+	EF_CERTIFICADO_INVALIDO(310	, "El CFDI contiene un certificado inválido"),
 	EF_FECHA_72HORAS(401	, "El rango de la fecha de generación no puede ser mayor a 72 horas"),
 	EF_EMISOR_REGIMEN(402	, "El RFC del emisor no tiene régimen autorizado"),
 	EF_FECHA2011(403,"La fecha de emisión no es posterior al 01 de enero 2011"),

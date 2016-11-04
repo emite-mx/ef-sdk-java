@@ -7,7 +7,7 @@
 )
 @XmlJavaTypeAdapter(value=StringAdapter.class, type=String.class)
 
-package mx.emite.sdk.cfdi32.nomina;
+package mx.emite.sdk.cfdi32.nomina11;
 
 import javax.xml.bind.annotation.XmlNs;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

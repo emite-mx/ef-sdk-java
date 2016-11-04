@@ -71,8 +71,24 @@ public enum TiposJornada implements Sat<String>{
 		return v.getDescripcion();
 	}
 	
+	public static String marshallIdSat(TiposJornada v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getIdSat();
+	}
+	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
+	}
+
+	public static TiposJornada getTipoJornada(String tipoJornada) {
+		if(StringUtils.isEmpty(tipoJornada))
+			return null;
+		for(TiposJornada m:values()){
+			if(m.idSat.equals(tipoJornada))
+				return m;
+		}
+		return null;
 	}
 	
 	

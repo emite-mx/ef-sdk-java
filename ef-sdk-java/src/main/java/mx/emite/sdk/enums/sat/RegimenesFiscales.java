@@ -15,31 +15,35 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum RegimenesFiscales implements Sat<Integer>{
 	
-	GENERALDELEYPERSONASMORALES(601,"General de Ley Personas Morales"),
-	PERSONASMORALESCONFINESNOLUCRATIVOS(603,"Personas Morales con Fines no Lucrativos"),
-	SUELDOSYSALARIOSEINGRESOSASIMILADOSASALARIOS(605,"Sueldos y Salarios e Ingresos Asimilados a Salarios"),
-	ARRENDAMIENTO(606,"Arrendamiento"),
-	DEMASINGRESOS(608,"Demás ingresos"),
-	CONSOLIDACION(609,"Consolidación"),
-	RESIDENTESENELEXTRANJEROSINESTABLECIMIENTOPERMANENTEENMEXICO(610,"Residentes en el Extranjero sin Establecimiento Permanente en México"),
-	INGRESOSPORDIVIDENDOSSOCIOSYACCIONISTAS(611,"Ingresos por Dividendos (socios y accionistas)"),
-	PERSONASFISICASCONACTIVIDADESEMPRESARIALESYPROFESIONALES(612,"Personas Fisicas con Actividades Empresariales y Profesionales"),
-	INGRESOSPORINTERESES(614,"Ingresos por intereses"),
-	SINOBLIGACIONESFISCALES(616,"Sin obligaciones fiscales"),
-	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos"),
-	INCORPORACIONFISCAL(621,"Incorporación Fiscal"),
-	ACTIVIDADESAGRICOLASGANADERASSILVICOLASYPESQUERAS(622,"Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras"),
-	OPCIONALPARAGRUPOSDESOCIEDADES(623,"Opcional para Grupos de Sociedades"),
-	COORDINADOS(624,"Coordinados"),
+	GENERALDELEYPERSONASMORALES(601,"General de Ley Personas Morales",false,true),
+	PERSONASMORALESCONFINESNOLUCRATIVOS(603,"Personas Morales con Fines no Lucrativos",false,true),
+	SUELDOSYSALARIOSEINGRESOSASIMILADOSASALARIOS(605,"Sueldos y Salarios e Ingresos Asimilados a Salarios",true,false),
+	ARRENDAMIENTO(606,"Arrendamiento",true,false),
+	DEMASINGRESOS(608,"Demás ingresos",true,false),
+	CONSOLIDACION(609,"Consolidación",false,true),
+	RESIDENTESENELEXTRANJEROSINESTABLECIMIENTOPERMANENTEENMEXICO(610,"Residentes en el Extranjero sin Establecimiento Permanente en México",true,false),
+	INGRESOSPORDIVIDENDOSSOCIOSYACCIONISTAS(611,"Ingresos por Dividendos (socios y accionistas)",true,false),
+	PERSONASFISICASCONACTIVIDADESEMPRESARIALESYPROFESIONALES(612,"Personas Fisicas con Actividades Empresariales y Profesionales",true,false),
+	INGRESOSPORINTERESES(614,"Ingresos por intereses",true,false),
+	SINOBLIGACIONESFISCALES(616,"Sin obligaciones fiscales",true,false),
+	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos",false,false),
+	INCORPORACIONFISCAL(621,"Incorporación Fiscal",true,false),
+	ACTIVIDADESAGRICOLASGANADERASSILVICOLASYPESQUERAS(622,"Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras",true,true),
+	OPCIONALPARAGRUPOSDESOCIEDADES(623,"Opcional para Grupos de Sociedades",false,true),
+	COORDINADOS(624,"Coordinados",false,true),
+	ENAJENACIONBIENES(607,"Régimen de Enajenación o Adquisición de Bienes",false,true),
+	PREMIOS(615,"Régimen de los ingresos por obtención de premios",true,false),
 	;
 	
 	final Integer idSat;
 	final String descripcion;
+	final Boolean fisicas,morales;
 	
-	
-	RegimenesFiscales(Integer idSat,String descripcion){
+	RegimenesFiscales(Integer idSat,String descripcion,Boolean fisicas,Boolean morales){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
+		this.fisicas=fisicas;
+		this.morales=morales;
 	}
 
 	/**
@@ -101,6 +105,12 @@ public enum RegimenesFiscales implements Sat<Integer>{
 		return v.getDescripcion();
 	}
 	
+	public static String marshallIdSat(RegimenesFiscales v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getIdSat().toString();
+	}
+	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
@@ -115,6 +125,29 @@ public enum RegimenesFiscales implements Sat<Integer>{
 
 	public static List<Integer> ids() {
 		return Arrays.asList(values()).stream().map(RegimenesFiscales::getIdSat).collect(Collectors.toList());		
+	}
+
+	public static boolean existe(String emisorRegimen) {
+		try{
+			return existe(Integer.parseInt(emisorRegimen));
+		}
+		catch(Exception ex){
+			return false;
+		}
+	}
+	
+	public static RegimenesFiscales getRegimen(String emisorRegimen) {
+		try{
+		final Integer id = Integer.parseInt(emisorRegimen);
+		for(RegimenesFiscales reg:values()){
+			if(reg.getIdSat().equals(id))
+				return reg;
+		}
+		return null;
+		}
+		catch(Exception ex){
+			return null;
+		}
 	}
 	
 }

@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi32.nomina;
+package mx.emite.sdk.cfdi32.nomina12;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -19,18 +20,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.cfdi32.Conceptos;
-import mx.emite.sdk.cfdi32.Emisor;
-import mx.emite.sdk.cfdi32.Impuestos;
-import mx.emite.sdk.cfdi32.Receptor;
 import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
-import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -39,9 +34,9 @@ import mx.emite.sdk.utils.Utilerias;
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor 
 @AllArgsConstructor
-public class ComprobanteNomina  {
+public class ComprobanteNomina12  {
 
 	
 	@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
@@ -58,13 +53,12 @@ public class ComprobanteNomina  {
 
 	@XmlElement(name = "Impuestos", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	@Valid @NotNull
-	private Impuestos impuestos;
+	private final Impuestos impuestos = new Impuestos();
 
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	private Complemento complemento = null;
 
 	@XmlAttribute
-	@Digits(integer=20, fraction = 0)
 	protected String certificado;
 
 	@XmlAttribute(name = "LugarExpedicion")
@@ -86,17 +80,17 @@ public class ComprobanteNomina  {
 	@XmlAttribute(required = true)
 	protected String folio;
 
-	@XmlAttribute(required = true)
+	@XmlAttribute(required = true,name="formaDePago")
 	@NotNull 
-	@XmlJavaTypeAdapter(TipoPagoAdapter.class)
-	protected TipoPago formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
+	protected final String formaDePago = "En una sola exhibición";
 
 	@XmlAttribute
 	@NotNull
 	@XmlJavaTypeAdapter(MetodosPagoAdapter.class)
-	protected MetodosPago metodoDePago;
+	protected final MetodosPago metodoDePago = MetodosPago.NA;
 
 	@XmlAttribute(required = true)
+	@Digits(integer=20, fraction = 0)
 	protected String noCertificado;
 
 	@XmlAttribute(required = true)
@@ -120,20 +114,20 @@ public class ComprobanteNomina  {
 
 	@XmlAttribute(name = "Moneda")
 	@XmlJavaTypeAdapter(MonedasAdapter.class)
-	protected Monedas moneda = Monedas.MXN;
+	protected final Monedas moneda = Monedas.MXN;
 
 	@XmlAttribute(name = "TipoCambio")
 	@Min(value = 0)
-	protected BigDecimal tipoCambio;
+	protected final BigDecimal tipoCambio = null;
 
 	@XmlAttribute(required = true)
 	protected final String version = "3.2";
 
 	@XmlAttribute(required = true, name = "NumCtaPago")
-	@NotNull
-	protected String numCtaPago;
+	@Null
+	protected final String numCtaPago = null;
 
 	public String generaXml(){
-		return Utilerias.marshallnom32(this);
+		return Utilerias.marshallnom12(this);
 	}
 }

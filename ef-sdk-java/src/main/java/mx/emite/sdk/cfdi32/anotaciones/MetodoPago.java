@@ -10,9 +10,8 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 import mx.emite.sdk.cfdi32.validadores.MetodoPagoValidador;
-import mx.emite.sdk.cfdi32.validadores.MetodoPagoValidadorInt;
 
-@Constraint(validatedBy = {MetodoPagoValidador.class,MetodoPagoValidadorInt.class})
+@Constraint(validatedBy = {MetodoPagoValidador.class})
 @Target({ElementType.FIELD})
 @Retention(value = RetentionPolicy.RUNTIME)
 @Documented

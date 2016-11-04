@@ -26,7 +26,7 @@ public class MetodosPagoSerializer extends JsonSerializer<MetodosPago> implement
 		if(fp==null||fp.getIdSat()==null)
 			gen.writeNull();
 		else
-			gen.writeNumber(fp.getIdSat());
+			gen.writeString(fp.getIdSat());
 	}
 	
 	private final Class<MetodosPago> clase = MetodosPago.class;	
@@ -73,11 +73,11 @@ public class MetodosPagoSerializer extends JsonSerializer<MetodosPago> implement
 	public Object nullSafeGet(ResultSet rs, String[] names,
 			SessionImplementor arg2, Object arg3) throws HibernateException,
 			SQLException {
-		Integer n = rs.getInt(names[0]);
+		String n = rs.getString(names[0]);
         if(rs.wasNull()) {
             return null;
         }
-        final MetodosPago es = MetodosPago.id(n);
+        final MetodosPago es = MetodosPago.getMetodoPago(n);
         if(es==null)
         	 throw new IllegalStateException("Unknown " + returnedClass().getSimpleName() + " id");
         return es;
@@ -88,9 +88,9 @@ public class MetodosPagoSerializer extends JsonSerializer<MetodosPago> implement
 	public void nullSafeSet(PreparedStatement st, Object value, int index,
 			SessionImplementor arg3) throws HibernateException, SQLException {
 		 if (value == null) {
-	            st.setNull(index, Types.INTEGER);
+	            st.setNull(index, Types.VARCHAR);
 	        } else {
-	            st.setInt(index, ((MetodosPago)value).getIdSat());
+	            st.setString(index, ((MetodosPago)value).getIdSat());
 	        }
 		
 	}
@@ -109,7 +109,7 @@ public class MetodosPagoSerializer extends JsonSerializer<MetodosPago> implement
     
     @Override
 	public int[] sqlTypes() {
-        return new int[]{Types.INTEGER};
+        return new int[]{Types.VARCHAR};
     }
 	
 	

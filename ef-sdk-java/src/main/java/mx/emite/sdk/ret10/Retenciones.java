@@ -55,7 +55,7 @@ public class Retenciones {
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	/**
 	 *  folio Atributo opcional para control interno del contribuyente que expresa el folio del documento que ampara la retención e información de pagos. Permite números y/o letras.
@@ -108,7 +108,7 @@ public class Retenciones {
 	private String descripcionRetencion;
 	
 	public Retenciones(){
-		this.version="1.0";
+		
 	}
 	
 }

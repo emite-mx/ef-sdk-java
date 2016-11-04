@@ -13,7 +13,7 @@ public enum TiposHoras implements Sat<String>{
 	
 	DOBLES("01","Dobles"),
 	TRIPLES("02","Triples"),
-	PORSINIESTRO("03","Por Siniestro")
+	SIMPLES("03","Simples")
 	
 	;
 	
@@ -35,6 +35,8 @@ public enum TiposHoras implements Sat<String>{
 	public static TiposHoras busca(String metodo) {
 		for(TiposHoras m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
+				return m;
+			else if(Utilerias.compara(m.idSat,metodo))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
@@ -62,6 +64,14 @@ public enum TiposHoras implements Sat<String>{
 			return null;
 		return v.getDescripcion();
 	}
+	
+	public static String marshallIdSat(TiposHoras v) throws Exception {
+		if(v==null)
+			return null;
+		return v.getIdSat();
+	}
+	
+	
 	
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);

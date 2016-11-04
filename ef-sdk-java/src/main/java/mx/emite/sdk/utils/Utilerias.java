@@ -41,7 +41,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import mx.emite.sdk.cfdi32.Comprobante;
-import mx.emite.sdk.cfdi32.nomina.ComprobanteNomina;
+import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
+import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
@@ -141,6 +142,7 @@ public class Utilerias {
 	
 	public static <T> void valida(T objeto) throws ApiException{
 		if(objeto==null) return;
+		
 		final Set<ConstraintViolation<T>> errores = validator.validate(objeto);
 		if(errores.isEmpty())
 			return;
@@ -177,9 +179,14 @@ public class Utilerias {
 
 	
 	
-	public static String marshallnom32(ComprobanteNomina comprobante) throws ApiException {
+	public static String marshallnom32(ComprobanteNomina11 comprobante) throws ApiException {
 		valida(comprobante);
 		return MarshallerUnmarshaller.marshallNomina32(comprobante);
+	}
+	
+	public static String marshallnom12(ComprobanteNomina12 comprobante) throws ApiException {
+		valida(comprobante);
+		return MarshallerUnmarshaller.marshallNomina12(comprobante);
 	}
 	
 	public static String marshallret10(Retenciones comprobante) throws ApiException {
