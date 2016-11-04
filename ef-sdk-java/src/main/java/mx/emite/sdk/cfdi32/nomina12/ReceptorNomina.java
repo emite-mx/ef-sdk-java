@@ -131,14 +131,14 @@ public class ReceptorNomina implements Serializable{
 	 * departamento Atributo opcional para la expresión del departamento o área a la que pertenece el trabajador.
 	 */
 	@XmlAttribute(name="Departamento")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|{|}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}",message="Departamento contiene caractéres incorrectos ")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}",message="Departamento contiene caractéres incorrectos ")
 	protected String departamento;
 	
 	/**
 	 * puesto Atributo opcional para la expresión del puesto asignado al empleado o actividad que realiza.
 	 */
 	@XmlAttribute(name="Puesto")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|>|=|&lt;|@|_|,|\\{|\\}|`|~|&#225;|&#233;|&#237;|&#243;| &#250;|&#193;|&#201;|&#205;|&#211;|&#218;|&#252;|& #220;){1,100}",message="Puesto contiene caractéres incorrectos")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}",message="Puesto contiene caractéres incorrectos")
 	protected String puesto;
 
 	/**

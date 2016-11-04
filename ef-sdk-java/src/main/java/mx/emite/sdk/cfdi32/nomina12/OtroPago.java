@@ -54,7 +54,7 @@ public class OtroPago implements Serializable {
 	 */
 	@XmlAttribute(name="Clave")
 	@NotNull @Size(min=3,max=15)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|>|=|&lt;|@|_|,|\\{|\\}|`|~|&#225;|&#233;|&#237;|&#243;| &#250;|&#193;|&#201;|&#205;|&#211;|&#218;|&#252;|& #220;){3,15}",message="La clave no cumple con el patrón especificado por el SAT")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){3,15}",message="La clave no cumple con el patrón especificado por el SAT")
 	private String clave;
 	
 	/**
@@ -63,7 +63,7 @@ public class OtroPago implements Serializable {
 	@XmlAttribute(name="Concepto")
 	@NotNull
 	@Size(min=1,max=100)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|>|=|&lt;|@|_|,|\\{|\\}|`|~|&#225;|&#233;|&#237;|&#243;| &#250;|&#193;|&#201;|&#205;|&#211;|&#218;|&#252;|& #220;){3,15}",message="El concepto no cumple con el patrón especificado por el SAT")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}",message="El concepto no cumple con el patrón especificado por el SAT")
     private String concepto;
 	
 	
