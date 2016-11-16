@@ -22,7 +22,7 @@ public enum TipoTimbres {
 	PSRDD(4,"PSRDD",false),
 	CONTABILIDAD(5,"CONTABILIDAD",false),
 	VALIDACION(6,"VALIDACION",false),
-	
+	DPIVA(7,"DPIVA",false)
 	;
 	
 	private Integer id;
@@ -132,6 +132,7 @@ public enum TipoTimbres {
 		case NOMINA:
 		case PSRDD:
 		case RETENCIONES:
+		case DPIVA:
 		case TODOS:
 			return false;
 			
@@ -148,6 +149,7 @@ public enum TipoTimbres {
 		case NOMINA:
 		case PSRDD:
 		case RETENCIONES:
+		case DPIVA:
 		case TODOS:
 			return true;
 			
@@ -162,6 +164,7 @@ public enum TipoTimbres {
 		case NOMINA:
 		case CFDI:
 		case RETENCIONES:
+		case DPIVA:
 			return true;
 		case CONTABILIDAD:
 		case PSRDD:

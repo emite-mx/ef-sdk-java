@@ -127,6 +127,10 @@ public enum TiposPercepcion implements Sat<String>{
 		return this.tipo.equals(TIPOPERCEPCION.SUELDOS);
 	}
 	
+	public boolean llevaTotalSueldo(){
+		return this.tipo.equals(TIPOPERCEPCION.SUELDOS);
+	}
+	
 	public boolean esSeparacionIndemnizacion(){
 		return this.tipo.equals(TIPOPERCEPCION.SEPARACIONINDEMNIZACION);
 	}

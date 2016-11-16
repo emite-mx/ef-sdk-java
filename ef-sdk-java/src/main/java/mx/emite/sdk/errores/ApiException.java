@@ -46,11 +46,15 @@ public class ApiException extends RuntimeException{
 	public ApiException(I_Api_Errores error) {
 		super(error.getDescripcion());
 		this.error=error;
+		if(error.getMensaje()!=null)
+			this.mensajes.add(error.getMensaje());
 		this.excepcion=null;	
 	}
 	
 	public ApiException(I_Api_Errores error, Throwable ex) {
 		super(error.getDescripcion(),ex);
+		if(error.getMensaje()!=null)
+			this.mensajes.add(error.getMensaje());
 		if(ex instanceof ConstraintViolationException)
 			this.mensajes.addAll(sacaError(((ConstraintViolationException)ex)));
 		this.error=error;
@@ -74,7 +78,9 @@ public class ApiException extends RuntimeException{
 	
 	public ApiException(I_Api_Errores error, String mensaje) {
 		this(error);
-		mensajes.add(mensaje);		
+		if(error.getMensaje()!=null)
+			this.mensajes.add(error.getMensaje());
+		this.mensajes.add(mensaje);		
 	}
 	
 	public ApiException(I_Api_Errores error,BindingResult result) {

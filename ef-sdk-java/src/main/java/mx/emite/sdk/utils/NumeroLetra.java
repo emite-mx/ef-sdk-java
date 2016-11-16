@@ -13,9 +13,9 @@ import java.text.DecimalFormat;
 public abstract class NumeroLetra {
 
 	public static void main(String[] args){
-		for(int x=18525;x<=18569;x++)
-		System.out.println(convertNumberToLetter(x));
-		System.out.println(convertNumberToLetter(18562.499));
+		//for(int x=18525;x<=18569;x++)
+		//System.out.println(convertNumberToLetter(x));
+		System.out.println(convertNumberToLetter("2001.002"));
 	}
 	
     private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ",
@@ -138,8 +138,12 @@ public abstract class NumeroLetra {
 
         converted.append(" PESOS");
 
+        final BigDecimal red = new BigDecimal("0."+splitNumber[1]).setScale(2, BigDecimal.ROUND_HALF_UP);
+		
+		converted.append(" ").append(red.toString().substring(2)+"/100 M.N.");
+        
         // Descompone los centavos
-        int centavos = Integer.parseInt(String.valueOf(getDigitAt(
+        /*int centavos = Integer.parseInt(String.valueOf(getDigitAt(
                 splitNumber[1], 2))
                 + String.valueOf(getDigitAt(splitNumber[1], 1))
                 + String.valueOf(getDigitAt(splitNumber[1], 0)));
@@ -154,7 +158,7 @@ public abstract class NumeroLetra {
         		converted.append(" " +red.toString().substring(2)+"/100 M.N.");
         	}
         	  
-        }
+        }*/
 
         return (negativo?"MENOS":"")+ converted.toString();
     }
