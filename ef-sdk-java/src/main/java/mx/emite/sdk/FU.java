@@ -91,7 +91,8 @@ public class FU {
 		YYYYMM("yyyy/MM"),
 		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss"),
 		YYYYMMSINGUION("yyyyMM"),
-		YYMMDD("yyMMdd")
+		YYMMDD("yyMMdd"),
+		DDMMYYYYPUNTOS("dd.MM.yyyy")
 		;
 		//private  SimpleDateFormat dftc = new SimpleDateFormat("dd/MM/yy HH:mm");
 		//private  SimpleDateFormat dft = new SimpleDateFormat();

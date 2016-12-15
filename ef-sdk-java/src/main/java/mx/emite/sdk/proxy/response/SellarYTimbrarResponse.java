@@ -10,6 +10,8 @@ import lombok.ToString;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.proxy.ProxyResponse;
 import mx.emite.sdk.proxy.response.extra.InfoCfdi;
+import mx.emite.sdk.proxy.response.extra.InfoDpIva;
+import mx.emite.sdk.proxy.response.extra.InfoRetenciones;
 import mx.emite.sdk.utils.Utilerias;
 
 @Data
@@ -26,6 +28,8 @@ public class SellarYTimbrarResponse extends ProxyResponse {
 	private String cadenaOriginal;
 	private String xml;
 	private InfoCfdi info;
+	private InfoRetenciones ret;
+	private InfoDpIva dpiva;
 	
 	@JsonIgnore
 	public String getXmlDecodificado(){

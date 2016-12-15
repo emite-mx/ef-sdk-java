@@ -34,7 +34,7 @@ public class Mapeador extends ObjectMapper{
 		return readValue(json, clase);
 		}
 		catch(Exception ex){
-			throw new ApiException(I_Api_Errores.DESERIALIZANDO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_DESERIALIZANDO,ex);
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class Mapeador extends ObjectMapper{
 			final String json = writer().withDefaultPrettyPrinter().writeValueAsString(objeto);
 			return json;
 		} catch (JsonProcessingException e) {
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,e);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,e);
 		}
 	}
 	

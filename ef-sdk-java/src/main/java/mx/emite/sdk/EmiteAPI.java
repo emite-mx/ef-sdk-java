@@ -16,6 +16,11 @@ import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbrado
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Cancelador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32DescargaAcuseXml;
@@ -85,6 +90,12 @@ public class EmiteAPI {
 	private final Ret10Cancelador ret10_cancelador;
 	private final Ret10DescargaXml ret10_descargaxml;
 	
+	private final DpIva10SelladorYTimbrador dpiva10_selladorytimbrador;
+	private final DpIva10Timbrador dpiva10_timbrador;
+	private final DpIva10DescargaXml dpiva10_descargaxml;
+	private final DpIva10Pdf dpiva10_pdf;
+	private final DpIva10Correo dpiva10_correo;
+	
 	@Getter @Setter
 	private String usuarioWs,contrasenaWs;
 	
@@ -151,7 +162,11 @@ public class EmiteAPI {
 		this.ret10_descargaxml=new Ret10DescargaXml(this.cliente);
 		this.ret10_pdf=new Ret10Pdf(this.cliente);
 		this.ret10_timbrador=new Ret10Timbrador(this.cliente);
-		
+		this.dpiva10_selladorytimbrador = new DpIva10SelladorYTimbrador(this.cliente);
+		this.dpiva10_timbrador = new DpIva10Timbrador(this.cliente);
+		this.dpiva10_descargaxml = new DpIva10DescargaXml(this.cliente);
+		this.dpiva10_pdf = new DpIva10Pdf(this.cliente);
+		this.dpiva10_correo = new DpIva10Correo(this.cliente);
 	}
 	
 	/**
@@ -426,6 +441,50 @@ public class EmiteAPI {
 	public Ret10DescargaXml ret10_DescargaXml(){
 		return ret10_descargaxml;
 	}
+
+	/**
+	 * Servicio de Sellado y Timbrado de DP IVA 1.0
+	 * @return dpiva10_SelladorTimbrador
+	 * @since 0.1.8
+	 */
+	public DpIva10SelladorYTimbrador dpiva10_SelladorTimbrador() {
+		return dpiva10_selladorytimbrador;
+	}
 	
+	/**
+	 * Servicio de Timbrado de DP IVA 1.0
+	 * @return dpiva10_Timbrador
+	 * @since 0.1.8
+	 */
+	public DpIva10Timbrador dpiva10_Timbrador() {
+		return dpiva10_timbrador;
+	}
+	
+	/**
+	 * Servicio de Descarga de Declaraciones de Proveedores de IVA 1.0
+	 * @return dpiva10_descargaxml
+	 * @since 0.1.8
+	 */
+	public DpIva10DescargaXml dpiva10_DescargaXml(){
+		return dpiva10_descargaxml;
+	}
+	
+	/**
+	 * Servicio de Descarga de Declaraciones de Proveedores de IVA 1.0
+	 * @return dpiva10_pdf
+	 * @since 0.1.8
+	 */
+	public DpIva10Pdf dpiva10_Pdf(){
+		return dpiva10_pdf;
+	}
+	
+	/**
+	 * Servicio de envio de correo de Declaraciones de Proveedores de IVA 1.0
+	 * @return dpiva10_pdf
+	 * @since 0.1.8
+	 */
+	public DpIva10Correo dpiva10_Correo(){
+		return dpiva10_correo;
+	}
 	
 }

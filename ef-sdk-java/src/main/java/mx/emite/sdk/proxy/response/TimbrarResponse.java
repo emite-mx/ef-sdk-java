@@ -6,6 +6,8 @@ import lombok.ToString;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.proxy.ProxyResponse;
 import mx.emite.sdk.proxy.response.extra.InfoCfdi;
+import mx.emite.sdk.proxy.response.extra.InfoDpIva;
+import mx.emite.sdk.proxy.response.extra.InfoRetenciones;
 import mx.emite.sdk.utils.Utilerias;
 
 @Data
@@ -23,6 +25,9 @@ public class TimbrarResponse extends ProxyResponse {
 	private String xml;
 	
 	private InfoCfdi info;
+	private InfoRetenciones ret;
+	private InfoDpIva dpiva;
+	
 	
 	public void guardaXml(String ruta) throws ApiException{
 		Utilerias.guardaArchivo(ruta,Utilerias.decodifica64Utf8Byte(xml));		

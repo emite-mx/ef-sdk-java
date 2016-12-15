@@ -36,6 +36,12 @@ public enum Rutas {
 	RET10_CANCELAR("/api/retenciones/1.0/cancelar"),
 	RET10_XML("/api/retenciones/1.0/xml"),
 	
+	DPIVA10_SELLARYTIMBRAR("/api/dpiva/1.0/sellarytimbrar"),
+	DPIVA10_TIMBRAR("/api/dpiva/1.0/timbrar"),
+	DPIVA10_XML("/api/dpiva/1.0/xml"),
+	DPIVA10_PDF("/api/dpiva/1.0/pdf"),
+	DPIVA10_CORREO("/api/dpiva/1.0/correo"),
+	
 	EMISORES_ESTATUS("/api/scot/estatus"),
 	
 	TOKEN("/api/integrador/token"),
@@ -67,7 +73,8 @@ public enum Rutas {
 	@Deprecated
 	CANCELARETUNICAEMITE("/api/ret/1.0/cancelar"),  
 	@Deprecated
-	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),
+	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),    
+	
 	;
 	
 	private final String ruta;

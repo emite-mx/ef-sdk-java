@@ -38,7 +38,7 @@ public class ImporteAdapter extends XmlAdapter<String,BigDecimal> implements Typ
 			
 		}
 		catch(Exception ex){
-			throw new ApiException(I_Api_Errores.DESERIALIZANDO,importe+" no es un importe valido",ex);
+			throw new ApiException(I_Api_Errores.PROXY_DESERIALIZANDO,importe+" no es un importe valido",ex);
 		}
 	}
 	@Override

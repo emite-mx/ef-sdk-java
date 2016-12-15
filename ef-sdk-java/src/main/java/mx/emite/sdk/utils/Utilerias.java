@@ -43,6 +43,7 @@ import org.w3c.dom.Node;
 import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
+import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
@@ -63,7 +64,7 @@ public class Utilerias {
 		try{
 		return new String(decodifica64Utf8Byte(xmlBase64));
 		}catch(Exception ex){
-			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_DECODIFICANDO,ex);
 		}
 	}
 
@@ -80,7 +81,7 @@ public class Utilerias {
 		try{
 		return decoder.decode(utf8(xmlBase64));
 		}catch(Exception ex){
-			throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_DECODIFICANDO,ex);
 		}
 	}
 	
@@ -100,7 +101,7 @@ public class Utilerias {
 		try{
 		return  utf8(encoder.encode(utf8(xml)));
 		}catch(Exception ex){
-			throw new ApiException(I_Api_Errores.CODIFICANDO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_CODIFICANDO,ex);
 		}
 	}
 	
@@ -108,7 +109,7 @@ public class Utilerias {
 		try{
 		return  utf8(encoder.encode(cer));
 		}catch(Exception ex){
-			throw new ApiException(I_Api_Errores.CODIFICANDO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_CODIFICANDO,ex);
 		}
 	}
 
@@ -126,7 +127,7 @@ public class Utilerias {
 			return utf8(Files.readAllBytes(Paths.get(ruta)));
 		}
 		catch(Exception io){
-			throw new ApiException(I_Api_Errores.LEYENDO_ARCHIVO,io);
+			throw new ApiException(I_Api_Errores.PROXY_LEYENDO_ARCHIVO,io);
 		}
 	}
 
@@ -135,7 +136,7 @@ public class Utilerias {
 			return utf8(Files.readAllBytes(ruta));
 		}
 		catch(Exception io){
-			throw new ApiException(I_Api_Errores.LEYENDO_ARCHIVO,io);
+			throw new ApiException(I_Api_Errores.PROXY_LEYENDO_ARCHIVO,io);
 		}
 	}
 
@@ -160,7 +161,7 @@ public class Utilerias {
 		    return utf8(baos.toByteArray());
 		}
 		catch(Exception io){
-			throw new ApiException(I_Api_Errores.LEYENDO_ARCHIVO,io);
+			throw new ApiException(I_Api_Errores.PROXY_LEYENDO_ARCHIVO,io);
 		}
 		finally{
 			if(is!=null)
@@ -187,6 +188,11 @@ public class Utilerias {
 	public static String marshallnom12(ComprobanteNomina12 comprobante) throws ApiException {
 		valida(comprobante);
 		return MarshallerUnmarshaller.marshallNomina12(comprobante);
+	}
+	
+	public static String marshalldpiva10(DoctoDigital comprobante) throws ApiException {
+		valida(comprobante);
+		return MarshallerUnmarshaller.marshallDpIva10(comprobante);
 	}
 	
 	public static String marshallret10(Retenciones comprobante) throws ApiException {
@@ -231,7 +237,7 @@ public class Utilerias {
 		try{
 			return decoder.decode(pdf.getBytes());
 			}catch(Exception ex){
-				throw new ApiException(I_Api_Errores.DECODIFICANDO,ex);
+				throw new ApiException(I_Api_Errores.PROXY_DECODIFICANDO,ex);
 		}
 	}
 
@@ -239,7 +245,7 @@ public class Utilerias {
 		try{
 				Files.write(Paths.get(ruta), pdfDecodificado);
 			}catch(Exception ex){
-				throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
+				throw new ApiException(I_Api_Errores.PROXY_GUARDANDOARCHIVO,ex);
 		}
 	}
 
@@ -253,7 +259,7 @@ public class Utilerias {
 		    }
 			
 		}catch(Exception ex){
-			throw new ApiException(I_Api_Errores.GUARDANDOARCHIVO,ex);
+			throw new ApiException(I_Api_Errores.PROXY_GUARDANDOARCHIVO,ex);
 	}
 		
 	}

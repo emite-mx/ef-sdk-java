@@ -44,7 +44,7 @@ public class ClienteJson {
                 throw error;
             } else {
                 log.error("La respuesta no es Json. Code: {}, body: {} ", response.getStatusCode(), response.getBody());
-                ApiException error = new ApiException(I_Api_Errores.PROCESANDO_RESPUESTA,
+                ApiException error = new ApiException(I_Api_Errores.PROXY_PROCESANDO_RESPUESTA,
                 		"["
                         + response.getStatusCode() + "] Internal server error");
                 error.setMensajes(Collections.singletonList(response.getBody()));

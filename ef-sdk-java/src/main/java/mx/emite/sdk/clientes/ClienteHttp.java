@@ -4,8 +4,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
+import javax.net.ssl.SSLContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Consts;
@@ -13,6 +19,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -22,7 +29,14 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.ConnectionConfig;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -31,6 +45,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -71,8 +87,19 @@ public class ClienteHttp {
             final int socketTimeout) {
         final CloseableHttpClient httpClient;
         HttpClientConnectionManager manager;
-        manager = new PoolingHttpClientConnectionManager();
        
+        
+        
+        final SSLContext sslContext = getSslContext();
+        
+        final SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
+        final Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
+                .register("http", PlainConnectionSocketFactory.getSocketFactory())
+                .register("https", sslsf)
+                .build();
+
+        manager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+        
         this.requestConfig = RequestConfig.custom()
 			    .setSocketTimeout(socketTimeout)
 			    .setConnectTimeout(connectionTimeout)
@@ -85,11 +112,33 @@ public class ClienteHttp {
                 .setDefaultRequestConfig(this.requestConfig)
                 .setRetryHandler(new StandardHttpRequestRetryHandler(5, true))
 				.setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy(5, 500))
-                .build();
+				.setSSLSocketFactory(sslsf)
+				.setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+				.setSSLContext(sslContext)
+				
+				.build();
         return httpClient;
     }
 
-    public RespuestaHttp get(final String url) throws ApiException {
+    private SSLContext getSslContext() {
+    	SSLContext sslContext = null;
+        try {
+        sslContext = SSLContexts.custom() 
+        		.loadTrustMaterial(null, new TrustSelfSignedStrategy() {
+                        @Override
+                        public boolean isTrusted(final X509Certificate[] chain, final String authType)
+                                throws CertificateException {
+                            return true;
+                        }
+                    }).build();
+        
+        } catch (Exception e) {
+        	log.error("ssl",e);
+        }
+        return sslContext;
+	}
+
+	public RespuestaHttp get(final String url) throws ApiException {
         HttpGet request = new HttpGet(url);
         return this.executeOperation(request,url);
     }
@@ -143,12 +192,39 @@ public class ClienteHttp {
         request.setEntity(new StringEntity(json, Consts.UTF_8.name()));
         return this.executeOperation(request,url);
     }
+    
+    public RespuestaHttp post(final String url,final String apiKey, final Map<String,String> valores) throws ApiException {
+       return post(url,apiKey,null,valores);
+    }
 
+    public RespuestaHttp post(final String url,final String apiKey,final String key, final Map<String,String> valores) throws ApiException {
+        HttpPost request = new HttpPost(URI.create(url));
+        if(!StringUtils.isEmpty(apiKey))
+        	request.addHeader("x-api-key", apiKey);
+        if(!StringUtils.isEmpty(key))
+        	request.addHeader("key", key);
+        
+        List<BasicNameValuePair> lista = valores.entrySet().stream().map(i->new BasicNameValuePair(i.getKey(), i.getValue())).collect(Collectors.toList());
+        try{
+        request.setEntity(new UrlEncodedFormEntity(lista));
+        }catch(Exception ex){
+        	throw new ApiException(I_Api_Errores.TIMBRADOR_ENVIANDOCOMPROBANTE,ex);
+        }
+        
+        
+        return this.executeOperation(request,url,false);
+    }
+    
     protected RespuestaHttp executeOperation(final HttpRequestBase request, final String url) throws ApiException {
-        this.addHeaders(request);
+    	return executeOperation(request, url,true);
+    }
+    
+    protected RespuestaHttp executeOperation(final HttpRequestBase request, final String url,final Boolean esjson) throws ApiException {
+        this.addHeaders(request,esjson);
        
         long init = System.currentTimeMillis();
         CloseableHttpResponse response = this.callService(request);
+        
         RespuestaHttp serviceResponse;
         try {
             serviceResponse = this.createResult(response);
@@ -159,10 +235,18 @@ public class ClienteHttp {
         return serviceResponse;
     }
 
-    protected void addHeaders(final HttpRequestBase request) {
+    protected void addHeaders(final HttpRequestBase request,final Boolean esjson) {
         request.addHeader(new BasicHeader("User-Agent", this.userAgent));
-        request.addHeader(new BasicHeader("Accept", "application/json"));
-        request.setHeader(new BasicHeader("Content-Type", "application/json"));
+        if(esjson){
+        	request.setHeader(new BasicHeader("Content-Type", "application/json"));
+        	request.addHeader(new BasicHeader("Accept", "application/json"));
+             
+        }
+        else{
+        	request.setHeader(new BasicHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8"));
+        	request.addHeader(new BasicHeader("Accept", "application/json, text/javascript, */*; q=0.01"));
+             
+        }
     }
 
     
@@ -172,11 +256,12 @@ public class ClienteHttp {
         request.setConfig(this.requestConfig);
         CloseableHttpResponse response;
         try {
+        	
             response = this.httpClient.execute(request);
         } catch (ClientProtocolException e) {
-            throw new ApiException(I_Api_Errores.SERVICIO_NODISPONIBLE,e);
+            throw new ApiException(I_Api_Errores.PROXY_SERVICIO_NODISPONIBLE,e);
         } catch (IOException e) {
-        	throw new ApiException(I_Api_Errores.SERVICIO_NODISPONIBLE,e);
+        	throw new ApiException(I_Api_Errores.PROXY_SERVICIO_NODISPONIBLE,e);
         }
         return response;
     }

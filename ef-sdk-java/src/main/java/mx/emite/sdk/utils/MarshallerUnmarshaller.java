@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
+import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
@@ -56,7 +57,7 @@ public class MarshallerUnmarshaller {
 			,Dividendos.class,Intereses.class,Arrendamientoenfideicomiso.class,Pagosaextranjeros.class,
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
 			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
-			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class);
+			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
 	/** DocumentBuilderFactory. */
@@ -168,6 +169,20 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private static Marshaller xmlDpIva10Marshaller(final DoctoDigital c) throws Exception{
+		try{
+		
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		//m.setProperty(Marshaller.JAXB_FRAGMENT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://esquemas.clouda.sat.gob.mx/archivos/DoctosDigitales/1 http://esquemas.clouda.sat.gob.mx/archivos/DoctosDigitales/1/DoctoDigital.xsd http://esquemas.clouda.sat.gob.mx/archivos/DoctosDigitales/TipoDPIVA/1 http://esquemas.clouda.sat.gob.mx/archivos/DoctosDigitales/TipoDPIVA/1/DPIVA.xsd");
+		return m;
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+	
 	private static Unmarshaller genericoUnmarshaller(){
 		try{
 		
@@ -213,7 +228,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -227,7 +242,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -240,7 +255,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -254,7 +269,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -267,7 +282,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -280,7 +295,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -293,7 +308,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -306,7 +321,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -319,7 +334,20 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallDpIva10(DoctoDigital comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			xmlDpIva10Marshaller(comp).marshal(comp,writer);
+			final String xml = writer.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	
@@ -408,7 +436,7 @@ public class MarshallerUnmarshaller {
 			return xml;
 			
 		}catch(Exception api){
-			throw new ApiException(I_Api_Errores.SERIALIZANDO,api);
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
 		}
 	}
 	

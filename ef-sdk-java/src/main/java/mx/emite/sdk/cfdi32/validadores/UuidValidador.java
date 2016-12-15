@@ -9,6 +9,8 @@ import mx.emite.sdk.cfdi32.anotaciones.Uuid;
 
 public class UuidValidador implements ConstraintValidator<Uuid, String>{
 
+	private final static String patronNumOperacion="(\\d){3}-(\\d){2}-(\\d){9}";
+	
 	@Override
 	public void initialize(Uuid anotacion) {
 	}
@@ -21,8 +23,11 @@ public class UuidValidador implements ConstraintValidator<Uuid, String>{
 	    }
 	    try {
 	        UUID.fromString(value);
+	        
 	        return true;
 	    } catch (Exception ex) {
+	    	if(value.matches(patronNumOperacion))
+	    		return true;
 	        return false;
 	    }
 	}
