@@ -42,7 +42,7 @@ public class ValidadorRequest {
 		private String xml;
 
 		public ValidadorRequestBuilder codifica(final String xmlSinCodificar) throws ApiException{
-			this.xml = Utilerias.codifica64Utf8(xmlSinCodificar);
+			this.xml = Utilerias.codifica64Utf8(Utilerias.quitaBom(xmlSinCodificar));
 			return this;
 		}
 		

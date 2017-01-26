@@ -122,6 +122,9 @@ public enum TipoTimbres {
 		}
 		throw new ApiException(I_Api_Errores.SCOT_EMITE_TIPO_TIMBRE);
 	}
+	
+	
+	
 	public boolean notin(TipoTimbres... todos) {
 		return !in(todos);
 	}

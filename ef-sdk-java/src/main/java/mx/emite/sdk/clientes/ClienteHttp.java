@@ -1,6 +1,8 @@
 package mx.emite.sdk.clientes;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 import javax.net.ssl.SSLContext;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
@@ -139,7 +142,7 @@ public class ClienteHttp {
 	}
 
 	public RespuestaHttp get(final String url) throws ApiException {
-        HttpGet request = new HttpGet(url);
+        final HttpGet request = new HttpGet(url);
         return this.executeOperation(request,url);
     }
 
@@ -151,7 +154,7 @@ public class ClienteHttp {
         } else {
             uri = this.createUriWithParams(url, queryParams);
         }
-        HttpGet request = new HttpGet(uri);
+        final HttpGet request = new HttpGet(uri);
         return this.executeOperation(request,url);
 
     }
@@ -160,7 +163,7 @@ public class ClienteHttp {
 
     protected URI createUriWithParams(final String url, final Map<String, String> queryParams)
             throws IllegalArgumentException {
-        URIBuilder builder = new URIBuilder(URI.create(url));
+        final URIBuilder builder = new URIBuilder(URI.create(url));
         for (Entry<String, String> entry : queryParams.entrySet()) {
             if (entry.getValue() != null) {
                 builder.addParameter(entry.getKey(), entry.getValue());
@@ -174,18 +177,18 @@ public class ClienteHttp {
     }
 
     public RespuestaHttp delete(final String url) throws ApiException {
-        HttpDelete request = new HttpDelete(URI.create(url));
+        final HttpDelete request = new HttpDelete(URI.create(url));
         return this.executeOperation(request,url);
     }
 
     public RespuestaHttp put(final String url, final String json) throws ApiException {
-        HttpPut request = new HttpPut(URI.create(url));
+        final HttpPut request = new HttpPut(URI.create(url));
         request.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
         return this.executeOperation(request,url);
     }
 
     public RespuestaHttp post(final String url, final String json) throws ApiException {
-        HttpPost request = new HttpPost(URI.create(url));
+        final HttpPost request = new HttpPost(URI.create(url));
         if(!StringUtils.isEmpty(apiKey))
         	request.addHeader("x-api-key", apiKey);
         
@@ -198,7 +201,7 @@ public class ClienteHttp {
     }
 
     public RespuestaHttp post(final String url,final String apiKey,final String key, final Map<String,String> valores) throws ApiException {
-        HttpPost request = new HttpPost(URI.create(url));
+        final HttpPost request = new HttpPost(URI.create(url));
         if(!StringUtils.isEmpty(apiKey))
         	request.addHeader("x-api-key", apiKey);
         if(!StringUtils.isEmpty(key))
@@ -214,6 +217,19 @@ public class ClienteHttp {
         
         return this.executeOperation(request,url,false);
     }
+    
+    public RespuestaHttp postSoap(final String url,final String soap, final Map<String,String> headers) throws ApiException {
+        final HttpPost request = new HttpPost(URI.create(url));
+        headers.entrySet().stream().forEach(h-> request.addHeader(h.getKey(), h.getValue()));
+        try{
+        final StringEntity entity = new StringEntity(soap,ContentType.TEXT_XML);	
+        request.setEntity(entity);
+        }catch(Exception ex){
+        	throw new ApiException(I_Api_Errores.TIMBRADOR_ENVIANDOCOMPROBANTE,ex);
+        }
+        return this.executeOperation(request,url,null);
+    }
+    
     
     protected RespuestaHttp executeOperation(final HttpRequestBase request, final String url) throws ApiException {
     	return executeOperation(request, url,true);
@@ -237,6 +253,7 @@ public class ClienteHttp {
 
     protected void addHeaders(final HttpRequestBase request,final Boolean esjson) {
         request.addHeader(new BasicHeader("User-Agent", this.userAgent));
+        if(esjson==null) return;
         if(esjson){
         	request.setHeader(new BasicHeader("Content-Type", "application/json"));
         	request.addHeader(new BasicHeader("Accept", "application/json"));
@@ -282,6 +299,22 @@ public class ClienteHttp {
         }
         return serviceResponse;
     }
+
+	public byte[] getBinario(String url) throws ApiException {
+		 final HttpGet request = new HttpGet(url);
+		 this.addHeaders(request,false);
+	     //long init = System.currentTimeMillis();
+	     final CloseableHttpResponse response = this.callService(request);
+	     try(final InputStream is = response.getEntity().getContent();final ByteArrayOutputStream out = new ByteArrayOutputStream()){
+	    	 IOUtils.copy(is, out);
+	    
+	    	 return out.toByteArray();
+	     }
+	     catch(Exception ex){
+	    	 throw new ApiException(I_Api_Errores.VALIDADOR_CERTIFICADOSAT,ex);
+	     }
+	    
+	}
 
 	
 }

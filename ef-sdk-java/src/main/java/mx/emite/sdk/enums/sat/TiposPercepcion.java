@@ -57,6 +57,7 @@ public enum TiposPercepcion implements Sat<String>{
 	ALIMENTACION("047","Alimentación",TIPOPERCEPCION.SUELDOS),
 	HABITACION("048","Habitación",TIPOPERCEPCION.SUELDOS),
 	PREMIOSASISTENCIA("049","Premios por asistencia",TIPOPERCEPCION.SUELDOS),
+	VIATICOS("050","Viáticos",TIPOPERCEPCION.SUELDOS),
 	;
 	
 	final String idSat;

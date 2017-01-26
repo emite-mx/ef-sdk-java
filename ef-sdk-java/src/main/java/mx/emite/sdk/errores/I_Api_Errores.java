@@ -50,6 +50,11 @@ public enum I_Api_Errores {
 	TIMBRADOR_PREVIAMENTE_CANCELADO(507,"Comprobante previamente cancelado"),
 	TIMBRADOR_INFORMACION_INVALIDA(601,"La información para buscar el comprobante no es válida."),
 	TIMBRADOR_CFDI_NOEXISTE(602,"Comprobante que se desea descargar no existe."),
+	TIMBRADOR_LRFC_GUARDANDO(603,"Guardando LRFC en Base de Datos"),
+	TIMBRADOR_LCO_GUARDANDO(604,"Guardando LCO en Base de Datos"),
+	TIMBRADOR_PAC_GUARDANDO(605,"Guardando Certificado PAC en Base de Datos"),
+	TIMBRADOR_TOKEN(606,"Error obteniendo token del SAT"),
+	
 	CANCELADOR_RETENCIONES_UUIDPROCESADO(1200,"UUID Procesado"),
 	CANCELADOR_RETENCIONES_UUIDCANCELADO(1201,"UUID Cancelado"),
 	CANCELADOR_RETENCIONES_UUIDPREVIAMENTECANCELADO(1202,"UUID Cancelado"),

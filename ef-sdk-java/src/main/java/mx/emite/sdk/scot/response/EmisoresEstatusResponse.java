@@ -49,6 +49,11 @@ public class EmisoresEstatusResponse extends ScotResponse {
 	private String contrasena;
 	
 	/**
+	 * @return usuarioWs Usuario de webservice
+	 */
+	private String usuarioWs;
+	
+	/**
 	 * @return plantilla plantilla del emisor
 	 */
 	private String plantilla;

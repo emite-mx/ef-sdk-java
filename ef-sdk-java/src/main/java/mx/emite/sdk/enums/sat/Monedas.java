@@ -206,6 +206,10 @@ public enum Monedas implements Sat<String>{
 		this.sinonimos=sinonimos;
 	}
 	
+	public String getCombo(){
+		return idSat.concat(" (").concat(descripcionMoneda).concat(")");
+	}
+	
 	@Override
 	public String getDescripcion(){
 		return idSat;

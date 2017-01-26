@@ -59,6 +59,8 @@ public class Utilerias {
 	private final static Validator validator = creaValidador();
 	private final static Collator comparador = creaComparador();
 	private final static String UTF8_BOM = "\uFEFF";
+	public final static String PATRON_RFC = "^([A-Za-z&Ññ]{3}|[A-Za-z][AEIOUaeiou][A-Za-z]{2})\\d{2}((01|03|05|07|08|10|12)(0[1-9]|[12]\\d|3[01])|02(0[1-9]|[12]\\d)|(04|06|09|11)(0[1-9]|[12]\\d|30))([A-Z0-9a-z]{2}[0-9Aa])?$";
+	
 	
 	public static String decodifica64Utf8(final String xmlBase64) throws ApiException{
 		try{
@@ -378,6 +380,11 @@ public class Utilerias {
 	    return s;
 	}
 
+	public static byte[] quitaBom(final byte[] bom) {
+		return quitaBom(new String(bom)).getBytes();
+		
+	}
+	
 	public static String transforma(Document tempo) throws Exception {
 		DOMSource domSource = new DOMSource(tempo);
 		StringWriter writer = new StringWriter();
