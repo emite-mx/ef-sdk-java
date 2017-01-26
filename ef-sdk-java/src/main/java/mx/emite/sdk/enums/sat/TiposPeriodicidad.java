@@ -21,7 +21,7 @@ public enum TiposPeriodicidad implements Sat<String>{
 	COMISION("08","Comisión",TiposNomina.ORDINARIA),
 	PRECIOALZADO("09","Precio Alzado",new String[]{"Precio_alzado"},TiposNomina.ORDINARIA),
 	DECENAL("10","DECENAL",TiposNomina.ORDINARIA),
-	OTRAPERIODICIDAD("99","Otra Periodicidad",new String[]{"OtraPeriodicidad"},TiposNomina.EXTRAORDINARIA),
+	OTRAPERIODICIDAD("99","Otra Periodicidad",new String[]{"OtraPeriodicidad"},TiposNomina.EXTRAORDINARIA), 
 	;
 	
 	final String idSat;
