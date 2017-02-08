@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
@@ -17,6 +18,7 @@ import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Complemento {
 
 	@XmlElement(name="TimbreFiscalDigital")
@@ -24,9 +26,6 @@ public class Complemento {
 	private TimbreFiscalDigital timbre;
 
 	
-	
-	
-
 
 	
 	

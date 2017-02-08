@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.EntidadesFederativas;
 import mx.emite.sdk.enums.sat.adaptadores.EntidadesFederativasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="Premios",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/premios")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -77,6 +77,15 @@ public class Premios extends ComplementoInterface{
 	@Override
 	public String getEsquemaLocation() {
 		return "http://www.sat.gob.mx/esquemas/retencionpago/1/premios http://www.sat.gob.mx/esquemas/retencionpago/1/premios/premios.xsd";
+	}
+
+
+
+
+
+	@Override
+	public String getPrefijo() {
+		return "premios";
 	}
 	
 	

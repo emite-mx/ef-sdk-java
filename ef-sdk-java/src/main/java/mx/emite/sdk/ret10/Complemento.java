@@ -13,7 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoInterface;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Complemento")
 @Data

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<FindBugsFilter>
+<Match>
+   <Class name="mx.emite.sdk.serializers.BooleanAdapter" />
+   <Method name="unmarshal" />
+   <Bug pattern="NP_BOOLEAN_RETURN_NULL" />
+</Match>
+</FindBugsFilter>

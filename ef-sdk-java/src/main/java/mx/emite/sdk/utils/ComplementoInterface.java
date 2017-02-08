@@ -1,4 +1,4 @@
-package mx.emite.sdk.ret10.comp;
+package mx.emite.sdk.utils;
 
 import lombok.Data;
 
@@ -6,5 +6,7 @@ import lombok.Data;
 public abstract class ComplementoInterface {
 
 	public abstract String getEsquemaLocation();
+
+	public abstract String getPrefijo();
 
 }

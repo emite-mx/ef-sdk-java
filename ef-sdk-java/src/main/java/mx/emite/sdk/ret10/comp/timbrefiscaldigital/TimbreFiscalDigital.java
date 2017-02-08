@@ -16,8 +16,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
+import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="TimbreFiscalDigital",namespace="http://www.sat.gob.mx/TimbreFiscalDigital")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -56,6 +56,11 @@ public class TimbreFiscalDigital extends ComplementoInterface{
 	@Override
 	public String getEsquemaLocation() {
 		return "http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/timbrefiscaldigital/TimbreFiscalDigital.xsd";
+	}
+
+	@Override
+	public String getPrefijo() {
+		return "tfd";
 	}
 	
 	

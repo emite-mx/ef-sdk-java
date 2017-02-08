@@ -41,6 +41,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import mx.emite.sdk.cfdi32.Comprobante;
+import mx.emite.sdk.cfdi32.comp.Comprobante32;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
@@ -49,7 +50,6 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
 import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina;
 import mx.emite.sdk.ret10.Retenciones;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
 
 public class Utilerias {
 
@@ -180,6 +180,27 @@ public class Utilerias {
 		return MarshallerUnmarshaller.marshallCfdi32(comprobante);
 	}
 
+	public static String marshallcfdi32(Comprobante32 comprobante) throws ApiException {
+		if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
+		{
+			final List<String> complementos = new ArrayList<>();
+			for(ComplementoInterface c : comprobante.getComplemento().getComplementos()){
+				complementos.add(MarshallerUnmarshaller.marshallCfdi32Complemento(c));
+			}
+			
+			final String xml = MarshallerUnmarshaller.marshallCfdi32(comprobante);
+		    final Document doc = MarshallerUnmarshaller.leeXml(xml);
+		    final Node complemento = MarshallerUnmarshaller.sacaNodo(MarshallerUnmarshaller.xComplemento, doc, "Complemento");
+		    for(String insertar:complementos){
+		    	final Document docin = MarshallerUnmarshaller.leeXml(insertar);
+		    	final Node importado = doc.importNode(docin.getFirstChild(), true);
+		    	complemento.appendChild(importado);
+		    }
+			return MarshallerUnmarshaller.marshall(doc);
+			
+		}
+		else return MarshallerUnmarshaller.marshallCfdi32(comprobante);
+	}
 	
 	
 	public static String marshallnom32(ComprobanteNomina11 comprobante) throws ApiException {

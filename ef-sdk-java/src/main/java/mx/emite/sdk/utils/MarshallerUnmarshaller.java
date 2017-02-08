@@ -3,6 +3,9 @@ package mx.emite.sdk.utils;
 import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -26,6 +29,8 @@ import org.xml.sax.InputSource;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.emite.sdk.cfdi32.Comprobante;
+import mx.emite.sdk.cfdi32.comp.Comprobante32;
+import mx.emite.sdk.cfdi32.comp.cce11.ComercioExterior11;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
@@ -34,7 +39,6 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.proxy.request.extra.generico.cfdi.xml.GenericoFactura;
 import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoNomina;
 import mx.emite.sdk.ret10.Retenciones;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
 import mx.emite.sdk.ret10.comp.arrendamientofideicomiso.Arrendamientoenfideicomiso;
 import mx.emite.sdk.ret10.comp.dividendos.Dividendos;
 import mx.emite.sdk.ret10.comp.enajenaciondeacciones.EnajenaciondeAcciones;
@@ -57,7 +61,8 @@ public class MarshallerUnmarshaller {
 			,Dividendos.class,Intereses.class,Arrendamientoenfideicomiso.class,Pagosaextranjeros.class,
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
 			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
-			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class);
+			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class
+			,Comprobante32.class,ComercioExterior11.class);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
 	/** DocumentBuilderFactory. */
@@ -83,14 +88,20 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private final static String CFDI32_ESQUEMA="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd";
 	
-	private static Marshaller xmlMarshaller(){
+	private static Marshaller xmlMarshaller(final List<ComplementoInterface> complementos){
 		try{
-		
+		final StringBuilder esquema = new StringBuilder(CFDI32_ESQUEMA);
+		if(complementos!=null && !complementos.isEmpty()){
+			complementos.stream().forEach(c->esquema.append(" ").append(c.getEsquemaLocation()));
+		}
 		final Marshaller m = contexto.createMarshaller();
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd");
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, esquema.toString());
+		
+		
 		return m;
 		}catch(Exception ex){
 			log.error("creando marshaller",ex);
@@ -162,7 +173,8 @@ public class MarshallerUnmarshaller {
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.setProperty(Marshaller.JAXB_FRAGMENT, true);
-		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, c.getEsquemaLocation());
+		
+		//m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, c.getEsquemaLocation());
 		return m;
 		}catch(Exception ex){
 			throw ex;
@@ -213,6 +225,7 @@ public class MarshallerUnmarshaller {
 			return JAXBContext.newInstance(clase);
 		}
 		catch(Exception ex){
+			ex.printStackTrace();
 			log.error("creando marshaller",ex);
 			return null;
 		}
@@ -222,9 +235,8 @@ public class MarshallerUnmarshaller {
 	public static String marshallCfdi32(Comprobante comp) throws ApiException{
 		try{
 			final StringWriter writer = new StringWriter();
-			xmlMarshaller().marshal(comp,writer);
+			xmlMarshaller(null).marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug(xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -232,6 +244,33 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	public static String marshallCfdi32(Comprobante32 comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			final List<ComplementoInterface> comps = comp.getComplemento()!=null?comp.getComplemento().getComplementos():null;
+			final Map<String,String> namespaces = new HashMap<>();
+			if(comps==null || comps.isEmpty()){
+				xmlMarshaller(comps).marshal(comp,writer);
+			}
+			else{
+				comps.stream().forEach(i->namespaces.put(i.getPrefijo(), i.getEsquemaLocation()));
+				xmlMarshaller(comps).marshal(comp,writer);
+			}
+			
+			final String xml = writer.toString();
+			if(comps==null || comps.isEmpty()){
+				return xml;
+			}
+			else{
+				//Agregamos los namespaces
+				final StringBuilder sb = new StringBuilder();
+				namespaces.entrySet().stream().forEach(i-> sb.append("xmlns:").append(i.getKey()).append("=\"").append(i.getValue().substring(0,i.getValue().indexOf(" "))).append("\" "));
+				return xml.replace("<cfdi:Comprobante ", "<cfdi:Comprobante "+sb.toString());
+			}
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
+		}
+	}
 
 	public static String marshallGenericoXml(GenericoFactura comprobante) {
 		try{
@@ -327,9 +366,9 @@ public class MarshallerUnmarshaller {
 	
 	public static String marshallCfdi32Complemento(ComplementoInterface comp) throws ApiException{
 		try{
-			final StringWriter writer = new StringWriter();
-			xmlCfdiComplementoMarshaller(comp).marshal(comp,writer);
-			final String xml = writer.toString();
+			final StringWriter sw = new StringWriter();
+			xmlCfdiComplementoMarshaller(comp).marshal(comp,sw);
+			final String xml = sw.toString();
 			log.debug("\n"+xml);
 			return xml;
 			

@@ -149,5 +149,7 @@ public enum RegimenesFiscales implements Sat<Integer>{
 			return null;
 		}
 	}
+
+	
 	
 }

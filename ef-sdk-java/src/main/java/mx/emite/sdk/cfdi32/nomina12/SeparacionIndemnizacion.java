@@ -52,7 +52,7 @@ public class SeparacionIndemnizacion implements Serializable{
 	 */
 	@XmlAttribute(name="NumAñosServicio")
 	@NotNull
-	@DecimalMin("0") @DecimalMax("75")
+	@DecimalMin("0") @DecimalMax("99")
 	protected BigInteger numAnosServicio;
 	
 	/**

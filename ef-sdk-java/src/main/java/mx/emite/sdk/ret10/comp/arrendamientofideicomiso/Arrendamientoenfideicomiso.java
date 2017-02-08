@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="Arrendamientoenfideicomiso",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -99,6 +99,17 @@ public class Arrendamientoenfideicomiso extends ComplementoInterface{
 	@Override
 	public String getEsquemaLocation() {
 		return "http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso/arrendamientoenfideicomiso.xsd";
+	}
+
+
+
+
+
+
+
+	@Override
+	public String getPrefijo() {
+		return "arrendamientoenfideicomiso";
 	}
 	
 	

@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="EnajenaciondeAcciones",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -65,6 +65,14 @@ public class EnajenaciondeAcciones extends ComplementoInterface{
 	@Override
 	public String getEsquemaLocation() {
 		return "http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones/enajenaciondeacciones.xsd";
+	}
+
+
+
+
+	@Override
+	public String getPrefijo() {
+		return "enajenaciondeacciones";
 	}
 	
 	

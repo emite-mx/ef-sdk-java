@@ -15,7 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.ret10.comp.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="Fideicomisonoempresarial",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -59,6 +59,11 @@ public class Fideicomisonoempresarial extends ComplementoInterface{
 	@Override
 	public String getEsquemaLocation() {
 		return "http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial/fideicomisonoempresarial.xsd";
+	}
+
+	@Override
+	public String getPrefijo() {
+		return "fideicomisonoempresarial";
 	}
 	
 	

@@ -82,7 +82,7 @@ public class Nomina implements Serializable{
 	 * numDiasPagados Atributo requerido para la expresión del número o la fracción de días pagados.
 	 */
 	@XmlAttribute(name="NumDiasPagados")
-	@NotNull @DecimalMin("0.001") @DecimalMax("5490.000")
+	@NotNull @DecimalMin("0.001") @DecimalMax("36160.000")
 	protected BigDecimal numDiasPagados;
 	
 	/**

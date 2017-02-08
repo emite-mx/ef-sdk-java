@@ -1,6 +1,7 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
@@ -204,7 +205,7 @@ public enum Monedas33 implements Sat<String>{
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.decimales=decimales;
-		this.porcentajeVariacion=BigDecimal.valueOf(porcentajeVariacion).setScale(3);
+		this.porcentajeVariacion=BigDecimal.valueOf(porcentajeVariacion).setScale(3,RoundingMode.HALF_EVEN);
 	}
 
 	public static Monedas33 unmarshall(String metodo) throws ApiException{
@@ -237,6 +238,23 @@ public enum Monedas33 implements Sat<String>{
 	
 	private String marshall(){
 		return idSat;
+	}
+	
+	public static boolean existe(String mon) {
+		for(Monedas33 m:values()){
+			if(m.idSat.equals(mon))
+				return true;
+		}
+		
+		return false;
+	}
+
+	public static Monedas33 idSat(String idSat) {
+		for(Monedas33 m:values()){
+			if(m.idSat.equals(idSat))
+				return m;
+		}
+		return null;
 	}
 	
 	
