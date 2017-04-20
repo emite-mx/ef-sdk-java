@@ -95,7 +95,10 @@ public enum FormasPago33 implements Sat<String>{
 	private String marshall(){
 		return idSat;
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 	
 	/*
 		

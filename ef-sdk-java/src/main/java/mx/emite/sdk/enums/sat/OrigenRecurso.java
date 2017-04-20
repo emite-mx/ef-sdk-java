@@ -77,5 +77,8 @@ public enum OrigenRecurso implements Sat<String>{
 		return null;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

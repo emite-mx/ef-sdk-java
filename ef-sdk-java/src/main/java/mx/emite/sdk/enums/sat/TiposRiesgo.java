@@ -102,5 +102,8 @@ public enum TiposRiesgo implements Sat<Integer>{
 		return null;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat.toString();
+	}
 }

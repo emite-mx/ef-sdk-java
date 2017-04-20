@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -27,13 +29,14 @@ import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
 import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
 import mx.emite.sdk.enums.sat.cfdi33.TiposDeComprobante33;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.FormasPago33Adapter;
+import mx.emite.sdk.enums.sat.cfdi33.adaptadores.ImporteTcAdapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.MetodosPago33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.TiposDeComprobante33Adapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
  
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "emisor", "receptor", "conceptos", "impuestos", "complemento" })
+@XmlType(name = "", propOrder = { "cfdiRelacionados","emisor","receptor","conceptos","impuestos" })
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder 
@@ -59,7 +62,7 @@ public class Comprobante33  implements Serializable {
 	@XmlAttribute(name="Serie")
 	@Size(max=25) 
 	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,25}")
-	protected String Serie;
+	protected String serie;
 	
 	/**
 	 * folio Atributo opcional para control interno del contribuyente que expresa el folio del comprobante, caracteres.
@@ -67,7 +70,7 @@ public class Comprobante33  implements Serializable {
 	@XmlAttribute(name="Folio")
 	@Size(max=25)
 	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,40}")
-	protected String Folio;
+	protected String folio;
 	
 	/**
 	 * fecha Atributo requerido para la expresión de la fecha y hora de expedición del Comprobante Fiscal Digital por Internet. Se expresa en la forma AAAA-MM-DDThh:mm:ss y debe corresponder con la hora local donde se expide el comprobante.
@@ -139,7 +142,7 @@ public class Comprobante33  implements Serializable {
 	 *  tipoCambio Atributo condicional para representar el tipo de cambio conforme con la moneda usada. Es requerido cuando la clave de moneda es distinta de MXN y de XXX. El valor debe reflejar el número de pesos mexicanos que equivalen a una unidad de la divisa señalada en el atributo moneda. Si el valor está fuera del porcentaje aplicable a la moneda tomado del catálogo c_Moneda, el emisor debe obtener del PAC que vaya a timbrar el CFDI, de manera no automática, una clave de confirmación para ratificar que el valor es correcto e integrar dicha clave en el atributo Confirmacion.
 	 */
 	@XmlAttribute(required = true,name="TipoCambio")
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	@DecimalMin(value="0.000001")
 	protected BigDecimal tipoCambio;
 	
@@ -183,6 +186,42 @@ public class Comprobante33  implements Serializable {
 	@XmlAttribute(name="Confirmacion")
 	@Pattern(regexp="[0-9a-zA-Z]{5}")
 	protected String confirmacion;
+	
+	/**
+	 * cfdiRelacionados Nodo opcional para precisar la información de los comprobantes relacionados.
+	 */
+	@XmlElement(name = "CfdiRelacionados", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	@Valid
+	private CfdiRelacionados33 cfdiRelacionados;
+	
+	/**
+	 * emisor  Nodo requerido para expresar la información del contribuyente emisor del comprobante.
+	 */
+	@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	@Valid @NotNull
+	private Emisor33 emisor;
+	
+	/**
+	 * receptor Nodo requerido para precisar la información del contribuyente receptor del comprobante.
+	 */
+	@XmlElement(name = "Receptor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	@Valid @NotNull
+	private Receptor33 receptor;
+	
+	/**
+	 * conceptos Nodo requerido para listar los conceptos cubiertos por el comprobante.
+	 */
+	@XmlElement(name = "Conceptos", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	@Valid @NotNull
+	private Conceptos33 conceptos;
+	
+	/**
+	 * impuestos Nodo condicional para expresar el resumen de los impuestos aplicables.
+	 *
+	 */
+	@XmlElement(name="Impuestos", namespace = "http://www.sat.gob.mx/cfd/3")
+	@Valid
+	private Impuestos33 impuestos;
 	
 	/*@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	@Valid @NotNull

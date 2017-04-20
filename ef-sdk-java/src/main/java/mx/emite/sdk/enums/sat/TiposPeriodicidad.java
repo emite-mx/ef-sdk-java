@@ -20,7 +20,7 @@ public enum TiposPeriodicidad implements Sat<String>{
 	UNIDADOBRA("07","Unidad Obra",new String[]{"Unidad_obra"},TiposNomina.ORDINARIA),
 	COMISION("08","Comisión",TiposNomina.ORDINARIA),
 	PRECIOALZADO("09","Precio Alzado",new String[]{"Precio_alzado"},TiposNomina.ORDINARIA),
-	DECENAL("10","DECENAL",TiposNomina.ORDINARIA),
+	DECENAL("10","Decenal",TiposNomina.ORDINARIA),
 	OTRAPERIODICIDAD("99","Otra Periodicidad",new String[]{"OtraPeriodicidad"},TiposNomina.EXTRAORDINARIA), 
 	;
 	
@@ -29,9 +29,18 @@ public enum TiposPeriodicidad implements Sat<String>{
 	final String[] sinonimos;
 	final TiposNomina tipoNomina;
 	
+	public static void main(String[] args){
+		for(TiposPeriodicidad p:values()){
+				System.out.println("insert into h_sat_periodicidad values('"+p.getIdSat()+"','"+p.getDescripcion()+"','"+(p.getTipoNomina().name().charAt(0))+"');");
+		}
+	}
+
+	
 	TiposPeriodicidad(String idSat,String descripcion,TiposNomina tipo){
 		this(idSat,descripcion,null,tipo);
 	}
+	
+	
 	
 	TiposPeriodicidad(String idSat,String descripcion,String[] sinonimos,TiposNomina tipo){
 		this.idSat=idSat;
@@ -89,6 +98,13 @@ public enum TiposPeriodicidad implements Sat<String>{
 		}
 		return null;
 	}
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 	
-	
+	@Override
+	public String toString(){
+		return descripcion;
+	}
 }

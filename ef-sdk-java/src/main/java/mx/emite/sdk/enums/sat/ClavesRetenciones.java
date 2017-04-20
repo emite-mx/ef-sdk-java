@@ -109,5 +109,8 @@ public enum ClavesRetenciones implements Sat<String>{
 			System.out.println(c.descripcion);
 		}
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

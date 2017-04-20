@@ -60,6 +60,30 @@ public enum MetodosPago33 implements Sat<String>{
 		return idSat;
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
+
+	public static MetodosPago33 idSat(String tipoDeComprobante) {
+		for(MetodosPago33 it:values()){
+			if(it.getIdSat().equals(tipoDeComprobante))
+				return it;
+		}
+		return null;
+	}
+	
+	public boolean in(MetodosPago33... lista){
+		for(MetodosPago33 tc:lista){
+			if(this.equals(tc))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean requiereComplementoPago(){
+		return in(INICIALYPARCIALIDADES);
+	}
 	
 	/*
 		

@@ -76,6 +76,14 @@ public enum TiposPercepcion implements Sat<String>{
 		this.tipo=tipo;
 		
 	}
+	
+	public static void main(String[] args){
+		for(TiposPercepcion p:values()){
+			System.out.println("update h_sat_nomina set tipopercepcion='"+p.getTipo().getAbrevia()+"' where clave_sat='"+p.getClave()+"' and tipoconcepto='P';");
+			
+			
+		}
+	}
 
 	public static TiposPercepcion busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
@@ -149,7 +157,12 @@ public enum TiposPercepcion implements Sat<String>{
 	}
 	
 	public static enum TIPOPERCEPCION{
-		SUELDOS,SEPARACIONINDEMNIZACION,JUBILACION
+		SUELDOS("S"),SEPARACIONINDEMNIZACION("I"),JUBILACION("J");
+		
+		@Getter final String abrevia;
+		TIPOPERCEPCION(String abrevia){
+			this.abrevia=abrevia;
+		}
 	}
 
 	public boolean esAcciones() {
@@ -162,5 +175,10 @@ public enum TiposPercepcion implements Sat<String>{
 	
 	public boolean esIncapacidad() {
 		return this.equals(SUBSIDIOSPORINCAPACIDAD);
+	}
+	
+	@Override
+	public String getIdString() {
+		return idSat;
 	}
 }

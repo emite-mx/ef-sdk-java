@@ -69,5 +69,10 @@ public enum TiposNomina implements Sat<String>{
 		return null;
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
+	
 	
 }

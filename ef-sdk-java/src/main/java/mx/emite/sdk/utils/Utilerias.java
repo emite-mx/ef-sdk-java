@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -44,6 +45,7 @@ import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.comp.Comprobante32;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
+import mx.emite.sdk.cfdi33.Comprobante33;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
@@ -59,7 +61,16 @@ public class Utilerias {
 	private final static Validator validator = creaValidador();
 	private final static Collator comparador = creaComparador();
 	private final static String UTF8_BOM = "\uFEFF";
-	public final static String PATRON_RFC = "^([A-Za-z&Ññ]{3}|[A-Za-z][AEIOUaeiou][A-Za-z]{2})\\d{2}((01|03|05|07|08|10|12)(0[1-9]|[12]\\d|3[01])|02(0[1-9]|[12]\\d)|(04|06|09|11)(0[1-9]|[12]\\d|30))([A-Z0-9a-z]{2}[0-9Aa])?$";
+	public final static String PATRON_RFC = "^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]?$";
+	
+	
+	/*public static void main (String[] agr){
+		
+		final Pattern patron = Pattern.compile(PATRON_RFC);
+		Matcher matcher = patron.matcher("GO&R350322KH5");
+		System.out.println(matcher.matches());
+		
+	}*/
 	
 	
 	public static String decodifica64Utf8(final String xmlBase64) throws ApiException{
@@ -242,6 +253,30 @@ public class Utilerias {
 			return MarshallerUnmarshaller.marshallRet10(comprobante);
 	}
 	
+	public static String marshallcfdi33(final Comprobante33 comprobante) throws ApiException {
+		valida(comprobante);
+		/*if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
+		{
+			final List<String> complementos = new ArrayList<>();
+			for(ComplementoInterface c : comprobante.getComplemento().getComplementos()){
+				complementos.add(MarshallerUnmarshaller.marshallRet10Complemento(c));
+			}
+			
+			final String xml = MarshallerUnmarshaller.marshallRet10(comprobante);
+		    final Document doc = MarshallerUnmarshaller.leeXml(xml);
+		    final Node complemento = MarshallerUnmarshaller.sacaNodo(MarshallerUnmarshaller.xComplemento, doc, "Complemento");
+		    for(String insertar:complementos){
+		    	final Document docin = MarshallerUnmarshaller.leeXml(insertar);
+		    	final Node importado = doc.importNode(docin.getFirstChild(), true);
+		    	complemento.appendChild(importado);
+		    }
+			return MarshallerUnmarshaller.marshall(doc);
+			
+		}
+		else*/
+		return MarshallerUnmarshaller.marshallCfdi33(comprobante);
+	}
+	
 	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {
 		return MarshallerUnmarshaller.unmarshallGenerico(xml);
 	}
@@ -264,6 +299,14 @@ public class Utilerias {
 		}
 	}
 
+	public static byte[] decodificaBinario(String pdf,final I_Api_Errores error) throws ApiException{
+		try{
+			return decoder.decode(pdf.getBytes());
+			}catch(Exception ex){
+				throw new ApiException(error,ex);
+		}
+	}
+	
 	public static void guardaArchivo(String ruta, byte[] pdfDecodificado) throws ApiException{
 		try{
 				Files.write(Paths.get(ruta), pdfDecodificado);
@@ -402,7 +445,11 @@ public class Utilerias {
 	}
 
 	public static byte[] quitaBom(final byte[] bom) {
-		return quitaBom(new String(bom)).getBytes();
+		try {
+			return quitaBom(new String(bom,"UTF-8")).getBytes("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return quitaBom(new String(bom)).getBytes();
+		}
 		
 	}
 	

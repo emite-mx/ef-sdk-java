@@ -157,5 +157,8 @@ public enum FormasPago implements Sat<Integer>{
 		return Arrays.asList(values()).stream().map(FormasPago::getIdSatString).collect(Collectors.toList());		
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat.toString();
+	}
 }

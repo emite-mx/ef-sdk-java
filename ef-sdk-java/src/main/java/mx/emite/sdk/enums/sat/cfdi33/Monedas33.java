@@ -257,7 +257,34 @@ public enum Monedas33 implements Sat<String>{
 		return null;
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 	
+	public boolean in(Monedas33...monedas){
+		for(Monedas33 m:monedas){
+			if(this.equals(m))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean notin(Monedas33...monedas){
+		return !in(monedas);
+	}
+	
+	public boolean esPesos() {
+		return this.equals(MXN);
+	}
+
+	public boolean esXXX() {
+		return this.equals(XXX);
+	}
+	
+	public boolean requiereTc() {
+		return notin(MXN,XXX);
+	}
 	/*
 		
 	

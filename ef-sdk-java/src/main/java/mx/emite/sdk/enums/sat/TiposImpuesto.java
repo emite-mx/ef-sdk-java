@@ -67,5 +67,8 @@ public enum TiposImpuesto implements Sat<Integer>{
 		return unmarshall(text);
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat.toString();
+	}
 }

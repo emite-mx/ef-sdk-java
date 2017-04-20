@@ -48,6 +48,7 @@ public class IntegradorAPI {
 	private final SucursalesModificacion sucursalesmodificacion;
 	private final SucursalesNombre sucursalesnombre;
 	private final EmisoresDocumentos emisoresdocumentos;
+	private final Ambiente ambiente;
 	
 	private String contrasena;
 	private String usuario;
@@ -82,6 +83,7 @@ public class IntegradorAPI {
 	 * @since 0.0.3
 	 */
 	public IntegradorAPI(final Ambiente ambiente,final String usuario,final String contrasena){
+		this.ambiente=ambiente;
 		this.cliente=new ClienteJson(ambiente);
 		this.timbres=new Timbres(this.cliente);
 		this.token=new Token(this.cliente);
@@ -112,6 +114,10 @@ public class IntegradorAPI {
 		return usuario;
 	}
 
+	public Ambiente getAmbiente() {
+		return ambiente;
+	}
+	
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}

@@ -26,6 +26,13 @@ public enum TiposOtroPago implements Sat<String>{
 		this.descripcion=descripcion;		
 		
 	}
+	
+	public static void main(String[] args){
+		int indice=144;
+		for(TiposOtroPago p:values()){
+				System.out.println("insert into h_sat_nomina values("+(indice++)+",'"+p.getIdSat()+"','"+p.getDescripcion()+"',0,0,0,'O',null);");
+		}
+	}
 
 	public static TiposOtroPago busca(String metodo) {
 		for(TiposOtroPago m:values()){
@@ -76,6 +83,11 @@ public enum TiposOtroPago implements Sat<String>{
 	
 	public boolean esViaticos(){
 		return this.equals(VIATICOS);
+	}
+	
+	@Override
+	public String getIdString() {
+		return idSat;
 	}
 }
 

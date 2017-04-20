@@ -13,6 +13,7 @@ public enum TipoDeComprobante implements Sat<Integer> {
 	
 	INGRESO(1,"ingreso"),
 	EGRESO(2,"egreso"),
+	TRASLADO(3,"traslado"),
 	;
 	
 	final Integer idSat;
@@ -52,5 +53,8 @@ public enum TipoDeComprobante implements Sat<Integer> {
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat.toString();
+	}
 }

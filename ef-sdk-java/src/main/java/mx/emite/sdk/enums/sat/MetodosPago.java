@@ -172,5 +172,8 @@ public enum MetodosPago implements Sat<String>{
 	public static List<String> idsint() {
 		return Arrays.asList(values()).stream().map(MetodosPago::getIdSat).collect(Collectors.toList());		
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}	
 }

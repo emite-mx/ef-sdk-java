@@ -39,6 +39,13 @@ public enum TiposContrato12 implements Sat<String>{
 		this.sinonimos=sinonimos;
 		this.requiereRegistroPatronal=requiereRegistroPatronal;
 	}
+	
+	public static void main(String[] args){
+		int indice=1;
+		for(TiposContrato12 p:values()){
+				System.out.println("insert into h_sat_tipos_contrato values("+(indice++)+",'"+p.getIdSat()+"','"+p.getDescripcion()+"',"+(p.requiereRegistroPatronal?"1":0)+");");
+		}
+	}
 
 	public static TiposContrato12 busca(String metodo) {
 		for(TiposContrato12 m:values()){
@@ -77,5 +84,13 @@ public enum TiposContrato12 implements Sat<String>{
 		return unmarshall(text);
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 	
+	@Override
+	public String toString(){
+		return descripcion;
+	}
 }

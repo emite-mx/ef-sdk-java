@@ -4,6 +4,6 @@ public interface Sat<E> {
 
 	public String getDescripcion();
 	public E getIdSat();
-	
+	public String getIdString();
 	
 }

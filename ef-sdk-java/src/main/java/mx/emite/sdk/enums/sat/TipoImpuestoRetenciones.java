@@ -75,5 +75,8 @@ public enum TipoImpuestoRetenciones implements Sat<String>{
 	public static Object parse(String text) throws TypeConversionException, ApiException {
 		return unmarshall(text);
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

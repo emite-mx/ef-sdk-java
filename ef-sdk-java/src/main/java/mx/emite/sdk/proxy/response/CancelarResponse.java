@@ -31,5 +31,11 @@ public class CancelarResponse extends ProxyResponse{
 	public String getXmlDecodificado(){
 		return Utilerias.decodifica64Utf8(xml);
 	}
+	
+	@JsonIgnore
+	public byte[] getXmlDecodificadoBinario(){
+		return Utilerias.decodifica64Utf8Byte(xml);
+	}
+	
 		
 }

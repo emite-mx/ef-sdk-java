@@ -97,5 +97,8 @@ public enum UnidadesAduana implements Sat<String>{
 		return false;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

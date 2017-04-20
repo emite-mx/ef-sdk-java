@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums.sat;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,17 +34,26 @@ public enum RegimenesFiscales implements Sat<Integer>{
 	COORDINADOS(624,"Coordinados",false,true),
 	ENAJENACIONBIENES(607,"Régimen de Enajenación o Adquisición de Bienes",false,true),
 	PREMIOS(615,"Régimen de los ingresos por obtención de premios",true,false),
+	HIDROCARBUROS(628,"Hidrocarburos",false,true,LocalDate.of(2020, 1, 1)),
+	PREFERENTESYMULTINACIONALES(629,"De los Regímenes Fiscales Preferentes y de las Empresas Multinacionales",true,false,LocalDate.of(2020, 1, 1)),
+	ENAJENACIONBOLSAVALORES(630,"Enajenación de acciones en bolsa de valores",true,false,LocalDate.of(2020, 1, 1))
 	;
 	
 	final Integer idSat;
 	final String descripcion;
 	final Boolean fisicas,morales;
+	final LocalDate inicioVigencia;
 	
 	RegimenesFiscales(Integer idSat,String descripcion,Boolean fisicas,Boolean morales){
+		this(idSat,descripcion,fisicas,morales,null);
+	}
+	
+	RegimenesFiscales(Integer idSat,String descripcion,Boolean fisicas,Boolean morales,LocalDate inicioVigencia){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.fisicas=fisicas;
 		this.morales=morales;
+		this.inicioVigencia=inicioVigencia;
 	}
 
 	/**
@@ -150,6 +160,9 @@ public enum RegimenesFiscales implements Sat<Integer>{
 		}
 	}
 
-	
+	@Override
+	public String getIdString() {
+		return idSat.toString();
+	}
 	
 }

@@ -92,5 +92,8 @@ public enum TipoContribuyenteSujetoRetencion implements Sat<String>{
 		}
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

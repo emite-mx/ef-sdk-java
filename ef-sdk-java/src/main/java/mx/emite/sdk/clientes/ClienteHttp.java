@@ -34,7 +34,6 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.ConnectionConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
@@ -61,8 +60,8 @@ public class ClienteHttp {
 
 	private static final String AGENTE = "ef-sdk-java/";
 
-    private static final int DEFAULT_CONNECTION_TIMEOUT = 10000;
-    private static final int DEFAULT_SOCKET_TIMEOUT = 120000;
+    private static final int DEFAULT_CONNECTION_TIMEOUT = 20000;
+    private static final int DEFAULT_SOCKET_TIMEOUT = 240000;
 
     private final CloseableHttpClient httpClient;
 
@@ -89,20 +88,16 @@ public class ClienteHttp {
 	protected CloseableHttpClient initHttpClient(final boolean requirePoolManager, final int connectionTimeout,
             final int socketTimeout) {
         final CloseableHttpClient httpClient;
-        HttpClientConnectionManager manager;
-       
-        
-        
+        final PoolingHttpClientConnectionManager pool;
         final SSLContext sslContext = getSslContext();
-        
         final SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
         final Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
                 .register("http", PlainConnectionSocketFactory.getSocketFactory())
                 .register("https", sslsf)
                 .build();
-
-        manager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-        
+        pool = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+        pool.setMaxTotal(150);
+        pool.setDefaultMaxPerRoute(100);
         this.requestConfig = RequestConfig.custom()
 			    .setSocketTimeout(socketTimeout)
 			    .setConnectTimeout(connectionTimeout)
@@ -110,7 +105,7 @@ public class ClienteHttp {
 			    .build(); 
         final ConnectionConfig connnectionConfig = ConnectionConfig.custom().setCharset(Charset.forName("UTF-8")).build();
         httpClient = HttpClientBuilder.create()
-                .setConnectionManager(manager)
+                .setConnectionManager(pool)
                 .setDefaultConnectionConfig(connnectionConfig)
                 .setDefaultRequestConfig(this.requestConfig)
                 .setRetryHandler(new StandardHttpRequestRetryHandler(5, true))
@@ -118,7 +113,6 @@ public class ClienteHttp {
 				.setSSLSocketFactory(sslsf)
 				.setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
 				.setSSLContext(sslContext)
-				
 				.build();
         return httpClient;
     }
@@ -239,7 +233,7 @@ public class ClienteHttp {
         this.addHeaders(request,esjson);
        
         long init = System.currentTimeMillis();
-        CloseableHttpResponse response = this.callService(request);
+        CloseableHttpResponse response = this.ejecutaServicio(request);
         
         RespuestaHttp serviceResponse;
         try {
@@ -269,7 +263,7 @@ public class ClienteHttp {
     
     
 
-    protected CloseableHttpResponse callService(final HttpRequestBase request) throws ApiException {
+    protected CloseableHttpResponse ejecutaServicio(final HttpRequestBase request) throws ApiException {
         request.setConfig(this.requestConfig);
         CloseableHttpResponse response;
         try {
@@ -304,7 +298,7 @@ public class ClienteHttp {
 		 final HttpGet request = new HttpGet(url);
 		 this.addHeaders(request,false);
 	     //long init = System.currentTimeMillis();
-	     final CloseableHttpResponse response = this.callService(request);
+	     final CloseableHttpResponse response = this.ejecutaServicio(request);
 	     try(final InputStream is = response.getEntity().getContent();final ByteArrayOutputStream out = new ByteArrayOutputStream()){
 	    	 IOUtils.copy(is, out);
 	    
@@ -312,6 +306,9 @@ public class ClienteHttp {
 	     }
 	     catch(Exception ex){
 	    	 throw new ApiException(I_Api_Errores.VALIDADOR_CERTIFICADOSAT,ex);
+	     }
+	     finally{
+	    	 HttpClientUtils.closeQuietly(response);
 	     }
 	    
 	}

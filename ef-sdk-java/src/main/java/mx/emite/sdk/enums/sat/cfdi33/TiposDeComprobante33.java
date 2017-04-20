@@ -13,11 +13,11 @@ import mx.emite.sdk.errores.I_Api_Errores;
 @Getter
 public enum TiposDeComprobante33 implements Sat<String>{
 	
-	INGRESO("I","Ingreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO,BigDecimal.ZERO),
-	EGRESO("E","Egreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO,BigDecimal.ZERO),
-	TRASLADO("T","Traslado",BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO),
-	NOMINA("N","Nómina",BigDecimal.ZERO,BigDecimal.valueOf(400000),BigDecimal.valueOf(2000000)),
-	PAGO("P","Egreso",BigDecimal.ZERO,BigDecimal.ZERO,BigDecimal.ZERO),
+	INGRESO("I","Ingreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
+	EGRESO("E","Egreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
+	TRASLADO("T","Traslado",BigDecimal.ZERO,BigDecimal.ZERO),
+	NOMINA("N","Nómina",BigDecimal.valueOf(400000),BigDecimal.valueOf(2000000)),
+	PAGO("P","Egreso",BigDecimal.ZERO,BigDecimal.ZERO),
 	
 	;
 	
@@ -25,14 +25,13 @@ public enum TiposDeComprobante33 implements Sat<String>{
 	final String idSat;
 	final String descripcion;
 	final BigDecimal valorMaximo;
-	final BigDecimal valorMaximoNs;
+	//final BigDecimal valorMaximoNs;
 	final BigDecimal valorMaximoNds;
 	
-	TiposDeComprobante33(String idSat,String descripcion,BigDecimal valorMaximo,BigDecimal valorMaximoNs,BigDecimal valorMaximoNds){
+	TiposDeComprobante33(String idSat,String descripcion,BigDecimal valorMaximo,BigDecimal valorMaximoNds){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.valorMaximo=valorMaximo;
-		this.valorMaximoNs=valorMaximoNs;
 		this.valorMaximoNds=valorMaximoNds;
 	}
 
@@ -68,6 +67,42 @@ public enum TiposDeComprobante33 implements Sat<String>{
 		return idSat;
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
+
+	public static TiposDeComprobante33 idSat(String tipoDeComprobante) {
+		for(TiposDeComprobante33 it:values()){
+			if(it.getIdSat().equals(tipoDeComprobante))
+				return it;
+		}
+		return null;
+	}
+	
+	public boolean in(TiposDeComprobante33... lista){
+		for(TiposDeComprobante33 tc:lista){
+			if(this.equals(tc))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean esIngresoEgresoNomina(){
+		return in(INGRESO,EGRESO,NOMINA);
+	}
+	
+	public boolean esTrasladoPago(){
+		return in(TRASLADO,PAGO);
+	}
+
+	public boolean esIngresoEgreso() {
+		return in(INGRESO,EGRESO);
+	}
+
+	public Character getIdSatChar() {
+		return idSat.charAt(0);
+	}
 	
 	/*
 		

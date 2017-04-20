@@ -1,6 +1,7 @@
 package mx.emite.sdk.enums.sat;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -275,6 +276,23 @@ public enum Paises implements Sat<String>{
 		this(idSat,descripcion,null);
 	}*/
 	
+	public static void main(String[] args){
+		Paises[] todos = Paises.values();
+				Arrays.sort(todos,new Comparator<Paises>() {
+			@Override
+			public int compare(Paises o1, Paises o2) {
+				return o1.getDescripcionPais().compareTo(o2.getDescripcionPais());
+			}
+		});
+		
+		for(Paises p:todos){
+			if(p.tlcan||p.ue){
+				System.out.print("Paises."+p.name()+",");
+			}
+			
+		}
+	}
+	
 	Paises(String idSat,String descripcion,String patronCp,String patronIdTributaria,String agrupacion){
 		this.idSat=idSat;
 		this.descripcionPais=descripcion;
@@ -331,6 +349,10 @@ public enum Paises implements Sat<String>{
 
 	public static Paises[] principales() {
 		return new Paises[]{Paises.MEXICO,Paises.ESTADOSUNIDOSLOS,Paises.CANADA};
+	}
+	
+	public static Paises[] principalesUe() {
+		return new Paises[]{Paises.MEXICO,Paises.ESTADOSUNIDOSLOS,Paises.CANADA,Paises.ALEMANIA,Paises.AUSTRIA,Paises.BULGARIA,Paises.BELGICA,Paises.CHIPRE,Paises.CROACIA,Paises.DINAMARCA,Paises.ESLOVAQUIA,Paises.ESLOVENIA,Paises.ESPANA,Paises.ESTONIA,Paises.FINLANDIA,Paises.FRANCIA,Paises.GRECIA,Paises.HUNGRIA,Paises.IRLANDA,Paises.ITALIA,Paises.LETONIA,Paises.LITUANIA,Paises.LUXEMBURGO,Paises.MALTA,Paises.PAISESBAJOSLOS,Paises.POLONIA,Paises.PORTUGAL,Paises.REINOUNIDOEL,Paises.REPUBLICACHECALA,Paises.RUMANIA,Paises.SUECIA};
 	}
 	
 	public String getIdPais(){
@@ -406,5 +428,16 @@ public enum Paises implements Sat<String>{
 		return tlcan;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
+
+	public static Paises idSat(String idSat) {
+		for(Paises m:values()){
+			if(m.getIdSat().equals(idSat))
+				return m;
+		}
+		return null;
+	}
 }

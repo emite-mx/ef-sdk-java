@@ -21,6 +21,7 @@ public enum TiposRegimen12 implements Sat<String>{
 	ASIMILADOS_HONORARIOS("09","Asimilados Honorarios",false),
 	ASIMILADOS_ACCIONES("10","Asimilados acciones",false),
 	ASIMILADOS_OTROS("11","Asimilados otros",false),
+	JUBILADOSPENSIONADOS("12","Jubilados o Pensionados",false),
 	OTROREGIMEN("99","Otro Regimen",false),
 	;
 	
@@ -78,5 +79,9 @@ public enum TiposRegimen12 implements Sat<String>{
 		return null;
 	}
 	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 	
 }

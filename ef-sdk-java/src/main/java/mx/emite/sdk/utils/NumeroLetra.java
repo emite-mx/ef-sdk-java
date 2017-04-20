@@ -15,7 +15,7 @@ public abstract class NumeroLetra {
 	public static void main(String[] args){
 		//for(int x=18525;x<=18569;x++)
 		//System.out.println(convertNumberToLetter(x));
-		System.out.println(convertNumberToLetter("2001.002"));
+		System.out.println(convertNumberToLetter("2001"));
 	}
 	
     private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ",

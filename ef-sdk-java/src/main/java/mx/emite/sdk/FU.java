@@ -315,6 +315,8 @@ public class FU {
 		}
 		
 		public static LocalDateTime convierte(Date fecha) {
+			if(fecha==null)
+				return null;
 			return LocalDateTime.ofInstant(fecha.toInstant(),zona);			
 		}
 

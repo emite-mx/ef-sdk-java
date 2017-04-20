@@ -23,7 +23,7 @@ import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
 @NoArgsConstructor @AllArgsConstructor
 public class Complemento {
 
-	@XmlElement(name="TimbreFiscalDigital")
+	@XmlElement(name="TimbreFiscalDigital",namespace="http://www.sat.gob.mx/TimbreFiscalDigital")
 	@Null
 	private TimbreFiscalDigital timbre;
 

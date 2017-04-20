@@ -363,5 +363,8 @@ public enum PaisesRetencion implements Sat<String>{
 		}
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

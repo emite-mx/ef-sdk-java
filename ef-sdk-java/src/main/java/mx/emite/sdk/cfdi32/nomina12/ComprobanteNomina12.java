@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -126,6 +127,9 @@ public class ComprobanteNomina12  {
 	@XmlAttribute(required = true, name = "NumCtaPago")
 	@Null
 	protected final String numCtaPago = null;
+	
+	@XmlTransient
+	private String tempoXml;
 
 	public String generaXml(){
 		return Utilerias.marshallnom12(this);

@@ -79,5 +79,8 @@ public enum Nacionalidad implements Sat<String>{
 	public boolean nacional() {
 		return equals(NACIONAL);
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

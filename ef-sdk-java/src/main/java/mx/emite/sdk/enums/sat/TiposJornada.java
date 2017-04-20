@@ -37,12 +37,20 @@ public enum TiposJornada implements Sat<String>{
 		this.sinonimos=sinonimos;
 		
 	}
+	
+	public static void main(String[] args){
+		for(TiposJornada p:values()){
+				System.out.println("insert into h_sat_jornadas values('"+p.getIdSat()+"','"+p.getDescripcion()+"');");
+		}
+	}
 
 	public static TiposJornada busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
 			return null;
 		for(TiposJornada m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
+				return m;
+			else if(Utilerias.compara(m.idSat, metodo))
 				return m;
 			else if(m.sinonimos!=null){
 				for(String s:m.sinonimos){
@@ -91,5 +99,8 @@ public enum TiposJornada implements Sat<String>{
 		return null;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

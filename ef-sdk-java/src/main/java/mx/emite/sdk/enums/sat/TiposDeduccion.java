@@ -127,6 +127,18 @@ public enum TiposDeduccion implements Sat<String>{
 		this.sinonimos=sinonimos;
 		
 	}
+	
+	public static void main(String[] args){
+		int indice=65;
+		for(TiposDeduccion p:values()){
+			int clave = Integer.parseInt(p.getClave());
+			
+			if(clave>21){
+				System.out.println("insert into h_sat_nomina values("+(indice++)+",'"+p.getClave()+"','"+p.getDescripcion()+"',0,0,0,'D',null);");
+			}
+			
+		}
+	}
 
 	public static TiposDeduccion busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
@@ -196,5 +208,8 @@ public enum TiposDeduccion implements Sat<String>{
 	public boolean esIncapacidad() {
 		return this.equals(DESCUENTOPORINCAPACIDAD);
 	}
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

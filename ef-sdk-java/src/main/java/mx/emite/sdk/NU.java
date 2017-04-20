@@ -28,7 +28,7 @@ public class NU {
 		
 		
 		private enum Tipos{
-			TIPO_DINERO,DOUBLE,ENTERO,MONTO, CODIGOBARRAS
+			TIPO_DINERO,DOUBLE,ENTERO,MONTO, CODIGOBARRAS,CODIGOBARRAS33
 		}
 		
 		public enum NumeroFormatos{
@@ -44,6 +44,7 @@ public class NU {
 		CANTIDAD10DECIMALES(Tipos.MONTO,10),
 		PORCENTAJE(Tipos.MONTO,2),
 		CODIGOBARRAS(Tipos.CODIGOBARRAS,0),
+		CODIGOBARRAS33(Tipos.CODIGOBARRAS33,0),
 		ENTERO3(Tipos.ENTERO,3),
 		CANTIDAD8DECIMALES(Tipos.MONTO,8),
 		CINCODECIMALES(Tipos.DOUBLE,5);
@@ -83,7 +84,7 @@ public class NU {
 						mf.setGroupingUsed(false);
 						return mf;
 			case CODIGOBARRAS: return new DecimalFormat("0000000000.000000",new DecimalFormatSymbols(local));
-								
+			case CODIGOBARRAS33: return new DecimalFormat("##################.000000",new DecimalFormatSymbols(local));					
 			}
 			return null;
 		}

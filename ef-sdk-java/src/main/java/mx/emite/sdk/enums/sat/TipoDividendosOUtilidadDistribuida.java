@@ -69,5 +69,8 @@ public enum TipoDividendosOUtilidadDistribuida implements Sat<String>{
 		return unmarshall(text);
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

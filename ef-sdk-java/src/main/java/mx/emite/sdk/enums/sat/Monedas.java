@@ -261,5 +261,8 @@ public enum Monedas implements Sat<String>{
 		return false;
 	}
 	
-	
+	@Override
+	public String getIdString() {
+		return idSat;
+	}
 }

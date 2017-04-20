@@ -33,6 +33,7 @@ import mx.emite.sdk.cfdi32.comp.Comprobante32;
 import mx.emite.sdk.cfdi32.comp.cce11.ComercioExterior11;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
+import mx.emite.sdk.cfdi33.Comprobante33;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
@@ -62,7 +63,8 @@ public class MarshallerUnmarshaller {
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
 			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
 			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class
-			,Comprobante32.class,ComercioExterior11.class);
+			,Comprobante32.class,ComercioExterior11.class,
+			Comprobante33.class);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
 	/** DocumentBuilderFactory. */
@@ -144,6 +146,19 @@ public class MarshallerUnmarshaller {
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/esquemas/retencionpago/1 http://www.sat.gob.mx/esquemas/retencionpago/1/retencionpagov1.xsd");
+		return m;
+		}catch(Exception ex){
+			log.error("creando marshaller",ex);
+			return null;
+		}
+	}
+	
+	private static Marshaller xmlCfdi33Marshaller(){
+		try{
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd");
 		return m;
 		}catch(Exception ex){
 			log.error("creando marshaller",ex);
@@ -342,6 +357,19 @@ public class MarshallerUnmarshaller {
 		try{
 			final StringWriter writer = new StringWriter();
 			xmlRetencionesMarshaller().marshal(comp,writer);
+			final String xml = writer.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallCfdi33(final Comprobante33 comp) throws ApiException{
+		try{
+			final StringWriter writer = new StringWriter();
+			xmlCfdi33Marshaller().marshal(comp,writer);
 			final String xml = writer.toString();
 			log.debug("\n"+xml);
 			return xml;
