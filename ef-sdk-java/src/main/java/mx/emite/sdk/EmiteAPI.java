@@ -17,6 +17,7 @@ import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbrado
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Confirmacion;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaXml;
@@ -29,7 +30,6 @@ import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10DescargaXml;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Timbrador;
-import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Cancelador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32DescargaXml;
@@ -39,6 +39,15 @@ import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.nom32.Nom32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33Confirmacion;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.nom33.Nom33Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Cancelador;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10DescargaXml;
@@ -85,6 +94,7 @@ public class EmiteAPI {
 	private final Cfdi33Pdf cfdi33_pdf;
 	private final Cfdi33PdfAcuse cfdi33_pdfacuse;
 	private final Cfdi33Correo cfdi33_correo;
+	private final Cfdi33Confirmacion cfdi33_confirmacion;
 	
 	private final Nom32Timbrador nom32_timbrador;
 	private final Nom32SelladorYTimbrador nom32_selladorytimbrador;
@@ -94,9 +104,18 @@ public class EmiteAPI {
 	private final Nom32DescargaAcuseXml nom32_descargaacusexml;
 	private final Nom32Pdf nom32_pdf;
 	private final Nom32PdfAcuse nom32_pdfacuse;
-	
-	private final Nom32Cancelador nom32_cancelador;
+	private final Nom33Cancelador nom32_cancelador;
 	private final Nom32Correo nom32_correo;
+	
+	private final Nom33Timbrador nom33_timbrador;
+	private final Nom33SelladorYTimbrador nom33_selladorytimbrador;
+	private final Nom33DescargaXml nom33_descargaxml;
+	private final Nom33DescargaAcuseXml nom33_descargaacusexml;
+	private final Nom33Pdf nom33_pdf;
+	private final Nom33PdfAcuse nom33_pdfacuse;
+	private final Nom33Cancelador nom33_cancelador;
+	private final Nom33Correo nom33_correo;
+	private final Nom33Confirmacion nom33_confirmacion;
 	
 	
 	private final Ret10SelladorYTimbrador ret10_selladorytimbrador;
@@ -166,6 +185,7 @@ public class EmiteAPI {
 		this.cfdi33_pdf = new Cfdi33Pdf(this.cliente);
 		this.cfdi33_pdfacuse = new Cfdi33PdfAcuse(this.cliente);
 		this.cfdi33_correo=new Cfdi33Correo(this.cliente);
+		this.cfdi33_confirmacion=new Cfdi33Confirmacion(this.cliente);
 		
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		
@@ -173,7 +193,7 @@ public class EmiteAPI {
 		
 		this.nom32_timbrador=new Nom32Timbrador(this.cliente);
 		this.nom32_selladorytimbrador=new Nom32SelladorYTimbrador(this.cliente);
-		this.nom32_cancelador=new Nom32Cancelador(this.cliente);
+		this.nom32_cancelador=new Nom33Cancelador(this.cliente);
 		this.nom32_selladorytimbradorgenericoxml=new Nom32SelladorYTimbradorGenericoXml(this.cliente);
 		this.nom32_selladorytimbradorgenericotxt=new Nom32SelladorYTimbradorGenericoTxt(this.cliente);
 		this.nom32_descargaxml=new Nom32DescargaXml(this.cliente);
@@ -181,6 +201,17 @@ public class EmiteAPI {
 		this.nom32_pdf = new Nom32Pdf(this.cliente);
 		this.nom32_pdfacuse = new Nom32PdfAcuse(this.cliente);
 		this.nom32_correo=new Nom32Correo(this.cliente);
+		
+		this.nom33_timbrador=new Nom33Timbrador(this.cliente);
+		this.nom33_selladorytimbrador=new Nom33SelladorYTimbrador(this.cliente);
+		this.nom33_cancelador=new Nom33Cancelador(this.cliente);
+		this.nom33_descargaxml=new Nom33DescargaXml(this.cliente);
+		this.nom33_descargaacusexml=new Nom33DescargaAcuseXml(this.cliente);
+		this.nom33_pdf = new Nom33Pdf(this.cliente);
+		this.nom33_pdfacuse = new Nom33PdfAcuse(this.cliente);
+		this.nom33_correo=new Nom33Correo(this.cliente);
+		this.nom33_confirmacion=new Nom33Confirmacion(this.cliente);
+		
 		this.ret10_selladorytimbrador=new Ret10SelladorYTimbrador(this.cliente);
 		this.ret10_cancelador=new Ret10Cancelador(this.cliente);
 		this.ret10_correo=new Ret10Correo(this.cliente);
@@ -337,7 +368,7 @@ public class EmiteAPI {
 	 * @return nom32_cancelador
 	 * @since 0.1.1
 	 */
-	public Nom32Cancelador nom32_Cancelador(){
+	public Nom33Cancelador nom32_Cancelador(){
 		return nom32_cancelador;
 	}
 	
@@ -587,6 +618,96 @@ public class EmiteAPI {
 		return cfdi33_correo;
 	}
 	
+	/**
+	 * Servicio de Generación de Código de Confirmacion
+	 * @return cfdi33_confirmacion
+	 * @since 0.2.0
+	 */
+	public Cfdi33Confirmacion cfdi33_Confirmacion(){
+		return cfdi33_confirmacion;
+	}
+	
+	/**
+	 * Servicio de Sellado y Timbrado de Nomina 3.3
+	 * @return nom33_selladorytimbrador
+	 * @since 0.2.0
+	 */
+	public Nom33SelladorYTimbrador nom33_SelladorTimbrador(){
+		return nom33_selladorytimbrador;
+	}
+	
+	/**
+	 * Servicio Timbrado de Nómina de CFDI 3.3
+	 * @return nom33_timbrador
+	 * @since 0.2.0
+	 */
+	public Nom33Timbrador nom33_Timbrador(){
+		return nom33_timbrador;
+	}
+	
+	/**
+	 * Servicio de Cancelación de CFDI 3.3
+	 * @return nom33_cancelador
+	 * @since 0.2.0
+	 */
+	public Nom33Cancelador nom33_Cancelador(){
+		return nom33_cancelador;
+	}
+	
+	/**
+	 * Servicio de Envio de Correos de nómina
+	 * @return nom33_correo
+	 * @since 0.2.0
+	 */
+	public Nom33Correo nom33_Correo(){
+		return nom33_correo;
+	}
+	
+	
+	/**
+	 * Servicio de Descarga de Pdf de nomina
+	 * @return nom33_pdf
+	 * @since 0.2.0
+	 */
+	public Nom33Pdf nom33_pdf(){
+		return nom33_pdf;
+	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de acuse
+	 * @return nom33_pdfacuse
+	 * @since 0.2.0
+	 */
+	public Nom33PdfAcuse nom33_DescargaAcusePdf(){
+		return nom33_pdfacuse;
+	}
+	
+	/**
+	 * Servicio de Descarga de CFDI 3.3 de nómina
+	 * @return nom33_descargaxml
+	 * @since 0.2.0
+	 */
+	public Nom33DescargaXml nom33_DescargaXml(){
+		return nom33_descargaxml;
+	}
+	
+	/**
+	 * Servicio de Descarga Acuses de Cancelación de Nómina
+	 * @return nom33_descargaacusexml
+	 * @since 0.2.0
+	 */
+	public Nom33DescargaAcuseXml nom33_DescargaAcuseXml(){
+		return nom33_descargaacusexml;
+	}
+	
+	/**
+	 * Servicio de Generación de Código de Confirmacion
+	 * @return nom33_confirmacion
+	 * @since 0.2.0
+	 */
+	public Nom33Confirmacion nom33_Confirmacion(){
+		return nom33_confirmacion;
+	}
 	
 	
 }
