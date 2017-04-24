@@ -88,6 +88,10 @@ public enum TiposDeComprobante33 implements Sat<String>{
 		return false;
 	}
 	
+	public boolean notin(TiposDeComprobante33... lista){
+		return !in(lista);
+	}
+	
 	public boolean esIngresoEgresoNomina(){
 		return in(INGRESO,EGRESO,NOMINA);
 	}
@@ -103,6 +107,15 @@ public enum TiposDeComprobante33 implements Sat<String>{
 	public Character getIdSatChar() {
 		return idSat.charAt(0);
 	}
+	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final TiposDeComprobante33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
+	
 	
 	/*
 		

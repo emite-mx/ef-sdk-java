@@ -3,9 +3,11 @@ package mx.emite.sdk.utils;
 import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -30,7 +32,7 @@ import org.xml.sax.InputSource;
 import lombok.extern.slf4j.Slf4j;
 import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.comp.Comprobante32;
-import mx.emite.sdk.cfdi32.comp.cce11.ComercioExterior11;
+import mx.emite.sdk.cfdi32.complementos.cce11.ComercioExterior11;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.cfdi33.Comprobante33;
@@ -62,9 +64,13 @@ public class MarshallerUnmarshaller {
 			,Dividendos.class,Intereses.class,Arrendamientoenfideicomiso.class,Pagosaextranjeros.class,
 			Premios.class,Fideicomisonoempresarial.class,Planesderetiro.class,Intereseshipotecarios.class,
 			Operacionesconderivados.class,SectorFinanciero.class,TimbreFiscalDigital.class,
-			mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class
+			mx.emite.sdk.cfdi32.complementos.timbrefiscaldigital.TimbreFiscalDigital.class,DoctoDigital.class
 			,Comprobante32.class,ComercioExterior11.class,
-			Comprobante33.class);
+			Comprobante33.class
+			,mx.emite.sdk.cfdi33.complementos.nomina12.Nomina.class
+			,mx.emite.sdk.cfdi33.complementos.cce11.ComercioExterior11.class
+			,mx.emite.sdk.cfdi33.complementos.ine11.Ine11.class
+			);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
 	/** DocumentBuilderFactory. */
@@ -90,7 +96,10 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	
+	
 	private final static String CFDI32_ESQUEMA="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd";
+	private static final String CFDI33_SCHEMA_LOCATION = "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
 	
 	private static Marshaller xmlMarshaller(final List<ComplementoInterface> complementos){
 		try{
@@ -153,12 +162,20 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
-	private static Marshaller xmlCfdi33Marshaller(){
+	private static Marshaller xmlCfdi33Marshaller(final List<Complemento33Interface> ci){
 		try{
 		final Marshaller m = contexto.createMarshaller();
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd");
+		if(ci==null||ci.isEmpty()){
+			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, CFDI33_SCHEMA_LOCATION);
+		}
+		else{
+			final List<String> sl = new ArrayList<>();
+			sl.add(CFDI33_SCHEMA_LOCATION);
+			sl.addAll(ci.stream().map(i->i.getEsquemaLocation()).collect(Collectors.toList()));
+			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, sl.stream().collect(Collectors.joining(" ")));
+		}
 		return m;
 		}catch(Exception ex){
 			log.error("creando marshaller",ex);
@@ -196,6 +213,21 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private static Marshaller xmlCfdi33ComplementoMarshaller(final Complemento33Interface c) throws Exception{
+		try{
+		
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.setProperty(Marshaller.JAXB_FRAGMENT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, c.getEsquemaLocation());
+		return m;
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+	
+	 
 	private static Marshaller xmlDpIva10Marshaller(final DoctoDigital c) throws Exception{
 		try{
 		
@@ -369,7 +401,7 @@ public class MarshallerUnmarshaller {
 	public static String marshallCfdi33(final Comprobante33 comp) throws ApiException{
 		try{
 			final StringWriter writer = new StringWriter();
-			xmlCfdi33Marshaller().marshal(comp,writer);
+			xmlCfdi33Marshaller(comp.getComplemento()!=null&&comp.getComplemento().getComplementos()!=null&&!comp.getComplemento().getComplementos().isEmpty()?comp.getComplemento().getComplementos():null).marshal(comp,writer);
 			final String xml = writer.toString();
 			log.debug("\n"+xml);
 			return xml;
@@ -396,6 +428,19 @@ public class MarshallerUnmarshaller {
 		try{
 			final StringWriter sw = new StringWriter();
 			xmlCfdiComplementoMarshaller(comp).marshal(comp,sw);
+			final String xml = sw.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallCfdi33Complemento(Complemento33Interface comp) throws ApiException{
+		try{
+			final StringWriter sw = new StringWriter();
+			xmlCfdi33ComplementoMarshaller(comp).marshal(comp,sw);
 			final String xml = sw.toString();
 			log.debug("\n"+xml);
 			return xml;
@@ -496,6 +541,7 @@ public class MarshallerUnmarshaller {
 			tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 			tr.setOutputProperty(OutputKeys.INDENT,"yes");
 			tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			doc.setXmlStandalone(true);
 			final DOMSource domSource = new DOMSource(doc);
 			tr.transform(domSource, result);
 			final String xml = writer.toString();

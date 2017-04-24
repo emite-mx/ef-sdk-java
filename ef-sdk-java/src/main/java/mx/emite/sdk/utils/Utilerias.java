@@ -39,6 +39,7 @@ import org.beanio.BeanReader;
 import org.beanio.BeanWriter;
 import org.beanio.StreamFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import mx.emite.sdk.cfdi32.Comprobante;
@@ -61,7 +62,7 @@ public class Utilerias {
 	private final static Validator validator = creaValidador();
 	private final static Collator comparador = creaComparador();
 	private final static String UTF8_BOM = "\uFEFF";
-	public final static String PATRON_RFC = "^[A-Z&Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]?$";
+	public final static String PATRON_RFC = "^[A-Z&amp;Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$";
 	
 	
 	/*public static void main (String[] agr){
@@ -255,26 +256,41 @@ public class Utilerias {
 	
 	public static String marshallcfdi33(final Comprobante33 comprobante) throws ApiException {
 		valida(comprobante);
-		/*if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
+		if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
 		{
 			final List<String> complementos = new ArrayList<>();
-			for(ComplementoInterface c : comprobante.getComplemento().getComplementos()){
-				complementos.add(MarshallerUnmarshaller.marshallRet10Complemento(c));
+			for(Complemento33Interface c : comprobante.getComplemento().getComplementos()){
+				final String c1 = MarshallerUnmarshaller.marshallCfdi33Complemento(c);
+				complementos.add(c1);
 			}
 			
-			final String xml = MarshallerUnmarshaller.marshallRet10(comprobante);
+			final String xml = MarshallerUnmarshaller.marshallCfdi33(comprobante);
 		    final Document doc = MarshallerUnmarshaller.leeXml(xml);
 		    final Node complemento = MarshallerUnmarshaller.sacaNodo(MarshallerUnmarshaller.xComplemento, doc, "Complemento");
 		    for(String insertar:complementos){
 		    	final Document docin = MarshallerUnmarshaller.leeXml(insertar);
 		    	final Node importado = doc.importNode(docin.getFirstChild(), true);
+		    	for(int x=0;x<importado.getAttributes().getLength();x++){
+		    		final Node attr = importado.getAttributes().item(x);
+		    		if(StringUtils.startsWith(attr.getNodeName(),"xmlns:")||StringUtils.startsWith(attr.getNodeName(),"xsi:")){
+		    			importado.getAttributes().removeNamedItem(attr.getNodeName());
+		    			x=0;
+		    			if(StringUtils.startsWith(attr.getNodeName(),"xmlns:")&&!StringUtils.equals(attr.getNodeName(),"xmlns:cfdi")){
+		    				final Element e = (Element) doc.getFirstChild();
+		    				e.setAttribute(attr.getNodeName(),attr.getNodeValue());
+		    				//doc.getAttributes().setNamedItem();
+		    			}
+		    		}
+		    		System.out.println(importado.getAttributes().item(x).getNodeName()+"->"+importado.getAttributes().item(x).getNodeValue());
+		    	}
+		    	
 		    	complemento.appendChild(importado);
 		    }
 			return MarshallerUnmarshaller.marshall(doc);
 			
 		}
-		else*/
-		return MarshallerUnmarshaller.marshallCfdi33(comprobante);
+		else
+			return MarshallerUnmarshaller.marshallCfdi33(comprobante);
 	}
 	
 	public static GenericoFactura unmarshallGenerico(final String xml) throws ApiException {

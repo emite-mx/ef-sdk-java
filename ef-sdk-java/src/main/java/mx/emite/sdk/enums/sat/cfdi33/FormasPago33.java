@@ -100,6 +100,23 @@ public enum FormasPago33 implements Sat<String>{
 		return idSat;
 	}
 	
+	public static FormasPago33 idSat(String idSat) {
+		for(FormasPago33 it:values()){
+			if(it.getIdSat().equals(idSat))
+				return it;
+		}
+		return null;
+	}
+	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final FormasPago33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
+	
+	
 	/*
 		
 	

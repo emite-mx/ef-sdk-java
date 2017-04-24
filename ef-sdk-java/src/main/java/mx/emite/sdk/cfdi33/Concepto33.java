@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
+import mx.emite.sdk.enums.sat.cfdi33.adaptadores.ImporteTcAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "",propOrder={"impuestos","informacionAduaneras","cuentaPredial","complementoConcepto","partes"})
@@ -51,7 +52,7 @@ public class Concepto33 implements Serializable{
 	 * noIdentificacion Atributo opcional para expresar el número de parte, identificador del producto o del servicio, la clave de producto o servicio, SKU o equivalente, propia de la operación del emisor, amparado por el presente concepto.
 	 */
 	@XmlAttribute(name="NoIdentificacion")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,100}",message="El noIdentificacion no cumple con el patrón del SAT")
+	@Pattern(regexp="^([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}$",message="El noIdentificacion no cumple con el patrón del SAT")
 	private String noIdentificacion;
 	
 	/**
@@ -59,7 +60,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="Cantidad")
 	@NotNull
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	private BigDecimal cantidad;
 	
 	
@@ -75,7 +76,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="Unidad")
 	@Size(min=1,max=20)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,20}",
+	@Pattern(regexp="^([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,20}$",
 	message="La Unidad no cumple con el patrón del SAT")
 	private String unidad;
 	
@@ -83,11 +84,12 @@ public class Concepto33 implements Serializable{
 	 * descripcion Atributo requerido para precisar la descripción del bien o servicio cubierto por el presente concepto.
 	 */
 	@XmlAttribute(name="Descripcion")
-	@Size(min=1,max=20)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,1000}",
+	@Size(min=1,max=1000)
+	@Pattern(regexp="^([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,1000}$",
 	message="La Descripcion no cumple con el patrón del SAT")
 	@NotNull
 	private String descripcion;
+	
 	
 	/**
 	 * valorUnitario Atributo requerido para precisar el valor o precio unitario del bien o servicio cubierto por el presente concepto.

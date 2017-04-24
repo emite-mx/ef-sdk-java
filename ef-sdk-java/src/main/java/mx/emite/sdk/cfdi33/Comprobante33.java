@@ -36,7 +36,7 @@ import mx.emite.sdk.enums.sat.cfdi33.adaptadores.TiposDeComprobante33Adapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
  
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "cfdiRelacionados","emisor","receptor","conceptos","impuestos" })
+@XmlType(name = "", propOrder = { "cfdiRelacionados","emisor","receptor","conceptos","impuestos","complemento" })
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder 
@@ -222,6 +222,9 @@ public class Comprobante33  implements Serializable {
 	@XmlElement(name="Impuestos", namespace = "http://www.sat.gob.mx/cfd/3")
 	@Valid
 	private Impuestos33 impuestos;
+	
+	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
+	private Complemento33 complemento = null;
 	
 	/*@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	@Valid @NotNull

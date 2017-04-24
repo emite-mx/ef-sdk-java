@@ -15,7 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.cfdi32.comp.timbrefiscaldigital.TimbreFiscalDigital;
+import mx.emite.sdk.cfdi32.complementos.timbrefiscaldigital.TimbreFiscalDigital;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Complemento")
 @Data

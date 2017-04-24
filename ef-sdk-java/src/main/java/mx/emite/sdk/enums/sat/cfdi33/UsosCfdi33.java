@@ -93,5 +93,13 @@ public enum UsosCfdi33 implements Sat<String>{
 		return null;
 	}
 	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final UsosCfdi33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
+	 
 	
 }

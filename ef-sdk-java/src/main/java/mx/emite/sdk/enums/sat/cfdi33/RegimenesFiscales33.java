@@ -168,4 +168,13 @@ public enum RegimenesFiscales33 implements Sat<Integer>{
 	public static RegimenesFiscales33 idSat(String idSat) {
 		return getRegimen(idSat);
 	}
+	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final RegimenesFiscales33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
+	
 }

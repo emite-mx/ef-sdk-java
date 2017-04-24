@@ -33,7 +33,7 @@ public class InfoCfdi extends Info implements Serializable{
 	 */
 	private static final long serialVersionUID = 6270940941390076313L;
 	private String serie;
-	private Long folio;
+	private String folio;
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	@JsonSerialize(using=FechaHoraSerializer.class)
 	private LocalDateTime fecha;

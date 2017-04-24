@@ -17,6 +17,15 @@ public enum Rutas {
 	CFDI32_DESCARGA("/api/cfdi/3.2/descarga"),
 	CFDI32_SELLARYTIMBRARGENERICOXML("/api/cfdi/3.2/generico/xml/emite"),
 	CFDI32_SELLARYTIMBRARGENERICOTXT("/api/cfdi/3.2/generico/txt/emite"),
+	CFDI33_TIMBRAR("/api/cfdi/3.3/timbrar"),
+	CFDI33_SELLARYTIMBRAR("/api/cfdi/3.3/sellarytimbrar"),
+	CFDI33_CANCELAR("/api/cfdi/3.3/cancelar"),
+	CFDI33_XML("/api/cfdi/3.3/xml"),
+	CFDI33_ACUSE("/api/cfdi/3.3/acusecancelacion/xml"),
+	CFDI33_PDFACUSE("/api/cfdi/3.3/acusecancelacion/pdf"),
+	CFDI33_PDF("/api/cfdi/3.3/pdf"),
+	CFDI33_CORREO("/api/cfdi/3.3/correo"),
+	CFDI33_DESCARGA("/api/cfdi/3.3/descarga"),
 	VALIDA32_VALIDADOR32("/api/validador/3.2/validador"),
 	NOM32_TIMBRAR("/api/nomina/3.2/timbrar"),
 	NOM32_SELLARYTIMBRAR("/api/nomina/3.2/sellarytimbrar"),
@@ -73,7 +82,7 @@ public enum Rutas {
 	@Deprecated
 	CANCELARETUNICAEMITE("/api/ret/1.0/cancelar"),  
 	@Deprecated
-	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),    
+	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),     
 	
 	;
 	

@@ -16,6 +16,14 @@ import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbrado
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32SelladorYTimbradorGenericoXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi32.Cfdi32Timbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Cancelador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Correo;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaAcuseXml;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaXml;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Pdf;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10DescargaXml;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Pdf;
@@ -69,6 +77,14 @@ public class EmiteAPI {
 	private final Cfdi32PdfAcuse cfdi32_pdfacuse;
 	private final Cfdi32Correo cfdi32_correo;
 	
+	private final Cfdi33Timbrador cfdi33_timbrador;
+	private final Cfdi33SelladorYTimbrador cfdi33_selladorytimbrador;
+	private final Cfdi33Cancelador cfdi33_cancelador;
+	private final Cfdi33DescargaXml cfdi33_descargaxml;
+	private final Cfdi33DescargaAcuseXml cfdi33_descargaacusexml;
+	private final Cfdi33Pdf cfdi33_pdf;
+	private final Cfdi33PdfAcuse cfdi33_pdfacuse;
+	private final Cfdi33Correo cfdi33_correo;
 	
 	private final Nom32Timbrador nom32_timbrador;
 	private final Nom32SelladorYTimbrador nom32_selladorytimbrador;
@@ -141,6 +157,15 @@ public class EmiteAPI {
 		this.cfdi32_pdf = new Cfdi32Pdf(this.cliente);
 		this.cfdi32_pdfacuse = new Cfdi32PdfAcuse(this.cliente);
 		this.cfdi32_correo=new Cfdi32Correo(this.cliente);
+		
+		this.cfdi33_timbrador=new Cfdi33Timbrador(this.cliente);
+		this.cfdi33_cancelador=new Cfdi33Cancelador(this.cliente);
+		this.cfdi33_selladorytimbrador=new Cfdi33SelladorYTimbrador(this.cliente);
+		this.cfdi33_descargaxml=new Cfdi33DescargaXml(this.cliente);
+		this.cfdi33_descargaacusexml=new Cfdi33DescargaAcuseXml(this.cliente);
+		this.cfdi33_pdf = new Cfdi33Pdf(this.cliente);
+		this.cfdi33_pdfacuse = new Cfdi33PdfAcuse(this.cliente);
+		this.cfdi33_correo=new Cfdi33Correo(this.cliente);
 		
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		
@@ -486,5 +511,82 @@ public class EmiteAPI {
 	public DpIva10Correo dpiva10_Correo(){
 		return dpiva10_correo;
 	}
+	
+	/**
+	 * Servicio Timbrado de CFDI 3.3
+	 * @return cfdi33_timbrador
+	 * @since 0.2.0
+	 */
+	public Cfdi33Timbrador cfdi33_Timbrador(){
+		return cfdi33_timbrador;
+	}
+	
+	
+	
+	/**
+	 * Servicio de Sellado y Timbrado de CFDI 3.3
+	 * @return cfdi33_selladorytimbrador
+	 * @since 0.2.0
+	 */
+	public Cfdi33SelladorYTimbrador cfdi33_SelladorTimbrador(){
+		return cfdi33_selladorytimbrador;
+	}
+	
+
+	/**
+	 * Servicio de Cancelación de CFDI 3.3
+	 * @return cfdi33_cancelador
+	 * @since 0.2.0
+	 */
+	public Cfdi33Cancelador cfdi33_Cancelador(){
+		return cfdi33_cancelador;
+	}
+	
+	/**
+	 * Servicio de Descarga de CFDI 3.3
+	 * @return cfdi33_descargaxml
+	 * @since 0.2.0
+	 */
+	public Cfdi33DescargaXml cfdi33_DescargaXml(){
+		return cfdi33_descargaxml;
+	}
+	
+	/**
+	 * Servicio de Descarga Acuses de Cancelación
+	 * @return cfdi33_descargaacusexml
+	 * @since 0.2.0
+	 */
+	public Cfdi33DescargaAcuseXml cfdi33_DescargaAcuseXml(){
+		return cfdi33_descargaacusexml;
+	}
+
+	/**
+	 * Servicio de Descarga de Pdf
+	 * @return cfdi33_pdf
+	 * @since 0.2.0
+	 */
+	public Cfdi33Pdf cfdi33_pdf(){
+		return cfdi33_pdf;
+	}
+	
+	/**
+	 * Servicio de Descarga de Pdf de acuse
+	 * @return cfdi33_pdfacuse
+	 * @since 0.2.0
+	 */
+	public Cfdi33PdfAcuse cfdi33_DescargaAcusePdf(){
+		return cfdi33_pdfacuse;
+	}
+	
+	/**
+	 * Servicio de Envio de Correos
+	 * @return cfdi33_correo
+	 * @since 0.2.0
+	 */
+	public Cfdi33Correo cfdi33_Correo(){
+		return cfdi33_correo;
+	}
+	
+	
 	
 }

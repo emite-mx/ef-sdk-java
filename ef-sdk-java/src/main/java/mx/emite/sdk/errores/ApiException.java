@@ -76,6 +76,14 @@ public class ApiException extends RuntimeException{
 		mensajes.add(mensaje);
 	}
 	
+	public ApiException(I_Api_Errores tipo, List<String> errores,Throwable ex) {
+		super(tipo.getDescripcion(),ex);
+		this.error=tipo;
+		this.excepcion=ex;
+		mensajes.addAll(errores);
+	}
+
+	
 	public ApiException(I_Api_Errores error, String mensaje) {
 		this(error);
 		if(error.getMensaje()!=null)
