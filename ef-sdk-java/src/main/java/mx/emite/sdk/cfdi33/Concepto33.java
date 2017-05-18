@@ -96,7 +96,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="ValorUnitario")
 	@NotNull
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	private BigDecimal valorUnitario;
 	
 	/**
@@ -104,7 +104,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="Importe")
 	@NotNull
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	@DecimalMin(value="0",inclusive=true)
 	private BigDecimal importe;
 	

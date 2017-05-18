@@ -32,7 +32,7 @@ public enum UsosCfdi33 implements Sat<String>{
 	GTOSTRANSPORTACIONESCOLAR("D08","Gastos de transportación escolar obligatoria.",true,false),
 	DEPOSITOSENAHORROPENSIONES("D09","Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.",true,false),
 	COLEGIATURAS("D10","Pagos por servicios educativos (colegiaturas)",true,false),
-	PORDEFINIR("P01","Por definir",true,false),
+	PORDEFINIR("P01","Por definir",true,true),
 	;
 	
 	

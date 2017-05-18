@@ -91,7 +91,6 @@ public class Comprobante33  implements Serializable {
 	 */
 	@XmlAttribute(name="FormaPago")
 	@XmlJavaTypeAdapter(FormasPago33Adapter.class)
-	@NotNull
 	protected FormasPago33 formaPago;
 
 	/**
@@ -118,7 +117,7 @@ public class Comprobante33  implements Serializable {
 	 * subtotal Atributo requerido para representar la suma de los importes de los conceptos antes de descuentos e impuesto. No se permiten valores negativos.
 	 */
 	@XmlAttribute(name="SubTotal",required = true)
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	@NotNull @Min(value = 0)
 	protected BigDecimal subTotal;
 	
@@ -151,7 +150,7 @@ public class Comprobante33  implements Serializable {
 	 * total Atributo requerido para representar la suma del subtotal, menos los descuentos aplicables, más las contribuciones recibidas (impuestos trasladados - federales o locales, derechos, productos, aprovechamientos, aportaciones de seguridad social, contribuciones de mejoras) menos los impuestos retenidos. Si el valor es superior al límite que establezca el SAT en la Resolución Miscelánea Fiscal vigente, el emisor debe obtener del PAC que vaya a timbrar el CFDI, de manera no automática, una clave de confirmación para ratificar que el valor es correcto e integrar dicha clave en el atributo Confirmacion. No se permiten valores negativos.
 	 */
 	@XmlAttribute(name="Total",required = true)
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	@NotNull @Min(value = 0)
 	protected BigDecimal total;
 	

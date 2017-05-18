@@ -17,7 +17,7 @@ public enum TiposDeComprobante33 implements Sat<String>{
 	EGRESO("E","Egreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
 	TRASLADO("T","Traslado",BigDecimal.ZERO,BigDecimal.ZERO),
 	NOMINA("N","Nómina",BigDecimal.valueOf(400000),BigDecimal.valueOf(2000000)),
-	PAGO("P","Egreso",BigDecimal.ZERO,BigDecimal.ZERO),
+	PAGO("P","Pago",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
 	
 	;
 	

@@ -116,6 +116,17 @@ public enum FormasPago33 implements Sat<String>{
 		return idSat;
 	}
 	
+	public boolean in(FormasPago33... lista){
+		for(FormasPago33 tc:lista){
+			if(this.equals(tc))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean notin(FormasPago33... lista){
+		return !in(lista);
+	}
 	
 	/*
 		
