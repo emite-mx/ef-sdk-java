@@ -155,4 +155,8 @@ public class Concepto33 implements Serializable{
 	@Valid @Singular("parte")
 	private List<Parte33> partes;
 	
+	public boolean tieneComplementos(){
+		return complementoConcepto!=null&&complementoConcepto.getComplementos()!=null&&!complementoConcepto.getComplementos().isEmpty();
+	}
+	
 }

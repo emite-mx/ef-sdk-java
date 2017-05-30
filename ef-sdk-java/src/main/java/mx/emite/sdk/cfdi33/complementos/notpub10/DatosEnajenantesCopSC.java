@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 
-public class DatosEnajenantesCopSc implements Serializable {
+public class DatosEnajenantesCopSC implements Serializable {
 
 	    
 	/**

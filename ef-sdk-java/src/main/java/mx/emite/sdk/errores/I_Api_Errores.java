@@ -499,7 +499,7 @@ public enum I_Api_Errores {
 	CFDI33143(33143,"CFDI33143 - No existe el complemento requerido para el valor de ClaveProdServ","Deben existir los complementos que señale el catálogo c_ClaveProdServ aplicables para este atributo."),
 	CFDI33144(33144,"CFDI33144 - No está declarado el impuesto relacionado con el valor de ClaveProdServ","Deben existir los impuestos trasladados y/o retenidos que señale el catálogo c_ClaveProdServ aplicables para este atributo."),
 	CFDI33145(33145,"CFDI33145 - El campo ClaveUnidad no contiene un valor del catálogo c_ClaveUnidad.","El atributo cfdi:Comprobante:Concepto:ClaveUnidad debe contener un valor del catálogo c_ClaveUnidad."),
-	//CFDI33146(33146,"CFDI33146 - El valor del campo ValorUnitario debe tener hasta la cantidad de decimales que soporte la moneda.","El valor de este atributo debe tener hasta la cantidad de decimales que soporte la moneda"),
+	CFDI33146(33146,"CFDI33146 - El valor del campo ValorUnitario debe tener hasta la cantidad de decimales que soporte la moneda.","El valor de este atributo debe tener hasta la cantidad de decimales que soporte la moneda"),
 	CFDI33147(33147,"CFDI33147 - El valor valor del campo ValorUnitario debe ser mayor que cero (0) cuando el tipo de comprobante es Ingreso, Egreso o Nomina","El valor de este atributo debe ser mayor que cero (0) cuando el tipo de comprobante es Ingreso, Egreso o Nomina"),
 	//CFDI33148(33148,"CFDI33148 - El valor del campo Importe debe tener hasta la cantidad de decimales que soporte la moneda.","El valor de este atributo debe tener hasta la cantidad de decimales que soporte la moneda."),
 	CFDI33149(33149,"CFDI33149 - El valor del campo Importe no se encuentra entre el limite inferior y superior permitido","El valor de este atributo debe ser mayor o igual que el límite inferior y menor o igual que el límite superior"),
@@ -551,6 +551,7 @@ public enum I_Api_Errores {
 	CFDI33195(33195,"CFDI33195 - El campo Importe correspondiente a Traslado no es igual a la suma de los importes de los impuestos trasladados registrados en los conceptos donde el impuesto del concepto sea igual al campo impuesto de este elemento y la TasaOCuota del concepto sea igual al campo TasaOCuota de este elemento.","Debe ser igual a la suma de los importes de los impuestos trasladados registrados en los conceptos donde el impuesto del concepto sea igual al atributo impuesto de este elemento y la TasaOCuota del concepto sea igual al atributo TasaOCuota de este elemento."),
 	//CFDI33_CONCEPTO_CLAVE(006,"ClaveProdServ no se encuentra en el catálogo de catCFDI:c_ClaveProdServ"),
 	//CFDI33_CONCEPTO_CLAVEUNIDAD(90007,"ClaveUnidad no se encuentra en el catálogo de catCFDI:c_ClaveUnidad "),
+	CFDI33999(33999,"CFDI3399 - Error no clasificado","Error no clasificado"),
 	
 	CRP101(40101,"CRP101 - El valor del campo TipoDeComprobante debe ser \"P\"","El valor registrado debe ser P"),
 	CRP102(40102,"CRP102 - El valor del campo SubTotal debe ser cero \"0\".","El atributo SubTotal debe tener el valor \"0\"."),
@@ -615,8 +616,18 @@ public enum I_Api_Errores {
 	CRP239(40239,"CRP239 - El campo RfcEmisorCtaOrd no se debe registrar","Cuando el valor del campo FormaDePagoP sea diferente a la clave 02, 03, 04, 05, 06, 28 y 29, entonces este atributo no debe existir."),
 	CRP240(40240,"CRP240 - El campo CtaBeneficiario no cumple con el patrón requerido.","Si existe el atributo CtaBeneficiario debe cumplir con el patrón especificado en el catálogo c_FormaPago"),
 	CRP999(40999,"CRP999 - Error no clasificado","Error no clasificado."),
-	
-	
+	INE101(41101,"INE101 - Cuando en TipoProceso se registre \"Ordinario\" debe de existir el atributo ine:TipoComite"),
+	INE102(41102,"INE102 - Cuando el tipoProceso es igual a {Precampaña o Campaña} se debe registrar al menos un elemento ine:Entidad"),
+	INE103(41103,"INE103 - Cuando el tipoProceso es igual a {Precampaña o Campaña} se debe registrar al menos un elemento ine:Entidad y en las entidades que se registren debe existir el atributo ine:Entidad:Ambito."),
+	INE104(41104,"INE104 - Cuando el tipoProceso es igual a {Precampaña o Campaña} no debe de existir el atributo ine:TipoComite"),
+	INE105(41105,"INE105 - Cuando el tipoProceso es igual a {Precampaña o Campaña} no debe de existir el atributo ine:IdContabilidad"),
+	INE106(41106,"INE106 - Cuando en este atributo se seleccione el valor {Ejecutivo Nacional} no debe existir ningún elemento ine:Entidad."),
+	INE107(41107,"INE107 - Cuando en este atributo se seleccione el valor {Ejecutivo Estatal} no debe existir el atributo ine:IdContabilidad"),
+	INE108(41108,"INE108 - Cuando en este atributo se seleccione el valor {Ejecutivo Estatal} debe existir al menos un elemento ine:Entidad"),
+	INE109(41109,"INE109 - Cuando en este atributo se seleccione el valor {Ejecutivo Estatal} debe existir al menos un elemento ine:Entidad y en cada entidad que se registre no debe existir el atributo ine:Entidad:Ambito"),
+	INE110(41110,"INE110 - Cuando en este atributo se seleccione el valor {Directivo Estatal} debe existir al menos un elemento ine:Entidad"),
+	INE111(41111,"INE111 - Cuando en este atributo se seleccione el valor {Directivo Estatal} debe existir al menos un elemento ine:Entidad y en cada entidad que se registre no debe existir el atributo ine:Entidad:Ambito"),
+	INE112(41112,"INE112 - La combinación de los atributos {ClaveEntidad,Ambito}, no se debe repetir en este complemento."),
 	;
 	
 	

@@ -9,12 +9,19 @@ import org.jsondoc.core.annotation.ApiObject;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import lombok.Getter;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 
 @ApiObject
 public enum EstadoTimbre{
-	TIMBRADAS,CANCELADAS, TODAS;
+	TIMBRADAS("reportes.timbradas"),CANCELADAS("reportes.canceladas"), TODAS("reportes.todas");
+	
+	@Getter private final String descripcion;
+	
+	EstadoTimbre(String descripcion){
+		this.descripcion=descripcion;
+	}
 	
 	@JsonCreator
     public static EstadoTimbre forValue(String value) {
@@ -39,6 +46,7 @@ public enum EstadoTimbre{
     	return false;
     }
     public boolean notin(EstadoTimbre... v){
+    	
     	return !in(v);
     }
 }

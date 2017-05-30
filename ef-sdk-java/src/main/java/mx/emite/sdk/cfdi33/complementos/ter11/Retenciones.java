@@ -1,4 +1,4 @@
-package mx.emite.sdk.cfdi33;
+package mx.emite.sdk.cfdi33.complementos.ter11;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,8 +9,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,27 +16,20 @@ import lombok.NoArgsConstructor;
 import lombok.Singular;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "RetencionesTerceros11", propOrder = { "retenciones" })
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Conceptos33 implements Serializable{
+public class Retenciones implements Serializable  {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4858874427627113221L;
-	
-	/**
-	 * conceptos Nodo requerido para registrar la información detallada de un bien o servicio amparado en el comprobante.
-	 */
-	@XmlElement(name="Concepto", namespace = "http://www.sat.gob.mx/cfd/3")
-	@NotEmpty
-	@Valid
-	@Singular("concepto")
-	protected List<Concepto33> conceptos;
+	private static final long serialVersionUID = 3020259720133274694L;
+	@XmlElement(name = "Retencion", namespace = "http://www.sat.gob.mx/terceros", required = true)
+	@Valid @Singular(value="retencion")
+	protected List<Retencion> retenciones;
 
-	
 	
 }

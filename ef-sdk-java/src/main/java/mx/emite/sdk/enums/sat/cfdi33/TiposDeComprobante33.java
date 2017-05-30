@@ -13,11 +13,11 @@ import mx.emite.sdk.errores.I_Api_Errores;
 @Getter
 public enum TiposDeComprobante33 implements Sat<String>{
 	
-	INGRESO("I","Ingreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
-	EGRESO("E","Egreso",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
+	INGRESO("I","Ingreso",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
+	EGRESO("E","Egreso",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
 	TRASLADO("T","Traslado",BigDecimal.ZERO,BigDecimal.ZERO),
-	NOMINA("N","Nómina",BigDecimal.valueOf(400000),BigDecimal.valueOf(2000000)),
-	PAGO("P","Pago",BigDecimal.valueOf(20000000),BigDecimal.ZERO),
+	NOMINA("N","Nómina",BigDecimal.valueOf(400_000),BigDecimal.valueOf(2_000_000)),
+	PAGO("P","Pago",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
 	
 	;
 	

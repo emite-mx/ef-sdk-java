@@ -36,7 +36,7 @@ public class DatosEnajenante implements Serializable {
 	private DatosUnEnajenante datosUnEnajenante;
 		
 	@XmlElement(name="DatosEnajenantesCopSC", namespace = "http://www.sat.gob.mx/notariospublicos")
-	private DatosEnajenantesCopSc datosEnajenantesCopSC;
+	private DatosEnajenantesCopSC datosEnajenantesCopSC;
 	
 	
 }

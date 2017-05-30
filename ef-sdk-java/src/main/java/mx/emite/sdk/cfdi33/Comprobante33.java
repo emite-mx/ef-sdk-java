@@ -3,6 +3,8 @@ package mx.emite.sdk.cfdi33;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
@@ -34,6 +36,7 @@ import mx.emite.sdk.enums.sat.cfdi33.adaptadores.MetodosPago33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.TiposDeComprobante33Adapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
+import mx.emite.sdk.utils.ComplementoConcepto33Interface;
  
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "cfdiRelacionados","emisor","receptor","conceptos","impuestos","complemento" })
@@ -224,6 +227,18 @@ public class Comprobante33  implements Serializable {
 	
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	private Complemento33 complemento = null;
+	
+	public boolean tieneComplementos(){
+		return complemento!=null&&complemento.getComplementos()!=null&&!complemento.getComplementos().isEmpty();
+	}
+	
+	public boolean tieneComplementosConceptos(){
+		return conceptos!=null&& conceptos.getConceptos()!=null && conceptos.getConceptos().stream().filter(i->i.tieneComplementos()).findAny().isPresent();
+	}
+
+	public List<ComplementoConcepto33Interface> getComplementosConceptos() {
+		return conceptos.getConceptos().stream().flatMap(i->i.getComplementoConcepto().getComplementos().stream()).collect(Collectors.toList());
+	}
 	
 	/*@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	@Valid @NotNull

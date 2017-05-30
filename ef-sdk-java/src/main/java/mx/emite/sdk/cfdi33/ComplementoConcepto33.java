@@ -14,7 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.utils.ComplementoInterface;
+import mx.emite.sdk.utils.ComplementoConcepto33Interface;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -30,7 +30,7 @@ public class ComplementoConcepto33 implements Serializable{
 	 */
 	private static final long serialVersionUID = -2480645786731387602L;
 	@XmlTransient @Singular @Valid
-	private List<ComplementoInterface> complementos;
+	private List<ComplementoConcepto33Interface> complementos;
 		
 	
 }

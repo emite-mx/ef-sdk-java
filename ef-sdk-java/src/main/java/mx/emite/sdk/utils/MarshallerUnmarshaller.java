@@ -3,10 +3,11 @@ package mx.emite.sdk.utils;
 import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
@@ -37,19 +38,26 @@ import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.cfdi33.Comprobante33;
 import mx.emite.sdk.cfdi33.complementos.aerolineas10.Aerolineas;
+import mx.emite.sdk.cfdi33.complementos.ccd10.CertificadoDeDestruccion;
 import mx.emite.sdk.cfdi33.complementos.cdc10.ConsumoDeCombustibles;
 import mx.emite.sdk.cfdi33.complementos.divisas10.Divisas;
+import mx.emite.sdk.cfdi33.complementos.donat11.Donatarias;
 import mx.emite.sdk.cfdi33.complementos.ecc11.EstadoDeCuentaCombustible;
+import mx.emite.sdk.cfdi33.complementos.iedu10.InstEducativas;
 import mx.emite.sdk.cfdi33.complementos.implocal10.ImpuestosLocales;
 import mx.emite.sdk.cfdi33.complementos.leyfisc10.LeyendasFiscales;
 import mx.emite.sdk.cfdi33.complementos.notpub10.NotariosPublicos;
+import mx.emite.sdk.cfdi33.complementos.oaa10.ObrasArteAntiguedades;
 import mx.emite.sdk.cfdi33.complementos.pee10.PagoEnEspecie;
 import mx.emite.sdk.cfdi33.complementos.pfic10.PFintegranteCoordinado;
 import mx.emite.sdk.cfdi33.complementos.regfisc10.CFDIRegistroFiscal;
+import mx.emite.sdk.cfdi33.complementos.rsv10.RenovacionySustitucionVehiculos;
 import mx.emite.sdk.cfdi33.complementos.spc10.ParcialesConstruccion;
+import mx.emite.sdk.cfdi33.complementos.ter11.PorCuentadeTerceros;
 import mx.emite.sdk.cfdi33.complementos.tpe10.TuristaPasajeroExtranjero;
 import mx.emite.sdk.cfdi33.complementos.vdd10.ValesDeDespensa;
 import mx.emite.sdk.cfdi33.complementos.vu10.VehiculoUsado;
+import mx.emite.sdk.cfdi33.complementos.vv11.VentaVehiculos;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
@@ -86,6 +94,7 @@ public class MarshallerUnmarshaller {
 			,mx.emite.sdk.cfdi33.complementos.ine11.Ine11.class
 			,mx.emite.sdk.cfdi33.complementos.pagos10.Pagos10.class,
 			EstadoDeCuentaCombustible.class, 
+			Donatarias.class,
 			Divisas.class,
 			ImpuestosLocales.class,
 			LeyendasFiscales.class,
@@ -98,7 +107,13 @@ public class MarshallerUnmarshaller {
 			ConsumoDeCombustibles.class,
 			NotariosPublicos.class,
 			VehiculoUsado.class,
-			ParcialesConstruccion.class
+			ParcialesConstruccion.class,
+			RenovacionySustitucionVehiculos.class,
+			CertificadoDeDestruccion.class,
+			ObrasArteAntiguedades.class,
+			InstEducativas.class,
+			VentaVehiculos.class,
+			PorCuentadeTerceros.class
 			);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	
@@ -115,6 +130,10 @@ public class MarshallerUnmarshaller {
         };
     };
 	
+    
+    public static XpathExpresion getRutaComplementoConcepto(int numeroconcepto){
+    	return new XpathExpresion("(//*[contains(local-name(), 'ComplementoConcepto')])["+numeroconcepto+"]");
+    }
     
 	public static Document leeXml(String xml) throws ApiException{
 		try{
@@ -191,18 +210,21 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
-	private static Marshaller xmlCfdi33Marshaller(final List<Complemento33Interface> ci){
+	private static Marshaller xmlCfdi33Marshaller(final List<Complemento33Interface> c1,final List<ComplementoConcepto33Interface> c2){
 		try{
 		final Marshaller m = contexto.createMarshaller();
 		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		if(ci==null||ci.isEmpty()){
+		if((c1==null||c1.isEmpty())&&(c2==null||c2.isEmpty())){
 			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, CFDI33_SCHEMA_LOCATION);
 		}
 		else{
-			final List<String> sl = new ArrayList<>();
+			final Set<String> sl = new HashSet<>();
 			sl.add(CFDI33_SCHEMA_LOCATION);
-			sl.addAll(ci.stream().map(i->i.getEsquemaLocation()).collect(Collectors.toList()));
+			if(c1!=null)
+				sl.addAll(c1.stream().map(i->i.getEsquemaLocation()).collect(Collectors.toList()));
+			if(c2!=null)
+				sl.addAll(c2.stream().map(i->i.getEsquemaLocation()).collect(Collectors.toList()));
 			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, sl.stream().collect(Collectors.joining(" ")));
 		}
 		return m;
@@ -256,6 +278,19 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private static Marshaller xmlCfdi33ComplementoMarshaller(final ComplementoConcepto33Interface c) throws Exception{
+		try{
+		
+		final Marshaller m = contexto.createMarshaller();
+		m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		m.setProperty(Marshaller.JAXB_FRAGMENT, true);
+		m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, c.getEsquemaLocation());
+		return m;
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
 	 
 	private static Marshaller xmlDpIva10Marshaller(final DoctoDigital c) throws Exception{
 		try{
@@ -430,7 +465,7 @@ public class MarshallerUnmarshaller {
 	public static String marshallCfdi33(final Comprobante33 comp) throws ApiException{
 		try{
 			final StringWriter writer = new StringWriter();
-			xmlCfdi33Marshaller(comp.getComplemento()!=null&&comp.getComplemento().getComplementos()!=null&&!comp.getComplemento().getComplementos().isEmpty()?comp.getComplemento().getComplementos():null).marshal(comp,writer);
+			xmlCfdi33Marshaller(comp.tieneComplementos()?comp.getComplemento().getComplementos():null,comp.tieneComplementosConceptos()?comp.getComplementosConceptos():null).marshal(comp,writer);
 			final String xml = writer.toString();
 			log.debug("\n"+xml);
 			return xml;
@@ -467,6 +502,19 @@ public class MarshallerUnmarshaller {
 	}
 	
 	public static String marshallCfdi33Complemento(Complemento33Interface comp) throws ApiException{
+		try{
+			final StringWriter sw = new StringWriter();
+			xmlCfdi33ComplementoMarshaller(comp).marshal(comp,sw);
+			final String xml = sw.toString();
+			log.debug("\n"+xml);
+			return xml;
+			
+		}catch(Exception api){
+			throw new ApiException(I_Api_Errores.PROXY_SERIALIZANDO,api);
+		}
+	}
+	
+	public static String marshallCfdi33Complemento(ComplementoConcepto33Interface comp) throws ApiException{
 		try{
 			final StringWriter sw = new StringWriter();
 			xmlCfdi33ComplementoMarshaller(comp).marshal(comp,sw);

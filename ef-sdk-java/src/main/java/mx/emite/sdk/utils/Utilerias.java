@@ -22,8 +22,11 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -47,6 +50,7 @@ import mx.emite.sdk.cfdi32.comp.Comprobante32;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
 import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.cfdi33.Comprobante33;
+import mx.emite.sdk.cfdi33.Concepto33;
 import mx.emite.sdk.dd10.dpiva10.DoctoDigital;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
@@ -256,7 +260,7 @@ public class Utilerias {
 	
 	public static String marshallcfdi33(final Comprobante33 comprobante) throws ApiException {
 		valida(comprobante);
-		if(comprobante.getComplemento()!=null&&comprobante.getComplemento().getComplementos()!=null&&!comprobante.getComplemento().getComplementos().isEmpty())
+		if(comprobante.tieneComplementos())
 		{
 			final List<String> complementos = new ArrayList<>();
 			for(Complemento33Interface c : comprobante.getComplemento().getComplementos()){
@@ -286,6 +290,52 @@ public class Utilerias {
 		    	
 		    	complemento.appendChild(importado);
 		    }
+			return MarshallerUnmarshaller.marshall(doc);
+			
+		}
+		else if(comprobante.tieneComplementosConceptos())
+		{
+			final Map<Integer,List<String>> mapacomp = new HashMap<>();
+			for(int x=0,y=1;x<comprobante.getConceptos().getConceptos().size();x++){
+				final List<String> xmlcomp = new ArrayList<>();
+				final Concepto33 concepto = comprobante.getConceptos().getConceptos().get(x);
+				if(concepto.getComplementoConcepto()!=null && !concepto.getComplementoConcepto().getComplementos().isEmpty()){
+					for(ComplementoConcepto33Interface c : concepto.getComplementoConcepto().getComplementos()){
+						final String c1 = MarshallerUnmarshaller.marshallCfdi33Complemento(c);
+						xmlcomp.add(c1);
+					}
+				}
+				if(!xmlcomp.isEmpty())
+					mapacomp.put(y++, xmlcomp);
+			}
+			final String xml = MarshallerUnmarshaller.marshallCfdi33(comprobante);
+		    
+			final Document doc = MarshallerUnmarshaller.leeXml(xml);
+		    
+			for(Entry<Integer,List<String>> mapa: mapacomp.entrySet()){
+			
+			final Node complemento = MarshallerUnmarshaller.sacaNodo(MarshallerUnmarshaller.getRutaComplementoConcepto(mapa.getKey()), doc, "ComplementoConcepto");
+		    
+				for(String insertar:mapa.getValue()){
+			    	final Document docin = MarshallerUnmarshaller.leeXml(insertar);
+			    	final Node importado = doc.importNode(docin.getFirstChild(), true);
+			    	for(int x=0;x<importado.getAttributes().getLength();x++){
+			    		final Node attr = importado.getAttributes().item(x);
+			    		if(StringUtils.startsWith(attr.getNodeName(),"xmlns:")||StringUtils.startsWith(attr.getNodeName(),"xsi:")){
+			    			importado.getAttributes().removeNamedItem(attr.getNodeName());
+			    			x=0;
+			    			if(StringUtils.startsWith(attr.getNodeName(),"xmlns:")&&!StringUtils.equals(attr.getNodeName(),"xmlns:cfdi")){
+			    				final Element e = (Element) doc.getFirstChild();
+			    				e.setAttribute(attr.getNodeName(),attr.getNodeValue());
+			    				//doc.getAttributes().setNamedItem();
+			    			}
+			    		}
+			    		//System.out.println(importado.getAttributes().item(x).getNodeName()+"->"+importado.getAttributes().item(x).getNodeValue());
+			    	}
+			    	
+			    	complemento.appendChild(importado);
+			    }
+			}
 			return MarshallerUnmarshaller.marshall(doc);
 			
 		}
