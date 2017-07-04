@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
@@ -365,11 +366,11 @@ public class Utilerias {
 		}
 	}
 
-	public static byte[] decodificaBinario(String pdf,final I_Api_Errores error) throws ApiException{
+	public static byte[] decodificaBinario(String pdf,final String campo,final I_Api_Errores error) throws ApiException{
 		try{
 			return decoder.decode(pdf.getBytes());
 			}catch(Exception ex){
-				throw new ApiException(error,ex);
+				throw new ApiException(error,Arrays.asList(campo, ex.getMessage()), ex);
 		}
 	}
 	

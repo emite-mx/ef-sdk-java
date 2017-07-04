@@ -55,6 +55,7 @@ import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10SelladorYTimbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.ret10.Ret10Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.valida32.Valida32Validador;
+import mx.emite.sdk.clientes.operaciones.emisores.valida33.Valida33Validador;
 import mx.emite.sdk.enums.Ambiente;
 
 
@@ -73,6 +74,7 @@ public class EmiteAPI {
 	private final Servicios servicios;
 	private final DescargaMasiva descargamasiva;
 	private final Valida32Validador valida32_validador;
+	private final Valida33Validador valida33_validador;
 	private final Estatus estatus;
 	
 	private final Cfdi32Timbrador cfdi32_timbrador;
@@ -190,6 +192,7 @@ public class EmiteAPI {
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		
 		this.valida32_validador=new Valida32Validador(this.cliente);
+		this.valida33_validador=new Valida33Validador(this.cliente);
 		
 		this.nom32_timbrador=new Nom32Timbrador(this.cliente);
 		this.nom32_selladorytimbrador=new Nom32SelladorYTimbrador(this.cliente);
@@ -707,6 +710,15 @@ public class EmiteAPI {
 	 */
 	public Nom33Confirmacion nom33_Confirmacion(){
 		return nom33_confirmacion;
+	}
+	
+	/**
+	 * Servicio de Validación de CFDI 3.3
+	 * @return valida32_validador
+	 * @since 0.2.0
+	 */
+	public Valida33Validador valida33_Validador(){
+		return valida33_validador;
 	}
 	
 	

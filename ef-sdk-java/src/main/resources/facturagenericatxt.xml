@@ -2,7 +2,7 @@
 <beanio xmlns="http://www.beanio.org/2012/03" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
-
+ 
   <template name="domicilio">
 	<field name="calle"/>
     <field name="noExterior"/>

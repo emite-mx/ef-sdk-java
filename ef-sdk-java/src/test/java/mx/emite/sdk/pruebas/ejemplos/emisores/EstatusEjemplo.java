@@ -18,7 +18,8 @@ public class EstatusEjemplo extends Ejemplo{
 	@Test
 	public void pruebaEstatus(){
 		try{
-		final EmiteAPI api = new EmiteAPI(Ambiente.PRUEBAS);
+		@SuppressWarnings("deprecation")
+		final EmiteAPI api = new EmiteAPI(Ambiente.LOCAL);
 		final EstatusRequest request = EstatusRequest.builder()
 				.usuario(props.getProperty("emisor.usuario"))
 				.contrasena(props.getProperty("emisor.contrasena"))

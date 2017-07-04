@@ -47,7 +47,8 @@ public class NU {
 		CODIGOBARRAS33(Tipos.CODIGOBARRAS33,0),
 		ENTERO3(Tipos.ENTERO,3),
 		CANTIDAD8DECIMALES(Tipos.MONTO,8),
-		CINCODECIMALES(Tipos.DOUBLE,5);
+		CINCODECIMALES(Tipos.DOUBLE,5),
+		DINERO3(Tipos.TIPO_DINERO,3);
 		;
 		
 		
@@ -71,7 +72,10 @@ public class NU {
 		
 		public Format getFormato(){
 			switch(tipo){
-			case TIPO_DINERO: return NumberFormat.getCurrencyInstance(local);
+			case TIPO_DINERO: NumberFormat res2 = NumberFormat.getCurrencyInstance(local);
+							res2.setMaximumFractionDigits(decimales);
+							
+							return res2;
 			case DOUBLE: 	NumberFormat res = NumberFormat.getInstance(local);
 							res.setMinimumFractionDigits(decimales);
 							res.setMaximumFractionDigits(decimales);
@@ -84,7 +88,7 @@ public class NU {
 						mf.setGroupingUsed(false);
 						return mf;
 			case CODIGOBARRAS: return new DecimalFormat("0000000000.000000",new DecimalFormatSymbols(local));
-			case CODIGOBARRAS33: return new DecimalFormat("##################.000000",new DecimalFormatSymbols(local));					
+			case CODIGOBARRAS33: return new DecimalFormat("000000000000000000.000000",new DecimalFormatSymbols(local));					
 			}
 			return null;
 		}
@@ -200,6 +204,11 @@ public class NU {
 
 		public  String dinero(BigDecimal numero) {
 			return format(numero,NumeroFormatos.DINERO);
+			
+		}
+		
+		public  String dinero3(BigDecimal numero) {
+			return format(numero,NumeroFormatos.DINERO3);
 			
 		}
 		

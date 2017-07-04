@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
 import mx.emite.sdk.enums.TipoFacturas;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
+import mx.emite.sdk.serializers.FechaHoraSerializer;
 
 /**
  *  <h1>Cuentas por Pagar</h1>
@@ -57,13 +59,16 @@ public class CuentasPorPagar {
 	/**
 	 * @return fecha de la factura
 	 */
+	
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
+	@JsonSerialize(using=FechaHoraSerializer.class)
 	private LocalDateTime fecha;
 	
 	/**
 	 * @return fecha de vencimiento
 	 */
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
+	@JsonSerialize(using=FechaHoraSerializer.class)
 	private LocalDateTime vencimiento;
 	
 	/**

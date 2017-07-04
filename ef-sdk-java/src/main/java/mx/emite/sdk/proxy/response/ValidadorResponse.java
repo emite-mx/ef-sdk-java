@@ -1,5 +1,7 @@
 package mx.emite.sdk.proxy.response;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,10 @@ public class ValidadorResponse extends ProxyResponse {
 	private Boolean valido=false;
 	
 	private InfoValidacion info;
+
+	public boolean es32() {
+		return info!=null && info.getVersion()!=null && info.getVersion().compareTo(new BigDecimal("3.2"))==0;
+	}
 	
 		
 

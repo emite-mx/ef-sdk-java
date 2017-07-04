@@ -18,7 +18,7 @@ public enum FormasPago implements Sat<Integer>{
 	
 	EFECTIVO(1,"Efectivo"),
 	CHEQUE(2,"Cheque"),
-	TRANSFERENCIA(3,"Transferencia"),
+	TRANSFERENCIA(3,"Transferencia Electrónica de Fondos"),
 	TARJETASDECREDITO(4,"Tarjetas de crédito"),
 	MONEDEROSELECTRONICOS(5,"Monederos electrónicos"),
 	DINEROELECTRONICO(6,"Dinero electrónico"),
@@ -89,6 +89,14 @@ public enum FormasPago implements Sat<Integer>{
 			return FormasPago.OTROS;
 		else
 			return fd;
+	}
+	
+	public static String buscaSinNuloCompleta(String descripcion) {
+		final FormasPago fd = busca(descripcion);
+		if(fd==null)
+			return descripcion;
+		else
+			return fd.marshall()+" "+fd.descripcion;
 	}
 	
 	private static Integer sacaInt(String descripcion) {

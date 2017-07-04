@@ -3,9 +3,11 @@ package mx.emite.sdk.scot.response.extra;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Data;
 import mx.emite.sdk.serializers.FechaHoraDeserializer;
+import mx.emite.sdk.serializers.FechaHoraSerializer;
 
 /**
  *  <h1>Documentos</h1>
@@ -36,12 +38,15 @@ public class Documentos {
 	 * @return fechaAlta Fecha de Alta de Documento en formato ISO
 	 */
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
+	@JsonSerialize(using=FechaHoraSerializer.class)
 	private LocalDateTime fechaAlta;
 	
 	/**
 	 * @return fechaAprobacion Fecha de Aprobacion de Documento en formato ISO
 	 */
-	private String fechaAprobacion;
+	@JsonDeserialize(using=FechaHoraDeserializer.class)
+	@JsonSerialize(using=FechaHoraSerializer.class)
+	private LocalDateTime fechaAprobacion;
 	
 	/**
 	 * @return aprobado Si el documento esta aprobado

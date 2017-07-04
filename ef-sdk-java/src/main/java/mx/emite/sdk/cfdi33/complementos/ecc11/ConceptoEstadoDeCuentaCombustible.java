@@ -65,9 +65,11 @@ public class ConceptoEstadoDeCuentaCombustible implements Serializable {
 	private String folioOperacion;
 	
 	@XmlAttribute(name="ValorUnitario")
-	private String valorUnitario;
+	@XmlJavaTypeAdapter(ImporteMxnAdapter.class)
+	private BigDecimal valorUnitario;
 	
 	@XmlAttribute(name="Importe")
+	@XmlJavaTypeAdapter(ImporteMxnAdapter.class)
 	private BigDecimal importe;
 	
 	@XmlElement(namespace="http://www.sat.gob.mx/EstadoDeCuentaCombustible",name="Traslados")

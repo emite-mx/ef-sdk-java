@@ -8,6 +8,7 @@ public enum TipoFacturas {
 	INSCRIPCION('I',"tipofactura.inscripcion"),
 	ANUALIDAD('A',"tipofactura.anualidad"),
 	OTROS('O',"tipofactura.otros"),
+	NOTACREDITO('N',"tipofactura.nc"),
 	;
 	
 	private Character id;

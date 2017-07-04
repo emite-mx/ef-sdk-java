@@ -25,7 +25,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
 import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
@@ -128,7 +127,7 @@ public class Comprobante33  implements Serializable {
 	 * descuento Atributo condicional para representar el importe total de los descuentos aplicables antes de impuestos. No se permiten valores negativos. Se debe registrar cuando existan conceptos con descuento.
 	 */
 	@XmlAttribute(name="Descuento")
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	@Min(value = 0)
 	protected BigDecimal descuento;
 	

@@ -28,6 +28,7 @@ public enum Rutas {
 	CFDI33_DESCARGA("/api/cfdi/3.3/descarga"),
 	CFDI33_CONFIRMACION("/api/cfdi/3.3/confirmacion"),
 	VALIDA32_VALIDADOR32("/api/validador/3.2/validador"),
+	VALIDA33_VALIDADOR33("/api/validador/3.3/validador"),
 	NOM32_TIMBRAR("/api/nomina/3.2/timbrar"),
 	NOM32_SELLARYTIMBRAR("/api/nomina/3.2/sellarytimbrar"),
 	NOM32_CANCELAR("/api/nomina/3.2/cancelar"),

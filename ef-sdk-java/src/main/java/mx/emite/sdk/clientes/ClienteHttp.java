@@ -58,7 +58,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 @Slf4j
 public class ClienteHttp {
 
-	private static final String AGENTE = "ef-sdk-java/";
+	private static final String AGENTE = "ef-sdk-java/EMITE";
 
     private static final int DEFAULT_CONNECTION_TIMEOUT = 20000;
     private static final int DEFAULT_SOCKET_TIMEOUT = 240000;

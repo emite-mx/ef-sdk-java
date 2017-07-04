@@ -21,7 +21,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.ImporteTcAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -112,7 +111,7 @@ public class Concepto33 implements Serializable{
 	 * descuento Atributo opcional para representar el importe de los descuentos aplicables al concepto. No se permiten valores negativos.
 	 */
 	@XmlAttribute(name="Descuento")
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(ImporteTcAdapter.class)
 	private BigDecimal descuento;
 	
 	/**
