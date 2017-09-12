@@ -49,7 +49,7 @@ public class Parte33 implements Serializable{
 	 * noIdentificacion Atributo opcional para expresar el número de serie, número de parte del bien o identificador del producto o del servicio amparado por la presente parte. Opcionalmente se puede utilizar claves del estándar GTIN.
 	 */
 	@XmlAttribute(name="NoIdentificacion")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,100}",message="El noIdentificacion no cumple con el patrón del SAT")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}",message="El noIdentificacion no cumple con el patrón del SAT")
 	private String noIdentificacion;
 
 	/**
@@ -65,7 +65,7 @@ public class Parte33 implements Serializable{
 	 */
 	@XmlAttribute(name="Unidad")
 	@Size(min=1,max=20)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,20}",
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,20}",
 	message="La Unidad no cumple con el patrón del SAT")
 	private String unidad;
 	
@@ -74,7 +74,7 @@ public class Parte33 implements Serializable{
 	 */
 	@XmlAttribute(name="Descripcion")
 	@Size(min=1,max=20)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,1000}",
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,1000}",
 	message="La Descripcion no cumple con el patrón del SAT")
 	@NotNull
 	private String descripcion;

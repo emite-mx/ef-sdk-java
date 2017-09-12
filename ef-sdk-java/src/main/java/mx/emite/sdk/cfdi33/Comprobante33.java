@@ -24,7 +24,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
 import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
@@ -41,8 +40,7 @@ import mx.emite.sdk.utils.ComplementoConcepto33Interface;
 @XmlType(name = "", propOrder = { "cfdiRelacionados","emisor","receptor","conceptos","impuestos","complemento" })
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
-@Builder 
-@NoArgsConstructor 
+@Builder  
 @AllArgsConstructor
 public class Comprobante33  implements Serializable {
 
@@ -63,7 +61,7 @@ public class Comprobante33  implements Serializable {
 	 */
 	@XmlAttribute(name="Serie")
 	@Size(max=25) 
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,25}")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,25}")
 	protected String serie;
 	
 	/**
@@ -71,7 +69,7 @@ public class Comprobante33  implements Serializable {
 	 */
 	@XmlAttribute(name="Folio")
 	@Size(max=25)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,40}")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,40}")
 	protected String folio;
 	
 	/**
@@ -112,7 +110,7 @@ public class Comprobante33  implements Serializable {
 	 * condicionesDePago Atributo condicional para expresar las condiciones comerciales aplicables para el pago del comprobante fiscal digital por Internet. Este atributo puede ser condicionado mediante atributos o complementos.
 	 */
 	@XmlAttribute(name="CondicionesDePago")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,1000}")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü̈){1,1000}")
 	protected String condicionesDePago;
 	
 	/**
@@ -137,6 +135,7 @@ public class Comprobante33  implements Serializable {
 	@XmlAttribute(name="Moneda")
 	@XmlJavaTypeAdapter(Monedas33Adapter.class)
 	@NotNull
+	
 	protected Monedas33 moneda = Monedas33.MXN;
 	
 	/**
@@ -225,7 +224,12 @@ public class Comprobante33  implements Serializable {
 	private Impuestos33 impuestos;
 	
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
-	private Complemento33 complemento = null;
+	private Complemento33 complemento;
+	
+	
+	public Comprobante33() {
+		moneda = Monedas33.MXN;
+	}
 	
 	public boolean tieneComplementos(){
 		return complemento!=null&&complemento.getComplementos()!=null&&!complemento.getComplementos().isEmpty();

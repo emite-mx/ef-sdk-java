@@ -33,7 +33,7 @@ public class Intereses extends ComplementoInterface{
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	/**
 	 *  sistFinanciero Atributo requerido para expresar si los interés obtenidos en el periodo o ejercicio provienen del sistema financiero

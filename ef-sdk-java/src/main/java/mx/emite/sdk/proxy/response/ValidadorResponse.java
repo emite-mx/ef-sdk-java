@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import mx.emite.sdk.proxy.ProxyResponse;
 import mx.emite.sdk.proxy.response.extra.InfoValidacion;
@@ -14,7 +13,7 @@ import mx.emite.sdk.proxy.response.extra.InfoValidacion;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @ToString(callSuper=true)
-@NoArgsConstructor @AllArgsConstructor @Builder
+@AllArgsConstructor @Builder
 public class ValidadorResponse extends ProxyResponse {
 
 	/**
@@ -26,6 +25,7 @@ public class ValidadorResponse extends ProxyResponse {
 	
 	private String pdf;
 	
+	
 	private Boolean valido=false;
 	
 	private InfoValidacion info;
@@ -34,7 +34,14 @@ public class ValidadorResponse extends ProxyResponse {
 		return info!=null && info.getVersion()!=null && info.getVersion().compareTo(new BigDecimal("3.2"))==0;
 	}
 	
-		
+	public static ValidadorResponse nuevo() {
+		return builder().build();
+	}
+	
+	
+	public ValidadorResponse() {
+		valido=false;	
+	}
 
 	
 	

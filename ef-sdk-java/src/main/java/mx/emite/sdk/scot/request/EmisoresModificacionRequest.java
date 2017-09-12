@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import mx.emite.sdk.cfdi32.anotaciones.Cp;
@@ -23,6 +24,7 @@ import mx.emite.sdk.serializers.RegimenesSerializer;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class EmisoresModificacionRequest  {
 
 	/**
@@ -112,6 +114,7 @@ public class EmisoresModificacionRequest  {
 	 */
 	@NotNull
 	@JsonSerialize(using=PaisesSerializer.class)
+	
 	public Paises idPais=Paises.getDefault();
 	
 	/**
@@ -146,7 +149,17 @@ public class EmisoresModificacionRequest  {
 	public Integer idTarifa;
 
 	
+	public static EmisoresModificacionRequest nuevo() {
+		return builder().build();
+	}
 	
+	
+	public EmisoresModificacionRequest() {
+		idPais=Paises.getDefault();	
+	}
+
+	 
+
 
 	 
 	

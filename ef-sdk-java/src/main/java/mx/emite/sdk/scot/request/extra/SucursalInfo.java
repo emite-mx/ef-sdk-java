@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.anotaciones.Cp;
 import mx.emite.sdk.enums.sat.Estados;
 import mx.emite.sdk.enums.sat.MetodosPago;
@@ -24,7 +23,7 @@ import mx.emite.sdk.serializers.RegimenesSerializer;
 
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 public class SucursalInfo {
  
 	/**
@@ -101,6 +100,7 @@ public class SucursalInfo {
 	 */
 	@NotNull
 	@JsonSerialize(using=PaisesSerializer.class)
+	
 	public Paises idPais=Paises.MEXICO;
 	 
 	/**
@@ -129,8 +129,15 @@ public class SucursalInfo {
 	@Email @NotNull @NotEmpty
 	public String correo;
 
+	public static SucursalInfo nuevo() {
+		return builder().build();
+	}
 	
 	
+	public SucursalInfo() {
+		idPais=Paises.MEXICO;	
+	}
+
 	
 	
 }

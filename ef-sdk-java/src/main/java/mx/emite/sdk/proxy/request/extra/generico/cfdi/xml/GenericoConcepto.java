@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -19,6 +22,8 @@ import mx.emite.sdk.enums.sat.adaptadores.UnidadesMedidaAdapter;
 @Data
 @Builder
 @AllArgsConstructor @NoArgsConstructor
+@XmlRootElement(name="GenericoConceptoCfdi")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenericoConcepto {
 
 	@XmlAttribute(name="noIdentificacion")

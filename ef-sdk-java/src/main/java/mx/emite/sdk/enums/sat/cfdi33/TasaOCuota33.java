@@ -119,5 +119,7 @@ public enum TasaOCuota33 {
 			return false;
 		return true;
 	}
+
+	
 	
 }

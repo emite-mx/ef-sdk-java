@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,10 +34,12 @@ import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
 import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEnvio;
 
 
-@XmlRootElement(name="Factura")
+
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
+@XmlRootElement(name="GenericoCfdi")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenericoFactura {
 
 	@XmlAttribute(name="tipoComprobante")

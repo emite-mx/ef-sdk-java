@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 import mx.emite.sdk.utils.ComplementoInterface;
 
@@ -25,7 +24,7 @@ import mx.emite.sdk.utils.ComplementoInterface;
 @XmlType(name = "TimbreFiscalDigital")
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class TimbreFiscalDigital extends ComplementoInterface implements Serializable{
 
@@ -36,7 +35,7 @@ public class TimbreFiscalDigital extends ComplementoInterface implements Seriali
 
 	@XmlAttribute(name="version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	@XmlAttribute(name="UUID")
 	@NotNull 
@@ -69,5 +68,12 @@ public class TimbreFiscalDigital extends ComplementoInterface implements Seriali
 		return "tfd";
 	}
 	
+	public static TimbreFiscalDigital nuevo() {
+		return builder().build();
+	}
+	
+	@Deprecated
+	public TimbreFiscalDigital() {
+	}
 	
 }

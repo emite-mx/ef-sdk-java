@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import mx.emite.sdk.cfdi32.anotaciones.Cp;
@@ -24,6 +25,7 @@ import mx.emite.sdk.serializers.RegimenesSerializer;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class EmisoresAltaRequest  {
 
 	
@@ -132,6 +134,7 @@ public class EmisoresAltaRequest  {
 	 */
 	@NotNull
 	@JsonSerialize(using=PaisesSerializer.class)
+	
 	public Paises idPais=Paises.getDefault();
 	
 	/**
@@ -171,7 +174,13 @@ public class EmisoresAltaRequest  {
 	@NotNull 
 	public Boolean modificar;
 
+	public static EmisoresAltaRequest nuevo() {
+		return builder().build();
+	}
 	
+	public EmisoresAltaRequest() {
+		idPais=Paises.getDefault();
+	}
 
 	 
 	

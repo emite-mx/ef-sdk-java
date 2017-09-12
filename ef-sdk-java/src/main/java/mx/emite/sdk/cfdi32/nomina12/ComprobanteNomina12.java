@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
@@ -34,8 +33,7 @@ import mx.emite.sdk.utils.Utilerias;
 @XmlType(name = "", propOrder = { "emisor", "receptor", "conceptos", "impuestos", "complemento" })
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
-@Builder
-@NoArgsConstructor 
+@Builder 
 @AllArgsConstructor
 public class ComprobanteNomina12  {
 
@@ -57,7 +55,7 @@ public class ComprobanteNomina12  {
 	private final Impuestos impuestos = new Impuestos();
 
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
-	private Complemento complemento = null;
+	private Complemento complemento;
 
 	@XmlAttribute
 	protected String certificado;
@@ -134,4 +132,14 @@ public class ComprobanteNomina12  {
 	public String generaXml(){
 		return Utilerias.marshallnom12(this);
 	}
+	
+	public static ComprobanteNomina12 nuevo() {
+		return builder().build();
+	}
+	
+	
+	public ComprobanteNomina12() {
+		
+	}
+	
 }

@@ -22,7 +22,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.Singular;
 import mx.emite.sdk.enums.sat.Incoterms;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
@@ -35,7 +34,7 @@ import mx.emite.sdk.utils.ComplementoInterface;
 @XmlType(name = "ComercioExterior")
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 /**
  * 
@@ -72,12 +71,12 @@ public class ComercioExterior11 extends ComplementoInterface implements Serializ
 	
 	@XmlAttribute(name="NumCertificadoOrigen")
 	@Size(min=6,max=40)
-	@Pattern(regexp="[a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}- [a-f0-9A-F]{12}|([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){6,40}",message="Debe de cumplir con el patron [a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}- [a-f0-9A-F]{12}|([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){6,40}")
+	@Pattern(regexp="[a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}- [a-f0-9A-F]{12}|([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){6,40}",message="Debe de cumplir con el patron [a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}- [a-f0-9A-F]{12}|([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){6,40}")
 	private String numCertificadoOrigen;
 	
 	@XmlAttribute(name="NumeroExportadorConfiable")
 	@Size(min=1,max=50)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,50}",message="Debe de cumplir con el patron ([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,50}")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,50}",message="Debe de cumplir con el patron ([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,50}")
 	private String numeroExportadorConfiable;
 	
 	@XmlAttribute(name="Incoterm")
@@ -90,7 +89,7 @@ public class ComercioExterior11 extends ComplementoInterface implements Serializ
 
 	@XmlAttribute(name="Observaciones")
 	@Size(min=1,max=300)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}",message="Debe de cumplir con el patron ([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}",message="Debe de cumplir con el patron ([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}")
 	private String observaciones;
 	
 	@XmlAttribute(name = "TipoCambioUSD")
@@ -133,5 +132,14 @@ public class ComercioExterior11 extends ComplementoInterface implements Serializ
 		return "cce11";
 	}
 	
+	public static ComercioExterior11 nuevo() {
+		return builder().build();
+	}
+	
+	
+	public ComercioExterior11() {
+		tipoOperacion="2";
+		claveDePedimento="A1";
+	}
 	
 }

@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Singular;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
@@ -39,8 +38,7 @@ import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 @XmlType(name = "Pago10")
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
-
+@AllArgsConstructor
 public class Pago implements Serializable {
 
 	
@@ -62,6 +60,7 @@ public class Pago implements Serializable {
 	@XmlAttribute(name="MonedaP")
 	@XmlJavaTypeAdapter(Monedas33Adapter.class)
 	@NotNull
+	
 	protected Monedas33 monedaP = Monedas33.MXN;
 	
 	@XmlAttribute(name="TipoCambioP")
@@ -120,5 +119,13 @@ public class Pago implements Serializable {
 	@Valid @Singular("impuesto")
 	private List<ImpuestosPago> impuestos;
 	
+	public static Pago nuevo() {
+		return builder().build();
+	}
+	
+	
+	public Pago() {
+		monedaP = Monedas33.MXN;	
+	}
 	
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,10 +26,11 @@ import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
 
-@XmlRootElement(name="Nomina")
+@XmlRootElement(name="GenericoNomina")
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenericoNomina {
 
 	@XmlAttribute(name="serie")

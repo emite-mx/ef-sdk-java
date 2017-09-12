@@ -2,7 +2,6 @@ package mx.emite.sdk.utils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -24,12 +23,13 @@ public class Qr33 implements Serializable{
 	}
 	
 	public static String getQr(final String uuid,final String rfcEmisor,final String rfcReceptor,final BigDecimal total,String sello) throws Exception {
+		//https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=C76CEEC9-843F-4A71-9678-50FCD10604E5&re=PAGJ780918RS4&rr=UPM980921RI2&tt=3527.34&fe=P+a/Dw==
 		final StringBuilder sb = new StringBuilder(urlSat)
-		.append("Id=").append(uuid)
-		.append("&Re=").append(codifica(rfcEmisor))
-		.append("&Rr=").append(codifica(rfcReceptor))
-		.append("&Tt=").append(nf.format(total))
-		.append("&Fe=").append(sello!=null&&sello.length()>8?sello.substring(sello.length()-8):"");
+		.append("id=").append(uuid)
+		.append("&re=").append(rfcEmisor)
+		.append("&rr=").append(rfcReceptor)
+		.append("&tt=").append(nf.format(total))
+		.append("&fe=").append(sello!=null&&sello.length()>8?sello.substring(sello.length()-8):"");
 		return sb.toString();
 		//final UriComponents uri = UriComponentsBuilder.fromHttpUrl(urlSat).queryParams(params).build();
 		//return uri.toUriString();
@@ -40,13 +40,13 @@ public class Qr33 implements Serializable{
 				"&id="+uuid);*/
 	}
 	
-	private static String codifica(String valor) {
+	/*private static String codifica(String valor) {
 		try{
 			return URLEncoder.encode(valor,"UTF-8");
 			
 		}catch(Exception ex){
 			return valor;
 		}
-	}
+	}*/
 	
 }

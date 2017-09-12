@@ -1,7 +1,13 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
+
+import com.google.common.collect.Lists;
 
 import lombok.Getter;
 import mx.emite.sdk.enums.sat.Sat;
@@ -99,6 +105,14 @@ public enum UsosCfdi33 implements Sat<String>{
 		if(rf!=null)
 			return  idSat.concat(" - ").concat(rf.getDescripcion());
 		return idSat;
+	}
+	
+	public static List<UsosCfdi33> combo(){
+		return Lists.newArrayList(values()).stream().sorted(Comparator.comparing(UsosCfdi33::getIdSat)).collect(Collectors.toList());
+	}
+
+	public String getCombo() {
+		return idSat.concat(" - ").concat(descripcion);
 	}
 	 
 	

@@ -1,17 +1,20 @@
 package mx.emite.sdk.proxy.response.extra;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @ApiObject
 @AllArgsConstructor @NoArgsConstructor
+@Builder
 public class InfoValidacionEmisorReceptor implements Serializable{
 
 	
@@ -44,5 +47,8 @@ public class InfoValidacionEmisorReceptor implements Serializable{
 	private String pais;
 	@ApiObjectField(description="referencia")
 	private String referencia;
+	
+	@ApiObjectField(description="listaNegra")
+	private List<InfoValidacionListaNegra> listaNegra;
 	
 }

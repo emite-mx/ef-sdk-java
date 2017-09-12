@@ -36,7 +36,7 @@ public class DestinatarioCE11 implements Serializable{
 	private String numRegIdTrib;
 	
 	@XmlAttribute(name="Nombre")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}",message="Nombre no cumple con el patrón del SAT")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|\"|%|&|'| ́|- |:|;|>|=|<|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,300}",message="Nombre no cumple con el patrón del SAT")
 	private String nombre;
 	
 	@XmlElement(name="Domicilio",namespace="http://www.sat.gob.mx/ComercioExterior11")

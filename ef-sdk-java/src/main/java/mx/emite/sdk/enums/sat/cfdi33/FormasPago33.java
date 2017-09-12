@@ -1,7 +1,14 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
+
+import com.google.common.collect.Lists;
 
 import lombok.Getter;
 import mx.emite.sdk.enums.sat.Sat;
@@ -31,6 +38,7 @@ public enum FormasPago33 implements Sat<String>{
 	ASATISFACCIONDELACREEDOR("27","A satisfacción del acreedor",Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE),
 	TARJETADEDEBITO("28","Tarjeta de débito",Boolean.TRUE,null,null,null,"[0-9]{16}",null,null,"[0-9]{10,11}|[0-9]{15,16}|[0-9]{18}|[A-Z0-9_]{10,50}",Boolean.FALSE,Boolean.TRUE),
 	TARJETADESERVICIOS("29","Tarjeta de servicios",Boolean.TRUE,null,null,null,"[0-9]{15,16}",null,null,"[0-9]{10,11}|[0-9]{15,16}|[0-9]{18}|[A-Z0-9_]{10,50}",Boolean.FALSE,Boolean.TRUE),
+	APLICACIONANTICIPOS("30","Aplicación de anticipos",Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE),
 	PORDEFINIR("99","Por definir",null,null,null,null,null,null,null,null,null,null),
 	
 	;
@@ -42,10 +50,10 @@ public enum FormasPago33 implements Sat<String>{
 	final Boolean numeroOperacion;
 	final Boolean rfcEmisorOrdenante;
 	final Boolean cuentaOrdenante;
-	final String patronOrdenante;
+	final Pattern patronOrdenante;
 	final Boolean rfcEmisorBeneficiario;
 	final Boolean cuentaBeneficiario;
-	final String patronBeneficiario;
+	final Pattern patronBeneficiario;
 	final Boolean tipoCadenaPago;
 	final Boolean nombreBancoEmisor;
 	
@@ -56,10 +64,10 @@ public enum FormasPago33 implements Sat<String>{
 		this.numeroOperacion=numeroOperacion;
 		this.rfcEmisorOrdenante=rfcEmisorOrdenante;
 		this.cuentaOrdenante=cuentaOrdenante;
-		this.patronOrdenante=patronOrdenante;
+		this.patronOrdenante=patronOrdenante==null?null:Pattern.compile(patronOrdenante);
 		this.rfcEmisorBeneficiario=rfcEmisorBeneficiario;
 		this.cuentaBeneficiario=cuentaBeneficiario;
-		this.patronBeneficiario=patronBeneficiario;
+		this.patronBeneficiario=patronBeneficiario==null?null:Pattern.compile(patronBeneficiario);
 		this.tipoCadenaPago=tipoCadenaPago;
 		this.nombreBancoEmisor=nombreBancoEmisor;
 	}
@@ -126,6 +134,14 @@ public enum FormasPago33 implements Sat<String>{
 	
 	public boolean notin(FormasPago33... lista){
 		return !in(lista);
+	}
+	
+	public static List<FormasPago33> combo(){
+		return Lists.newArrayList(values()).stream().sorted(Comparator.comparing(FormasPago33::getIdSat)).collect(Collectors.toList());
+	}
+
+	public String getCombo() {
+		return idSat.concat(" - ").concat(descripcion);
 	}
 	
 	/*

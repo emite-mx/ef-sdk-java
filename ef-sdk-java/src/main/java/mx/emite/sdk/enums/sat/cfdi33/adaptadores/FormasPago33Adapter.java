@@ -3,32 +3,31 @@ package mx.emite.sdk.enums.sat.cfdi33.adaptadores;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import org.beanio.types.TypeConversionException;
-import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class FormasPago33Adapter extends XmlAdapter<String,FormasPago33> implements TypeHandler{
+public class FormasPago33Adapter extends XmlAdapter<String,FormasPago33> /*implements TypeHandler*/{
 
 	@Override
 	public FormasPago33 unmarshal(String metodo) throws ApiException {
 		return FormasPago33.unmarshall(metodo);
 	}
-	@Override
+	//@Override
 	public Class<FormasPago33> getType() {
 		return FormasPago33.class;
 	}
 	
-	@Override
+	//@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
 		return FormasPago33.parse(text);
 	}
 
 
 
-	@Override
+	//@Override
 	public String format(Object value){
 		try{
 		if(value instanceof FormasPago33)

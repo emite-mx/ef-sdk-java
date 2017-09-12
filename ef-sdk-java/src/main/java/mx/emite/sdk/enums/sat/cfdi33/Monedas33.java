@@ -205,7 +205,9 @@ public enum Monedas33 implements Sat<String>{
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.decimales=decimales;
-		this.porcentajeVariacion=BigDecimal.valueOf(porcentajeVariacion).setScale(3,RoundingMode.HALF_EVEN);
+		this.porcentajeVariacion=  /*porcentajeVariacion==0?new BigDecimal("0.000"): new BigDecimal("5.000");*/
+				BigDecimal.valueOf(porcentajeVariacion).setScale(15,RoundingMode.HALF_EVEN);
+		
 	}
 
 	public static Monedas33 unmarshall(String metodo) throws ApiException{
@@ -284,6 +286,10 @@ public enum Monedas33 implements Sat<String>{
 	
 	public boolean requiereTc() {
 		return notin(MXN,XXX);
+	}
+
+	public boolean consultable() {
+		return in(USD,EUR,CAD,JPY,GBP);
 	}
 	/*
 		

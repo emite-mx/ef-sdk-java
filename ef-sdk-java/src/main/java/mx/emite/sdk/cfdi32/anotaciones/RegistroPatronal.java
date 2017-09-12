@@ -22,7 +22,7 @@ import javax.validation.constraints.Pattern;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @ReportAsSingleViolation
-@Pattern(regexp = "^([A-Z]|[a-z]|[0-9]|Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,20}$")
+@Pattern(regexp = "^[^|]{1,20}$")
 public @interface RegistroPatronal {
 	
 	

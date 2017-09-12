@@ -92,7 +92,8 @@ public class FU {
 		YYYYMMDDHHMMSS("yyyy-MM-dd HH:mm:ss"),
 		YYYYMMSINGUION("yyyyMM"),
 		YYMMDD("yyMMdd"),
-		DDMMYYYYPUNTOS("dd.MM.yyyy")
+		DDMMYYYYPUNTOS("dd.MM.yyyy"), 
+		MDDYYYY("M/dd/yyyy")
 		;
 		//private  SimpleDateFormat dftc = new SimpleDateFormat("dd/MM/yy HH:mm");
 		//private  SimpleDateFormat dft = new SimpleDateFormat();
@@ -356,6 +357,12 @@ public class FU {
 
 		public static long fechaUnix(LocalDateTime fecha) {
 			return Timestamp.valueOf(fecha).getTime()/1000L;			
+		}
+
+		public static LocalDate convierteF(java.sql.Date fecha) {
+			if(fecha==null)
+				return null;
+			return fecha.toLocalDate();			
 		}
 
 		/*

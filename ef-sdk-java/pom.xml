@@ -227,6 +227,7 @@
 					<include>README*</include>
 					<include>NOTICE*</include>
 					<include>LICENSE*</include>
+					<include>**/*.properties</include>
 				</includes>
 			</resource>
 		</resources>

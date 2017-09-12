@@ -3,7 +3,10 @@ package mx.emite.sdk.proxy.request.extra.generico.cfdi.xml;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import lombok.Data;
@@ -13,6 +16,8 @@ import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter;
 
 @Data
+@XmlRootElement(name="GenericoExpedidoCfdi")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenericoExpedidoEn {
 
 	@XmlAttribute(name="calle")

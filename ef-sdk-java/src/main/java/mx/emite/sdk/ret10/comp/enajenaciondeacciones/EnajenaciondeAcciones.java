@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 import mx.emite.sdk.utils.ComplementoInterface;
 
@@ -25,7 +24,7 @@ import mx.emite.sdk.utils.ComplementoInterface;
 @XmlType(name = "EnajenaciondeAcciones")
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class EnajenaciondeAcciones extends ComplementoInterface{
 
@@ -34,7 +33,7 @@ public class EnajenaciondeAcciones extends ComplementoInterface{
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	/**
 	 *  contratoIntermediacion Atributo requerido para expresar la descripción del contrato de intermediación.
@@ -75,5 +74,13 @@ public class EnajenaciondeAcciones extends ComplementoInterface{
 		return "enajenaciondeacciones";
 	}
 	
+	public static EnajenaciondeAcciones nuevo() {
+		return builder().build();
+	}
+	
+	@Deprecated
+	EnajenaciondeAcciones() {
+		
+	}
 	
 }

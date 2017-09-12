@@ -26,6 +26,7 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.xpath.XPathConstants;
 
 import org.apache.commons.codec.binary.Base64;
+import org.eclipse.persistence.jaxb.JAXBContextFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -217,6 +218,7 @@ public class MarshallerUnmarshaller {
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		if((c1==null||c1.isEmpty())&&(c2==null||c2.isEmpty())){
 			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, CFDI33_SCHEMA_LOCATION);
+			
 		}
 		else{
 			final Set<String> sl = new HashSet<>();
@@ -333,7 +335,9 @@ public class MarshallerUnmarshaller {
 	
 	private static JAXBContext contexto(Class<?>... clase) {
 		try{
-			return JAXBContext.newInstance(clase);
+			final JAXBContext res = JAXBContextFactory.createContext(clase,null);//JAXBContext.newInstance(clase);
+			System.out.println("jaxbContext is=" +res.toString());
+			return res;
 		}
 		catch(Exception ex){
 			ex.printStackTrace();

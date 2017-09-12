@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.utils.ComplementoInterface;
 
 @XmlRootElement(name="Dividendos",namespace="http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos")
@@ -22,7 +21,7 @@ import mx.emite.sdk.utils.ComplementoInterface;
 @XmlType(name = "Dividendos")
 @Data
 @Builder
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class Dividendos extends ComplementoInterface{
 
@@ -31,7 +30,7 @@ public class Dividendos extends ComplementoInterface{
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	/**
 	 *  dividOUtil Nodo opcional que expresa los dividendos o utilidades distribuidas del periodo o ejercicio
@@ -57,5 +56,13 @@ public class Dividendos extends ComplementoInterface{
 		return "dividendos";
 	}
 	
+	public static Dividendos nuevo() {
+		return builder().build();
+	}
+	
+	@Deprecated
+	Dividendos() {
+		
+	}
 	
 }

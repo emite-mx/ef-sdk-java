@@ -14,26 +14,22 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
+
+import mx.emite.sdk.cfdi32.validadores.ClabeValidador;
 
 
 @Documented
-@Constraint(validatedBy = { })
+@Constraint(validatedBy = {ClabeValidador.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @ReportAsSingleViolation
-@Pattern(regexp = "^[^|]{1,15}$")
-public @interface NumEmpleado {
+public @interface Clabe {
 	
-	
-	String message() default "El valor no es un Número de Empleado correcto";
+	String message() default "{0} debe de ser una CLABE válida";
 
 	Class<?>[] groups() default { };
 
 	Class<? extends Payload>[] payload() default { };
 
 	boolean botones() default true;
-	
-	
-	
 }

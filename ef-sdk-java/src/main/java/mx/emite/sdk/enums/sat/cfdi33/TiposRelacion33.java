@@ -17,7 +17,7 @@ public enum TiposRelacion33 implements Sat<String>{
 	SUSTITUCION("04","Sustitución de los CFDI previos"),
 	TRASLADOSMERCANCIA("05","Traslados de mercancias facturados previamente"),
 	TRASLADOSPREVIOS("06","Factura generada por los traslados previos"),
-	
+	ANTICIPO("07","CFDI por aplicación de anticipo"),
 	;
 	
 	

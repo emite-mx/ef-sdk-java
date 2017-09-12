@@ -2,8 +2,11 @@ package mx.emite.sdk.proxy.request.extra.generico.nomina.xml;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +18,8 @@ import lombok.Singular;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
+@XmlRootElement(name="GenericoEnvioNomina")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenericoEnvio {
 
 	@XmlAttribute(name="observaciones")

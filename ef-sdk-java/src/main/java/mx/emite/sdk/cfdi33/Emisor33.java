@@ -45,7 +45,7 @@ public class Emisor33 implements Serializable{
 	 * nombre Atributo opcional para registrar el nombre, denominación o razón social del contribuyente emisor del comprobante.
 	 */
 	@XmlAttribute(name="Nombre")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü| Ü){1,254}",message="El nombre del emisor no cumple con el patrón del SAT")
+	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,254}",message="El nombre del emisor no cumple con el patrón del SAT")
 	private String nombre;
 	
 	/**

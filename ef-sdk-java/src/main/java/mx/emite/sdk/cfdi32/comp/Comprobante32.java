@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
@@ -35,7 +34,6 @@ import mx.emite.sdk.utils.Utilerias;
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class Comprobante32  {
 
@@ -57,7 +55,7 @@ public class Comprobante32  {
 	private Impuestos32 impuestos;
 
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
-	private Complemento32 complemento = null;
+	private Complemento32 complemento;
 
 	@XmlAttribute
 	protected String certificado;
@@ -135,4 +133,15 @@ public class Comprobante32  {
 	public String generaXml(){
 		return Utilerias.marshallcfdi32(this);
 	}
+	
+	public static Comprobante32 nuevo() {
+		return builder().build();
+	}
+	
+	
+	public Comprobante32() {
+		formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
+		moneda = Monedas.MXN;
+	}
+	
 }

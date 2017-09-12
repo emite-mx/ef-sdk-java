@@ -31,7 +31,7 @@ public class Fideicomisonoempresarial extends ComplementoInterface{
 	 */
 	@XmlAttribute(name="Version")
 	@NotNull @Pattern(regexp="(1\\.0)",message="Version debe de ser 1.0")
-	private String version="1.0";
+	private final String version="1.0";
 	
 	/**
 	 *  ingresosOEntradas Nodo requerido para expresar el importe de los ingresos del periodo de fideicomisos que no realizan actividades empresariales

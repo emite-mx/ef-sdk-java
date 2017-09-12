@@ -63,9 +63,11 @@ public class ApiException extends RuntimeException{
 
 	private List<String>  sacaError(ConstraintViolationException ce) {
 		final List<String> res = new ArrayList<>();
+		if(ce.getConstraintViolations()!=null) {
 		ce.getConstraintViolations().stream().forEach(i->
 			res.add(i.getPropertyPath() + "\t "+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
 		);
+		}
 		return res;
 	}
 
@@ -80,7 +82,8 @@ public class ApiException extends RuntimeException{
 		super(tipo.getDescripcion(),ex);
 		this.error=tipo;
 		this.excepcion=ex;
-		mensajes.addAll(errores);
+		if(errores!=null)
+			mensajes.addAll(errores);
 	}
 
 	
@@ -103,7 +106,8 @@ public class ApiException extends RuntimeException{
 
 	public ApiException(I_Api_Errores tipo, List<String> errores) {
 		this(tipo);
-		mensajes.addAll(errores);
+		if(errores!=null)
+			mensajes.addAll(errores);
 	}
 
 	private void procesaErrores(BindingResult result) {
@@ -115,9 +119,11 @@ public class ApiException extends RuntimeException{
 
 	public <T> ApiException(I_Api_Errores tipo, Set<ConstraintViolation<T>> errores) {
 		this(tipo);
+		if(errores!=null) {
 		errores.stream().forEach(i->
 				mensajes.add(i.getPropertyPath() + "\t"+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
 		);
+		}
 	}
 
 	public String getTraza() {

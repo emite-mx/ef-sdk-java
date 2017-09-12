@@ -50,6 +50,6 @@ public class InfoCfdi extends Info implements Serializable{
 	@JsonDeserialize(using=FechaHoraDeserializer.class)
 	@JsonSerialize(using=FechaHoraSerializer.class)
 	private LocalDateTime fechaTimbrado;	
-	
+	private Tfd td;
 	
 }

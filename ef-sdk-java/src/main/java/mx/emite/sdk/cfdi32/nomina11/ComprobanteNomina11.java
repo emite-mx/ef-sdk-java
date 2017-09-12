@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.Conceptos;
 import mx.emite.sdk.cfdi32.Emisor;
 import mx.emite.sdk.cfdi32.Impuestos;
@@ -39,7 +38,6 @@ import mx.emite.sdk.utils.Utilerias;
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/3")
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class ComprobanteNomina11  {
 
@@ -61,7 +59,7 @@ public class ComprobanteNomina11  {
 	private Impuestos impuestos;
 
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
-	private Complemento complemento = null;
+	private Complemento complemento;
 
 	@XmlAttribute
 	@Digits(integer=20, fraction = 0)
@@ -89,6 +87,7 @@ public class ComprobanteNomina11  {
 	@XmlAttribute(required = true)
 	@NotNull 
 	@XmlJavaTypeAdapter(TipoPagoAdapter.class)
+	
 	protected TipoPago formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
 
 	@XmlAttribute
@@ -120,6 +119,7 @@ public class ComprobanteNomina11  {
 
 	@XmlAttribute(name = "Moneda")
 	@XmlJavaTypeAdapter(MonedasAdapter.class)
+	
 	protected Monedas moneda = Monedas.MXN;
 
 	@XmlAttribute(name = "TipoCambio")
@@ -135,5 +135,15 @@ public class ComprobanteNomina11  {
 
 	public String generaXml(){
 		return Utilerias.marshallnom32(this);
+	}
+	
+	public static ComprobanteNomina11 nuevo() {
+		return builder().build();
+	}
+	
+	
+	public ComprobanteNomina11() {
+		formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
+		moneda = Monedas.MXN;
 	}
 }

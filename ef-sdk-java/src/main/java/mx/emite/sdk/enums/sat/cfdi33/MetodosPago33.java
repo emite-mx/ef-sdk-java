@@ -1,7 +1,13 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
+
+import com.google.common.collect.Lists;
 
 import lombok.Getter;
 import mx.emite.sdk.enums.sat.Sat;
@@ -82,7 +88,15 @@ public enum MetodosPago33 implements Sat<String>{
 	}
 	
 	public boolean requiereComplementoPago(){
-		return in(INICIALYPARCIALIDADES);
+		return  in(INICIALYPARCIALIDADES);
+	}
+	
+	public static List<MetodosPago33> combo(){
+		return Lists.newArrayList(values()).stream().sorted(Comparator.comparing(MetodosPago33::getIdSat)).collect(Collectors.toList());
+	}
+
+	public String getCombo() {
+		return idSat.concat(" - ").concat(descripcion);
 	}
 	
 	/*
