@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mx.emite.sdk.enums.sat.adaptadores.Importe6Adapter;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteAdapter;
 import mx.emite.sdk.enums.sat.cfdi33.TiposFactor33;
 import mx.emite.sdk.enums.sat.cfdi33.TiposImpuesto33;
@@ -65,7 +66,7 @@ public class ConceptosRetencion33 implements Serializable{
 	 */
 	@XmlAttribute(name="TasaOCuota")
 	@NotNull
-	@XmlJavaTypeAdapter(ImporteAdapter.class)
+	@XmlJavaTypeAdapter(Importe6Adapter.class)
 	@DecimalMin(value="0",inclusive=true)
 	private BigDecimal tasaOCuota;
 	

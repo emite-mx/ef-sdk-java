@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Esta clase provee la funcionalidad de convertir un numero representado en
  * digitos a una representacion en letras. Mejorado para leer centavos
@@ -38,15 +40,35 @@ public abstract class NumeroLetra {
     }
     
     public static String convierte(final String numero){
-    	if(numero!=null)
+    	if(StringUtils.isNotEmpty(numero))
     		return convertNumberToLetter(numero);
+    	return "";
+    }
+    
+    public static String convierte(final String numero,String moneda){
+    	if(StringUtils.isNotEmpty(numero))
+    		return convertNumberToLetter(numero,moneda);
     	return "";
     }
     
     public static String convierte(final Double numero){
     	if(numero!=null)
-    		return convertNumberToLetter(numero);
+    		return convertNumberToLetter(numero,"MXN");
     	return "";
+    }
+    
+    /**
+     * Convierte a letras un numero de la forma $123,456.32
+     * 
+     * @param number
+     *            Numero en representacion texto
+     * @throws NumberFormatException
+     *             Si valor del numero no es valido (fuera de rango o )
+     * @return Numero en letras
+     */
+    public static String convertNumberToLetter(String number,String moneda)
+            throws NumberFormatException {
+        return convertNumberToLetter(Double.parseDouble(number),moneda);
     }
     
     /**
@@ -60,7 +82,7 @@ public abstract class NumeroLetra {
      */
     public static String convertNumberToLetter(String number)
             throws NumberFormatException {
-        return convertNumberToLetter(Double.parseDouble(number));
+        return convertNumberToLetter(Double.parseDouble(number),"MXN");
     }
 
     /**
@@ -72,7 +94,7 @@ public abstract class NumeroLetra {
      * @throws NumberFormatException
      *             Si el numero esta fuera del rango
      */
-    public static String convertNumberToLetter(double numero)
+    public static String convertNumberToLetter(double numero,String moneda)
             throws NumberFormatException {
     	boolean negativo = numero<0;
     	if(negativo)
@@ -136,11 +158,11 @@ public abstract class NumeroLetra {
         if (cientos > 1)
             converted.append(convertNumber(String.valueOf(cientos)));
 
-        converted.append(" PESOS");
+        //converted.append(" PESOS");
 
         final BigDecimal red = new BigDecimal("0."+splitNumber[1]).setScale(2, BigDecimal.ROUND_HALF_UP);
 		
-		converted.append(" ").append(red.toString().substring(2)+"/100 M.N.");
+		converted.append(" ").append(red.toString().substring(2)+"/100 "+(StringUtils.isEmpty(moneda)?"MXN":moneda));
         
         // Descompone los centavos
         /*int centavos = Integer.parseInt(String.valueOf(getDigitAt(

@@ -20,7 +20,7 @@
       <property name="delimiter" value="|" />
     </parser>
     <typeHandler name="TipoPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter"/>
-    <typeHandler name="FormasPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter"/>
+    <typeHandler name="MetodosPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter"/>
     <typeHandler name="MonedasAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter"/>
     <typeHandler name="TipoDeComprobanteAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter"/>
     <typeHandler name="EstadosAdapter" class="mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter"/>
@@ -36,7 +36,7 @@
 		      <field name="descuento" />
 		      <field name="motivoDescuento"/>
 		      <field name="lugarExpedicion"/>
-		      <field name="metodoPago" typeHandler="FormasPagoAdapter"/>
+		      <field name="metodoPago" typeHandler="MetodosPagoAdapter"/>
 		      <field name="numeroCuentaPago"/>
 		      <field name="serie"/>
 		      <field name="folio"/>
@@ -84,7 +84,7 @@
       <property name="delimiter" value="|" />
     </parser>
     <typeHandler name="TipoPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter"/>
-    <typeHandler name="FormasPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.FormasPagoAdapter"/>
+    <typeHandler name="MetodosPagoAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter"/>
     <typeHandler name="MonedasAdapter" class="mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter"/>
     <typeHandler name="TipoDeComprobanteAdapter" class="mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter"/>
     <typeHandler name="EstadosAdapter" class="mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter"/>
@@ -105,7 +105,7 @@
 		      <field name="folio" />
 		      <field name="concepto" />
 		      <field name="lugarExpedicion" />
-		      <field name="metodoPago" typeHandler="FormasPagoAdapter" />
+		      <field name="metodoPago" typeHandler="MetodosPagoAdapter" />
 		      <field name="numCuentaPago" />
 		      <field name="fechaInicialPago" typeHandler="LocalDateAdapter" />
 		      <field name="fechaFinalPago" typeHandler="LocalDateAdapter" />

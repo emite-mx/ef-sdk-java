@@ -95,8 +95,15 @@ public enum MetodosPago33 implements Sat<String>{
 		return Lists.newArrayList(values()).stream().sorted(Comparator.comparing(MetodosPago33::getIdSat)).collect(Collectors.toList());
 	}
 
+	
+	
 	public String getCombo() {
 		return idSat.concat(" - ").concat(descripcion);
+	}
+	 
+	@Override
+	public String toString() {
+		return getCombo();
 	}
 	
 	/*

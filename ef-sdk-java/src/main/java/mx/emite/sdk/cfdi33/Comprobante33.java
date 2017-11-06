@@ -1,9 +1,10 @@
 package mx.emite.sdk.cfdi33;
-
+ 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -18,12 +19,16 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import mx.emite.sdk.cfdi33.complementos.timbrefiscaldigital.TimbreFiscalDigital11;
 import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
 import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
@@ -34,6 +39,7 @@ import mx.emite.sdk.enums.sat.cfdi33.adaptadores.MetodosPago33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 import mx.emite.sdk.enums.sat.cfdi33.adaptadores.TiposDeComprobante33Adapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
+import mx.emite.sdk.utils.Complemento33Interface;
 import mx.emite.sdk.utils.ComplementoConcepto33Interface;
  
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -45,7 +51,7 @@ import mx.emite.sdk.utils.ComplementoConcepto33Interface;
 public class Comprobante33  implements Serializable {
 
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = -5776970128209831995L;
 
@@ -226,6 +232,11 @@ public class Comprobante33  implements Serializable {
 	@XmlElement(name = "Complemento", namespace = "http://www.sat.gob.mx/cfd/3", required = true)
 	private Complemento33 complemento;
 	
+	@XmlTransient
+	private String CFD;
+	
+	@XmlTransient
+	private String co;
 	
 	public Comprobante33() {
 		moneda = Monedas33.MXN;
@@ -241,6 +252,31 @@ public class Comprobante33  implements Serializable {
 
 	public List<ComplementoConcepto33Interface> getComplementosConceptos() {
 		return conceptos.getConceptos().stream().flatMap(i->i.getComplementoConcepto().getComplementos().stream()).collect(Collectors.toList());
+	}
+
+	@XmlTransient
+	@JsonIgnore
+	public boolean hayTraslados() {
+		return impuestos!=null && impuestos.getTraslados()!=null && impuestos.getTraslados().getTraslados()!=null;
+	}
+	
+	@XmlTransient
+	@JsonIgnore
+	public boolean hayRetenciones() {
+		return impuestos!=null && impuestos.getRetenciones()!=null && impuestos.getRetenciones().getRetenciones()!=null;
+	}
+	
+	@XmlTransient
+	@JsonIgnore
+	public TimbreFiscalDigital11 getTfd() {
+		if(complemento!=null && complemento.getComplementos()!=null) {
+			final Optional<Complemento33Interface> tfd = complemento.getComplementos().stream().filter(c->c instanceof TimbreFiscalDigital11).findAny();
+			if(tfd.isPresent()) {
+				return (TimbreFiscalDigital11) tfd.get();
+			}
+			
+		}
+		return null;
 	}
 	
 	/*@XmlElement(name = "Emisor", namespace = "http://www.sat.gob.mx/cfd/3", required = true)

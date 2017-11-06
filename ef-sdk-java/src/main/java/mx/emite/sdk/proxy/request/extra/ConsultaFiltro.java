@@ -48,6 +48,8 @@ public class ConsultaFiltro {
 	
 	private String folio;
 	
+	private Integer pagina=1;
+	
 	public static ConsultaFiltroBuilder builder() {
 		return new ConsultaFiltroBuilder();
 	}
@@ -63,6 +65,7 @@ public class ConsultaFiltro {
 		private String uuid;
 		private String serie;
 		private String folio;
+		private Integer pagina=1;
 		
 		/**
 		 * @param tipoTimbre por default CFDI
@@ -123,6 +126,14 @@ public class ConsultaFiltro {
 		return this;
 		}
 		/**
+		 * @param pagina
+		 * @return builder
+		 */
+		public ConsultaFiltroBuilder serie(Integer pagina) {
+		this.pagina=pagina;
+		return this;
+		}
+		/**
 		 * @param folio del timbre o comprobante
 		 * @return builder
 		 */
@@ -145,5 +156,10 @@ public class ConsultaFiltro {
 	this.uuid=builder.uuid;
 	this.serie=builder.serie;
 	this.folio=builder.folio;
+	if(builder.pagina!=null)
+		this.pagina=builder.pagina;
+	else
+		this.pagina=1;
+	
 	}
 }

@@ -7,7 +7,8 @@ public enum Proveedor {
 
 	PROXY("proxy"),
 	SCOT("scot"),
-	ENVIOCFDI("enviocfdi")
+	ENVIOCFDI("enviocfdi"),
+	EMITEETL("timbradoapi")
 	;
 	
 	final String servidor;

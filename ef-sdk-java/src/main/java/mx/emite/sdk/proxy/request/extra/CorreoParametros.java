@@ -36,6 +36,11 @@ public class CorreoParametros {
 	private List<Correo> bccs;
 	
 	@Valid
+	@JsonProperty(value="sustituciones")
+	@Singular
+	private List<PdfParametros> sustituciones;
+	
+	@Valid
 	private Correo responderA;
 	
 

@@ -23,7 +23,9 @@ import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaAcuseXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33DescargaXml;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33PdfAcuse;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33PdfPago;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Correo;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10DescargaXml;
@@ -87,6 +89,7 @@ public class EmiteAPI {
 	private final Cfdi32Pdf cfdi32_pdf;
 	private final Cfdi32PdfAcuse cfdi32_pdfacuse;
 	private final Cfdi32Correo cfdi32_correo;
+	private final Cfdi33SelladorYTimbradorGenericoTxt cfdi33_selladorytimbradorgenericotxt;
 	
 	private final Cfdi33Timbrador cfdi33_timbrador;
 	private final Cfdi33SelladorYTimbrador cfdi33_selladorytimbrador;
@@ -94,6 +97,7 @@ public class EmiteAPI {
 	private final Cfdi33DescargaXml cfdi33_descargaxml;
 	private final Cfdi33DescargaAcuseXml cfdi33_descargaacusexml;
 	private final Cfdi33Pdf cfdi33_pdf;
+	private final Cfdi33PdfPago cfdi33_pdf_pago;
 	private final Cfdi33PdfAcuse cfdi33_pdfacuse;
 	private final Cfdi33Correo cfdi33_correo;
 	private final Cfdi33Confirmacion cfdi33_confirmacion;
@@ -185,9 +189,11 @@ public class EmiteAPI {
 		this.cfdi33_descargaxml=new Cfdi33DescargaXml(this.cliente);
 		this.cfdi33_descargaacusexml=new Cfdi33DescargaAcuseXml(this.cliente);
 		this.cfdi33_pdf = new Cfdi33Pdf(this.cliente);
+		this.cfdi33_pdf_pago = new Cfdi33PdfPago(this.cliente);
 		this.cfdi33_pdfacuse = new Cfdi33PdfAcuse(this.cliente);
 		this.cfdi33_correo=new Cfdi33Correo(this.cliente);
 		this.cfdi33_confirmacion=new Cfdi33Confirmacion(this.cliente);
+		this.cfdi33_selladorytimbradorgenericotxt = new Cfdi33SelladorYTimbradorGenericoTxt(this.cliente);
 		
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		
@@ -604,6 +610,15 @@ public class EmiteAPI {
 	}
 	
 	/**
+	 * Servicio de Descarga de Pdf con complemento de pago
+	 * @return cfdi33_pdf
+	 * @since 0.2.0
+	 */
+	public Cfdi33PdfPago cfdi33_pdf_pago(){
+		return cfdi33_pdf_pago;
+	}
+	
+	/**
 	 * Servicio de Descarga de Pdf de acuse
 	 * @return cfdi33_pdfacuse
 	 * @since 0.2.0
@@ -719,6 +734,10 @@ public class EmiteAPI {
 	 */
 	public Valida33Validador valida33_Validador(){
 		return valida33_validador;
+	}
+
+	public Cfdi33SelladorYTimbradorGenericoTxt cfdi33_SelladorTimbradorGenericoTxt() {
+		return cfdi33_selladorytimbradorgenericotxt;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package mx.emite.sdk.proxy.response;
 
+import java.time.LocalDateTime;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +21,7 @@ import mx.emite.sdk.utils.Utilerias;
 @EqualsAndHashCode(callSuper=false)
 @ToString(callSuper=true)
 @NoArgsConstructor @AllArgsConstructor
-public class SellarYTimbrarResponse extends ProxyResponse {
+public class SellarYTimbrarResponse extends ProxyResponse implements RespuestaTimbrado{
 
 	/**
 	 * 
@@ -44,6 +47,39 @@ public class SellarYTimbrarResponse extends ProxyResponse {
 	public byte[] getXmlDecodificadoBinario(){
 		return Utilerias.decodifica64Utf8Byte(xml);
 	}
+
+	@Override
+	public String getInfo_Uuid() {
+		if(info!=null)
+			return info.getUuid();
+		return null;
+	}
+
+	@Override
+	public LocalDateTime getInfo_Fecha() {
+		if(info!=null)
+			return info.getFecha();
+		return null;
+	}
 	
+	@Override
+	public String getInfo_Serie() {
+		if(info!=null)
+			return info.getSerie();
+		return null;
+	}
 	
+	@Override
+	public String getInfo_Receptor() {
+		if(info!=null)
+			return info.getReceptor();
+		return null;
+	}
+	
+	@Override
+	public String getInfo_Folio() {
+		if(info!=null)
+			return info.getFolio();
+		return null;
+	}
 }

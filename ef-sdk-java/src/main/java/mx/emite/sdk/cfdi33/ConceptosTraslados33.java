@@ -41,4 +41,7 @@ public class ConceptosTraslados33 implements Serializable{
 	protected List<ConceptosTraslado33> traslados;
 
 	
+	 
+	
+	
 }

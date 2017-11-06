@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
-import mx.emite.sdk.utils.ComplementoInterface;
+import mx.emite.sdk.utils.Complemento33Interface;
 
 @XmlRootElement(name="TimbreFiscalDigital",namespace="http://www.sat.gob.mx/TimbreFiscalDigital")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -27,7 +27,7 @@ import mx.emite.sdk.utils.ComplementoInterface;
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-public class TimbreFiscalDigital11 extends ComplementoInterface implements Serializable{
+public class TimbreFiscalDigital11 extends Complemento33Interface implements Serializable{
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class TimbreFiscalDigital11 extends ComplementoInterface implements Seria
 	private static final long serialVersionUID = 2058473885101505949L;
 
 	@XmlAttribute(name="Version")
-	@NotNull @Pattern(regexp="(1\\.1)",message="Version debe de ser 1.0")
+	@NotNull @Pattern(regexp="(1\\.1)",message="Version debe de ser 1.1")
 	private final String version="1.1";
 	
 	@XmlAttribute(name="UUID")

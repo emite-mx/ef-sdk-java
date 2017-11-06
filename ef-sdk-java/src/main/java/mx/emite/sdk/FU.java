@@ -14,6 +14,8 @@ import java.util.TimeZone;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import lombok.Getter;
+
 public class FU {
 	
 		//private  final Logger log =  Logger.getLogger(FU.class);
@@ -106,10 +108,11 @@ public class FU {
 		
 		
 		private String Formato;
-		private boolean Mayusculas=false;
+		@Getter private boolean mayusculas=false;
+		
 		FechaFormatos(String formato,boolean mayusculas){
 			Formato=formato;	
-			Mayusculas=mayusculas;
+			this.mayusculas=mayusculas;
 		}
 		FechaFormatos(String formato){
 			this(formato,false);
@@ -118,6 +121,7 @@ public class FU {
 		public String getFormato(){
 			return Formato;
 		}
+		
 		}
 		
 		public  String format(Date fecha,FechaFormatos formato){
@@ -136,14 +140,14 @@ public class FU {
 			if(fecha==null)
 				return null;			
 			DateTimeFormatter df = getFormat(formato);
-			return formato.Mayusculas?  WordUtils.capitalize(df.format(fecha)):df.format(fecha);
+			return formato.mayusculas?  WordUtils.capitalize(df.format(fecha)):df.format(fecha);
 		}
 		
 		public  String format(LocalDate fecha,FechaFormatos formato){
 			if(fecha==null)
 				return null;			
 			DateTimeFormatter df = getFormat(formato);
-			return formato.Mayusculas?  WordUtils.capitalize(df.format(fecha)):df.format(fecha);
+			return formato.mayusculas?  WordUtils.capitalize(df.format(fecha)):df.format(fecha);
 		}
 		
 		public  DateTimeFormatter getFormat(FechaFormatos formato){
@@ -170,10 +174,14 @@ public class FU {
 		}
 		
 		public static Date convierte(LocalDate fecha) {
+			if(fecha==null)
+				return null;
 			return Date.from(fecha.atStartOfDay(zona).toInstant());
 		}
 		
 		public static Date convierte(LocalDateTime fecha) {
+			if(fecha==null)
+				return null;
 			return Date.from(fecha.atZone(zona).toInstant());
 		}
 		

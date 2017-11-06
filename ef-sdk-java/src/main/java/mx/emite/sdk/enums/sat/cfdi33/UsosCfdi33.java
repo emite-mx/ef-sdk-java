@@ -115,5 +115,9 @@ public enum UsosCfdi33 implements Sat<String>{
 		return idSat.concat(" - ").concat(descripcion);
 	}
 	 
+	@Override
+	public String toString() {
+		return getCombo();
+	}
 	
 }

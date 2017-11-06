@@ -46,4 +46,9 @@ public class ConceptosImpuestos33 implements Serializable{
 	private ConceptosRetenciones33 retenciones;
 
 	
+	public boolean hayImpuestos() {
+		return (traslados!=null && traslados.getTraslados()!=null)||
+				(retenciones!=null && retenciones.getRetenciones()!=null);
+	}
+	
 }

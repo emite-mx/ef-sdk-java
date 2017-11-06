@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -221,7 +221,7 @@ public class MarshallerUnmarshaller {
 			
 		}
 		else{
-			final Set<String> sl = new HashSet<>();
+			final Set<String> sl = new LinkedHashSet<>();
 			sl.add(CFDI33_SCHEMA_LOCATION);
 			if(c1!=null)
 				sl.addAll(c1.stream().map(i->i.getEsquemaLocation()).collect(Collectors.toList()));
@@ -392,7 +392,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			genericoMarshaller().marshal(comprobante,writer);
 			final String xml = writer.toString();
-			log.debug(xml);
+			//log.debug(xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -405,7 +405,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			genericoMarshaller().marshal(comprobante,writer);
 			final String xml = writer.toString();
-			log.debug(xml);
+			//log.debug(xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -419,7 +419,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlNominaMarshaller().marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -432,7 +432,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlNominaMarshaller().marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -445,7 +445,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlNomina12Marshaller().marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -458,7 +458,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlRetencionesMarshaller().marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -471,7 +471,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlCfdi33Marshaller(comp.tieneComplementos()?comp.getComplemento().getComplementos():null,comp.tieneComplementosConceptos()?comp.getComplementosConceptos():null).marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -484,7 +484,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlRetencionesComplementoMarshaller(comp).marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -497,7 +497,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter sw = new StringWriter();
 			xmlCfdiComplementoMarshaller(comp).marshal(comp,sw);
 			final String xml = sw.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -510,7 +510,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter sw = new StringWriter();
 			xmlCfdi33ComplementoMarshaller(comp).marshal(comp,sw);
 			final String xml = sw.toString();
-			log.debug("\n"+xml);
+			//Log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -523,7 +523,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter sw = new StringWriter();
 			xmlCfdi33ComplementoMarshaller(comp).marshal(comp,sw);
 			final String xml = sw.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -536,7 +536,7 @@ public class MarshallerUnmarshaller {
 			final StringWriter writer = new StringWriter();
 			xmlDpIva10Marshaller(comp).marshal(comp,writer);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){
@@ -626,7 +626,7 @@ public class MarshallerUnmarshaller {
 			final DOMSource domSource = new DOMSource(doc);
 			tr.transform(domSource, result);
 			final String xml = writer.toString();
-			log.debug("\n"+xml);
+			//log.debug("\n"+xml);
 			return xml;
 			
 		}catch(Exception api){

@@ -84,7 +84,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="Descripcion")
 	@Size(min=1,max=1000)
-	@Pattern(regexp="^([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,1000}$",
+	@Pattern(regexp="[^|]{1,1000}",
 	message="La Descripcion no cumple con el patrón del SAT")
 	@NotNull
 	private String descripcion;
@@ -156,6 +156,16 @@ public class Concepto33 implements Serializable{
 	
 	public boolean tieneComplementos(){
 		return complementoConcepto!=null&&complementoConcepto.getComplementos()!=null&&!complementoConcepto.getComplementos().isEmpty();
+	}
+
+	public Boolean hayRetenciones() {
+		return impuestos!=null && impuestos.getRetenciones()!=null && impuestos.getRetenciones().getRetenciones()!=null;
+		
+	}
+	
+	public Boolean hayTraslados() {
+		return impuestos!=null && impuestos.getTraslados()!=null && impuestos.getTraslados().getTraslados()!=null;
+		
 	}
 	
 }

@@ -33,10 +33,13 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.beanio.BeanReader;
@@ -286,7 +289,7 @@ public class Utilerias {
 		    				//doc.getAttributes().setNamedItem();
 		    			}
 		    		}
-		    		System.out.println(importado.getAttributes().item(x).getNodeName()+"->"+importado.getAttributes().item(x).getNodeValue());
+		    		//System.out.println(importado.getAttributes().item(x).getNodeName()+"->"+importado.getAttributes().item(x).getNodeValue());
 		    	}
 		    	
 		    	complemento.appendChild(importado);
@@ -484,6 +487,31 @@ public class Utilerias {
 		
 	}
 	
+	public static String marshallTxtGenerico(final GenericoFactura txt) throws ApiException {
+		BeanWriter out=null;
+		try{
+		final StreamFactory factory = StreamFactory.newInstance();
+        factory.load(Utilerias.class.getResourceAsStream("/facturagenericatxt.xml"));
+        final StringWriter writer = new StringWriter();
+        out = factory.createWriter("emiteGenerico", writer);
+        out.write(txt);
+        out.close();
+        return writer.toString();
+        
+		}
+		catch(ApiException api){
+			try{if(out!=null) out.close();}catch(Exception ex){ex.printStackTrace();}
+			throw api;
+		}
+		catch(Exception ex){
+			try{if(out!=null) out.close();}catch(Exception ex3){ex3.printStackTrace();}
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.PROXY_LEYENDO_TXT,ex);
+		}
+		
+	}
 	
 	public static String marshallGenerico(GenericoFactura comprobante) {
 		return MarshallerUnmarshaller.marshallGenericoXml(comprobante);
@@ -530,6 +558,23 @@ public class Utilerias {
 		return writer.toString();
 	}
 
+
+	public static String prettyFormat(String xml, int indent) {
+	    try {
+	        final Source xmlInput = new StreamSource(new StringReader(xml));
+	        final StringWriter stringWriter = new StringWriter();
+	        final StreamResult xmlOutput = new StreamResult(stringWriter);
+	        final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	        final Transformer transformer = transformerFactory.newTransformer(); 
+	        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	        transformer.setOutputProperty( "{http://xml.apache.org/xslt}indent-amount", Integer.toString(indent));
+	        transformer.transform(xmlInput, xmlOutput);
+	        return xmlOutput.getWriter().toString();
+	    } catch (Exception e) {
+	        throw new RuntimeException(e); // simple exception handling, please review it
+	    }
+	}
 	 
 	
 }

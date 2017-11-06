@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -78,5 +79,19 @@ public class ConceptosTraslado33 implements Serializable{
 	@DecimalMin(value="0",inclusive=true)
 	private BigDecimal importe;
 	
+	@XmlTransient
+	public Traslado33Agrupa getAgrupa() {
+		return Traslado33Agrupa.builder()
+				.tipo(impuesto)
+				.factor(tipoFactor)
+				.tasaOCuota(tasaOCuota)
+				.build();
+	}
+
+	
+	
 	
 }
+
+
+

@@ -16,6 +16,7 @@ public enum TiposRiesgo implements Sat<Integer>{
 	CLASEIII(3,"Clase III",new String[]{"Clase_III"}),
 	CLASEIV(4,"Clase IV",new String[]{"Clase_IV"}),
 	CLASEV(5,"Clase V",new String[]{"Clase_V"}),
+	NOAPLICA(99,"No aplica",new String[]{"No aplica"}),
 	;
 	
 	final Integer idSat;

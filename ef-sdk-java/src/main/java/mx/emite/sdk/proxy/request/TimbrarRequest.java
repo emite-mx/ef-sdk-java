@@ -1,6 +1,7 @@
 package mx.emite.sdk.proxy.request;
 
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import javax.validation.constraints.NotNull;
 
@@ -43,6 +44,10 @@ public class TimbrarRequest{
 		
 		public TimbrarRequestBuilder archivo(final String rutaArchivoSinCodificar) throws ApiException {
 			  
+			return codifica(Utilerias.leeArchivo(rutaArchivoSinCodificar));
+		}
+		
+		public TimbrarRequestBuilder archivo(final Path rutaArchivoSinCodificar) throws ApiException {
 			return codifica(Utilerias.leeArchivo(rutaArchivoSinCodificar));
 		}
 		
