@@ -42,5 +42,10 @@ public class FacturaEmiteConcepto {
 	@NotNull @Digits(integer = 10, fraction = 2)
 	private BigDecimal pu;
 
+	@Size(min=8,max=8) 
+	private String idclaveprodserv;
+	
+	@Size(min=3,max=3) 
+	private String claveUnidad;
 	
 }

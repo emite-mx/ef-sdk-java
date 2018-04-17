@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import com.google.common.collect.Lists;
 
 import lombok.Getter;
 import mx.emite.sdk.enums.sat.Sat;
+import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 
@@ -27,6 +29,7 @@ public enum MetodosPago33 implements Sat<String>{
 	
 	final String idSat;
 	final String descripcion;
+	
 	
 	MetodosPago33(String idSat,String descripcion){
 		this.idSat=idSat;
@@ -105,6 +108,37 @@ public enum MetodosPago33 implements Sat<String>{
 	public String toString() {
 		return getCombo();
 	}
+	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final MetodosPago33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
+
+	public static List<String> ids() {
+		return Arrays.asList(values()).stream().map(MetodosPago33::getIdSat).collect(Collectors.toList());		
+	}
+
+	public static String combo(MetodosPago33 metodoPago) {
+		if(metodoPago!=null)
+			return metodoPago.getCombo();
+		return "";
+	}
+
+	public TipoPago getTipo() {
+		switch(this) {
+		case INICIALYPARCIALIDADES: 
+			
+		case PARCIALIDADESODIFERIDO: return TipoPago.PAGOENPARCIALIDADES;
+			
+		case UNASOLAEXHIBICION: return TipoPago.PAGOENUNASOLAEXHIBICION;
+			
+		default: return TipoPago.PAGOENUNASOLAEXHIBICION;
+		}
+	}
+
 	
 	/*
 		

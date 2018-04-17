@@ -2,12 +2,10 @@ package mx.emite.sdk.errores;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -29,23 +27,23 @@ public class ApiError implements Serializable{
 	private String descripcion;
 	 
 	@ApiObjectField(name="errores",description="Lista de errores detectados",order=3,required=false)
-	private List<String> errores;
+	private Set<String> errores;
 	
 	
 	public ApiError(){
 		
 	}
 	public ApiError(I_Api_Errores e){
-		this(e,Collections.emptyList());
+		this(e,Collections.emptySet());
 	}
 
 	
 	
 	public ApiError(I_Api_Errores e,String errores){
-		this(e,Collections.singletonList(errores));
+		this(e,Collections.singleton(errores));
 	}
 	
-	public ApiError(I_Api_Errores e,List<String> errores){
+	public ApiError(I_Api_Errores e,Set<String> errores){
 		this.codigo=e.getId();
 		this.descripcion=e.getDescripcion();
 		this.errores=errores;
@@ -63,7 +61,7 @@ public class ApiError implements Serializable{
 		return this.codigo.equals(I_Api_Errores.OK.getId());
 	}
 	
-	@JsonIgnore
+	//No poner jsonignore, de aqui se generan los mensajes de error
 	public String getHtml(){
 		final StringBuilder res = new StringBuilder("<b>").append(codigo.toString()).append("</b>");
 		if(descripcion!=null)

@@ -373,6 +373,12 @@ public class FU {
 			return fecha.toLocalDate();			
 		}
 
+		public static LocalDate convierteF(java.util.Date fecha) {
+			if(fecha==null)
+				return null;
+			return fecha.toInstant().atZone(zona).toLocalDate();			
+		}
+		
 		/*
 		public static LocalDateTime sysdate() {
 			return convierte(new Date());

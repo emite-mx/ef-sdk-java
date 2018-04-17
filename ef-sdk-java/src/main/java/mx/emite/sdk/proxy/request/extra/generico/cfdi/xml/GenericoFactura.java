@@ -22,15 +22,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import mx.emite.sdk.enums.sat.MetodosPago;
-import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.RegimenesFiscales;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
 import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.RegimenesFiscalesAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
+import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
+import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 import mx.emite.sdk.proxy.request.extra.generico.nomina.xml.GenericoEnvio;
 
 
@@ -94,8 +94,8 @@ public class GenericoFactura {
 	private String numeroCuentaPago;
 	
 	@XmlAttribute(name="moneda")
-	@XmlJavaTypeAdapter(MonedasAdapter.class)
-	private Monedas moneda;
+	@XmlJavaTypeAdapter(Monedas33Adapter.class)
+	private Monedas33 moneda;
 	
 	@XmlAttribute(name="tipoCambio")
 	@Digits(integer=24,fraction=6)

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -71,7 +72,7 @@ public class Utilerias {
 	private final static Collator comparador = creaComparador();
 	private final static String UTF8_BOM = "\uFEFF";
 	public final static String PATRON_RFC = "^[A-Z&amp;Ñ]{3,4}[0-9]{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])[A-Z0-9]{2}[0-9A]$";
-	
+	 
 	
 	/*public static void main (String[] agr){
 		
@@ -146,7 +147,7 @@ public class Utilerias {
 
 	public static String leeArchivo(String ruta) throws ApiException {
 		try{
-			return utf8(Files.readAllBytes(Paths.get(ruta)));
+			return utf8(quitaBom(Files.readAllBytes(Paths.get(ruta))));
 		}
 		catch(Exception io){
 			throw new ApiException(I_Api_Errores.PROXY_LEYENDO_ARCHIVO,io);
@@ -155,7 +156,7 @@ public class Utilerias {
 
 	public static String leeArchivo(Path ruta) throws ApiException {
 		try{
-			return utf8(Files.readAllBytes(ruta));
+			return utf8(quitaBom(Files.readAllBytes(ruta)));
 		}
 		catch(Exception io){
 			throw new ApiException(I_Api_Errores.PROXY_LEYENDO_ARCHIVO,io);
@@ -574,6 +575,22 @@ public class Utilerias {
 	    } catch (Exception e) {
 	        throw new RuntimeException(e); // simple exception handling, please review it
 	    }
+	}
+	
+	public static final void prettyPrint(Document xml) throws Exception {
+		
+		        final Transformer tf = TransformerFactory.newInstance().newTransformer();
+		        tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		        tf.setOutputProperty(OutputKeys.INDENT, "yes");
+		        final Writer out = new StringWriter();
+		        tf.transform(new DOMSource(xml), new StreamResult(out));
+		        System.out.println(out.toString());
+		
+   }
+
+
+	public static Comprobante33 unmarshall33(byte[] xml) throws Exception{
+		return MarshallerUnmarshaller.unmarshall33(xml);
 	}
 	 
 	

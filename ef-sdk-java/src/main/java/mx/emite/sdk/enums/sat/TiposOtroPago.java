@@ -15,6 +15,7 @@ public enum TiposOtroPago implements Sat<String>{
 	SUBSIDIO("002","Subsidio efectivamente entregado al trabajador"),
 	VIATICOS("003","Viáticos"),
 	COMPENSACION("004","Aplicación de saldo a favor por compensación anual"),
+	REINTEGROISRRETENIDO("005","Reintegro de ISR retenido en exceso de ejercicio anterior"),
 	OTROS("999","Pagos distintos a los listados y que no deben considerarse como ingreso por sueldos")
 	;
 	
@@ -78,9 +79,10 @@ public enum TiposOtroPago implements Sat<String>{
 	}
 	
 	public boolean esCompensasionSaldos(){
+		//return this.equals(COMPENSACION) || this.equals(REINTEGROISRRETENIDO);
 		return this.equals(COMPENSACION);
 	}
-	
+	  
 	public boolean esViaticos(){
 		return this.equals(VIATICOS);
 	}

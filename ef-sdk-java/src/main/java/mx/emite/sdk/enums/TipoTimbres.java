@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 
 @ApiObject
-public enum TipoTimbres {
+public enum TipoTimbres implements Serializable {
 	
 	TODOS(0,"TODOS",true),
 	CFDI(1,"CFDI",false),

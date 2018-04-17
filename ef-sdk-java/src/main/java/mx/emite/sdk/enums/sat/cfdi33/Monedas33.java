@@ -291,6 +291,11 @@ public enum Monedas33 implements Sat<String>{
 	public boolean consultable() {
 		return in(USD,EUR,CAD,JPY,GBP);
 	}
+
+	public static String descripcionSimple(String moneda) {
+		final Monedas33 mon = idSat(moneda);
+		return mon==null?"":mon.getDescripcion();
+	}
 	/*
 		
 	

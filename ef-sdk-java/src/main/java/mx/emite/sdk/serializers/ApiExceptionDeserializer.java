@@ -20,7 +20,7 @@ public class ApiExceptionDeserializer extends JsonDeserializer<ApiException>{
 	public ApiException deserialize(JsonParser p, DeserializationContext ctxt)	throws IOException, JsonProcessingException {
 		final ApiError node = p.readValueAs(ApiError.class);
 		try{
-			return new ApiException(I_Api_Errores.getTipo(node.getCodigo()),node.getErrores());
+			return ApiException.error(I_Api_Errores.getTipo(node.getCodigo()),node.getErrores());
 		}
 		catch(Exception e){
 			throw new RuntimeException(e);

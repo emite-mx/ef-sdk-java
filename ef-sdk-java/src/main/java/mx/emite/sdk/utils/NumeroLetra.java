@@ -17,7 +17,7 @@ public abstract class NumeroLetra {
 	public static void main(String[] args){
 		//for(int x=18525;x<=18569;x++)
 		//System.out.println(convertNumberToLetter(x));
-		System.out.println(convertNumberToLetter("2001"));
+		System.out.println(convierte(1001d,"PESOS","MN"));
 	}
 	
     private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ",
@@ -39,6 +39,12 @@ public abstract class NumeroLetra {
     	return "";
     }
     
+    public static String convierte(final BigDecimal numero,final String prefijo,final String sufijo){
+    	if(numero!=null)
+    		return convierte(numero.doubleValue(),prefijo,sufijo);
+    	return "";
+    }
+    
     public static String convierte(final String numero){
     	if(StringUtils.isNotEmpty(numero))
     		return convertNumberToLetter(numero);
@@ -51,9 +57,28 @@ public abstract class NumeroLetra {
     	return "";
     }
     
+    public static String convierte(final String numero,String prefijo,String moneda){
+    	if(StringUtils.isNotEmpty(numero))
+    		return convertNumberToLetter(numero,prefijo,moneda);
+    	return "";
+    }
+    
     public static String convierte(final Double numero){
     	if(numero!=null)
-    		return convertNumberToLetter(numero,"MXN");
+    		return convertNumberToLetter(numero,null,"MXN");
+    	return "";
+    }
+    
+    public static String convierte(final Double numero,final String sufijo){
+    	if(numero!=null)
+    		return convertNumberToLetter(numero,null,sufijo);
+    	return "";
+    }
+    
+    
+    public static String convierte(final Double numero,final String prefijo,final String sufijo){
+    	if(numero!=null)
+    		return convertNumberToLetter(numero,prefijo,sufijo);
     	return "";
     }
     
@@ -68,7 +93,12 @@ public abstract class NumeroLetra {
      */
     public static String convertNumberToLetter(String number,String moneda)
             throws NumberFormatException {
-        return convertNumberToLetter(Double.parseDouble(number),moneda);
+        return convertNumberToLetter(Double.parseDouble(number),null,moneda);
+    }
+    
+    public static String convertNumberToLetter(String number,String prefijo,String moneda)
+            throws NumberFormatException {
+        return convertNumberToLetter(Double.parseDouble(number),prefijo,moneda);
     }
     
     /**
@@ -82,8 +112,13 @@ public abstract class NumeroLetra {
      */
     public static String convertNumberToLetter(String number)
             throws NumberFormatException {
-        return convertNumberToLetter(Double.parseDouble(number),"MXN");
+        return convertNumberToLetter(Double.parseDouble(number),null,"MXN");
     }
+    
+    public static String convertNumberToLetter(double numero,String prefijo,String moneda) {
+    	return convertNumberToLetter(numero,prefijo,moneda,true,true);
+    }
+    
 
     /**
      * Convierte un numero en representacion numerica a uno en representacion de
@@ -94,7 +129,7 @@ public abstract class NumeroLetra {
      * @throws NumberFormatException
      *             Si el numero esta fuera del rango
      */
-    public static String convertNumberToLetter(double numero,String moneda)
+    public static String convertNumberToLetter(double numero,String prefijo,String moneda,Boolean verdecimales,Boolean vercentavos)
             throws NumberFormatException {
     	boolean negativo = numero<0;
     	if(negativo)
@@ -161,8 +196,15 @@ public abstract class NumeroLetra {
         //converted.append(" PESOS");
 
         final BigDecimal red = new BigDecimal("0."+splitNumber[1]).setScale(2, BigDecimal.ROUND_HALF_UP);
-		
-		converted.append(" ").append(red.toString().substring(2)+"/100 "+(StringUtils.isEmpty(moneda)?"MXN":moneda));
+		if(!verdecimales)
+			converted=new StringBuilder();
+		else
+			converted.append(" ");
+        
+		converted 
+			.append(prefijo==null||prefijo.length()==0?"":prefijo.concat(" "))
+			.append(vercentavos?red.toString().substring(2)+"/100 ":"")
+			.append(StringUtils.isEmpty(moneda)?"":moneda);
         
         // Descompone los centavos
         /*int centavos = Integer.parseInt(String.valueOf(getDigitAt(
@@ -237,5 +279,13 @@ public abstract class NumeroLetra {
             return origin.charAt(origin.length() - position - 1) - 48;
         return 0;
     }
+
+	public static String enteros(BigDecimal total) {
+		return StringUtils.trim(convertNumberToLetter(total==null?0:total.doubleValue(), "","",true,false));
+	}
+	
+	public static String decimales(BigDecimal total) {
+		return StringUtils.trim(convertNumberToLetter(total==null?0:total.doubleValue(), "","",false,true));
+	}
 
 }

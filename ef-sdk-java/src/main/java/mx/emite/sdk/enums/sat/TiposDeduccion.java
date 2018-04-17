@@ -110,7 +110,8 @@ public enum TiposDeduccion implements Sat<String>{
 	AJUSTEENAYUDAPARAGASTOSDEFUNERALGRAVADO("097","Ajuste en Ayuda para gastos de funeral Gravado"),
 	AJUSTEAINGRESOSASIMILADOSASALARIOSGRAVADOS("098","Ajuste a ingresos asimilados a salarios gravados"),
 	AJUSTEAINGRESOSPORSUELDOSYSALARIOSGRAVADOS("099","Ajuste a ingresos por sueldos y salarios gravados"),
-	AJUSTEAVIATICOSEXENTOS("100","Ajuste en Viáticos Exentos")
+	AJUSTEAVIATICOSEXENTOS("100","Ajuste en Viáticos Exentos"),
+	ISRANTERIOR("101","ISR Retenido de ejercicio anterior")
 	;
 	
 	final String idSat;

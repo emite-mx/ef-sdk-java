@@ -99,5 +99,16 @@ public enum TiposImpuesto33 implements Sat<String>{
 			return  idSat.concat(" - ").concat(rf.getDescripcion());
 		return idSat;
 	}
+
+	public Boolean iva() {
+		return this.equals(IVA);
+	}
 	
+	public Boolean isr() {
+		return this.equals(ISR);
+	}
+	
+	public Boolean ieps() {
+		return this.equals(IEPS);
+	}
 }

@@ -5,6 +5,7 @@ import org.beanio.types.TypeConversionException;
 
 import lombok.Getter;
 import mx.emite.sdk.enums.sat.Sat;
+import mx.emite.sdk.enums.sat.UnidadesMedida;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
@@ -12,12 +13,12 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum ClavesUnidad33 implements Sat<String>{
 	
-	
-	TARIFA("A9","Tarifa"),
 	ACTIVIDAD("ACT","Actividad"),
+	TARIFA("A9","Tarifa"),
 	UNIDADDESERVICIO("E48","Unidad de servicio"),
 	ELEMENTO("EA","Elemento"),
 	NUMEROARTICULOS("NAR","Número de artículos"),
+	PIEZA("H87","Pieza"),
 	//UNIDAD("XUN","Unidad"),
 	MUTUAMENTEDEFINIDOS("ZZ","Mutuamente definido")
 	;
@@ -93,5 +94,23 @@ public enum ClavesUnidad33 implements Sat<String>{
 	@Override
 	public String getIdString() {
 		return idSat;
+	}
+
+
+	public UnidadesMedida getUnidad() {
+		switch(this) {
+		case ACTIVIDAD: return UnidadesMedida.SERVICIO;
+		case ELEMENTO: return UnidadesMedida.SERVICIO;
+		case MUTUAMENTEDEFINIDOS: return UnidadesMedida.NOAPLICA;
+		case NUMEROARTICULOS: 
+		case PIEZA:
+		case TARIFA: return UnidadesMedida.PIEZA;
+			
+		case UNIDADDESERVICIO:
+			return UnidadesMedida.SERVICIO;
+			
+		default:
+			return UnidadesMedida.NOAPLICA;
+		}
 	}
 }

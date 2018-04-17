@@ -31,6 +31,12 @@ public class UuidValidador implements ConstraintValidator<Uuid, String>{
 	        return false;
 	    }
 	}
+	
+	/*public static void main(String[] argsa) {
+		String rfc="B4DE8283-746A-4D93-837F-9C093365A8C1";
+		System.out.println(new UuidValidador().isValid(rfc, nullt));
+		
+	}*/
 
 	
 }

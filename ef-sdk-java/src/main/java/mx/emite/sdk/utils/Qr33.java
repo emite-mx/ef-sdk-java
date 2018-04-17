@@ -22,12 +22,18 @@ public class Qr33 implements Serializable{
 		return getQr(uuid,rfcEmisor,rfcReceptor,new BigDecimal(total),sello);
 	}
 	
+	public static void main(String[] agrs) {
+		
+		//System.out.println("BM&910702B15".replaceAll("&", "&amp;"));
+		
+	}
+	
 	public static String getQr(final String uuid,final String rfcEmisor,final String rfcReceptor,final BigDecimal total,String selloEmisor) throws Exception {
 		//https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=C76CEEC9-843F-4A71-9678-50FCD10604E5&re=PAGJ780918RS4&rr=UPM980921RI2&tt=3527.34&fe=P+a/Dw==
 		final StringBuilder sb = new StringBuilder(urlSat)
 		.append("id=").append(uuid)
-		.append("&re=").append(rfcEmisor)
-		.append("&rr=").append(rfcReceptor)
+		.append("&re=").append(rfcEmisor.replaceAll("&", "&amp;"))
+		.append("&rr=").append(rfcReceptor.replaceAll("&", "&amp;"))
 		.append("&tt=").append(nf.format(total))
 		.append("&fe=").append(selloEmisor!=null&&selloEmisor.length()>8?selloEmisor.substring(selloEmisor.length()-8):"");
 		return sb.toString();

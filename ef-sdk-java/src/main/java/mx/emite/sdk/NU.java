@@ -355,6 +355,7 @@ public class NU {
 			return (a == null) ? b : a;
 		}
 
+		@Deprecated
 		public static  BigDecimal montoimpuesto(BigDecimal subtotal,	BigDecimal tasa) {
 			if(subtotal!=null&&tasa!=null){
 				BigDecimal monto = subtotal;
@@ -365,6 +366,16 @@ public class NU {
 			return BigDecimal.ZERO;
 		}
 
+		public static  BigDecimal montoimpuesto(BigDecimal subtotal,	BigDecimal tasa, int escala) {
+			if(subtotal!=null&&tasa!=null){
+				BigDecimal monto = subtotal;
+				monto = monto.multiply(tasa);
+				monto = monto.divide(new BigDecimal(100),2,redondeo);
+				return monto;
+			}
+			return BigDecimal.ZERO;
+		}
+		
 		public static int comparaNumeros(final Number x, final Number y) {
 		    if(isSpecial(x) || isSpecial(y))
 		        return Double.compare(x.doubleValue(), y.doubleValue());

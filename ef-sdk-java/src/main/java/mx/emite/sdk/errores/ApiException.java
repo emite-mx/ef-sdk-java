@@ -3,6 +3,8 @@ package mx.emite.sdk.errores;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +35,8 @@ public class ApiException extends RuntimeException{
 	private I_Api_Errores error;
 	
 	
-	private List<String> mensajes = new ArrayList<String>();
+	private Set<String> mensajes = new HashSet<String>();
+	
 	
 	@JsonIgnore
 	private Throwable excepcion;
@@ -78,7 +81,7 @@ public class ApiException extends RuntimeException{
 		mensajes.add(mensaje);
 	}
 	
-	public ApiException(I_Api_Errores tipo, List<String> errores,Throwable ex) {
+	public ApiException(I_Api_Errores tipo, Collection<String> errores,Throwable ex) {
 		super(tipo.getDescripcion(),ex);
 		this.error=tipo;
 		this.excepcion=ex;
@@ -104,12 +107,21 @@ public class ApiException extends RuntimeException{
 
 	
 
-	public ApiException(I_Api_Errores tipo, List<String> errores) {
+	public ApiException(I_Api_Errores tipo, Collection<String> errores) {
 		this(tipo);
 		if(errores!=null)
 			mensajes.addAll(errores);
 	}
+	
+	public static ApiException error(I_Api_Errores tipo, Set<String> errores) {
+		final ApiException res = new ApiException(tipo);
+		res.setMensajes(errores);
+		return res;
+	}
 
+
+
+	
 	private void procesaErrores(BindingResult result) {
 		List<FieldError> fieldErrors = result.getFieldErrors();
 		List<ObjectError> globalErrors = result.getGlobalErrors();
@@ -121,8 +133,17 @@ public class ApiException extends RuntimeException{
 		this(tipo);
 		if(errores!=null) {
 		errores.stream().forEach(i->
-				mensajes.add(i.getPropertyPath() + "\t"+ MessageFormat.format(i.getMessage(),i.getPropertyPath()))
+				mensajes.add(i.getPropertyPath() + "\t"+ getMensaje(i))
 		);
+		}
+	}
+
+	private String  getMensaje(ConstraintViolation<?> i) {
+		try {
+			return MessageFormat.format(i.getMessage(),i.getPropertyPath());
+		}
+		catch(IllegalArgumentException ia) {
+			return i.getMessage();
 		}
 	}
 
@@ -135,18 +156,28 @@ public class ApiException extends RuntimeException{
 		return error;
 	}
 
-	public List<String> getErrores() {
+	public Set<String> getErrores() {
 		return mensajes;
 	}
 
-	public List<String> getMensajes() {
+	public Set<String> getMensajes() {
 		return mensajes;
 	}
 
 	public void setMensajes(List<String> mensajes) {
-		this.mensajes = mensajes;
+		if(this.mensajes==null)
+			this.mensajes=new HashSet<>();
+		if(mensajes!=null)
+			this.mensajes.addAll(mensajes);
 	}
 
+	public void setMensajes(Set<String> mensajes) {
+		if(this.mensajes==null)
+			this.mensajes=new HashSet<>();
+		if(mensajes!=null)
+			this.mensajes.addAll(mensajes);
+	}
+	
 	public Throwable getExcepcion() {
 		return excepcion;
 	}
@@ -173,6 +204,7 @@ public class ApiException extends RuntimeException{
 	public String getLocalizedMessage() {
 		return super.getLocalizedMessage();
 	}
+
 
 	
 

@@ -67,15 +67,14 @@ public class Comprobante33  implements Serializable {
 	 */
 	@XmlAttribute(name="Serie")
 	@Size(max=25) 
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,25}")
+	@Pattern(regexp="[^|]{1,25}")
 	protected String serie;
 	
 	/**
 	 * folio Atributo opcional para control interno del contribuyente que expresa el folio del comprobante, caracteres.
 	 */
 	@XmlAttribute(name="Folio")
-	@Size(max=25)
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,40}")
+	@Pattern(regexp="[^|]{1,40}")
 	protected String folio;
 	
 	/**
@@ -116,7 +115,7 @@ public class Comprobante33  implements Serializable {
 	 * condicionesDePago Atributo condicional para expresar las condiciones comerciales aplicables para el pago del comprobante fiscal digital por Internet. Este atributo puede ser condicionado mediante atributos o complementos.
 	 */
 	@XmlAttribute(name="CondicionesDePago")
-	@Pattern(regexp="([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;| ́|- |:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü̈){1,1000}")
+	@Pattern(regexp="[^|]{1,1000}")
 	protected String condicionesDePago;
 	
 	/**

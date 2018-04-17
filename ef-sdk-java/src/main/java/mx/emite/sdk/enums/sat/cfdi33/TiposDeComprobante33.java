@@ -13,11 +13,11 @@ import mx.emite.sdk.errores.I_Api_Errores;
 @Getter
 public enum TiposDeComprobante33 implements Sat<String>{
 	
-	INGRESO("I","Ingreso",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
-	EGRESO("E","Egreso",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
+	INGRESO("I","Ingreso",BigDecimal.valueOf(Integer.MAX_VALUE),BigDecimal.ZERO),
+	EGRESO("E","Egreso",BigDecimal.valueOf(Integer.MAX_VALUE),BigDecimal.ZERO),
 	TRASLADO("T","Traslado",BigDecimal.ZERO,BigDecimal.ZERO),
-	NOMINA("N","Nómina",BigDecimal.valueOf(100_000_000),BigDecimal.valueOf(100_000_000)),
-	PAGO("P","Pago",BigDecimal.valueOf(100_000_000),BigDecimal.ZERO),
+	NOMINA("N","Nómina",BigDecimal.valueOf(Integer.MAX_VALUE),BigDecimal.valueOf(Integer.MAX_VALUE)),
+	PAGO("P","Pago",BigDecimal.valueOf(Integer.MAX_VALUE),BigDecimal.ZERO),
 	
 	;
 	
@@ -30,6 +30,7 @@ public enum TiposDeComprobante33 implements Sat<String>{
 	
 	TiposDeComprobante33(String idSat,String descripcion,BigDecimal valorMaximo,BigDecimal valorMaximoNds){
 		this.idSat=idSat;
+		
 		this.descripcion=descripcion;
 		this.valorMaximo=valorMaximo;
 		this.valorMaximoNds=valorMaximoNds;

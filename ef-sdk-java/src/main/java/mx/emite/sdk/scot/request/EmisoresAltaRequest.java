@@ -15,13 +15,17 @@ import mx.emite.sdk.cfdi32.anotaciones.Cp;
 import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.enums.TipoIntegradorEmisor;
 import mx.emite.sdk.enums.sat.Estados;
-import mx.emite.sdk.enums.sat.MetodosPago;
 import mx.emite.sdk.enums.sat.Paises;
-import mx.emite.sdk.enums.sat.RegimenesFiscales;
+import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
+import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
+import mx.emite.sdk.enums.sat.cfdi33.RegimenesFiscales33;
+import mx.emite.sdk.enums.sat.cfdi33.UsosCfdi33;
 import mx.emite.sdk.serializers.EstadosSerializer;
-import mx.emite.sdk.serializers.MetodosPagoSerializer;
+import mx.emite.sdk.serializers.FormasPago33Serializer;
+import mx.emite.sdk.serializers.MetodosPago33Serializer;
 import mx.emite.sdk.serializers.PaisesSerializer;
-import mx.emite.sdk.serializers.RegimenesSerializer;
+import mx.emite.sdk.serializers.RegimenesFiscales33Serializer;
+import mx.emite.sdk.serializers.UsosCfdi33Serializer;
 
 @Data
 @Builder
@@ -141,15 +145,23 @@ public class EmisoresAltaRequest  {
 	 *  regimen
 	 */
 	@NotNull
-	@JsonSerialize(using=RegimenesSerializer.class)
-	public RegimenesFiscales idRegimen;
+	@JsonSerialize(using=RegimenesFiscales33Serializer.class)
+	public RegimenesFiscales33 idRegimen;
 	
 	/**
 	 *  forma de pago
 	 */
 	@NotNull
-	@JsonSerialize(using=MetodosPagoSerializer.class)
-	public MetodosPago idFormaPago;
+	@JsonSerialize(using=FormasPago33Serializer.class)
+	public FormasPago33 idFormaPago;
+	
+	@NotNull
+	@JsonSerialize(using=MetodosPago33Serializer.class)
+	public MetodosPago33 idMetodoPago;
+	
+	@NotNull
+	@JsonSerialize(using=UsosCfdi33Serializer.class)
+	public UsosCfdi33 usocfdi;
 	
 	/**
 	 *  número de cuenta pago

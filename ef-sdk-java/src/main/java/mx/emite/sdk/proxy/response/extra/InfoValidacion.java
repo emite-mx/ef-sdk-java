@@ -30,6 +30,9 @@ public class InfoValidacion extends Info  implements Serializable{
 	private String serie;
 	private String folio;
 	private String moneda;
+	private String metodoPago;
+	private String formaPago;
+	private String usoCfdi;
 	@JsonDeserialize(using=MontoDeserializer.class)
 	private BigDecimal subtotal;
 	@JsonDeserialize(using=MontoDeserializer.class)

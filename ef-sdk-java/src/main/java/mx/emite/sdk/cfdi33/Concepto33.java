@@ -3,6 +3,8 @@ package mx.emite.sdk.cfdi33;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
@@ -51,7 +53,7 @@ public class Concepto33 implements Serializable{
 	 * noIdentificacion Atributo opcional para expresar el número de parte, identificador del producto o del servicio, la clave de producto o servicio, SKU o equivalente, propia de la operación del emisor, amparado por el presente concepto.
 	 */
 	@XmlAttribute(name="NoIdentificacion")
-	@Pattern(regexp="^([A-Z]|[a-z]|[0-9]| |Ñ|ñ|!|&quot;|%|&amp;|&apos;|´|-|:|;|&gt;|=|&lt;|@|_|,|\\{|\\}|`|~|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ü|Ü){1,100}$",message="El noIdentificacion no cumple con el patrón del SAT")
+	@Pattern(regexp="[^|]{1,100}",message="El noIdentificacion no cumple con el patrón del SAT")
 	private String noIdentificacion;
 	
 	/**
@@ -84,8 +86,7 @@ public class Concepto33 implements Serializable{
 	 */
 	@XmlAttribute(name="Descripcion")
 	@Size(min=1,max=1000)
-	@Pattern(regexp="[^|]{1,1000}",
-	message="La Descripcion no cumple con el patrón del SAT")
+	@Pattern(regexp="[^|]{1,1000}", message="La Descripcion no cumple con el patrón del SAT")
 	@NotNull
 	private String descripcion;
 	
@@ -166,6 +167,63 @@ public class Concepto33 implements Serializable{
 	public Boolean hayTraslados() {
 		return impuestos!=null && impuestos.getTraslados()!=null && impuestos.getTraslados().getTraslados()!=null;
 		
+	}
+	
+	public Stream<ConceptosTraslado33> getTraslados() {
+		if(hayTraslados())
+			return impuestos.getTraslados().getTraslados().stream();
+		return Stream.empty();
+	}
+
+	public boolean getTieneIvaTrasladado() {
+		if(hayTraslados()) {
+			return impuestos.getTraslados().getTraslados().stream().filter(i->i.getImpuesto().iva()).findAny().isPresent();
+		}
+		return false;
+	}
+
+	public BigDecimal getTasaIvaTraslado() {
+		if(hayTraslados()) {
+			final Optional<ConceptosTraslado33> tasa = impuestos.getTraslados().getTraslados().stream().filter(i->i.getImpuesto().iva()).findAny();
+			if(tasa.isPresent()) {
+				return tasa.get().getTasaOCuota().multiply(new BigDecimal(100));
+			}
+		}
+		return BigDecimal.ZERO;
+	}
+	
+	public boolean getTieneIsrRetenido() {
+		if(hayRetenciones()) {
+			return impuestos.getRetenciones().getRetenciones().stream().filter(i->i.getImpuesto().isr()).findAny().isPresent();
+		}
+		return false;
+	}
+
+	public BigDecimal getTasaIsrRetenido() {
+		if(hayRetenciones()) {
+			final Optional<ConceptosRetencion33> tasa = impuestos.getRetenciones().getRetenciones().stream().filter(i->i.getImpuesto().isr()).findAny();
+			if(tasa.isPresent()) {
+				return tasa.get().getTasaOCuota().multiply(new BigDecimal(100));
+			}
+		}
+		return BigDecimal.ZERO;
+	}
+	
+	public boolean getTieneIvaRetenido() {
+		if(hayRetenciones()) {
+			return impuestos.getRetenciones().getRetenciones().stream().filter(i->i.getImpuesto().iva()).findAny().isPresent();
+		}
+		return false;
+	}
+
+	public BigDecimal getTasaIvaRetenido() {
+		if(hayRetenciones()) {
+			final Optional<ConceptosRetencion33> tasa = impuestos.getRetenciones().getRetenciones().stream().filter(i->i.getImpuesto().iva()).findAny();
+			if(tasa.isPresent()) {
+				return tasa.get().getTasaOCuota().multiply(new BigDecimal(100));
+			}
+		}
+		return BigDecimal.ZERO;
 	}
 	
 }

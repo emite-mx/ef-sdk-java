@@ -23,13 +23,13 @@ import mx.emite.sdk.cfdi32.Emisor;
 import mx.emite.sdk.cfdi32.Impuestos;
 import mx.emite.sdk.cfdi32.Receptor;
 import mx.emite.sdk.enums.sat.MetodosPago;
-import mx.emite.sdk.enums.sat.Monedas;
 import mx.emite.sdk.enums.sat.TipoDeComprobante;
 import mx.emite.sdk.enums.sat.TipoPago;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
-import mx.emite.sdk.enums.sat.adaptadores.MonedasAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoDeComprobanteAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TipoPagoAdapter;
+import mx.emite.sdk.enums.sat.cfdi33.Monedas33;
+import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 import mx.emite.sdk.serializers.LocalDateTimeAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -118,9 +118,8 @@ public class ComprobanteNomina11  {
 	protected BigDecimal total;
 
 	@XmlAttribute(name = "Moneda")
-	@XmlJavaTypeAdapter(MonedasAdapter.class)
-	
-	protected Monedas moneda = Monedas.MXN;
+	@XmlJavaTypeAdapter(Monedas33Adapter.class)
+	protected Monedas33 moneda = Monedas33.MXN;
 
 	@XmlAttribute(name = "TipoCambio")
 	@Min(value = 0)
@@ -144,6 +143,6 @@ public class ComprobanteNomina11  {
 	
 	public ComprobanteNomina11() {
 		formaDePago = TipoPago.PAGOENUNASOLAEXHIBICION;
-		moneda = Monedas.MXN;
+		moneda = Monedas33.MXN;
 	}
 }

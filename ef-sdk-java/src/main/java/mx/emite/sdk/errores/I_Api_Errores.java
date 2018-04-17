@@ -35,7 +35,7 @@ public enum I_Api_Errores {
 	
 	//TIMBRADOR_VALIDACIONCERTIFICADO(308,"Error validando certificado de emisor"),
 	TIMBRADOR_CSDAPOCRIFO(308,"Certificado no expedido por el SAT","El CSD del emisor no fue firmado por los certificados de autoridad del SAT"),
-	
+	TIMBRADOR_DESCONOCIDO(399,"Error no tipificado"),
 	TIMBRADOR_CERTIFICADO_INVALIDO(310,"El CFDI contiene un certificado inválido"),
 	TIMBRADOR_XMLINVALIDO(349,"El documento no es un XML válido"),
 	TIMBRADOR_SERVICIONODISPONIBLE(350,"Servicio temporalmente fuera de servicio"),
@@ -63,6 +63,7 @@ public enum I_Api_Errores {
 	TIMBRADOR_TOKEN(606,"Error obteniendo token del SAT"),
 	TIMBRADOR_RFCNOENLRFC(607,"El rfc no se encuentra en la lRfc"),
 	TIMBRADOR_CONFIRMACION(608,"Error al generar código de confirmación"),
+	TIMBRADOR_CPS_GUARDANDO(609,"Guardando Clave Producto y Servicio en Dynamo"),
 	
 	CANCELADOR_RETENCIONES_UUIDPROCESADO(1200,"UUID Procesado"),
 	CANCELADOR_RETENCIONES_UUIDCANCELADO(1201,"UUID Cancelado"),
@@ -131,6 +132,7 @@ public enum I_Api_Errores {
 	CLIENTE_REQUEST_ZIP(5121,"El archivo zip esta dañado"),
 	CLIENTE_PLANTILLA_INVALIDA(5122,"La plantilla solicitada no existe"),
 	CLIENTE_XML_MALFORMADO(5123,"El documento enviado es un documento XML mal formado"),
+	CLIENTE_REQUEST_REPETIDO(5124,"El documento enviado ya esta siendo timbrado en otro proceso"),
 	PSRDD_TIMBRANDO(6001,"Error al timbrar comprobante"),
 	PROXY_SERVICIO_NODISPONIBLE(9001,"Servicio no disponible"),
 	PROXY_PROCESANDO_RESPUESTA(9002,"Procesando respuesta"),
@@ -634,6 +636,7 @@ public enum I_Api_Errores {
 	INE185(41185,"INE185 - Atributo TipoComite, con valor {Ejecutivo Estatal} , no debe existir ine:idContabilidad","TipoComite:  Cuando en este atributo se seleccione el valor {Ejecutivo Estatal}:No debe existir el atributo ine:IdContabilidad"),
 	INE186(41186,"INE186 - Atributo TipoComite, debe existir al menos un elemento ine:Entidad y en ningún caso debe existir ine:Entidad:Ambito","TipoComite:  Cuando en este atributo se seleccione el valor {Ejecutivo Estatal o Directivo Estatal}: Debe existir al menos un elemento ine:Entidad y en cada entidad que se registre no debe existir el atributo ine:Entidad:Ambito"),
 	INE187(41187,"INE187 - Elemento Entidad, no se debe repetir la combinación de ine:Entidad:ClaveEntidad  con ine:Entidad:Ambito","ClaveEntidad: La combinación del valor de este atributo con el valor del atributo ine:Entidad:Ambito, no se debe repetir en este complemento."), 
+	INE188(41188,"INE188 - Elemento ClaveEntidad, No se pueden seleccionar las claves  NAC, CR1, CR2, CR3, CR4 y CR5 por que el Ambito es Local.","Cuando en este atributo se seleccione el valor {Local}: No se pueden seleccionar las claves NAC, CR1, CR2, CR3, CR4 y CR5 en el atributo ine:Entidad:ClaveEntidad."),
 	
 	ECC121(42121,"ECC121 - El valor del atributo '(ecc11:EstadoDeCuentaCombustible:SubTotal )' no coincide con la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Importe]","Para el atributo ecc11:EstadoDeCuentaCombustible:SubTotal, el valor de este atributo debe ser igual a la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Importe]."),
 	ECC122(42122,"ECC122 - El valor del atributo '(ecc11:EstadoDeCuentaCombustible:Total)' debe ser igual a la suma del valor del atributo [SubTotal] y la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Traslados]:[Traslado]:[Importe].","Para el atributo ecc11:EstadoDeCuentaCombustible:Total, el valor de este atributo debe ser igual a la suma del valor del atributo [SubTotal] y la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Traslados]:[Traslado]:[Importe]."),

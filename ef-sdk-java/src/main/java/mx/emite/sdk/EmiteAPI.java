@@ -25,6 +25,7 @@ import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Pdf;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33PdfAcuse;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33PdfPago;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbrador;
+import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbradorGenericoEmind;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33SelladorYTimbradorGenericoTxt;
 import mx.emite.sdk.clientes.operaciones.emisores.cfdi33.Cfdi33Timbrador;
 import mx.emite.sdk.clientes.operaciones.emisores.dpiva10.DpIva10Correo;
@@ -90,6 +91,7 @@ public class EmiteAPI {
 	private final Cfdi32PdfAcuse cfdi32_pdfacuse;
 	private final Cfdi32Correo cfdi32_correo;
 	private final Cfdi33SelladorYTimbradorGenericoTxt cfdi33_selladorytimbradorgenericotxt;
+	private final Cfdi33SelladorYTimbradorGenericoEmind cfdi33_selladorytimbradorgenericoemind;
 	
 	private final Cfdi33Timbrador cfdi33_timbrador;
 	private final Cfdi33SelladorYTimbrador cfdi33_selladorytimbrador;
@@ -194,6 +196,7 @@ public class EmiteAPI {
 		this.cfdi33_correo=new Cfdi33Correo(this.cliente);
 		this.cfdi33_confirmacion=new Cfdi33Confirmacion(this.cliente);
 		this.cfdi33_selladorytimbradorgenericotxt = new Cfdi33SelladorYTimbradorGenericoTxt(this.cliente);
+		this.cfdi33_selladorytimbradorgenericoemind = new Cfdi33SelladorYTimbradorGenericoEmind(this.cliente);
 		
 		this.descargamasiva=new DescargaMasiva(this.cliente);
 		
@@ -729,16 +732,29 @@ public class EmiteAPI {
 	
 	/**
 	 * Servicio de Validación de CFDI 3.3
-	 * @return valida32_validador
-	 * @since 0.2.0
+	 * @return valida33_validador
+	 * @since 0.3.0
 	 */
 	public Valida33Validador valida33_Validador(){
 		return valida33_validador;
 	}
 
+	/**
+	 * Servicio de Sellado y Timbrado de CFDI Generico 3.3
+	 * @return cfdi33_selladorytimbradorgenericotxt
+	 * @since 0.3.0
+	 */
 	public Cfdi33SelladorYTimbradorGenericoTxt cfdi33_SelladorTimbradorGenericoTxt() {
 		return cfdi33_selladorytimbradorgenericotxt;
 	}
 	
+	/**
+	 * Servicio de Sellado y Timbrado de CFDI E-Mind 3.3
+	 * @return cfdi33_selladorytimbradorgenericoemind
+	 * @since 0.3.0
+	 */
+	public Cfdi33SelladorYTimbradorGenericoEmind cfdi33_SelladorTimbradorGenericoEmind() {
+		return cfdi33_selladorytimbradorgenericoemind;
+	}
 	
 }

@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,12 +47,16 @@ public enum UsosCfdi33 implements Sat<String>{
 	final String descripcion;
 	final Boolean fisica;
 	final Boolean moral;
-
+	
+	
+	
 	UsosCfdi33(String idSat,String descripcion,Boolean fisica,Boolean moral){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.fisica=fisica;
 		this.moral=moral;
+		
+		//BigDecimal.ONE.multiply(BigDecimal., mc)
 	}
 
 	public static UsosCfdi33 unmarshall(String metodo) throws ApiException{
@@ -118,6 +123,10 @@ public enum UsosCfdi33 implements Sat<String>{
 	@Override
 	public String toString() {
 		return getCombo();
+	}
+
+	public static List<String> ids() {
+		return Arrays.asList(values()).stream().map(UsosCfdi33::getIdSat).collect(Collectors.toList());		
 	}
 	
 }

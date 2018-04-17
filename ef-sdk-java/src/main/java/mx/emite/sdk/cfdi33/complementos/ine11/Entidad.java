@@ -18,8 +18,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.enums.sat.Estados;
-import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
+import mx.emite.sdk.enums.sat.EntidadesIne11;
+import mx.emite.sdk.enums.sat.adaptadores.EntidadesIne11Adapter;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -36,9 +36,9 @@ public class Entidad implements Serializable {
 	private static final long serialVersionUID = 1058590517809506107L;
 
 	@XmlAttribute(name="ClaveEntidad")
-	@XmlJavaTypeAdapter(EstadosAdapter.class)
+	@XmlJavaTypeAdapter(EntidadesIne11Adapter.class)
 	@NotNull
-    private Estados claveEntidad;
+    private EntidadesIne11 claveEntidad;
 	
 	@XmlAttribute(name="Ambito")
 	@Pattern(regexp="(Local|Federal){1}",message="Debe de estar en el catálogo t_Ambito")

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.beanio.types.TypeConversionException;
 
 import lombok.Getter;
+import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
@@ -15,19 +16,19 @@ import mx.emite.sdk.utils.Utilerias;
 @Getter
 public enum MetodosPago implements Sat<String>{
 	
-	EFECTIVO("01","Efectivo"),
-	CHEQUE("02","Cheque nominativo"),
-	TRANSFERENCIA("03","Transferencia electrónica de fondos"),
-	TARJETASDECREDITO("04","Tarjetas de crédito"),
-	MONEDEROSELECTRONICOS("05","Monederos electrónicos"),
-	DINEROELECTRONICO("06","Dinero electrónico"),
+	EFECTIVO("01","Efectivo",FormasPago33.EFECTIVO),
+	CHEQUE("02","Cheque nominativo",FormasPago33.CHEQUENOMINATIVO),
+	TRANSFERENCIA("03","Transferencia electrónica de fondos",FormasPago33.TRANSFERENCIAELECTRONICADEFONDOS),
+	TARJETASDECREDITO("04","Tarjetas de crédito",FormasPago33.TARJETADECREDITO),
+	MONEDEROSELECTRONICOS("05","Monederos electrónicos",FormasPago33.MONEDEROELECTRONICO),
+	DINEROELECTRONICO("06","Dinero electrónico",FormasPago33.DINEROELECTRONICO),
 	
-	VALESDEDESPENSA("08","Vales de despensa"),
-	TARJETADEDEBITO("28","Tarjeta de Débito"),
-	TARJETADESERVICIO("29","Tarjeta de Servicio"),
+	VALESDEDESPENSA("08","Vales de despensa",FormasPago33.VALESDEDESPENSA),
+	TARJETADEDEBITO("28","Tarjeta de Débito",FormasPago33.TARJETADEDEBITO),
+	TARJETADESERVICIO("29","Tarjeta de Servicio",FormasPago33.TARJETADESERVICIOS),
 	
-	OTROS("99","Otros",new String[]{"No Identificado"}),
-	NA("NA","NA");
+	OTROS("99","Por Definir",new String[]{"Otros","No Identificado"},FormasPago33.PORDEFINIR),
+	NA("NA","NA",FormasPago33.PORDEFINIR);
 	
 	//TARJETASDIGITALES(7,"Tarjetas digitales"),
 	//BIENES(9,"Bienes"),
@@ -44,16 +45,17 @@ public enum MetodosPago implements Sat<String>{
 	final String idSat;
 	final String descripcion;
 	final String[] sinonimos;
+	final FormasPago33 formaPago;
 	
-	
-	MetodosPago(String idSat,String descripcion){
-		this(idSat,descripcion,null);
+	MetodosPago(String idSat,String descripcion,FormasPago33 formaPago){
+		this(idSat,descripcion,null,formaPago);
 	}
 	
-	MetodosPago(String idSat,String descripcion,String[] sinonimos){
+	MetodosPago(String idSat,String descripcion,String[] sinonimos,final FormasPago33 formaPago){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
+		this.formaPago=formaPago;
 	}
 
 	/**

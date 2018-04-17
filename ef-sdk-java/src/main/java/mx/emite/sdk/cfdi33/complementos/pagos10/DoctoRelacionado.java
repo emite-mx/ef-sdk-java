@@ -29,7 +29,6 @@ import mx.emite.sdk.enums.sat.cfdi33.adaptadores.Monedas33Adapter;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-
 public class DoctoRelacionado implements Serializable {
 
 	/**
@@ -44,11 +43,11 @@ public class DoctoRelacionado implements Serializable {
 	
 	@XmlAttribute(name="Serie")
 	@Pattern(regexp="[^|]{1,25}")
-	protected String Serie;
+	protected String serie;
 	
 	@XmlAttribute(name="Folio")
 	@Pattern(regexp="[^|]{1,40}")
-	protected String Folio;
+	protected String folio;
 	
 	@XmlAttribute(name="MonedaDR")
 	@XmlJavaTypeAdapter(Monedas33Adapter.class)
@@ -78,7 +77,13 @@ public class DoctoRelacionado implements Serializable {
 	
 	@XmlAttribute(name="ImpSaldoInsoluto")
 	@XmlJavaTypeAdapter(ImporteAdapter.class)
-	protected BigDecimal ImpSaldoInsoluto;
+	protected BigDecimal impSaldoInsoluto;
 	
-		
+
+	public String getSerieFolio() {
+		if(serie==null)
+			return folio;
+		return serie +"-"+folio;
+	}
+	
 }

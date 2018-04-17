@@ -15,7 +15,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 
 @ApiObject
 public enum EstadoTimbre{
-	TIMBRADAS("reportes.timbradas"),CANCELADAS("reportes.canceladas"), TODAS("reportes.todas");
+	TIMBRADAS("reportes.timbradas"),CANCELADAS("reportes.canceladas"), TODAS("reportes.todas"),SUSTITUIDAS("reportes.sustituidas");
 	
 	@Getter private final String descripcion;
 	

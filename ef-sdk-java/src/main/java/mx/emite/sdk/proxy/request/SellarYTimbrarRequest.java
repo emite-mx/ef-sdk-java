@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.ToString;
 import mx.emite.sdk.cfdi32.Comprobante;
 import mx.emite.sdk.cfdi32.nomina11.ComprobanteNomina11;
+import mx.emite.sdk.cfdi33.Comprobante33;
 import mx.emite.sdk.errores.ApiException;
 import mx.emite.sdk.ret10.Retenciones;
 import mx.emite.sdk.utils.Utilerias;
@@ -66,6 +67,10 @@ public class SellarYTimbrarRequest {
 		
 		public SellarYTimbrarRequestBuilder comprobante(Comprobante comprobante) throws ApiException{
 			return codifica(Utilerias.marshallcfdi32(comprobante));
+		}
+		
+		public SellarYTimbrarRequestBuilder comprobante(Comprobante33 comprobante) throws ApiException{
+			return codifica(Utilerias.marshallcfdi33(comprobante));
 		}
 		
 		public SellarYTimbrarRequestBuilder comprobante(Retenciones comprobante) throws ApiException{

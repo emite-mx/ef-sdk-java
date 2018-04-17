@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -39,6 +40,7 @@ public enum FormasPago33 implements Sat<String>{
 	TARJETADEDEBITO("28","Tarjeta de débito",Boolean.TRUE,null,null,null,"[0-9]{16}",null,null,"[0-9]{10,11}|[0-9]{15,16}|[0-9]{18}|[A-Z0-9_]{10,50}",Boolean.FALSE,Boolean.TRUE),
 	TARJETADESERVICIOS("29","Tarjeta de servicios",Boolean.TRUE,null,null,null,"[0-9]{15,16}",null,null,"[0-9]{10,11}|[0-9]{15,16}|[0-9]{18}|[A-Z0-9_]{10,50}",Boolean.FALSE,Boolean.TRUE),
 	APLICACIONANTICIPOS("30","Aplicación de anticipos",Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE),
+	INTERMEDIARIOPAGOS("31","Intermediario Pagos",Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE,null,Boolean.FALSE,Boolean.FALSE),
 	PORDEFINIR("99","Por definir",null,null,null,null,null,null,null,null,null,null),
 	
 	;
@@ -124,6 +126,12 @@ public enum FormasPago33 implements Sat<String>{
 		return idSat;
 	}
 	
+	public static String descripcionSimple(String idSat){
+		if(idSat==null) return "";
+		final FormasPago33 rf = idSat(idSat);
+		return rf==null?"":rf.getDescripcion();
+	}
+	
 	public boolean in(FormasPago33... lista){
 		for(FormasPago33 tc:lista){
 			if(this.equals(tc))
@@ -142,6 +150,20 @@ public enum FormasPago33 implements Sat<String>{
 
 	public String getCombo() {
 		return idSat.concat(" - ").concat(descripcion);
+	}
+
+	public static String combo(FormasPago33 formaPago) {
+		if(formaPago!=null)
+			return formaPago.getCombo();
+		return "";
+	}
+	
+	public static List<FormasPago33> pagos() {
+		return Arrays.asList(values()).stream().filter(i->!i.pordefinir()).collect(Collectors.toList());
+	}
+
+	private boolean pordefinir() {
+		return this.equals(PORDEFINIR);
 	}
 	
 	/*

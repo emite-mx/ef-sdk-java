@@ -18,6 +18,8 @@ public enum TiposRelacion33 implements Sat<String>{
 	TRASLADOSMERCANCIA("05","Traslados de mercancias facturados previamente"),
 	TRASLADOSPREVIOS("06","Factura generada por los traslados previos"),
 	ANTICIPO("07","CFDI por aplicación de anticipo"),
+	PAGOSENPARCIALIDADES("08","Factura generada por pagos en parcialidades"),
+	PAGOSDIFERIDOS("09","Factura generada por pagos diferidos"),
 	;
 	
 	
@@ -63,6 +65,18 @@ public enum TiposRelacion33 implements Sat<String>{
 	
 	@Override
 	public String getIdString() {
+		return idSat;
+	}
+	
+	public static TiposRelacion33 idSat(String idSat) {
+		return busca(idSat);
+	}
+	
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final TiposRelacion33 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
 		return idSat;
 	}
 	

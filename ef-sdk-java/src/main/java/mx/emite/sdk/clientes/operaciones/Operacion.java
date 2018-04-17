@@ -46,7 +46,7 @@ public abstract class Operacion<ENVIO,RESPUESTA extends Respuesta> {
 		if(response==null||response.getError()==null)	
 			throw new ApiException(I_Api_Errores.PROXY_SERVICIO_NODISPONIBLE,"");
 		if(!response.getError().getCodigo().equals(I_Api_Errores.OK.getId()))
-			throw new ApiException(I_Api_Errores.getTipo(response.getError().getCodigo()),response.getError().getErrores());
+			throw ApiException.error(I_Api_Errores.getTipo(response.getError().getCodigo()),response.getError().getErrores());
 		return response;
 		}
 		catch(ApiException ae){

@@ -29,6 +29,8 @@ public enum Rutas {
 	CFDI33_DESCARGA("/api/cfdi/3.3/descarga"),
 	CFDI33_CONFIRMACION("/api/cfdi/3.3/confirmacion"),
 	CFDI33_SELLARYTIMBRARGENERICOTXT("/v1/timbrartxt"),
+	CFDI33_SELLARYTIMBRARGENERICOEMIND("/v1/timbraremind33"),
+	
 	VALIDA32_VALIDADOR32("/api/validador/3.2/validador"),
 	VALIDA33_VALIDADOR33("/api/validador/3.3/validador"),
 	NOM32_TIMBRAR("/api/nomina/3.2/timbrar"),
@@ -96,7 +98,7 @@ public enum Rutas {
 	@Deprecated
 	CANCELARETUNICAEMITE("/api/ret/1.0/cancelar"),  
 	@Deprecated
-	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),     
+	CANCELARETMASIVAEMITE("/api/ret/1.0/cancelarmasiva"),      
 	
 	;
 	

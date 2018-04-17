@@ -43,6 +43,10 @@ public class ValidadorResponse extends ProxyResponse {
 		valido=false;	
 	}
 
+	public boolean es33() {
+		return info!=null && info.getVersion()!=null && info.getVersion().compareTo(new BigDecimal("3.3"))==0;
+	}
+
 	
 	
 	

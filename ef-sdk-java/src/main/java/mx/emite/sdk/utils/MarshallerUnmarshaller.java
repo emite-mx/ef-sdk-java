@@ -319,6 +319,17 @@ public class MarshallerUnmarshaller {
 		}
 	}
 	
+	private static Unmarshaller cfdi33Unmarshaller(){
+		try{
+		
+		final Unmarshaller m = contexto.createUnmarshaller();
+		return m;
+		}catch(Exception ex){
+			log.error("creando marshaller",ex);
+			return null;
+		}
+	}
+	
 	private static Marshaller genericoMarshaller(){
 		try{
 		
@@ -583,6 +594,27 @@ public class MarshallerUnmarshaller {
 		}
 	}
 
+	public static Comprobante33 unmarshall33(final byte[] xml) throws Exception{ 
+		return unmarshall33(new String(xml,"UTF-8"));
+	}
+	
+	public static Comprobante33 unmarshall33(final String xml) {
+		try{
+			final StringReader res = new StringReader(xml);
+			final StreamSource source = new StreamSource(res);
+			return (Comprobante33) cfdi33Unmarshaller().unmarshal(source);
+		}
+		catch(ApiException ae){
+			throw ae;
+		}
+		catch(Exception ex){
+			if(ex.getCause() instanceof ApiException)
+				throw (ApiException)ex.getCause();
+			else
+				throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,ex);
+		}
+	}
+	
 	public static GenericoNomina unmarshallGenericoNomina(String xml) {
 		if(!Base64.isBase64(xml))
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_BASE64);
