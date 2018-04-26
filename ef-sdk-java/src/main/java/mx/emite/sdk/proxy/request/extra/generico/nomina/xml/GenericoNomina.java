@@ -20,8 +20,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import mx.emite.sdk.enums.sat.MetodosPago;
-import mx.emite.sdk.enums.sat.TiposDeduccion;
-import mx.emite.sdk.enums.sat.TiposPeriodicidad;
+import mx.emite.sdk.enums.sat.TiposDeduccion12;
+import mx.emite.sdk.enums.sat.TiposPeriodicidad12;
 import mx.emite.sdk.enums.sat.adaptadores.MetodosPagoAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPeriodicidadAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
@@ -88,7 +88,7 @@ public class GenericoNomina {
 	@XmlAttribute(name="periodicidadPago")
 	@XmlJavaTypeAdapter(TiposPeriodicidadAdapter.class)
 	@NotNull 
-	private TiposPeriodicidad periodicidadPago;
+	private TiposPeriodicidad12 periodicidadPago;
 	
 	@XmlElement(name="Empleado")
 	@NotNull @Valid
@@ -115,13 +115,13 @@ public class GenericoNomina {
 	public BigDecimal isr() {
 		if(deducciones==null||deducciones.isEmpty())
 			return BigDecimal.ZERO;
-		return deducciones.stream().filter(d->d.getTipo().in(TiposDeduccion.ISR)) .map(GenericoDeduccion::getImporte).reduce(BigDecimal.ZERO,BigDecimal::add);
+		return deducciones.stream().filter(d->d.getTipo().in(TiposDeduccion12.ISR)) .map(GenericoDeduccion::getImporte).reduce(BigDecimal.ZERO,BigDecimal::add);
 	}
 	
 	public BigDecimal descuento() {
 		if(deducciones==null||deducciones.isEmpty())
 			return BigDecimal.ZERO;
-		return deducciones.stream().filter(d->d.getTipo().notin(TiposDeduccion.ISR)) .map(GenericoDeduccion::getImporte).reduce(BigDecimal.ZERO,BigDecimal::add);
+		return deducciones.stream().filter(d->d.getTipo().notin(TiposDeduccion12.ISR)) .map(GenericoDeduccion::getImporte).reduce(BigDecimal.ZERO,BigDecimal::add);
 	}
 	
 	public BigDecimal total(){

@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposOtroPago;
+import mx.emite.sdk.enums.sat.TiposOtroPago12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposOtroPagoAdapter;
 
@@ -47,7 +47,7 @@ public class OtroPago implements Serializable {
 	@XmlAttribute(required = true,name="TipoOtroPago")
 	@XmlJavaTypeAdapter(TiposOtroPagoAdapter.class)
 	@NotNull
-    private TiposOtroPago tipoOtroPago;
+    private TiposOtroPago12 tipoOtroPago;
 	
 	/**
 	 * clave Atributo requerido, representa la clave de otro pago de nómina propia de la contabilidad de cada patrón, puede conformarse desde 3 hasta 15 caracteres.

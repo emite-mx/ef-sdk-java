@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.OrigenRecurso;
+import mx.emite.sdk.enums.sat.OrigenRecurso12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.OrigenRecursoAdapter;
 
@@ -42,7 +42,7 @@ public class EntidadSNCF implements Serializable{
 	@XmlAttribute(name="OrigenRecurso")
 	@XmlJavaTypeAdapter(OrigenRecursoAdapter.class)
 	@NotNull 
-	protected OrigenRecurso origenRecurso;
+	protected OrigenRecurso12 origenRecurso;
 	
 	/**
 	 * montoRecursoPropio Atributo condicional para expresar el monto del recurso pagado con cargo a sus participaciones u otros ingresos locales (importe bruto de los ingresos propios, es decir total de gravados y exentos), cuando el origen es mixto.

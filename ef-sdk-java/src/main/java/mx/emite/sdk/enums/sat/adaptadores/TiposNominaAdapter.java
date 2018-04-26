@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposNomina;
+import mx.emite.sdk.enums.sat.TiposNomina12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposNominaAdapter extends XmlAdapter<String,TiposNomina> implements TypeHandler{
+public class TiposNominaAdapter extends XmlAdapter<String,TiposNomina12> implements TypeHandler{
 
 	@Override
-	public TiposNomina unmarshal(String metodo) throws ApiException {
-		return TiposNomina.unmarshall(metodo);
+	public TiposNomina12 unmarshal(String metodo) throws ApiException {
+		return TiposNomina12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposNomina> getType() {
-		return TiposNomina.class;
+	public Class<TiposNomina12> getType() {
+		return TiposNomina12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposNomina.parse(text);
+		return TiposNomina12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposNominaAdapter extends XmlAdapter<String,TiposNomina> implement
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposNomina)
-			return TiposNomina.marshall((TiposNomina)value);
+		if(value instanceof TiposNomina12)
+			return TiposNomina12.marshall((TiposNomina12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposNominaAdapter extends XmlAdapter<String,TiposNomina> implement
 
 
 	@Override
-	public String marshal(TiposNomina v) throws Exception {
-		return TiposNomina.marshall(v);
+	public String marshal(TiposNomina12 v) throws Exception {
+		return TiposNomina12.marshall(v);
 	}
 	
 	/*@Override

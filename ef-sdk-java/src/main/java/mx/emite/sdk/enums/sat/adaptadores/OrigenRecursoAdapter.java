@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.OrigenRecurso;
+import mx.emite.sdk.enums.sat.OrigenRecurso12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class OrigenRecursoAdapter extends XmlAdapter<String,OrigenRecurso> implements TypeHandler{
+public class OrigenRecursoAdapter extends XmlAdapter<String,OrigenRecurso12> implements TypeHandler{
 
 	@Override
-	public OrigenRecurso unmarshal(String metodo) throws ApiException {
-		return OrigenRecurso.unmarshall(metodo);
+	public OrigenRecurso12 unmarshal(String metodo) throws ApiException {
+		return OrigenRecurso12.unmarshall(metodo);
 	}
 	@Override
-	public Class<OrigenRecurso> getType() {
-		return OrigenRecurso.class;
+	public Class<OrigenRecurso12> getType() {
+		return OrigenRecurso12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return OrigenRecurso.parse(text);
+		return OrigenRecurso12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class OrigenRecursoAdapter extends XmlAdapter<String,OrigenRecurso> imple
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof OrigenRecurso)
-			return OrigenRecurso.marshall((OrigenRecurso)value);
+		if(value instanceof OrigenRecurso12)
+			return OrigenRecurso12.marshall((OrigenRecurso12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class OrigenRecursoAdapter extends XmlAdapter<String,OrigenRecurso> imple
 
 
 	@Override
-	public String marshal(OrigenRecurso v) throws Exception {
-		return OrigenRecurso.marshall(v);
+	public String marshal(OrigenRecurso12 v) throws Exception {
+		return OrigenRecurso12.marshall(v);
 	}
 	
 	/*@Override

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposOtroPago implements Sat<String>{
+public enum TiposOtroPago12 implements Sat<String>{
 	
 	DEVOLUCIONISR("001","Devolución de ISR"),
 	SUBSIDIO("002","Subsidio efectivamente entregado al trabajador"),
@@ -22,7 +22,7 @@ public enum TiposOtroPago implements Sat<String>{
 	final String idSat;
 	final String descripcion;
 	
-	TiposOtroPago(String idSat,String descripcion){
+	TiposOtroPago12(String idSat,String descripcion){
 		this.idSat=idSat;
 		this.descripcion=descripcion;		
 		
@@ -30,23 +30,23 @@ public enum TiposOtroPago implements Sat<String>{
 	
 	public static void main(String[] args){
 		int indice=144;
-		for(TiposOtroPago p:values()){
+		for(TiposOtroPago12 p:values()){
 				System.out.println("insert into h_sat_nomina values("+(indice++)+",'"+p.getIdSat()+"','"+p.getDescripcion()+"',0,0,0,'O',null);");
 		}
 	}
 
-	public static TiposOtroPago busca(String metodo) {
-		for(TiposOtroPago m:values()){
+	public static TiposOtroPago12 busca(String metodo) {
+		for(TiposOtroPago12 m:values()){
 			if(Utilerias.compara(m.idSat,metodo))
 				return m;
 		}
 		return null;
 	}
 	
-	public static TiposOtroPago unmarshall(String metodo) throws ApiException{
+	public static TiposOtroPago12 unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final TiposOtroPago estado =  TiposOtroPago.busca(metodo);		
+		final TiposOtroPago12 estado =  TiposOtroPago12.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El tipo de otros pagos "+metodo+" no se encuentra en el catálogo de Tipos de Otros Pagos del SAT");
 		else
@@ -54,7 +54,7 @@ public enum TiposOtroPago implements Sat<String>{
 	}
 	
 	
-	public static String marshall(TiposOtroPago v) throws Exception {
+	public static String marshall(TiposOtroPago12 v) throws Exception {
 		if(v==null)
 			return null;
 		return v.getIdSat();
@@ -64,10 +64,10 @@ public enum TiposOtroPago implements Sat<String>{
 		return unmarshall(text);
 	}
 
-	public static TiposOtroPago busca(Integer tipoRiesgo) {
+	public static TiposOtroPago12 busca(Integer tipoRiesgo) {
 		if(tipoRiesgo==null)
 			return null;
-		for(TiposOtroPago t:values()){
+		for(TiposOtroPago12 t:values()){
 			if(t.getIdSat().equals(tipoRiesgo<100?tipoRiesgo<10?"0"+tipoRiesgo:"00"+tipoRiesgo:tipoRiesgo.toString()))
 				return t;
 		}
@@ -78,7 +78,7 @@ public enum TiposOtroPago implements Sat<String>{
 		return this.equals(SUBSIDIO);
 	}
 	
-	public boolean esCompensasionSaldos(){
+	public boolean esCompensacionSaldos(){
 		//return this.equals(COMPENSACION) || this.equals(REINTEGROISRRETENIDO);
 		return this.equals(COMPENSACION);
 	}
@@ -90,6 +90,16 @@ public enum TiposOtroPago implements Sat<String>{
 	@Override
 	public String getIdString() {
 		return idSat;
+	}
+
+	public static TiposOtroPago12 idSat(String idSat) {
+		if(idSat==null)
+			return null;
+		for(TiposOtroPago12 t:values()){
+			if(t.getIdSat().equals(idSat))
+				return t;
+		}
+		return null;
 	}
 }
 

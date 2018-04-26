@@ -30,7 +30,7 @@ import mx.emite.sdk.enums.sat.Bancos;
 import mx.emite.sdk.enums.sat.Estados;
 import mx.emite.sdk.enums.sat.TiposContrato12;
 import mx.emite.sdk.enums.sat.TiposJornada;
-import mx.emite.sdk.enums.sat.TiposPeriodicidad;
+import mx.emite.sdk.enums.sat.TiposPeriodicidad12;
 import mx.emite.sdk.enums.sat.TiposRegimen12;
 import mx.emite.sdk.enums.sat.TiposRiesgo;
 import mx.emite.sdk.enums.sat.adaptadores.BancosAdapter;
@@ -155,7 +155,7 @@ public class ReceptorNomina implements Serializable{
 	@XmlAttribute(name="PeriodicidadPago")
 	@XmlJavaTypeAdapter(TiposPeriodicidadAdapter.class)
 	@NotNull
-	protected TiposPeriodicidad periodicidadPago; 
+	protected TiposPeriodicidad12 periodicidadPago; 
 	
 	/**
 	 * banco Atributo condicional para la expresión de la clave del Banco conforme al catálogo, donde se realiza el depósito de nómina.

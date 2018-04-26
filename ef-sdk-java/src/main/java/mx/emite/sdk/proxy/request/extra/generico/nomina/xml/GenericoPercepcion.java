@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposPercepcion;
+import mx.emite.sdk.enums.sat.TiposPercepcion12;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPercepcionAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -50,7 +50,7 @@ public class GenericoPercepcion {
 	@XmlAttribute(name="tipo")
 	@NotNull
 	@XmlJavaTypeAdapter(TiposPercepcionAdapter.class)
-	private TiposPercepcion tipo;
+	private TiposPercepcion12 tipo;
 	
 	
 	public BigDecimal getImporte(){

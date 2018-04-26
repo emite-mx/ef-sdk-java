@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposDeduccion;
+import mx.emite.sdk.enums.sat.TiposDeduccion12;
 import mx.emite.sdk.enums.sat.adaptadores.TiposDeduccionAdapter;
 import mx.emite.sdk.utils.Utilerias;
 
@@ -50,7 +50,7 @@ public class GenericoDeduccion {
 	@XmlAttribute(name="tipo")
 	@NotNull
 	@XmlJavaTypeAdapter(TiposDeduccionAdapter.class)
-	private TiposDeduccion tipo;
+	private TiposDeduccion12 tipo;
 	
 	public BigDecimal getImporte(){
 		return Utilerias.nvl(importeExento,BigDecimal.ZERO).add(Utilerias.nvl(importeGravado,BigDecimal.ZERO));

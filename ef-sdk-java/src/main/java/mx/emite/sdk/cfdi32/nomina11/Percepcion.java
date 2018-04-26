@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposPercepcion;
+import mx.emite.sdk.enums.sat.TiposPercepcion12;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPercepcionAdapter;
 
 
@@ -34,7 +34,7 @@ public class Percepcion implements Serializable {
 	@XmlAttribute(required = true,name="TipoPercepcion")
 	@XmlJavaTypeAdapter(TiposPercepcionAdapter.class)
 	@NotNull
-    private TiposPercepcion tipoPercepcion;
+    private TiposPercepcion12 tipoPercepcion;
 	
 	@XmlAttribute(name="Clave")
 	private String clave;

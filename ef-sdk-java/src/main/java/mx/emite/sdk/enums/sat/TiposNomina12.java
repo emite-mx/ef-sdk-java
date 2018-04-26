@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposNomina implements Sat<String>{
+public enum TiposNomina12 implements Sat<String>{
 	
 	ORDINARIA("O","Nómina Ordinaria"),
 	EXTRAORDINARIA("E","Nómina Extraordinaria"),
@@ -19,17 +19,17 @@ public enum TiposNomina implements Sat<String>{
 	final String descripcion;
 	
 	
-	TiposNomina(String idSat,String descripcion){
+	TiposNomina12(String idSat,String descripcion){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		
 		
 	}
 
-	public static TiposNomina busca(String metodo) {
+	public static TiposNomina12 busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		for(TiposNomina m:values()){
+		for(TiposNomina12 m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
 			else if(Utilerias.compara(m.idSat.toString(),metodo))
@@ -38,10 +38,10 @@ public enum TiposNomina implements Sat<String>{
 		return null;
 	}
 	
-	public static TiposNomina unmarshall(String metodo) throws ApiException{
+	public static TiposNomina12 unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final TiposNomina estado =  TiposNomina.busca(metodo);		
+		final TiposNomina12 estado =  TiposNomina12.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El tipo de régimen "+metodo+" no se encuentra en el catálogo de Tipos de Régimen del SAT");
 		else
@@ -49,7 +49,7 @@ public enum TiposNomina implements Sat<String>{
 	}
 	
 	
-	public static String marshall(TiposNomina v) throws Exception {
+	public static String marshall(TiposNomina12 v) throws Exception {
 		if(v==null)
 			return null;
 		return v.getIdSat().toString();
@@ -59,10 +59,10 @@ public enum TiposNomina implements Sat<String>{
 		return unmarshall(text);
 	}
 
-	public static TiposNomina getTipoNomina(String tipoNomina) {
+	public static TiposNomina12 getTipoNomina(String tipoNomina) {
 		if(StringUtils.isEmpty(tipoNomina))
 			return null;
-		for(TiposNomina m:values()){
+		for(TiposNomina12 m:values()){
 			if(m.idSat.equals(tipoNomina))
 				return m;
 		}
@@ -72,6 +72,16 @@ public enum TiposNomina implements Sat<String>{
 	@Override
 	public String getIdString() {
 		return idSat;
+	}
+
+	public static TiposNomina12 idSat(String tipoNomina) {
+		if(StringUtils.isEmpty(tipoNomina))
+			return null;
+		for(TiposNomina12 m:values()){
+			if(m.idSat.equals(tipoNomina))
+				return m;
+		}
+		return null;
 	}
 	
 	

@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposDeduccion implements Sat<String>{
+public enum TiposDeduccion12 implements Sat<String>{
 	
 	IMSS("001","Seguridad social"),
 	ISR("002","ISR"),
@@ -118,11 +118,11 @@ public enum TiposDeduccion implements Sat<String>{
 	final String descripcion;
 	final String[] sinonimos;
 	
-	TiposDeduccion(String idSat,String descripcion){
+	TiposDeduccion12(String idSat,String descripcion){
 		this(idSat,descripcion,null);
 	}
 	
-	TiposDeduccion(String idSat,String descripcion,String[] sinonimos){
+	TiposDeduccion12(String idSat,String descripcion,String[] sinonimos){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
@@ -131,7 +131,7 @@ public enum TiposDeduccion implements Sat<String>{
 	
 	public static void main(String[] args){
 		int indice=65;
-		for(TiposDeduccion p:values()){
+		for(TiposDeduccion12 p:values()){
 			int clave = Integer.parseInt(p.getClave());
 			
 			if(clave>21){
@@ -141,10 +141,10 @@ public enum TiposDeduccion implements Sat<String>{
 		}
 	}
 
-	public static TiposDeduccion busca(String metodo) {
+	public static TiposDeduccion12 busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		for(TiposDeduccion m:values()){
+		for(TiposDeduccion12 m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
 			else if(Utilerias.compara(m.idSat.toString(),metodo))
@@ -159,10 +159,10 @@ public enum TiposDeduccion implements Sat<String>{
 		return null;
 	}
 	
-	public static TiposDeduccion unmarshall(String metodo) throws ApiException{
+	public static TiposDeduccion12 unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final TiposDeduccion estado =  TiposDeduccion.busca(metodo);		
+		final TiposDeduccion12 estado =  TiposDeduccion12.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El tipo de deducción "+metodo+" no se encuentra en el catálogo de Tipos de Deducciones del SAT");
 		else
@@ -170,7 +170,7 @@ public enum TiposDeduccion implements Sat<String>{
 	}
 	
 	
-	public static String marshall(TiposDeduccion v) throws Exception {
+	public static String marshall(TiposDeduccion12 v) throws Exception {
 		if(v==null)
 			return null;
 		return v.getIdSat();
@@ -180,8 +180,8 @@ public enum TiposDeduccion implements Sat<String>{
 		return unmarshall(text);
 	}
 	
-	public boolean in(TiposDeduccion... tipos){
-		for(TiposDeduccion t:tipos){
+	public boolean in(TiposDeduccion12... tipos){
+		for(TiposDeduccion12 t:tipos){
 			if(this.equals(t)){
 				return true;
 			}
@@ -190,7 +190,7 @@ public enum TiposDeduccion implements Sat<String>{
 		return false;
 	}
 	
-	public boolean notin(TiposDeduccion... tipos){
+	public boolean notin(TiposDeduccion12... tipos){
 		return !in(tipos);
 	}
 	
@@ -212,5 +212,16 @@ public enum TiposDeduccion implements Sat<String>{
 	@Override
 	public String getIdString() {
 		return idSat;
+	}
+
+	public static TiposDeduccion12 idSat(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		for(TiposDeduccion12 m:values()){
+			if(StringUtils.equals(m.idSat,metodo))
+				return m;
+			
+		}
+		return null;
 	}
 }

@@ -9,50 +9,50 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposPeriodicidad implements Sat<String>{
+public enum TiposPeriodicidad12 implements Sat<String>{
 	
-	DIARIO("01","Diario",TiposNomina.ORDINARIA),
-	SEMANAL("02","Semanal",TiposNomina.ORDINARIA),
-	CATORCENAL("03","Catorcenal",TiposNomina.ORDINARIA),
-	QUINCENAL("04","Quincenal",TiposNomina.ORDINARIA),
-	MENSUAL("05","Mensual",TiposNomina.ORDINARIA),
-	BIMESTRAL("06","Bimestral",TiposNomina.ORDINARIA),
-	UNIDADOBRA("07","Unidad Obra",new String[]{"Unidad_obra"},TiposNomina.ORDINARIA),
-	COMISION("08","Comisión",TiposNomina.ORDINARIA),
-	PRECIOALZADO("09","Precio Alzado",new String[]{"Precio_alzado"},TiposNomina.ORDINARIA),
-	DECENAL("10","Decenal",TiposNomina.ORDINARIA),
-	OTRAPERIODICIDAD("99","Otra Periodicidad",new String[]{"OtraPeriodicidad"},TiposNomina.EXTRAORDINARIA), 
+	DIARIO("01","Diario",TiposNomina12.ORDINARIA),
+	SEMANAL("02","Semanal",TiposNomina12.ORDINARIA),
+	CATORCENAL("03","Catorcenal",TiposNomina12.ORDINARIA),
+	QUINCENAL("04","Quincenal",TiposNomina12.ORDINARIA),
+	MENSUAL("05","Mensual",TiposNomina12.ORDINARIA),
+	BIMESTRAL("06","Bimestral",TiposNomina12.ORDINARIA),
+	UNIDADOBRA("07","Unidad Obra",new String[]{"Unidad_obra"},TiposNomina12.ORDINARIA),
+	COMISION("08","Comisión",TiposNomina12.ORDINARIA),
+	PRECIOALZADO("09","Precio Alzado",new String[]{"Precio_alzado"},TiposNomina12.ORDINARIA),
+	DECENAL("10","Decenal",TiposNomina12.ORDINARIA),
+	OTRAPERIODICIDAD("99","Otra Periodicidad",new String[]{"OtraPeriodicidad"},TiposNomina12.EXTRAORDINARIA), 
 	;
 	
 	final String idSat;
 	final String descripcion;
 	final String[] sinonimos;
-	final TiposNomina tipoNomina;
+	final TiposNomina12 tipoNomina;
 	
 	public static void main(String[] args){
-		for(TiposPeriodicidad p:values()){
+		for(TiposPeriodicidad12 p:values()){
 				System.out.println("insert into h_sat_periodicidad values('"+p.getIdSat()+"','"+p.getDescripcion()+"','"+(p.getTipoNomina().name().charAt(0))+"');");
 		}
 	}
 
 	
-	TiposPeriodicidad(String idSat,String descripcion,TiposNomina tipo){
+	TiposPeriodicidad12(String idSat,String descripcion,TiposNomina12 tipo){
 		this(idSat,descripcion,null,tipo);
 	}
 	
 	
 	
-	TiposPeriodicidad(String idSat,String descripcion,String[] sinonimos,TiposNomina tipo){
+	TiposPeriodicidad12(String idSat,String descripcion,String[] sinonimos,TiposNomina12 tipo){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
 		this.tipoNomina=tipo;
 	}
 
-	public static TiposPeriodicidad busca(String descripcion) {
+	public static TiposPeriodicidad12 busca(String descripcion) {
 		if(StringUtils.isEmpty(descripcion))
 			return null;
-		for(TiposPeriodicidad m:values()){
+		for(TiposPeriodicidad12 m:values()){
 			if(m.idSat.equals(descripcion))
 				return m;
 			else if(Utilerias.compara(m.descripcion,descripcion))
@@ -67,10 +67,10 @@ public enum TiposPeriodicidad implements Sat<String>{
 		return null;
 	}
 	
-	public static TiposPeriodicidad unmarshall(String metodo) throws ApiException{
+	public static TiposPeriodicidad12 unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final TiposPeriodicidad estado =  TiposPeriodicidad.busca(metodo);		
+		final TiposPeriodicidad12 estado =  TiposPeriodicidad12.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El tipo de periodicidad "+metodo+" no se encuentra en el catálogo de Tipos de Periodicidad del SAT");
 		else
@@ -78,7 +78,7 @@ public enum TiposPeriodicidad implements Sat<String>{
 	}
 	
 	
-	public static String marshall(TiposPeriodicidad v) throws Exception {
+	public static String marshall(TiposPeriodicidad12 v) throws Exception {
 		if(v==null)
 			return null;
 		return v.getIdSat();
@@ -88,10 +88,10 @@ public enum TiposPeriodicidad implements Sat<String>{
 		return unmarshall(text);
 	}
 
-	public static TiposPeriodicidad getTipoPeriodicidad(String periodicidad) {
+	public static TiposPeriodicidad12 getTipoPeriodicidad(String periodicidad) {
 		if(StringUtils.isEmpty(periodicidad))
 			return null;
-		for(TiposPeriodicidad m:values()){
+		for(TiposPeriodicidad12 m:values()){
 			if(m.idSat.equals(periodicidad))
 				return m;
 			
@@ -106,5 +106,17 @@ public enum TiposPeriodicidad implements Sat<String>{
 	@Override
 	public String toString(){
 		return descripcion;
+	}
+
+
+	public static TiposPeriodicidad12 idSat(String periodicidad) {
+		if(StringUtils.isEmpty(periodicidad))
+			return null;
+		for(TiposPeriodicidad12 m:values()){
+			if(m.idSat.equals(periodicidad))
+				return m;
+			
+		}
+		return null;
 	}
 }

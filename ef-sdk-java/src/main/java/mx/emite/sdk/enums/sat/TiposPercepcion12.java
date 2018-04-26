@@ -9,7 +9,7 @@ import mx.emite.sdk.errores.I_Api_Errores;
 import mx.emite.sdk.utils.Utilerias;
 
 @Getter
-public enum TiposPercepcion implements Sat<String>{
+public enum TiposPercepcion12 implements Sat<String>{
 	
 	SUELDOSSALARIOSRAYASYJORNALES("001","Sueldos, Salarios  Rayas y Jornales",TIPOPERCEPCION.SUELDOS),
 	AGUINALDO("002","Gratificación Anual (Aguinaldo)",TIPOPERCEPCION.SUELDOS),
@@ -65,11 +65,11 @@ public enum TiposPercepcion implements Sat<String>{
 	final String[] sinonimos;
 	final TIPOPERCEPCION tipo;
 	
-	TiposPercepcion(String idSat,String descripcion,TIPOPERCEPCION tipo){
+	TiposPercepcion12(String idSat,String descripcion,TIPOPERCEPCION tipo){
 		this(idSat,descripcion,null,tipo);
 	}
 	
-	TiposPercepcion(String idSat,String descripcion,String[] sinonimos,TIPOPERCEPCION tipo){
+	TiposPercepcion12(String idSat,String descripcion,String[] sinonimos,TIPOPERCEPCION tipo){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.sinonimos=sinonimos;
@@ -78,18 +78,18 @@ public enum TiposPercepcion implements Sat<String>{
 	}
 	
 	public static void main(String[] args){
-		for(TiposPercepcion p:values()){
+		for(TiposPercepcion12 p:values()){
 			System.out.println("update h_sat_nomina set tipopercepcion='"+p.getTipo().getAbrevia()+"' where clave_sat='"+p.getClave()+"' and tipoconcepto='P';");
 			
 			
 		}
 	}
 
-	public static TiposPercepcion busca(String metodo) {
+	public static TiposPercepcion12 busca(String metodo) {
 		if(StringUtils.isEmpty(metodo))
 			return null;
 		
-		for(TiposPercepcion m:values()){
+		for(TiposPercepcion12 m:values()){
 			if(Utilerias.compara(m.descripcion,metodo))
 				return m;
 			else if(Utilerias.compara(m.idSat.toString(),metodo))
@@ -104,10 +104,10 @@ public enum TiposPercepcion implements Sat<String>{
 		return null;
 	}
 	
-	public static TiposPercepcion unmarshall(String metodo) throws ApiException{
+	public static TiposPercepcion12 unmarshall(String metodo) throws ApiException{
 		if(StringUtils.isEmpty(metodo))
 			return null;
-		final TiposPercepcion estado =  TiposPercepcion.busca(metodo);		
+		final TiposPercepcion12 estado =  TiposPercepcion12.busca(metodo);		
 		if(estado==null)
 			throw new ApiException(I_Api_Errores.CLIENTE_XML_INVALIDO,"El tipo de percepción "+metodo+" no se encuentra en el catálogo de Tipos de Percepciones del SAT");
 		else
@@ -115,7 +115,7 @@ public enum TiposPercepcion implements Sat<String>{
 	}
 	
 	
-	public static String marshall(TiposPercepcion v) throws Exception {
+	public static String marshall(TiposPercepcion12 v) throws Exception {
 		if(v==null)
 			return null;
 		return v.getIdSat();
@@ -180,5 +180,17 @@ public enum TiposPercepcion implements Sat<String>{
 	@Override
 	public String getIdString() {
 		return idSat;
+	}
+
+	public static TiposPercepcion12 idSat(String metodo) {
+		if(StringUtils.isEmpty(metodo))
+			return null;
+		
+		for(TiposPercepcion12 m:values()){
+			if(StringUtils.equals(m.idSat, metodo))
+				return m;
+			
+		}
+		return null;
 	}
 }

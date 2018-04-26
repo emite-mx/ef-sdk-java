@@ -116,6 +116,14 @@ public enum TiposDeComprobante33 implements Sat<String>{
 			return  idSat.concat(" - ").concat(rf.getDescripcion());
 		return idSat;
 	}
+
+	public boolean esNomina() {
+		return this.equals(NOMINA);
+	}
+
+	public boolean esPago() {
+		return this.equals(PAGO);
+	}
 	
 	
 	/*

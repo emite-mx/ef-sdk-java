@@ -21,7 +21,7 @@ import mx.emite.sdk.cfdi32.anotaciones.Rfc;
 import mx.emite.sdk.enums.sat.Bancos;
 import mx.emite.sdk.enums.sat.TiposContrato;
 import mx.emite.sdk.enums.sat.TiposJornada;
-import mx.emite.sdk.enums.sat.TiposPeriodicidad;
+import mx.emite.sdk.enums.sat.TiposPeriodicidad12;
 import mx.emite.sdk.enums.sat.TiposRegimen;
 import mx.emite.sdk.enums.sat.TiposRiesgo;
 import mx.emite.sdk.enums.sat.adaptadores.BancosAdapter;
@@ -62,7 +62,7 @@ public class GenericoEmpleado {
 	
 	@XmlAttribute(name="tipoPeriodicidad")
 	@XmlJavaTypeAdapter(TiposPeriodicidadAdapter.class)
-	private TiposPeriodicidad tipoPeriodicidad;
+	private TiposPeriodicidad12 tipoPeriodicidad;
 	
 	@XmlAttribute(name="tipoRiesgo")
 	@XmlJavaTypeAdapter(TiposRiesgoAdapter.class)

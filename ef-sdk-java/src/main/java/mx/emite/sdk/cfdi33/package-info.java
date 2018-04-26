@@ -1,8 +1,10 @@
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.sat.gob.mx/cfd/3"
 , xmlns = {
-    @XmlNs(prefix = "cfdi", namespaceURI = "http://www.sat.gob.mx/cfd/3")
+    @XmlNs(prefix = "cfdi", namespaceURI = "http://www.sat.gob.mx/cfd/3"),
+    @XmlNs(prefix = "nomina12", namespaceURI = "http://www.sat.gob.mx/nomina12"),
 }
 , elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
+,attributeFormDefault = javax.xml.bind.annotation.XmlNsForm.UNQUALIFIED
 )
 @XmlJavaTypeAdapter(value=StringAdapter.class, type=String.class)
 

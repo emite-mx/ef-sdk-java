@@ -22,7 +22,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
-import mx.emite.sdk.enums.sat.TiposPercepcion;
+import mx.emite.sdk.enums.sat.TiposPercepcion12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposPercepcionAdapter;
 
@@ -51,7 +51,7 @@ public class Percepcion implements Serializable {
 	@XmlAttribute(name="TipoPercepcion")
 	@XmlJavaTypeAdapter(TiposPercepcionAdapter.class)
 	@NotNull
-    private TiposPercepcion tipoPercepcion;
+    private TiposPercepcion12 tipoPercepcion;
 	
 	/**
 	 * clave Atributo requerido para expresar la clave de percepción de nómina propia de la contabilidad de cada patrón, puede conformarse desde 3 hasta 15 caracteres.

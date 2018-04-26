@@ -637,11 +637,35 @@ public enum I_Api_Errores {
 	INE186(41186,"INE186 - Atributo TipoComite, debe existir al menos un elemento ine:Entidad y en ningún caso debe existir ine:Entidad:Ambito","TipoComite:  Cuando en este atributo se seleccione el valor {Ejecutivo Estatal o Directivo Estatal}: Debe existir al menos un elemento ine:Entidad y en cada entidad que se registre no debe existir el atributo ine:Entidad:Ambito"),
 	INE187(41187,"INE187 - Elemento Entidad, no se debe repetir la combinación de ine:Entidad:ClaveEntidad  con ine:Entidad:Ambito","ClaveEntidad: La combinación del valor de este atributo con el valor del atributo ine:Entidad:Ambito, no se debe repetir en este complemento."), 
 	INE188(41188,"INE188 - Elemento ClaveEntidad, No se pueden seleccionar las claves  NAC, CR1, CR2, CR3, CR4 y CR5 por que el Ambito es Local.","Cuando en este atributo se seleccione el valor {Local}: No se pueden seleccionar las claves NAC, CR1, CR2, CR3, CR4 y CR5 en el atributo ine:Entidad:ClaveEntidad."),
+	INE999(41999,"INE999 - Error no clasificado","Error no clasificado."),
 	
 	ECC121(42121,"ECC121 - El valor del atributo '(ecc11:EstadoDeCuentaCombustible:SubTotal )' no coincide con la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Importe]","Para el atributo ecc11:EstadoDeCuentaCombustible:SubTotal, el valor de este atributo debe ser igual a la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Importe]."),
 	ECC122(42122,"ECC122 - El valor del atributo '(ecc11:EstadoDeCuentaCombustible:Total)' debe ser igual a la suma del valor del atributo [SubTotal] y la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Traslados]:[Traslado]:[Importe].","Para el atributo ecc11:EstadoDeCuentaCombustible:Total, el valor de este atributo debe ser igual a la suma del valor del atributo [SubTotal] y la suma de los valores de los atributos [ConceptoEstadoDeCuentaCombustible]:[Traslados]:[Traslado]:[Importe]."),
 	ECC123(42123,"ECC123 - El valor del atributo '(Conceptos:ConceptoEstadoDeCuentaCombustible:Rfc)' no existe en la Lista de Contribuyentes Obligados (LCO).","Para el atributo Conceptos:ConceptoEstadoDeCuentaCombustible:Rfc ,  Se debe validar la existencia del RFC en la Lista de Contribuyentes Obligados (LCO)."),
 	ECC124(42124,"ECC124 - El valor del atributo '([cfdi]:[tipoDeComprobante])'  debe ser {I}.","Para el atributo [cfdi]:[tipoDeComprobante] del elemento [cfdi]:[Comprobante], se debe validar que el valor sea {I}"),
+	ECC999(42999,"ECC999 - Error no clasificado","Error no clasificado"),
+	IMPLOCAL999(43001,"IMPLOCAL999 - Error no clasificado","Error no clasificado"), 
+	IEDU999(43001,"IEDU999 - Error no clasificado","Error no clasificado"),
+	TERC999(43002,"TERC999- Error no clasificado","Error no clasificado"),
+	DONAT999(43003,"DONAT999 - Error no clasificado","Error no clasificado"),
+	DIV999(43004,"DIV999 - Error no clasificado","Error no clasificado"), 
+	LEYF999(43005,"LEYF999 - Error no clasificado","Error no clasificado"),
+	PFIC999(43006,"PFIC999 - Error no clasificado","Error no clasificado"),
+	TPE999(43007,"TPE999 - Error no clasificado","Error no clasificado"), 
+	DET999(43008,"DET999 - Error no clasificado","Error no clasificado"),
+	REGF999(43009,"REGF999 - Error no clasificado","Error no clasificado"),
+	PEE999(43010,"PEE999 - Error no clasificado","Error no clasificado"),
+	VDD999(43011,"VDD999 - Error no clasificado","Error no clasificado"), 
+	CDC999(43012,"CDC999 - Error no clasificado","Error no clasificado"), 
+	AER999(43013,"AER999 - Error no clasificado","Error no clasificado"),
+	NOT999(43014,"NOT999 - Error no clasificado","Error no clasificado"),
+	VU999(43015,"VU999 - Error no clasificado","Error no clasificado"),
+	SPC999(43016,"SPC999 - Error no clasificado","Error no clasificado"), 
+	RSV999(43017,"RSV999 - Error no clasificado","Error no clasificado"), 
+	CDD999(43018,"CDD999 - Error no clasificado","Error no clasificado"), 
+	OAA999(43019,"OAA999 - Error no clasificado","Error no clasificado"),
+	VV999(43020,"VV999 - Error no clasificado","Error no clasificado"),
+	
 	;
 	
 	
@@ -777,6 +801,15 @@ public enum I_Api_Errores {
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
+	}
+
+	public static I_Api_Errores buscaNombre(String nombre) {
+		for(I_Api_Errores e:values()) {
+			if(StringUtils.equals(e.name(), nombre)) {
+				return e;
+			}
+		}
+		return null;
 	}
 	
 	

@@ -296,6 +296,12 @@ public enum Monedas33 implements Sat<String>{
 		final Monedas33 mon = idSat(moneda);
 		return mon==null?"":mon.getDescripcion();
 	}
+
+	public static int decimales(String monedaDR) {
+		final Monedas33 mon = idSat(monedaDR);
+		return mon==null?0:mon.getDecimales();
+		
+	}
 	/*
 		
 	

@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposDeduccion;
+import mx.emite.sdk.enums.sat.TiposDeduccion12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposDeduccionAdapter;
 
@@ -47,7 +47,7 @@ public class Deduccion implements Serializable {
 	@XmlAttribute(required = true,name="TipoDeduccion")
 	@XmlJavaTypeAdapter(TiposDeduccionAdapter.class)
 	@NotNull
-    private TiposDeduccion tipoDeduccion;
+    private TiposDeduccion12 tipoDeduccion;
 	
 	/**
 	 * clave Atributo requerido para expresar la clave de deducción de nómina propia de la contabilidad de cada patrón, puede conformarse desde 3 hasta 15 caracteres.

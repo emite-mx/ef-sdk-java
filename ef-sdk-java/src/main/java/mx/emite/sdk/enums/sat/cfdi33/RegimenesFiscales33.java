@@ -1,5 +1,6 @@
 package mx.emite.sdk.enums.sat.cfdi33;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,32 +23,38 @@ public enum RegimenesFiscales33 implements Sat<Integer>{
 	ARRENDAMIENTO(606,"Arrendamiento",true,false),
 	DEMASINGRESOS(608,"Demás ingresos",true,false),
 	CONSOLIDACION(609,"Consolidación",false,true),
-	RESIDENTESENELEXTRANJEROSINESTABLECIMIENTOPERMANENTEENMEXICO(610,"Residentes en el Extranjero sin Establecimiento Permanente en México",true,true),
+	RESIDENTESENELEXTRANJEROSINESTABLECIMIENTOPERMANENTEENMEXICO(610,"Residentes en el Extranjero sin Establecimiento Permanente en México",true,false),
 	INGRESOSPORDIVIDENDOSSOCIOSYACCIONISTAS(611,"Ingresos por Dividendos (socios y accionistas)",true,false),
 	PERSONASFISICASCONACTIVIDADESEMPRESARIALESYPROFESIONALES(612,"Personas Fisicas con Actividades Empresariales y Profesionales",true,false),
 	INGRESOSPORINTERESES(614,"Ingresos por intereses",true,false),
 	SINOBLIGACIONESFISCALES(616,"Sin obligaciones fiscales",true,false),
-	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos",false,true),
+	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos",false,false),
 	INCORPORACIONFISCAL(621,"Incorporación Fiscal",true,false),
 	ACTIVIDADESAGRICOLASGANADERASSILVICOLASYPESQUERAS(622,"Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras",true,true),
 	OPCIONALPARAGRUPOSDESOCIEDADES(623,"Opcional para Grupos de Sociedades",false,true),
 	COORDINADOS(624,"Coordinados",false,true),
-	HIDROCARBUROS(628,"Hidrocarburos",false,true),
-	PREFERENTESMULTINACIONALES(629,"De los Regímenes Fiscales Preferentes y de las Empresas Multinacionales",true,false),
 	ENAJENACIONBIENES(607,"Régimen de Enajenación o Adquisición de Bienes",false,true),
-	ENAJENACIONACCIONES(630,"Enajenación de acciones en bolsa de valores",false,true),
 	PREMIOS(615,"Régimen de los ingresos por obtención de premios",true,false),
+	HIDROCARBUROS(628,"Hidrocarburos",false,true,LocalDate.of(2020, 1, 1)),
+	PREFERENTESYMULTINACIONALES(629,"De los Regímenes Fiscales Preferentes y de las Empresas Multinacionales",true,false,LocalDate.of(2020, 1, 1)),
+	ENAJENACIONBOLSAVALORES(630,"Enajenación de acciones en bolsa de valores",true,false,LocalDate.of(2020, 1, 1))
 	;
 	
 	final Integer idSat;
 	final String descripcion;
 	final Boolean fisicas,morales;
+	final LocalDate inicioVigencia;
 	
 	RegimenesFiscales33(Integer idSat,String descripcion,Boolean fisicas,Boolean morales){
+		this(idSat,descripcion,fisicas,morales,null);
+	}
+	
+	RegimenesFiscales33(Integer idSat,String descripcion,Boolean fisicas,Boolean morales,final LocalDate inicioVigencia){
 		this.idSat=idSat;
 		this.descripcion=descripcion;
 		this.fisicas=fisicas;
 		this.morales=morales;
+		this.inicioVigencia=inicioVigencia;
 	}
 
 	/**

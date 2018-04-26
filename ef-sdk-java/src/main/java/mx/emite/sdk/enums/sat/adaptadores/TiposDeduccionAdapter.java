@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposDeduccion;
+import mx.emite.sdk.enums.sat.TiposDeduccion12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposDeduccionAdapter extends XmlAdapter<String,TiposDeduccion> implements TypeHandler{
+public class TiposDeduccionAdapter extends XmlAdapter<String,TiposDeduccion12> implements TypeHandler{
 
 	@Override
-	public TiposDeduccion unmarshal(String metodo) throws ApiException {
-		return TiposDeduccion.unmarshall(metodo);
+	public TiposDeduccion12 unmarshal(String metodo) throws ApiException {
+		return TiposDeduccion12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposDeduccion> getType() {
-		return TiposDeduccion.class;
+	public Class<TiposDeduccion12> getType() {
+		return TiposDeduccion12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposDeduccion.parse(text);
+		return TiposDeduccion12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposDeduccionAdapter extends XmlAdapter<String,TiposDeduccion> imp
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposDeduccion)
-			return TiposDeduccion.marshall((TiposDeduccion)value);
+		if(value instanceof TiposDeduccion12)
+			return TiposDeduccion12.marshall((TiposDeduccion12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposDeduccionAdapter extends XmlAdapter<String,TiposDeduccion> imp
 
 
 	@Override
-	public String marshal(TiposDeduccion v) throws Exception {
-		return TiposDeduccion.marshall(v);
+	public String marshal(TiposDeduccion12 v) throws Exception {
+		return TiposDeduccion12.marshall(v);
 	}
 	
 	/*@Override

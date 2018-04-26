@@ -93,4 +93,12 @@ public enum TiposContrato12 implements Sat<String>{
 	public String toString(){
 		return descripcion;
 	}
+
+	public static TiposContrato12 idSat(String tipo) {
+		for(TiposContrato12 m:values()){
+			if(m.idSat.equals(tipo))
+				return m;
+		}
+		return null;
+	}
 }

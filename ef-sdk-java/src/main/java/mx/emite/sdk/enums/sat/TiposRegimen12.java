@@ -83,5 +83,15 @@ public enum TiposRegimen12 implements Sat<String>{
 	public String getIdString() {
 		return idSat;
 	}
+
+	public static TiposRegimen12 idSat(String tipoRegimen) {
+		if(StringUtils.isEmpty(tipoRegimen))
+			return null;
+		for(TiposRegimen12 m:values()){
+			if(m.idSat.equals(tipoRegimen))
+				return m;
+		}
+		return null;
+	}
 	
 }

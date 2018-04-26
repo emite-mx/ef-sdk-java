@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposPercepcion;
+import mx.emite.sdk.enums.sat.TiposPercepcion12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposPercepcionAdapter extends XmlAdapter<String,TiposPercepcion> implements TypeHandler{
+public class TiposPercepcionAdapter extends XmlAdapter<String,TiposPercepcion12> implements TypeHandler{
 
 	@Override
-	public TiposPercepcion unmarshal(String metodo) throws ApiException {
-		return TiposPercepcion.unmarshall(metodo);
+	public TiposPercepcion12 unmarshal(String metodo) throws ApiException {
+		return TiposPercepcion12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposPercepcion> getType() {
-		return TiposPercepcion.class;
+	public Class<TiposPercepcion12> getType() {
+		return TiposPercepcion12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposPercepcion.parse(text);
+		return TiposPercepcion12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposPercepcionAdapter extends XmlAdapter<String,TiposPercepcion> i
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposPercepcion)
-			return TiposPercepcion.marshall((TiposPercepcion)value);
+		if(value instanceof TiposPercepcion12)
+			return TiposPercepcion12.marshall((TiposPercepcion12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposPercepcionAdapter extends XmlAdapter<String,TiposPercepcion> i
 
 
 	@Override
-	public String marshal(TiposPercepcion v) throws Exception {
-		return TiposPercepcion.marshall(v);
+	public String marshal(TiposPercepcion12 v) throws Exception {
+		return TiposPercepcion12.marshall(v);
 	}
 	
 	/*@Override

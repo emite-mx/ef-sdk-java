@@ -286,8 +286,8 @@ public enum Paises implements Sat<String>{
 		});
 		
 		for(Paises p:todos){
-			if(p.tlcan||p.ue){
-				System.out.print("Paises."+p.name()+",");
+			if(p.patronIdTributaria!=null){
+				System.out.print("Paises."+p.name()+",\""+p.patronIdTributaria+"\"");
 			}
 			
 		}

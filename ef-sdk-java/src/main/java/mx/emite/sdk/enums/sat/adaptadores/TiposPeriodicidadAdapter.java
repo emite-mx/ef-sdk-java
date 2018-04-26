@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposPeriodicidad;
+import mx.emite.sdk.enums.sat.TiposPeriodicidad12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposPeriodicidadAdapter extends XmlAdapter<String,TiposPeriodicidad> implements TypeHandler{
+public class TiposPeriodicidadAdapter extends XmlAdapter<String,TiposPeriodicidad12> implements TypeHandler{
 
 	@Override
-	public TiposPeriodicidad unmarshal(String metodo) throws ApiException {
-		return TiposPeriodicidad.unmarshall(metodo);
+	public TiposPeriodicidad12 unmarshal(String metodo) throws ApiException {
+		return TiposPeriodicidad12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposPeriodicidad> getType() {
-		return TiposPeriodicidad.class;
+	public Class<TiposPeriodicidad12> getType() {
+		return TiposPeriodicidad12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposPeriodicidad.parse(text);
+		return TiposPeriodicidad12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposPeriodicidadAdapter extends XmlAdapter<String,TiposPeriodicida
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposPeriodicidad)
-			return TiposPeriodicidad.marshall((TiposPeriodicidad)value);
+		if(value instanceof TiposPeriodicidad12)
+			return TiposPeriodicidad12.marshall((TiposPeriodicidad12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposPeriodicidadAdapter extends XmlAdapter<String,TiposPeriodicida
 
 
 	@Override
-	public String marshal(TiposPeriodicidad v) throws Exception {
-		return TiposPeriodicidad.marshall(v);
+	public String marshal(TiposPeriodicidad12 v) throws Exception {
+		return TiposPeriodicidad12.marshall(v);
 	}
 	
 	/*@Override

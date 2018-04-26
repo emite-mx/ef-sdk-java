@@ -63,4 +63,21 @@ public enum TiposFactor33 implements Sat<String>{
 	public String getIdString() {
 		return idSat;
 	}
+
+	public static TiposFactor33 idSat(String idSat) {
+		for(TiposFactor33 m:values()){
+			if(StringUtils.equals(m.idSat, idSat))
+				return m;			
+		}
+		return null;
+	}
+
+	public boolean in(TiposFactor33... tasas) {
+		for(TiposFactor33 t:tasas) {
+			if(this.equals(t))
+				return true;
+			
+		}
+		return false;
+	}
 }

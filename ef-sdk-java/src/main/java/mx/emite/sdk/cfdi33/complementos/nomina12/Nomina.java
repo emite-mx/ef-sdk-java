@@ -22,7 +22,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import mx.emite.sdk.enums.sat.TiposNomina;
+import mx.emite.sdk.enums.sat.TiposNomina12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposNominaAdapter;
 import mx.emite.sdk.serializers.LocalDateAdapter;
@@ -60,7 +60,7 @@ public class Nomina extends Complemento33Interface implements Serializable{
 	/**
 	 * tipoNomina Atributo requerido para indicar el tipo de nómina, puede ser O= Nómina ordinaria o E= Nómina extraordinaria.
 	 */
-	protected TiposNomina tipoNomina; 
+	protected TiposNomina12 tipoNomina; 
 	
 	@XmlAttribute(name="FechaPago")
 	@XmlJavaTypeAdapter(LocalDateAdapter.class)

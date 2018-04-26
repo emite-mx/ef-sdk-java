@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposOtroPago;
+import mx.emite.sdk.enums.sat.TiposOtroPago12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposOtroPagoAdapter extends XmlAdapter<String,TiposOtroPago> implements TypeHandler{
+public class TiposOtroPagoAdapter extends XmlAdapter<String,TiposOtroPago12> implements TypeHandler{
 
 	@Override
-	public TiposOtroPago unmarshal(String metodo) throws ApiException {
-		return TiposOtroPago.unmarshall(metodo);
+	public TiposOtroPago12 unmarshal(String metodo) throws ApiException {
+		return TiposOtroPago12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposOtroPago> getType() {
-		return TiposOtroPago.class;
+	public Class<TiposOtroPago12> getType() {
+		return TiposOtroPago12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposOtroPago.parse(text);
+		return TiposOtroPago12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposOtroPagoAdapter extends XmlAdapter<String,TiposOtroPago> imple
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposOtroPago)
-			return TiposOtroPago.marshall((TiposOtroPago)value);
+		if(value instanceof TiposOtroPago12)
+			return TiposOtroPago12.marshall((TiposOtroPago12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposOtroPagoAdapter extends XmlAdapter<String,TiposOtroPago> imple
 
 
 	@Override
-	public String marshal(TiposOtroPago v) throws Exception {
-		return TiposOtroPago.marshall(v);
+	public String marshal(TiposOtroPago12 v) throws Exception {
+		return TiposOtroPago12.marshall(v);
 	}
 
 }
