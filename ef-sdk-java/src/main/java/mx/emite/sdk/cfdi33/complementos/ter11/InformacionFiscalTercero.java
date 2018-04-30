@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.enums.sat.Paises;
 import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter;
@@ -61,7 +61,7 @@ public class InformacionFiscalTercero implements Serializable {
 	@XmlAttribute(required = true)
 	@XmlJavaTypeAdapter(EstadosAdapter.class)
 	@NotNull
-	protected Estados estado;
+	protected Estados12 estado;
 	
 	
 	@XmlAttribute(required = true)

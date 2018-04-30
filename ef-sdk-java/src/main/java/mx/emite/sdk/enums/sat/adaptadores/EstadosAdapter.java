@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class EstadosAdapter extends XmlAdapter<String,Estados> implements TypeHandler{
+public class EstadosAdapter extends XmlAdapter<String,Estados12> implements TypeHandler{
 
 	@Override
-	public Estados unmarshal(String metodo) throws ApiException {
-		return Estados.unmarshall(metodo);
+	public Estados12 unmarshal(String metodo) throws ApiException {
+		return Estados12.unmarshall(metodo);
 	}
 	@Override
-	public Class<Estados> getType() {
-		return Estados.class;
+	public Class<Estados12> getType() {
+		return Estados12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return Estados.parse(text);
+		return Estados12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class EstadosAdapter extends XmlAdapter<String,Estados> implements TypeHa
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof Estados)
-			return Estados.marshall((Estados)value);
+		if(value instanceof Estados12)
+			return Estados12.marshall((Estados12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,7 +42,7 @@ public class EstadosAdapter extends XmlAdapter<String,Estados> implements TypeHa
 
 
 	@Override
-	public String marshal(Estados v) throws Exception {
-		return Estados.marshall(v);
+	public String marshal(Estados12 v) throws Exception {
+		return Estados12.marshall(v);
 	}
 }

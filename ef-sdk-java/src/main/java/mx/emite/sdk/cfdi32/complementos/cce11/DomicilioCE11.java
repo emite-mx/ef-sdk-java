@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import mx.emite.sdk.cfdi32.anotaciones.T_Descrip100;
 import mx.emite.sdk.cfdi32.anotaciones.T_NumeroDomicilio;
 import mx.emite.sdk.cfdi32.anotaciones.T_Referencia;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.enums.sat.Paises;
 import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.PaisesSatAdapter;
@@ -65,7 +65,7 @@ public class DomicilioCE11 implements Serializable{
 	@XmlAttribute(name="Estado")
 	@XmlJavaTypeAdapter(EstadosAdapter.class)
 	@NotNull
-	protected Estados estado;
+	protected Estados12 estado;
 	
 	@XmlAttribute(name="Pais")
 	@XmlJavaTypeAdapter(PaisesSatAdapter.class)

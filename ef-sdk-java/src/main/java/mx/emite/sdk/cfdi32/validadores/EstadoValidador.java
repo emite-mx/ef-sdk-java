@@ -3,7 +3,7 @@ package mx.emite.sdk.cfdi32.validadores;
 import javax.validation.ConstraintValidatorContext;
 
 import mx.emite.sdk.cfdi32.anotaciones.Estado;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 
 public class EstadoValidador  extends CatalogoSatValidador<Estado, String>{
 
@@ -14,7 +14,7 @@ public class EstadoValidador  extends CatalogoSatValidador<Estado, String>{
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-	    return valida(value,context,Estados.ids());
+	    return valida(value,context,Estados12.ids());
 	}
 	
 }

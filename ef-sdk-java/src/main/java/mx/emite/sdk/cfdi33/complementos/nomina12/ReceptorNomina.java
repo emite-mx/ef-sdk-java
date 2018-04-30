@@ -27,7 +27,7 @@ import mx.emite.sdk.cfdi32.anotaciones.Curp;
 import mx.emite.sdk.cfdi32.anotaciones.NumEmpleado;
 import mx.emite.sdk.cfdi32.anotaciones.NumSeguridadSocial;
 import mx.emite.sdk.enums.sat.Bancos;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.enums.sat.TiposContrato12;
 import mx.emite.sdk.enums.sat.TiposJornada;
 import mx.emite.sdk.enums.sat.TiposPeriodicidad12;
@@ -194,7 +194,7 @@ public class ReceptorNomina implements Serializable{
 	@XmlAttribute(name="ClaveEntFed")
 	@XmlJavaTypeAdapter(EstadosAdapter.class)
 	@NotNull
-	protected Estados claveEntFed; 
+	protected Estados12 claveEntFed; 
 	
 	
 	/**

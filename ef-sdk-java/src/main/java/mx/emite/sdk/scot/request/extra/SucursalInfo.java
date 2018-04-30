@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import mx.emite.sdk.cfdi32.anotaciones.Cp;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.enums.sat.Paises;
 import mx.emite.sdk.enums.sat.cfdi33.FormasPago33;
 import mx.emite.sdk.enums.sat.cfdi33.MetodosPago33;
@@ -97,7 +97,7 @@ public class SucursalInfo {
 	 */
 	@NotNull
 	@JsonSerialize(using=EstadosSerializer.class)
-	public Estados idEstado;
+	public Estados12 idEstado;
 		
 	/**
 	 *  pais

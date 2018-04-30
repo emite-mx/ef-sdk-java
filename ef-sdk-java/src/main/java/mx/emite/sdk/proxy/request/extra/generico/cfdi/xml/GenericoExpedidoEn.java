@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import lombok.Data;
-import mx.emite.sdk.enums.sat.Estados;
+import mx.emite.sdk.enums.sat.Estados12;
 import mx.emite.sdk.enums.sat.Paises;
 import mx.emite.sdk.enums.sat.adaptadores.EstadosAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.PaisesAdapter;
@@ -35,7 +35,7 @@ public class GenericoExpedidoEn {
 	@XmlAttribute(name="estado")
 	@XmlJavaTypeAdapter(EstadosAdapter.class)
 	@NotNull
-	protected Estados estado;
+	protected Estados12 estado;
 	
 	@XmlAttribute(name="localidad")
 	protected String localidad;
