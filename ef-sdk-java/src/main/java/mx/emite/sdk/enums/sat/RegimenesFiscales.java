@@ -27,7 +27,7 @@ public enum RegimenesFiscales implements Sat<Integer>{
 	PERSONASFISICASCONACTIVIDADESEMPRESARIALESYPROFESIONALES(612,"Personas Fisicas con Actividades Empresariales y Profesionales",true,false),
 	INGRESOSPORINTERESES(614,"Ingresos por intereses",true,false),
 	SINOBLIGACIONESFISCALES(616,"Sin obligaciones fiscales",true,false),
-	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos",false,false),
+	SOCIEDADESCOOPERATIVASDEPRODUCCIONQUEOPTANPORDIFERIRSUSINGRESOS(620,"Sociedades Cooperativas de Producción que optan por diferir sus ingresos",false,true),
 	INCORPORACIONFISCAL(621,"Incorporación Fiscal",true,false),
 	ACTIVIDADESAGRICOLASGANADERASSILVICOLASYPESQUERAS(622,"Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras",true,true),
 	OPCIONALPARAGRUPOSDESOCIEDADES(623,"Opcional para Grupos de Sociedades",false,true),

@@ -119,4 +119,13 @@ public enum TiposPeriodicidad12 implements Sat<String>{
 		}
 		return null;
 	}
+	
+
+	public static String descripcion(String idSat){
+		if(idSat==null) return "";
+		final TiposPeriodicidad12 rf = idSat(idSat);
+		if(rf!=null)
+			return  idSat.concat(" - ").concat(rf.getDescripcion());
+		return idSat;
+	}
 }

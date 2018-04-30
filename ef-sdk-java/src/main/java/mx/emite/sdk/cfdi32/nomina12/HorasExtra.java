@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposHoras;
+import mx.emite.sdk.enums.sat.TiposHoras12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposHorasIdSatAdapter;
 
@@ -50,7 +50,7 @@ public class HorasExtra implements Serializable {
 	@XmlAttribute(name="TipoHoras")
 	@XmlJavaTypeAdapter(TiposHorasIdSatAdapter.class)
 	@NotNull
-    private TiposHoras tipoHoras;
+    private TiposHoras12 tipoHoras;
 	
 	/**
 	 * horasExtra Atributo requerido para expresar el número de horas extra trabajadas en el periodo.

@@ -40,7 +40,7 @@ import mx.emite.sdk.cfdi32.nomina12.ComprobanteNomina12;
 import mx.emite.sdk.cfdi33.Comprobante33;
 import mx.emite.sdk.cfdi33.complementos.aerolineas10.Aerolineas;
 import mx.emite.sdk.cfdi33.complementos.ccd10.CertificadoDeDestruccion;
-import mx.emite.sdk.cfdi33.complementos.cdc10.ConsumoDeCombustibles;
+import mx.emite.sdk.cfdi33.complementos.cdc11.ConsumoDeCombustibles11;
 import mx.emite.sdk.cfdi33.complementos.divisas10.Divisas;
 import mx.emite.sdk.cfdi33.complementos.donat11.Donatarias;
 import mx.emite.sdk.cfdi33.complementos.ecc11.EstadoDeCuentaCombustible;
@@ -105,7 +105,7 @@ public class MarshallerUnmarshaller {
 			PagoEnEspecie.class,
 			Aerolineas.class,
 			ValesDeDespensa.class,
-			ConsumoDeCombustibles.class,
+			//ConsumoDeCombustibles.class,
 			NotariosPublicos.class,
 			VehiculoUsado.class,
 			ParcialesConstruccion.class,
@@ -114,7 +114,8 @@ public class MarshallerUnmarshaller {
 			ObrasArteAntiguedades.class,
 			InstEducativas.class,
 			VentaVehiculos.class,
-			PorCuentadeTerceros.class
+			PorCuentadeTerceros.class,
+			ConsumoDeCombustibles11.class
 			);
 	public final static XpathExpresion xComplemento = new XpathExpresion("//*[contains(local-name(), 'Complemento')]");
 	

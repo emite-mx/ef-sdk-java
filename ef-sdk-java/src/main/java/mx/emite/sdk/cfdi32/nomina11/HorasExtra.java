@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposHoras;
+import mx.emite.sdk.enums.sat.TiposHoras12;
 import mx.emite.sdk.enums.sat.adaptadores.TiposHorasAdapter;
 
 
@@ -39,7 +39,7 @@ public class HorasExtra implements Serializable {
 	@XmlAttribute(name="TipoHoras")
 	@XmlJavaTypeAdapter(TiposHorasAdapter.class)
 	@NotNull
-    private TiposHoras tipoHoras;
+    private TiposHoras12 tipoHoras;
 	
 	@XmlAttribute(name="HorasExtra")
     private Integer horasExtra;

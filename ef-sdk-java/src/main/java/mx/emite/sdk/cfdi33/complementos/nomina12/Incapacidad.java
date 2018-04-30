@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.emite.sdk.enums.sat.TiposIncapacidad;
+import mx.emite.sdk.enums.sat.TiposIncapacidad12;
 import mx.emite.sdk.enums.sat.adaptadores.ImporteMxnAdapter;
 import mx.emite.sdk.enums.sat.adaptadores.TiposIncapacidadAdapter;
 
@@ -52,7 +52,7 @@ public class Incapacidad implements Serializable {
 	@XmlAttribute(required = true,name="TipoIncapacidad")
 	@XmlJavaTypeAdapter(TiposIncapacidadAdapter.class)
 	@NotNull
-    private TiposIncapacidad tipoIncapacidad;
+    private TiposIncapacidad12 tipoIncapacidad;
 	
 	/**
 	 * importeMonetario Atributo condicional para expresar el monto del importe monetario de la incapacidad.

@@ -6,23 +6,23 @@ import org.beanio.types.TypeConversionException;
 import org.beanio.types.TypeHandler;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.emite.sdk.enums.sat.TiposHoras;
+import mx.emite.sdk.enums.sat.TiposHoras12;
 import mx.emite.sdk.errores.ApiException;
 
 @Slf4j
-public class TiposHorasAdapter extends XmlAdapter<String,TiposHoras> implements TypeHandler{
+public class TiposHorasAdapter extends XmlAdapter<String,TiposHoras12> implements TypeHandler{
 
 	@Override
-	public TiposHoras unmarshal(String metodo) throws ApiException {
-		return TiposHoras.unmarshall(metodo);
+	public TiposHoras12 unmarshal(String metodo) throws ApiException {
+		return TiposHoras12.unmarshall(metodo);
 	}
 	@Override
-	public Class<TiposHoras> getType() {
-		return TiposHoras.class;
+	public Class<TiposHoras12> getType() {
+		return TiposHoras12.class;
 	}
 	@Override
 	public Object parse(String text) throws TypeConversionException, ApiException {
-		return TiposHoras.parse(text);
+		return TiposHoras12.parse(text);
 	}
 
 
@@ -30,8 +30,8 @@ public class TiposHorasAdapter extends XmlAdapter<String,TiposHoras> implements 
 	@Override
 	public String format(Object value){
 		try{
-		if(value instanceof TiposHoras)
-			return TiposHoras.marshall((TiposHoras)value);
+		if(value instanceof TiposHoras12)
+			return TiposHoras12.marshall((TiposHoras12)value);
 		return null;
 		}catch(Exception ex){
 			log.error("error formateando",ex);
@@ -42,8 +42,8 @@ public class TiposHorasAdapter extends XmlAdapter<String,TiposHoras> implements 
 
 
 	@Override
-	public String marshal(TiposHoras v) throws Exception {
-		return TiposHoras.marshall(v);
+	public String marshal(TiposHoras12 v) throws Exception {
+		return TiposHoras12.marshall(v);
 	}
 	
 	/*@Override
